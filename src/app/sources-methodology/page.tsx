@@ -1,6 +1,85 @@
 import type { Metadata } from "next";
+
 import { TrustPage } from "@/components/trust-page";
 import { pageMetadata } from "@/lib/seo";
-export const metadata: Metadata = pageMetadata({ title: "Sources and research methodology", description: "How HVAC Bench finds, ranks, scopes, paraphrases, cites, and rechecks primary HVAC technical sources.", path: "/sources-methodology/" });
-export default function SourcesPage() { return <TrustPage title="Sources & research methodology" eyebrow="Evidence protocol" intro="The source is part of the answer. HVAC Bench records where a claim came from, which equipment it covers, and when that source was reviewed." path="/sources-methodology/" sections={[{ title: "Source priority", bullets: ["Manufacturer and OEM service documentation", "Official installation and operation manuals", "Manufacturer technical bulletins and support articles", "Authorized service documentation where appropriate", "Strong secondary technical sources only when a primary source cannot answer the question"] }, { title: "The research path", bullets: ["Identify the complete brand, equipment category, family, and code or symptom.", "Locate documentation hosted by the manufacturer or an authoritative government source.", "Confirm that the code meaning and model scope appear in the source.", "Extract only claims necessary to answer the user and paraphrase them accurately.", "Separate safe observation from energized, refrigerant, gas, or internal diagnostic work.", "Add direct references and validate internal relationships before publication."] }, { title: "Handling conflicts", paragraphs: ["If two product families use the same code differently, HVAC Bench publishes separate scoped guides or omits the claim. A newer general support table does not silently override an older model's service manual. The model label and its applicable documentation decide." ]}, { title: "What a citation does not prove", paragraphs: ["A source link does not prove that every cause applies to every installation. Error codes usually identify a monitored condition or diagnostic area, not a guaranteed failed part. Onsite testing remains necessary where safe checks do not resolve the problem." ]}]} />; }
 
+const PATH = "/sources-methodology/";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Sources and methodology",
+  description:
+    "How HVAC Bench researches a page: the source hierarchy, how product scope is established, how claims are verified, and what happens when documentation does not exist.",
+  path: PATH,
+});
+
+export default function SourcesMethodologyPage() {
+  return (
+    <TrustPage
+      title="Sources and methodology"
+      eyebrow="Research method"
+      intro="This page describes exactly how a reference gets built, so you can judge whether to trust the answer rather than taking our word for it."
+      path={PATH}
+      updated="September 1, 2026"
+      sections={[
+        {
+          title: "The source hierarchy",
+          paragraphs: [
+            "Sources are ranked, and a lower-ranked source never overrides a higher one.",
+          ],
+          bullets: [
+            "Manufacturer service manuals. The most specific documentation available: code tables, wiring diagrams, pressure data, and diagnostic sequences written for technicians.",
+            "Manufacturer installation and operation manuals. Authoritative for normal behaviour, maintenance intervals, and owner-facing indicators.",
+            "Official manufacturer support articles and knowledge bases. Useful and current, but often written for a broader product range than a service manual.",
+            "Government and standards-body guidance. Used for cross-brand principles such as heat-pump behaviour, airflow, efficiency measurement, and refrigerant regulation.",
+          ],
+        },
+        {
+          title: "Establishing product scope",
+          paragraphs: [
+            "Before a code definition is written, we identify which models the source document covers. That list becomes the scope statement on the page.",
+            "If a service manual covers three capacities in one series, the page says those three capacities. It does not say the brand. This is the single most common failure in HVAC content online, and it is the reason a reader can follow correct-looking advice to the wrong conclusion.",
+          ],
+        },
+        {
+          title: "Turning documentation into a page",
+          bullets: [
+            "The code or symptom is located in the source and the manufacturer's own description is read in full, including any conditions attached to it.",
+            "The description is rewritten in plain language without changing its meaning or narrowing its conditions.",
+            "Causes are separated from symptoms, and both are separated from actions.",
+            "Actions are split into checks that are safe for an owner and work that requires a technician, using the conservative test described in the editorial policy.",
+            "The sources are listed with their scope notes, so a reader can go to the original and check the reasoning.",
+          ],
+        },
+        {
+          title: "What we do not do",
+          bullets: [
+            "We do not copy code tables wholesale from manufacturer documents. Definitions are paraphrased, scoped, and attributed.",
+            "We do not merge code tables from several brands into one universal list, because the resulting list would be wrong for most readers.",
+            "We do not publish a definition sourced only from a forum, a retailer blog, or a video, however plausible it sounds.",
+            "We do not describe procedures that require certification, instruments, or exposure to live electrical parts, refrigerant, or combustion products.",
+          ],
+        },
+        {
+          title: "When documentation does not exist",
+          paragraphs: [
+            "Some codes are simply not published outside a dealer portal. In that case we either leave the page unwritten or publish what can be established, clearly labelled, with the gap named.",
+            "Saying that a definition could not be verified is more useful than inventing one, and it tells a reader to go to the installer or the manufacturer instead of following a guess.",
+          ],
+        },
+        {
+          title: "Measurement conventions",
+          paragraphs: [
+            "Capacity appears in BTU per hour and kilowatts. Temperatures appear in Fahrenheit and Celsius. Pressures are labelled with their units, and efficiency ratings are labelled with the standard they were measured under, because SEER2 and HSPF2 in the United States and SCOP and SEER under European testing are not interchangeable numbers.",
+          ],
+        },
+        {
+          title: "Review and re-verification",
+          paragraphs: [
+            "Each page records the date its sources were last checked. Pages are re-verified when manufacturer documentation changes, when a reader reports a discrepancy, and on a rolling schedule.",
+            "Corrections that change the meaning of a page are logged publicly, with what changed and why.",
+          ],
+        },
+      ]}
+    />
+  );
+}

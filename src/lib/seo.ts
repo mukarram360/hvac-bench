@@ -1,41 +1,94 @@
 import type { Metadata, MetadataRoute } from "next";
 
-import type { TechnicalArticle } from "@/content/schema";
-import { getIndexableRoutes } from "./content";
+import type { Author, Brand, GlossaryTerm, TechnicalArticle } from "@/content/schema";
+import { EQUIPMENT_TYPES } from "@/content/taxonomy";
+import {
+  getArticleByPath,
+  getAuthorBySlug,
+  getIndexableRoutes,
+  getSourceById,
+} from "./content";
 
 export const SITE_NAME = "HVAC Bench";
 export const SITE_URL = "https://hvac-bench.com";
+export const SITE_TAGLINE = "HVAC error codes, diagnostics, and troubleshooting";
 export const SITE_DESCRIPTION =
-  "Evidence-backed HVAC error codes, diagnostics, and troubleshooting with clear safety boundaries and primary-source references.";
+  "Evidence-backed HVAC error codes, diagnostics, and troubleshooting with clear safety boundaries and primary-source references for US and UK systems.";
+export const SITE_LOCALE = "en_US";
+export const CONTACT_EMAIL = "editorial@hvac-bench.com";
+export const ORG_ID = `${SITE_URL}/#organization`;
+export const SITE_ID = `${SITE_URL}/#website`;
 
 export function absoluteUrl(path: string) {
-  const normalized = path === "/" ? "/" : `/${path.replace(/^\/+|\/+$/g, "")}/`;
-  return new URL(normalized, SITE_URL).toString();
+  if (path.startsWith("http")) return path;
+  const [route, hash] = path.split("#");
+  const normalized = route === "/" ? "/" : `/${route.replace(/^\/+|\/+$/g, "")}/`;
+  return new URL(hash ? `${normalized}#${hash}` : normalized, SITE_URL).toString();
 }
 
+type PageMetadataInput = {
+  title: string;
+  description: string;
+  path: string;
+  noIndex?: boolean;
+  keywords?: string[];
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  authorName?: string;
+};
+
+const robotsAllowed = {
+  index: true,
+  follow: true,
+  "max-image-preview": "large",
+  "max-snippet": -1,
+  "max-video-preview": -1,
+} as const;
+
+const robotsBlocked = {
+  index: false,
+  follow: true,
+  nocache: false,
+} as const;
+
+/** One place that decides how every page presents itself to search and social. */
 export function pageMetadata({
   title,
   description,
   path,
   noIndex = false,
-}: {
-  title: string;
-  description: string;
-  path: string;
-  noIndex?: boolean;
-}): Metadata {
+  keywords,
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  authorName,
+}: PageMetadataInput): Metadata {
   const url = absoluteUrl(path);
+
   return {
     title,
     description,
+    keywords,
     alternates: { canonical: url },
-    robots: noIndex ? { index: false, follow: true } : undefined,
+    robots: noIndex
+      ? robotsBlocked
+      : { ...robotsAllowed, googleBot: robotsAllowed },
     openGraph: {
-      type: "website",
+      type,
       siteName: SITE_NAME,
       title,
       description,
       url,
+      locale: SITE_LOCALE,
+      alternateLocale: ["en_GB"],
+      ...(type === "article"
+        ? {
+            publishedTime,
+            modifiedTime,
+            authors: authorName ? [authorName] : undefined,
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
@@ -46,32 +99,97 @@ export function pageMetadata({
 }
 
 export function articleMetadata(article: TechnicalArticle): Metadata {
-  const url = absoluteUrl(article.path);
-  return {
+  const author = getAuthorBySlug(article.authorSlug);
+  return pageMetadata({
     title: article.title,
     description: article.description,
+    path: article.path,
     keywords: article.keywords,
-    alternates: { canonical: url },
-    openGraph: {
-      type: "article",
-      siteName: SITE_NAME,
-      title: article.title,
-      description: article.description,
-      url,
-      modifiedTime: article.lastReviewed,
+    type: "article",
+    publishedTime: article.datePublished ?? article.lastReviewed,
+    modifiedTime: article.lastReviewed,
+    authorName: author?.name ?? SITE_NAME,
+  });
+}
+
+/* --------------------------------------------------------- structured data */
+
+/** Publisher identity, referenced by @id from every other node on the site. */
+export function organizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ORG_ID,
+    name: SITE_NAME,
+    alternateName: "HVACBench",
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    email: CONTACT_EMAIL,
+    logo: {
+      "@type": "ImageObject",
+      "@id": `${SITE_URL}/#logo`,
+      url: `${SITE_URL}/icon`,
+      width: 512,
+      height: 512,
+      caption: SITE_NAME,
     },
-    twitter: {
-      card: "summary_large_image",
-      title: article.title,
-      description: article.description,
+    image: { "@id": `${SITE_URL}/#logo` },
+    knowsAbout: [
+      "HVAC error codes",
+      "Ductless mini-split systems",
+      "Air source heat pumps",
+      "Heating and cooling diagnostics",
+      "Indoor air quality",
+    ],
+    areaServed: [
+      { "@type": "Country", name: "United States" },
+      { "@type": "Country", name: "United Kingdom" },
+      { "@type": "Place", name: "Europe" },
+    ],
+    publishingPrinciples: absoluteUrl("/editorial-policy/"),
+    correctionsPolicy: absoluteUrl("/corrections/"),
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "editorial",
+      email: CONTACT_EMAIL,
+      url: absoluteUrl("/contact/"),
+      availableLanguage: ["English"],
     },
-  };
+  } as const;
+}
+
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": SITE_ID,
+    name: SITE_NAME,
+    alternateName: SITE_TAGLINE,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    inLanguage: "en",
+    publisher: { "@id": ORG_ID },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/search/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  } as const;
+}
+
+export function siteJsonLd() {
+  return [organizationJsonLd(), websiteJsonLd()];
 }
 
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  const current = items[items.length - 1]?.path ?? "/";
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${absoluteUrl(current)}#breadcrumb`,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -81,53 +199,258 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   } as const;
 }
 
-export function articleJsonLd(article: TechnicalArticle) {
+export function webPageJsonLd({
+  title,
+  description,
+  path,
+  breadcrumbs,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  breadcrumbs?: { name: string; path: string }[];
+}) {
+  const url = absoluteUrl(path);
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.description,
-    dateModified: article.lastReviewed,
-    mainEntityOfPage: absoluteUrl(article.path),
-    author: { "@type": "Organization", name: SITE_NAME },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
-    about: article.errorCode
-      ? `${article.brand ?? "HVAC"} ${article.errorCode}`
-      : article.problemType,
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    inLanguage: "en",
+    isPartOf: { "@id": SITE_ID },
+    publisher: { "@id": ORG_ID },
+    // References the standalone BreadcrumbList node rather than repeating it.
+    ...(breadcrumbs ? { breadcrumb: { "@id": `${url}#breadcrumb` } } : {}),
   } as const;
 }
 
-export function websiteJsonLd() {
-  return [
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
-      name: SITE_NAME,
-      url: SITE_URL,
+export function collectionPageJsonLd({
+  title,
+  description,
+  path,
+  items,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  items: { name: string; path: string }[];
+}) {
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collection`,
+    url,
+    name: title,
+    description,
+    inLanguage: "en",
+    isPartOf: { "@id": SITE_ID },
+    publisher: { "@id": ORG_ID },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: items.length,
+      itemListElement: items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        url: absoluteUrl(item.path),
+      })),
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      name: SITE_NAME,
-      url: SITE_URL,
-      publisher: { "@id": `${SITE_URL}/#organization` },
-    },
-  ] as const;
+  } as const;
 }
+
+export function personJsonLd(author: Author) {
+  const url = absoluteUrl(`/authors/${author.slug}/`);
+  return {
+    "@context": "https://schema.org",
+    "@type": author.entityType === "person" ? "Person" : "Organization",
+    "@id": `${url}#author`,
+    name: author.name,
+    url,
+    jobTitle: author.role,
+    description: author.shortBio,
+    knowsAbout: author.expertise,
+    ...(author.email ? { email: author.email } : {}),
+    ...(author.sameAs.length ? { sameAs: author.sameAs } : {}),
+    ...(author.entityType === "person"
+      ? { worksFor: { "@id": ORG_ID } }
+      : { parentOrganization: { "@id": ORG_ID } }),
+  } as const;
+}
+
+export function faqJsonLd(faqs: { question: string; answer: string }[], path: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${absoluteUrl(path)}#faq`,
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  } as const;
+}
+
+export function definedTermSetJsonLd(terms: GlossaryTerm[], path: string) {
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": `${url}#glossary`,
+    name: "HVAC glossary",
+    url,
+    inLanguage: "en",
+    publisher: { "@id": ORG_ID },
+    hasDefinedTerm: terms.map((term) => ({
+      "@type": "DefinedTerm",
+      "@id": `${url}#${term.slug}`,
+      name: term.term,
+      description: term.definition,
+      url: `${url}#${term.slug}`,
+      inDefinedTermSet: { "@id": `${url}#glossary` },
+    })),
+  } as const;
+}
+
+export function brandJsonLd(brand: Brand, articleCount: number) {
+  const url = absoluteUrl(`/brands/${brand.slug}/`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collection`,
+    url,
+    name: `${brand.name} HVAC error codes and troubleshooting`,
+    description: brand.description,
+    inLanguage: "en",
+    isPartOf: { "@id": SITE_ID },
+    publisher: { "@id": ORG_ID },
+    about: {
+      "@type": "Brand",
+      name: brand.name,
+      ...(brand.aliases.length ? { alternateName: brand.aliases[0] } : {}),
+      description: brand.description,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: articleCount,
+    },
+  } as const;
+}
+
+/**
+ * Technical pages publish as TechArticle, and add HowTo only when the record
+ * really contains an ordered procedure. Ratings and review claims are never
+ * emitted, because the site does not collect them.
+ */
+export function articleJsonLd(article: TechnicalArticle) {
+  const url = absoluteUrl(article.path);
+  const author = getAuthorBySlug(article.authorSlug);
+  const reviewer = article.reviewerSlug ? getAuthorBySlug(article.reviewerSlug) : undefined;
+  const citations = article.sourceIds
+    .map(getSourceById)
+    .filter((source) => source !== undefined)
+    .map((source) => ({
+      "@type": "CreativeWork" as const,
+      name: source.title,
+      url: source.url,
+      publisher: { "@type": "Organization" as const, name: source.publisher },
+    }));
+
+  const equipmentLabel =
+    EQUIPMENT_TYPES[article.equipmentType as keyof typeof EQUIPMENT_TYPES]?.singular ??
+    article.equipmentType.replaceAll("-", " ");
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": `${url}#article`,
+    headline: article.title,
+    name: article.title,
+    description: article.description,
+    abstract: article.directAnswer,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#webpage` },
+    datePublished: article.datePublished ?? article.lastReviewed,
+    dateModified: article.lastReviewed,
+    inLanguage: "en",
+    isAccessibleForFree: true,
+    author: author ? personJsonLd(author) : { "@id": ORG_ID },
+    ...(reviewer
+      ? {
+          reviewedBy: {
+            "@type": reviewer.entityType === "person" ? "Person" : "Organization",
+            name: reviewer.name,
+            url: absoluteUrl(`/authors/${reviewer.slug}/`),
+          },
+        }
+      : {}),
+    publisher: { "@id": ORG_ID },
+    citation: citations,
+    keywords: article.keywords.join(", "),
+    articleSection: article.articleType.replaceAll("-", " "),
+    about: [
+      {
+        "@type": "Thing",
+        name: article.errorCode
+          ? `${article.brand ? `${article.brand} ` : ""}${article.errorCode} error code`
+          : article.problemType.replaceAll("-", " "),
+      },
+      { "@type": "Thing", name: equipmentLabel },
+    ],
+    proficiencyLevel: "Beginner",
+    dependencies: article.models.join("; "),
+  } as const;
+}
+
+export function howToJsonLd(article: TechnicalArticle) {
+  if (!article.steps?.length) return undefined;
+  const url = absoluteUrl(article.path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": `${url}#howto`,
+    name: article.title,
+    description: article.description,
+    inLanguage: "en",
+    totalTime: "PT20M",
+    step: article.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      url: `${url}#step-${index + 1}`,
+    })),
+  } as const;
+}
+
+/* ------------------------------------------------------------- sitemap ---- */
+
+const HUB_ROUTES = new Set([
+  "/brands/",
+  "/error-codes/",
+  "/troubleshooting/",
+  "/equipment/",
+  "/guides/",
+  "/how-to/",
+  "/compare/",
+  "/glossary/",
+  "/faq/",
+]);
 
 export function sitemapEntries(): MetadataRoute.Sitemap {
-  const articleDate = new Map<string, string>();
-  return getIndexableRoutes().map((path) => ({
-    url: absoluteUrl(path),
-    lastModified: articleDate.get(path) ?? "2026-09-01",
-    changeFrequency: path === "/" ? "weekly" : "monthly",
-    priority: path === "/" ? 1 : path.split("/").filter(Boolean).length <= 1 ? 0.8 : 0.7,
-  }));
-}
+  return getIndexableRoutes().map((path) => {
+    const article = getArticleByPath(path);
+    const depth = path.split("/").filter(Boolean).length;
 
+    const priority = path === "/" ? 1 : HUB_ROUTES.has(path) ? 0.9 : article ? 0.8 : depth <= 1 ? 0.5 : 0.6;
+
+    return {
+      url: absoluteUrl(path),
+      lastModified: article?.lastReviewed ?? new Date().toISOString().slice(0, 10),
+      changeFrequency: path === "/" || HUB_ROUTES.has(path) ? "weekly" : "monthly",
+      priority,
+    };
+  });
+}

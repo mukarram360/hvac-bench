@@ -1,53 +1,345 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
 import { ArticleCard } from "@/components/article-card";
+import { JsonLd } from "@/components/json-ld";
 import { SiteSearch, type SearchEntry } from "@/components/site-search";
-import { getAllArticles, getAllBrands } from "@/lib/content";
+import { PROBLEM_TYPES } from "@/content/taxonomy";
+import {
+  getAllArticles,
+  getAllBrands,
+  getArticlesByEquipment,
+  getErrorCodeArticles,
+  isBrandIndexable,
+} from "@/lib/content";
+import { SITE_DESCRIPTION, pageMetadata, webPageJsonLd } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "HVAC error codes and troubleshooting | HVAC Bench",
+  description: SITE_DESCRIPTION,
+  path: "/",
+  keywords: [
+    "hvac error codes",
+    "mini split troubleshooting",
+    "heat pump not heating",
+    "hvac fault code lookup",
+    "mini split not cooling",
+  ],
+});
+
+const SYMPTOM_PATHS = [
+  {
+    title: "It is not cooling",
+    copy: "Airflow, filters, ice on the coil, settings, and the fault codes that explain a system running without cooling.",
+    href: "/mini-split-not-cooling/",
+  },
+  {
+    title: "It is not heating",
+    copy: "Defrost behaviour, start delays, outdoor temperature limits, and what counts as normal on a heat pump in winter.",
+    href: "/mini-split-not-heating/",
+  },
+  {
+    title: "It is leaking water",
+    copy: "Condensate path, drain blockages, filter loading, and the frozen-coil pattern that produces water indoors.",
+    href: "/mini-split-leaking-water/",
+  },
+  {
+    title: "It will not start",
+    copy: "Power, remotes, timers, protection delays, and the states a system enters deliberately before it will run again.",
+    href: "/mini-split-not-turning-on/",
+  },
+];
+
+function ShieldIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 2.5 16 5v5c0 3.4-2.4 6.3-6 7.5-3.6-1.2-6-4.1-6-7.5V5l6-2.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="m7.4 10 1.9 1.9 3.4-3.6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ScopeIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="3" y="3.5" width="14" height="13" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M3 7.5h14M7 7.5v9" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+function LimitIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <circle cx="10" cy="10" r="7.2" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M10 6v4.4M10 13.4h.01" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 export default function Home() {
   const brands = getAllBrands();
   const articles = getAllArticles();
-  const errorGuides = articles.filter((article) => article.articleType === "error-code").slice(0, 6);
-  const searchEntries: SearchEntry[] = [
-    ...articles.map((article) => ({ title: article.title, path: article.path, description: article.description, label: article.errorCode ?? "Guide", terms: `${article.brand ?? ""} ${article.problemType} ${article.keywords.join(" ")}` })),
-    ...brands.map((brand) => ({ title: `${brand.name} HVAC`, path: `/brands/${brand.slug}/`, description: brand.description, label: "Brand hub", terms: `${brand.name} ${brand.equipmentTypes.join(" ")}` })),
+  const codeArticles = getErrorCodeArticles();
+  const featuredCodes = codeArticles.slice(0, 6);
+  const coveredBrands = brands.filter((brand) => isBrandIndexable(brand.slug));
+  const brandTiles = [...coveredBrands, ...brands.filter((brand) => !isBrandIndexable(brand.slug))].slice(0, 10);
+  const startingGuides = articles.filter((article) => !article.errorCode).slice(0, 3);
+
+  const quickLinks: SearchEntry[] = featuredCodes.slice(0, 4).map((article) => ({
+    title: article.title,
+    path: article.path,
+    description: article.description,
+    label: article.errorCode ?? "Guide",
+    terms: "",
+  }));
+
+  const equipmentRows = [
+    { label: "Ductless mini-splits", slug: "ductless-mini-split", note: "Single and multi-zone" },
+    { label: "Heat pumps", slug: "heat-pump", note: "Air source, ducted and hydronic" },
+    { label: "Controls and thermostats", slug: "controls-thermostats", note: "Remotes and smart controls" },
+    { label: "Light commercial", slug: "light-commercial", note: "VRF, cassettes, rooftop units" },
   ];
 
   return (
     <main id="main-content">
-      <section className="hero">
-        <div className="hero-copy">
-          <div className="eyebrow">Evidence-backed HVAC reference</div>
-          <h1>Find the code.<br /><span>Trace the problem.</span></h1>
-          <p>Model-aware error codes and practical troubleshooting, checked against manufacturer documentation and separated into safe checks and technician work.</p>
-          <div className="hero-actions"><Link className="button primary" href="/error-codes/">Browse error codes</Link><Link className="button secondary" href="/troubleshooting/">Start with a symptom</Link></div>
+      <JsonLd
+        data={webPageJsonLd({
+          title: "HVAC error codes, diagnostics, and troubleshooting",
+          description: SITE_DESCRIPTION,
+          path: "/",
+        })}
+      />
+
+      <section className="container hero">
+        <div className="hero-grid">
+          <div>
+            <span className="eyebrow">Evidence-backed HVAC reference</span>
+            <h1>
+              Find the fault code.
+              <br />
+              Then find out <em>what it means</em>.
+            </h1>
+            <p className="hero-lede">
+              Error codes, symptoms, and service documentation for ductless mini-splits and heat
+              pumps, checked against manufacturer literature and written with the product scope and
+              the safety limit stated on the page.
+            </p>
+            <div className="hero-actions">
+              <Link className="btn btn-primary" href="/error-codes/">
+                Browse error codes
+              </Link>
+              <Link className="btn btn-secondary" href="/troubleshooting/">
+                Start from a symptom
+              </Link>
+            </div>
+            <div className="hero-chips">
+              <span className="hero-chips-label">Frequently looked up</span>
+              {featuredCodes.slice(0, 5).map((article) => (
+                <Link className="chip" key={article.path} href={article.path}>
+                  {article.errorCode}
+                  <span>{article.brand}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="plate plate-ink">
+            <div className="plate-head">
+              <span>Index lookup</span>
+              <span>
+                {articles.length} guides · {brands.length} brands
+              </span>
+            </div>
+            <div className="plate-body">
+              <SiteSearch quickLinks={quickLinks} />
+            </div>
+          </div>
         </div>
-        <div className="hero-console-wrap">
-          <div className="console-topline"><span>HVAC BENCH / INDEX</span><span>{articles.length} GUIDES · {brands.length} BRANDS</span></div>
-          <SiteSearch entries={searchEntries} compact />
+      </section>
+
+      <section className="assurance" aria-label="Editorial standards">
+        <div className="container assurance-inner">
+          <div>
+            <ScopeIcon />
+            <strong>Primary sources first</strong>
+            <p>
+              Every technical claim traces to a manufacturer service manual, operation manual, or
+              official support article, listed at the foot of the page.
+            </p>
+          </div>
+          <div>
+            <ShieldIcon />
+            <strong>Product scope stated</strong>
+            <p>
+              A code means what the documentation for that product family says it means. Pages name
+              the models they cover instead of implying every system is the same.
+            </p>
+          </div>
+          <div>
+            <LimitIcon />
+            <strong>The safety line is drawn</strong>
+            <p>
+              Checks a homeowner can make safely are separated from work that requires isolation,
+              instruments, or refrigerant certification.
+            </p>
+          </div>
         </div>
       </section>
-      <section className="proof-strip" aria-label="Editorial standards">
-        <div><strong>Primary sources first</strong><span>OEM manuals and official support</span></div><div><strong>Model scope shown</strong><span>No universal code assumptions</span></div><div><strong>Safety boundary built in</strong><span>Homeowner checks versus service</span></div>
+
+      <section className="container band">
+        <div className="section-head">
+          <div>
+            <span className="eyebrow">Start here</span>
+            <h2>What is the system actually doing?</h2>
+            <p>
+              Most people arrive with a behaviour rather than a code. Pick the one that matches, and
+              the guide narrows it from there.
+            </p>
+          </div>
+          <Link className="link-arrow" href="/troubleshooting/">
+            All symptoms
+          </Link>
+        </div>
+        <div className="grid grid-4">
+          {SYMPTOM_PATHS.map((path) => (
+            <Link className="path-card" key={path.href} href={path.href}>
+              <h3>{path.title}</h3>
+              <p>{path.copy}</p>
+              <span className="link-arrow">Follow the checks</span>
+            </Link>
+          ))}
+        </div>
       </section>
-      <section className="home-section brand-section">
-        <div className="section-heading"><div><span className="eyebrow">Manufacturer index</span><h2>Start with the brand on the unit</h2></div><Link className="text-link" href="/brands/">All brands →</Link></div>
-        <div className="brand-grid">{brands.map((brand, index) => <Link className="brand-tile" href={`/brands/${brand.slug}/`} key={brand.slug}><span className="brand-index">{String(index + 1).padStart(2, "0")}</span><strong>{brand.name}</strong><small>{brand.equipmentTypes[0].replaceAll("-", " ")}</small></Link>)}</div>
+
+      <section className="band-ink">
+        <div className="container band">
+          <div className="section-head">
+            <div>
+              <span className="eyebrow">Code desk</span>
+              <h2>Codes people look up at eleven at night</h2>
+              <p>
+                Each reference states the family the code was documented for, what the board
+                detected, and where the diagnosis stops being a homeowner task.
+              </p>
+            </div>
+            <Link className="link-arrow" href="/error-codes/">
+              Open the code index
+            </Link>
+          </div>
+          <div className="code-grid">
+            {featuredCodes.map((article) => (
+              <Link className="code-card" key={article.path} href={article.path}>
+                <span>{article.errorCode}</span>
+                <div>
+                  <strong>{article.title.split(":")[0]}</strong>
+                  <small>{article.problemType.replaceAll("-", " ")}</small>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
-      <section className="home-section dark-section">
-        <div className="section-heading inverse"><div><span className="eyebrow">Code desk</span><h2>Common error-code references</h2></div><Link className="text-link" href="/error-codes/">Open code directory →</Link></div>
-        <div className="code-grid">{errorGuides.map((article) => <Link href={article.path} className="code-card" key={article.path}><span>{article.errorCode}</span><div><strong>{article.title}</strong><small>{article.brand} · {article.problemType.replaceAll("-", " ")}</small></div></Link>)}</div>
+
+      <section className="container band">
+        <div className="section-head">
+          <div>
+            <span className="eyebrow">Manufacturer index</span>
+            <h2>Start with the name on the unit</h2>
+            <p>
+              Codes are published per manufacturer and often per series, so the brand hub is the
+              right first stop when you have a model number in front of you.
+            </p>
+          </div>
+          <Link className="link-arrow" href="/brands/">
+            All {brands.length} brands
+          </Link>
+        </div>
+        <div className="brand-grid">
+          {brandTiles.map((brand) => (
+            <Link className="brand-tile" key={brand.slug} href={`/brands/${brand.slug}/`}>
+              <span className="brand-region">{brand.regions.map((region) => region.toUpperCase()).join(" · ")}</span>
+              <strong>{brand.name}</strong>
+              <small>{brand.series[0] ?? brand.equipmentTypes[0].replaceAll("-", " ")}</small>
+            </Link>
+          ))}
+        </div>
       </section>
-      <section className="home-section pathway-section">
-        <div className="section-heading"><div><span className="eyebrow">Diagnostic paths</span><h2>Start with what the system is doing</h2></div></div>
-        <div className="pathway-grid">{[["No cooling", "Airflow, settings, ice, and fault checks", "/mini-split-not-cooling/"], ["No heat", "Defrost, delay, airflow, and low-temperature context", "/mini-split-not-heating/"], ["Water leak", "Condensate, drainage, filter, and frozen-coil clues", "/mini-split-leaking-water/"], ["Will not start", "Power, timer, remote, delay, and protection states", "/mini-split-not-turning-on/"]].map(([title, copy, path]) => <Link href={path} className="pathway-card" key={path}><span>SYMPTOM</span><h3>{title}</h3><p>{copy}</p><em>Follow the checks →</em></Link>)}</div>
+
+      <section className="band-alt">
+        <div className="container band">
+          <div className="section-head">
+            <div>
+              <span className="eyebrow">Equipment map</span>
+              <h2>Built for more than one category</h2>
+              <p>
+                Mini-splits and heat pumps carry the current library. The route structure, schema,
+                and internal linking already hold central air, furnaces, boilers, controls, and light
+                commercial work without a rebuild.
+              </p>
+            </div>
+            <Link className="link-arrow" href="/equipment/">
+              Equipment index
+            </Link>
+          </div>
+          <ul className="doc-list">
+            {equipmentRows.map((row) => {
+              const count = getArticlesByEquipment(row.slug).length;
+              return (
+                <li key={row.slug}>
+                  <Link href={`/equipment/${row.slug}/`}>
+                    <span>
+                      <strong>{row.label}</strong>
+                      <p>{row.note}</p>
+                    </span>
+                    <small>{count > 0 ? `${count} published` : "In progress"}</small>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </section>
-      <section className="home-section equipment-section">
-        <div className="equipment-copy"><span className="eyebrow">Equipment map</span><h2>Built beyond one equipment category</h2><p>The initial bench focuses on ductless mini-splits and heat pumps. The route and content system is ready for central air, furnaces, thermostats, air handlers, and commercial HVAC without changing the site structure.</p><Link className="button secondary" href="/equipment/">Explore equipment</Link></div>
-        <div className="equipment-list"><Link href="/equipment/"><span>01</span><strong>Ductless mini-splits</strong><small>Active</small></Link><Link href="/equipment/"><span>02</span><strong>Heat pumps</strong><small>Active</small></Link><Link href="/equipment/"><span>03</span><strong>Controls &amp; remotes</strong><small>Active</small></Link><Link href="/equipment/"><span>04</span><strong>Central &amp; commercial</strong><small>Architecture ready</small></Link></div>
+
+      <section className="container band">
+        <div className="section-head">
+          <div>
+            <span className="eyebrow">Working references</span>
+            <h2>Guides worth reading before you call anyone</h2>
+            <p>
+              Symptom guides that cover the checks a competent owner can make, and explain what a
+              technician will do next.
+            </p>
+          </div>
+          <Link className="link-arrow" href="/guides/">
+            All guides
+          </Link>
+        </div>
+        <div className="grid grid-3">
+          {startingGuides.map((article) => (
+            <ArticleCard article={article} key={article.path} />
+          ))}
+        </div>
       </section>
-      <section className="home-section latest-section"><div className="section-heading"><div><span className="eyebrow">Bench notes</span><h2>Useful starting guides</h2></div></div><div className="card-grid">{articles.slice(-6).reverse().map((article) => <ArticleCard article={article} key={article.path} />)}</div></section>
-      <section className="method-band"><div><span className="eyebrow">How HVAC Bench works</span><h2>A citation is part of the diagnostic, not decoration.</h2></div><p>Every technical page states the product scope, preserves uncertainty, links its sources, and places hazardous testing on the technician side of the line.</p><Link className="button light" href="/sources-methodology/">Read our research method</Link></section>
+
+      <section className="method">
+        <div className="container method-inner">
+          <div>
+            <span className="eyebrow">How this site works</span>
+            <h2>A citation is part of the diagnosis, not decoration</h2>
+          </div>
+          <p>
+            Pages state the equipment they apply to, keep the uncertainty that exists in the source,
+            link the documentation they were built from, and put hazardous testing on the
+            technician&apos;s side of the line. Where {Object.keys(PROBLEM_TYPES).length} symptom
+            families meet {brands.length} manufacturers, that discipline is the only thing that makes
+            the answer trustworthy.
+          </p>
+          <Link className="btn btn-inverse" href="/sources-methodology/">
+            Read the method
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }
-

@@ -1,6 +1,75 @@
 import { ImageResponse } from "next/og";
-export const alt = "HVAC Bench — HVAC codes, diagnostics, and troubleshooting";
+
+export const alt = "HVAC Bench — HVAC error codes, diagnostics, and troubleshooting";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export default function OpenGraphImage() { return new ImageResponse(<div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#0b2028", color: "#f5f7f4", padding: "64px 72px", fontFamily: "Arial, sans-serif" }}><div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 24, letterSpacing: 3 }}><div style={{ display: "flex", alignItems: "center", gap: 18 }}><span style={{ display: "flex", background: "#e75b2a", color: "#fff", width: 58, height: 58, alignItems: "center", justifyContent: "center", fontWeight: 800, letterSpacing: 0 }}>HB</span><strong>HVAC BENCH</strong></div><span style={{ color: "#8eb8b1", fontSize: 17 }}>EVIDENCE-BACKED REFERENCE</span></div><div style={{ display: "flex", flexDirection: "column" }}><div style={{ color: "#f1794f", fontSize: 22, letterSpacing: 4, marginBottom: 18 }}>FIND THE CODE. TRACE THE PROBLEM.</div><div style={{ fontSize: 72, lineHeight: 1.02, maxWidth: 900, fontWeight: 800 }}>HVAC codes, diagnostics &amp; troubleshooting</div></div><div style={{ display: "flex", justifyContent: "space-between", borderTop: "2px solid #33515b", paddingTop: 24, color: "#bdd0cc", fontSize: 20 }}><span>Model scope shown · Primary sources linked</span><span>hvac-bench.com</span></div></div>, size); }
 
+export default function OpenGraphImage() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          background: "#0b2028",
+          color: "#f6f7f4",
+          padding: "60px 68px",
+          fontFamily: "Arial, sans-serif",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 54,
+                height: 54,
+                background: "#0b2028",
+                border: "1px solid #2d5460",
+                borderBottom: "4px solid #df5627",
+                color: "#fff",
+                fontSize: 22,
+                fontWeight: 700,
+              }}
+            >
+              HB
+            </span>
+            <span style={{ fontSize: 28, fontWeight: 700, letterSpacing: -0.5 }}>HVAC Bench</span>
+          </div>
+          <span style={{ color: "#8fb1ac", fontSize: 18, letterSpacing: 2 }}>
+            EVIDENCE-BACKED REFERENCE
+          </span>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ color: "#ff8f61", fontSize: 20, letterSpacing: 3, marginBottom: 20 }}>
+            ERROR CODES · DIAGNOSTICS · REPAIR LIMITS
+          </div>
+          <div style={{ fontSize: 64, lineHeight: 1.08, maxWidth: 940, fontWeight: 700, letterSpacing: -1.5 }}>
+            Find the fault code. Then find out what it means.
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            borderTop: "1px solid #22434e",
+            paddingTop: 22,
+            color: "#a9c1bd",
+            fontSize: 19,
+          }}
+        >
+          <span>Model scope stated · Sources listed · Safety line drawn</span>
+          <span>hvac-bench.com</span>
+        </div>
+      </div>
+    ),
+    size,
+  );
+}

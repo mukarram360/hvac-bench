@@ -2,8 +2,29 @@ import type { TechnicalArticle } from "./schema";
 
 type ArticleDraft = Omit<
   TechnicalArticle,
-  "lastReviewed" | "reviewStatus" | "sourceType" | "keywords" | "models"
-> & { models?: string[] };
+  | "lastReviewed"
+  | "reviewStatus"
+  | "sourceType"
+  | "keywords"
+  | "models"
+  | "faqs"
+  | "authorSlug"
+> &
+  Partial<
+    Pick<
+      TechnicalArticle,
+      | "models"
+      | "faqs"
+      | "authorSlug"
+      | "reviewerSlug"
+      | "datePublished"
+      | "symptomFamily"
+      | "steps"
+      | "keywords"
+      | "lastReviewed"
+      | "reviewStatus"
+    >
+  >;
 
 const singleSourceTypes: Record<string, TechnicalArticle["sourceType"]> = {
   "gree-e6-guide": "oem-support",
@@ -33,6 +54,9 @@ const singleSourceTypes: Record<string, TechnicalArticle["sourceType"]> = {
 function guide(draft: ArticleDraft): TechnicalArticle {
   return {
     models: ["Cross-brand guidance; confirm the exact model manual"],
+    faqs: [],
+    authorSlug: "hvac-bench-editorial",
+    datePublished: "2026-09-01",
     lastReviewed: "2026-09-01",
     reviewStatus: "source-verified",
     sourceType:

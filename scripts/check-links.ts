@@ -1,10 +1,22 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
-import { getIndexableRoutes } from "../src/lib/content";
+import { getAllBrands, getIndexableRoutes } from "../src/lib/content";
+import { EQUIPMENT_TYPES } from "../src/content/taxonomy";
 
 const ROOT = process.cwd();
 const SEARCH_ROOTS = [path.join(ROOT, "src", "app"), path.join(ROOT, "src", "components")];
-const generatedRoutes = new Set([...getIndexableRoutes(), "/search/", "/robots.txt", "/sitemap.xml"]);
+const generatedRoutes = new Set([
+  ...getIndexableRoutes(),
+  ...getAllBrands().map((brand) => `/brands/${brand.slug}/`),
+  ...Object.keys(EQUIPMENT_TYPES).map((type) => `/equipment/${type}/`),
+  "/search/",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/rss.xml",
+  "/llms.txt",
+  "/manifest.webmanifest",
+  "/search-index.json",
+]);
 
 function normalizeRoute(route: string) {
   const pathname = route.split(/[?#]/, 1)[0];

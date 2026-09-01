@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "tsx scripts/build-search-index.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
@@ -11,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "check:links": "tsx scripts/check-links.ts",
+    "build:search": "tsx scripts/build-search-index.ts",
     "verify": "npm run test && npm run typecheck && npm run lint && npm run check:links && npm run build"
   },
   "dependencies": {

@@ -1,40 +1,39 @@
 import Link from "next/link";
 
+import { footerNav } from "@/lib/nav";
+
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="footer-grid">
-        <div>
-          <div className="footer-brand">HVAC Bench</div>
-          <p>Technical HVAC information, translated from authoritative documentation with model scope and safety limits intact.</p>
+      <div className="container footer-grid">
+        <div className="footer-brand">
+          <span className="brand-mark" aria-hidden="true">
+            HB
+          </span>
+          <p>
+            HVAC Bench translates manufacturer service documentation into plain language, keeps the
+            product scope visible, and marks the point where a check stops being a homeowner task.
+            Covering systems installed across the United States, United Kingdom, and Europe.
+          </p>
         </div>
-        <div>
-          <h2>Reference</h2>
-          <Link href="/brands/">Brands</Link>
-          <Link href="/error-codes/">Error codes</Link>
-          <Link href="/troubleshooting/">Troubleshooting</Link>
-          <Link href="/equipment/">Equipment</Link>
-        </div>
-        <div>
-          <h2>Standards</h2>
-          <Link href="/editorial-policy/">Editorial policy</Link>
-          <Link href="/sources-methodology/">Sources &amp; methodology</Link>
-          <Link href="/safety-disclaimer/">Safety disclaimer</Link>
-          <Link href="/about/">About</Link>
-        </div>
-        <div>
-          <h2>Site</h2>
-          <Link href="/contact/">Contact</Link>
-          <Link href="/privacy/">Privacy</Link>
-          <Link href="/terms/">Terms</Link>
-          <Link href="/sitemap.xml">Sitemap</Link>
-        </div>
+        {footerNav.map((column) => (
+          <nav className="footer-col" key={column.heading} aria-label={column.heading}>
+            <h2>{column.heading}</h2>
+            {column.links.map((link) => (
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        ))}
       </div>
-      <div className="footer-base">
+      <div className="container footer-base">
         <span>© {new Date().getFullYear()} HVAC Bench</span>
-        <span>Information, not a substitute for qualified onsite diagnosis.</span>
+        <p>
+          Reference information only. It does not replace a qualified onsite diagnosis, and it is not
+          an instruction to work on equipment you are not trained or certified to service.
+        </p>
       </div>
     </footer>
   );
 }
-
