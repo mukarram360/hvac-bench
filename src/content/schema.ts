@@ -101,6 +101,40 @@ export const howToStepSchema = z.object({
   text: z.string().min(30),
 });
 
+export const diagnosticBranchSchema = z.object({
+  title: z.string().min(12),
+  observation: z.string().min(30),
+  action: z.string().min(30),
+});
+
+export const decisionRowSchema = z.array(z.string().min(12)).min(2);
+export const comparisonRowSchema = z.array(z.string().min(12)).min(2);
+
+const diagnosticTableSchema = z.object({
+  caption: z.string().min(12),
+  columns: z.array(z.string().min(3)).min(2).max(4),
+  rows: z.array(decisionRowSchema).min(1),
+});
+
+export const contentSectionSchema = z.object({
+  title: z.string().min(8),
+  paragraphs: z.array(z.string().min(30)).min(1),
+});
+
+export const articleFigureSchema = z.object({
+  title: z.string().min(8),
+  description: z.string().min(40),
+  nodes: z
+    .array(
+      z.object({
+        label: z.string().min(3),
+        detail: z.string().min(12),
+      }),
+    )
+    .min(2)
+    .max(6),
+});
+
 /* ---------------------------------------------------------------- articles */
 
 export const articleSchema = z.object({
@@ -125,10 +159,17 @@ export const articleSchema = z.object({
   /** Grouping key for the symptom hubs. Derived when omitted. */
   symptomFamily: slug.optional(),
   directAnswer: z.string().min(60),
+  scopeNotice: z.string().min(60).optional(),
   symptoms: z.array(z.string().min(20)).min(1),
   causes: z.array(z.string().min(20)).min(1),
+  diagnosticBranches: z.array(diagnosticBranchSchema).min(1).optional(),
+  decisionTable: diagnosticTableSchema.optional(),
+  comparisonTable: diagnosticTableSchema.optional(),
+  sections: z.array(contentSectionSchema).min(1).optional(),
+  figures: z.array(articleFigureSchema).min(1).optional(),
   safeChecks: z.array(z.string().min(20)).min(1),
   professionalEscalation: z.array(z.string().min(20)).min(1),
+  serviceHandoff: z.string().min(60).optional(),
   resetGuidance: z.string().min(30).optional(),
   /** Ordered steps. Present only when the page really is a procedure. */
   steps: z.array(howToStepSchema).min(2).optional(),
@@ -157,6 +198,11 @@ export type Source = z.infer<typeof sourceSchema>;
 export type GlossaryTerm = z.infer<typeof glossaryTermSchema>;
 export type Faq = z.infer<typeof faqSchema>;
 export type HowToStep = z.infer<typeof howToStepSchema>;
+export type DiagnosticBranch = z.infer<typeof diagnosticBranchSchema>;
+export type DecisionRow = z.infer<typeof decisionRowSchema>;
+export type ComparisonRow = z.infer<typeof comparisonRowSchema>;
+export type ContentSection = z.infer<typeof contentSectionSchema>;
+export type ArticleFigure = z.infer<typeof articleFigureSchema>;
 export type TechnicalArticle = z.infer<typeof articleSchema>;
 
 export const contentSetSchema = z.object({
