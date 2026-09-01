@@ -5,12 +5,8 @@ import { ArticlePage } from "@/components/article-page";
 import { JsonLd } from "@/components/json-ld";
 import { getAllArticles, getArticleByPath } from "@/lib/content";
 import {
-  articleJsonLd,
   articleMetadata,
-  breadcrumbJsonLd,
-  faqJsonLd,
-  howToJsonLd,
-  webPageJsonLd,
+  articleStructuredData,
 } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -42,25 +38,10 @@ export default async function RootArticle({ params }: { params: Promise<{ slug: 
     { name: article.title, path: article.path },
   ];
 
-  const howTo = howToJsonLd(article);
-
   return (
     <>
       <ArticlePage article={article} />
-      <JsonLd
-        data={[
-          webPageJsonLd({
-            title: article.title,
-            description: article.description,
-            path: article.path,
-            breadcrumbs,
-          }),
-          breadcrumbJsonLd(breadcrumbs),
-          articleJsonLd(article),
-          ...(howTo ? [howTo] : []),
-          ...(article.faqs.length > 0 ? [faqJsonLd(article.faqs, article.path)] : []),
-        ]}
-      />
+      <JsonLd data={articleStructuredData(article, breadcrumbs)} />
     </>
   );
 }

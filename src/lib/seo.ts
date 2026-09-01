@@ -441,6 +441,28 @@ export function howToJsonLd(article: TechnicalArticle) {
   } as const;
 }
 
+export function articleStructuredData(
+  article: TechnicalArticle,
+  breadcrumbs: { name: string; path: string }[],
+) {
+  const optionalNodes = [
+    article.steps?.length ? howToJsonLd(article) : undefined,
+    article.faqs.length ? faqJsonLd(article.faqs, article.path) : undefined,
+  ].filter((node) => node !== undefined);
+
+  return [
+    webPageJsonLd({
+      title: article.title,
+      description: article.description,
+      path: article.path,
+      breadcrumbs,
+    }),
+    breadcrumbJsonLd(breadcrumbs),
+    articleJsonLd(article),
+    ...optionalNodes,
+  ];
+}
+
 /* ------------------------------------------------------------- sitemap ---- */
 
 const HUB_ROUTES = new Set([

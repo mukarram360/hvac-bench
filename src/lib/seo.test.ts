@@ -6,6 +6,7 @@ import {
   absoluteUrl,
   articleJsonLd,
   articleMetadata,
+  articleStructuredData,
   breadcrumbJsonLd,
   collectionPageJsonLd,
   faqJsonLd,
@@ -72,6 +73,22 @@ describe("SEO helpers", () => {
       expect(entry.description.length).toBeLessThanOrEqual(180);
     }
   });
+
+  it("keeps canonical and social metadata aligned for every article", () => {
+    for (const entry of getAllArticles()) {
+      const metadata = articleMetadata(entry);
+      expect(metadata.alternates?.canonical).toBe(absoluteUrl(entry.path));
+      expect(metadata.openGraph).toMatchObject({
+        title: entry.title,
+        description: entry.description,
+        url: absoluteUrl(entry.path),
+      });
+      expect(JSON.stringify(metadata.openGraph)).toContain(
+        `${absoluteUrl(entry.path)}opengraph-image/`,
+      );
+      expect(new Set(entry.keywords).size).toBe(entry.keywords.length);
+    }
+  });
 });
 
 describe("structured data", () => {
@@ -128,6 +145,61 @@ describe("structured data", () => {
     );
     expect(faq.mainEntity[0]["@type"]).toBe("Question");
     expect(() => JSON.parse(JSON.stringify([breadcrumbs, collection, faq]))).not.toThrow();
+  });
+
+  it("builds an article graph from the same visible steps and questions", () => {
+    const breadcrumbs = [
+      { name: "Home", path: "/" },
+      { name: article.title, path: article.path },
+    ];
+    const graphWithoutOptionalContent = articleStructuredData(article, breadcrumbs);
+    const typesWithoutOptionalContent = graphWithoutOptionalContent.map((node) => node["@type"]);
+
+    expect(typesWithoutOptionalContent).toEqual(["WebPage", "BreadcrumbList", "TechArticle"]);
+    expect(graphWithoutOptionalContent[2]).toMatchObject({
+      abstract: article.directAnswer,
+      citation: expect.arrayContaining([
+        expect.objectContaining({ url: expect.stringMatching(/^https:\/\//) }),
+      ]),
+    });
+
+    const steps = [
+      {
+        name: "Switch the unit off",
+        text: "Use the normal user control to stop operation before opening the user access panel.",
+      },
+      {
+        name: "Remove the filter",
+        text: "Follow the model manual and note the filter orientation before sliding it from the runners.",
+      },
+    ];
+    const faqs = [
+      {
+        question: "Can this procedure be completed without opening an electrical panel?",
+        answer:
+          "Yes. The visible procedure stops at the user access panel and does not require electrical compartment access.",
+      },
+    ];
+    const graphWithOptionalContent = articleStructuredData(
+      { ...article, steps, faqs },
+      breadcrumbs,
+    );
+    const howTo = graphWithOptionalContent.find((node) => node["@type"] === "HowTo");
+    const faq = graphWithOptionalContent.find((node) => node["@type"] === "FAQPage");
+
+    expect(howTo).toMatchObject({
+      step: steps.map((step, index) =>
+        expect.objectContaining({ position: index + 1, name: step.name, text: step.text }),
+      ),
+    });
+    expect(faq).toMatchObject({
+      mainEntity: [
+        expect.objectContaining({
+          name: faqs[0].question,
+          acceptedAnswer: expect.objectContaining({ text: faqs[0].answer }),
+        }),
+      ],
+    });
   });
 });
 
