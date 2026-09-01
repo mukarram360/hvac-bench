@@ -4,6 +4,29 @@ Date opened: 2026-09-02
 
 This ledger freezes the 25 published routes in scope and records the research question for each page. Technical claims are added only after the cited OEM or public authority document is opened and its product scope is confirmed.
 
+## Verified evidence set
+
+The following evidence was opened or independently resolved on 2026-09-02. Source IDs refer to `src/content/sources.ts`.
+
+| Claim family | Verified source IDs | Scope decision |
+| --- | --- | --- |
+| Remote batteries, polarity, matched replacement, line of sight, reset, receiver cleanliness, and replacement | `fujitsu-rls2-operation`, `fujitsu-troubleshooting`, `trane-mitsubishi-remote`, `lg-console-owner`, `daikin-mxs-engineering` | General sequence may be cross brand. Battery type, reset button, manual control, range, and compatible replacement remain model dependent. |
+| Cooling performance and frozen coil clues | `fujitsu-troubleshooting`, `trane-mini-split-not-cooling`, `trane-mini-split-refrigerant`, `fujitsu-aduh-operation`, `lg-console-owner` | Settings and accessible airflow checks are cross brand. Refrigerant, sensors, boards, and internal cleaning are professional diagnostic areas. |
+| Heating, warm up, defrost, and outdoor ice | `fujitsu-troubleshooting`, `fujitsu-aduh-operation`, `trane-mini-split-not-heating`, `lg-console-owner` | Warm up, fan pause, water, steam, and temporary defrost interruption can be normal. Persistent solid ice or no return to heat is not classified as normal. |
+| No start and missing outdoor operation | `fujitsu-troubleshooting`, `trane-mini-split-compressor`, `fujitsu-aduh-operation`, `trane-mitsubishi-remote` | Indoor response, controller response, demand, and normal restart delay must be separated before an outdoor component is blamed. A tripped breaker is a stop point, not a repeated reset instruction. |
+| Inverter modulation and short cycling | `trane-mini-split-modulation`, `trane-mini-split-sizing`, `fujitsu-troubleshooting`, `fujitsu-aduh-operation` | Fan continuation and variable compressor output can be normal. Repeated hard starts with poor comfort require timing evidence and professional diagnosis. |
+| Condensate and water leaks | `gree-water-leak`, `trane-mini-split-leak`, `fujitsu-rls2-operation`, `lg-console-owner` | Cooling condensate is expected to drain. Water from the indoor cabinet or wall is not. Drain disassembly, pump work, mounting correction, and sealed system diagnosis are service work. |
+| Normal and warning sounds | `fujitsu-troubleshooting`, `fujitsu-aduh-operation`, `lg-console-owner` | Brief flow, expansion, defrost, and fan changes can be normal when performance remains normal. Grinding, repeated impact, electrical buzzing, or hissing with lost performance require escalation. |
+| Odor and moisture | `fujitsu-troubleshooting`, `trane-mini-split-smells`, `gree-water-leak`, `fujitsu-filter-manual` | Room odors can be re-emitted. Persistent mustiness with moisture or visible internal contamination needs deeper cleaning and moisture diagnosis. Burning odor is an immediate stop condition. |
+| Filter care | `fujitsu-filter-manual`, `fujitsu-aduh-operation`, `trane-mini-split-filters`, `trane-ductless-maintenance`, `lg-console-owner` | Filter construction and wet cleaning vary by model. Complete drying and correct orientation are universal safe principles only when the manual identifies the filter as homeowner removable. |
+| Gree E6 and H5 | `gree-e6-guide`, `gree-multi21-service`, `gree-h5-guide` | E6 communication scope follows the named residential and Multi21+ material. H5 identifies IPM protection, not a replacement verdict. Powered and refrigerant tests remain technician work. |
+| Daikin U4 and A5 | `daikin-u4-service`, `daikin-a5-service` | U4 is scoped to cited SkyAir RZR-P and RZQ-P(9). A5 is scoped to the cited 15 and 19 Series cooling freeze or heating peak cut control. |
+| LG CH05 | `lg-general-service` | CH05 is scoped to the single zone service literature and is not merged with every LG communication display context. |
+| Midea E1 | `midea-aurora-service` | E1 is scoped to the cited Aurora Xtreme 36,000 BTU cooling only model. Other Midea categories may assign E1 differently. |
+| MRCOOL EL01, P1, and P0 | `mrcool-code-table`, `mrcool-e1-guide`, `mrcool-p1-guide`, `mrcool-p0-guide` | Display and meaning are generation aware. The official pages contain live tests, but HVAC Bench publishes only identification, safe observations, one documented wait where applicable, and the technician boundary. |
+| Pioneer E1 communication and E1 or E2 sensors | `pioneer-quantum-e1`, `pioneer-current-e1-e2` | The discontinued Quantum communication meaning and the listed current sensor meaning require separate pages and prominent family checks. |
+| Senville EH02 and PC0A | `senville-eh02`, `senville-leto-codes` | EH02 is scoped to the supported LETO and AURA AC fan design. PC0A follows the LETO protection table and does not establish one failed part. |
+
 ## Error code guides
 
 ### `/brands/gree/e6-error-code/`
