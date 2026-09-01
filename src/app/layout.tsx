@@ -70,11 +70,15 @@ export const metadata: Metadata = {
     url: SITE_URL,
     locale: "en_US",
     alternateLocale: ["en_GB"],
+    images: [
+      { url: `${SITE_URL}/opengraph-image/`, width: 1200, height: 630, alt: SITE_NAME },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
+    images: [`${SITE_URL}/opengraph-image/`],
   },
   verification: googleVerification ? { google: googleVerification } : undefined,
 };

@@ -36,7 +36,18 @@ type PageMetadataInput = {
   publishedTime?: string;
   modifiedTime?: string;
   authorName?: string;
+  /** A route that generates its own social card. Defaults to the site card. */
+  ogImagePath?: string;
 };
+
+/**
+ * Social cards are addressed with the trailing slash the site serves, because
+ * `trailingSlash` would otherwise redirect every crawler that asks for one, and
+ * not every social or answer-engine fetcher follows redirects for images.
+ */
+function socialImage(path: string, title: string) {
+  return [{ url: `${absoluteUrl(path)}opengraph-image/`, width: 1200, height: 630, alt: title }];
+}
 
 const robotsAllowed = {
   index: true,
@@ -63,8 +74,10 @@ export function pageMetadata({
   publishedTime,
   modifiedTime,
   authorName,
+  ogImagePath,
 }: PageMetadataInput): Metadata {
   const url = absoluteUrl(path);
+  const images = socialImage(ogImagePath ?? "/", title);
 
   return {
     title,
@@ -82,6 +95,7 @@ export function pageMetadata({
       url,
       locale: SITE_LOCALE,
       alternateLocale: ["en_GB"],
+      images,
       ...(type === "article"
         ? {
             publishedTime,
@@ -94,6 +108,7 @@ export function pageMetadata({
       card: "summary_large_image",
       title,
       description,
+      images,
     },
   };
 }
@@ -109,6 +124,7 @@ export function articleMetadata(article: TechnicalArticle): Metadata {
     publishedTime: article.datePublished ?? article.lastReviewed,
     modifiedTime: article.lastReviewed,
     authorName: author?.name ?? SITE_NAME,
+    ogImagePath: article.path,
   });
 }
 
