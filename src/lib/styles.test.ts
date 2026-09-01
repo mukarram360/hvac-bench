@@ -67,4 +67,15 @@ describe("layout contract", () => {
     expect(css).toMatch(/--w-prose:\s*7\dch/);
     expect(css).toMatch(/\.prose\s*\{[^}]*line-height:\s*1\.7/);
   });
+
+  it("keeps diagnostic tables and signal paths usable on narrow screens", () => {
+    expect(css).toMatch(/\.diagnostic-table-wrap\s*\{[^}]*overflow-x:\s*auto/);
+    expect(css).toMatch(/\.diagnostic-table\s*\{[^}]*min-width:\s*6\d{2}px/);
+    expect(css).toMatch(/\.signal-path\s*\{[^}]*grid-template-columns:\s*1fr/);
+
+    const wideSignalPath = css.match(
+      /@media \(min-width: 700px\)\s*\{[\s\S]*?\.signal-path\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit,/,
+    );
+    expect(wideSignalPath).not.toBeNull();
+  });
 });

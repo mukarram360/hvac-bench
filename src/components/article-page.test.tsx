@@ -1,10 +1,12 @@
 // @vitest-environment jsdom
 
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
 
 import { getArticleByPath } from "@/lib/content";
 import { ArticlePage } from "./article-page";
+
+afterEach(cleanup);
 
 describe("ArticlePage", () => {
   it("renders direct evidence, safety boundaries, sources, and breadcrumbs", () => {
@@ -26,5 +28,15 @@ describe("ArticlePage", () => {
     expect(screen.getByRole("navigation", { name: "Breadcrumb" })).toHaveTextContent(
       "Gree",
     );
+  });
+
+  it("uses symptom specific scope language instead of an error code warning", () => {
+    const article = getArticleByPath("/mini-split-remote-not-working/");
+    expect(article).toBeDefined();
+
+    render(<ArticlePage article={article!} />);
+
+    expect(screen.queryByText(/codes can change meaning/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/remote and controller procedures vary by model/i)).toBeInTheDocument();
   });
 });

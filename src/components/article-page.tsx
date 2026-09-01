@@ -9,6 +9,7 @@ import {
   getSourceById,
 } from "@/lib/content";
 import { ArticleCard } from "./article-card";
+import { ArticleContentBlocks } from "./article-content-blocks";
 import { Breadcrumbs } from "./breadcrumbs";
 
 function ListSection({
@@ -101,13 +102,17 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
                 ))}
               </ul>
               <p className="scope-note">
-                Codes can change meaning across product families. Confirm the complete model number on
-                the data plate before applying any code definition.
+                {article.scopeNotice ??
+                  (article.errorCode
+                    ? "Codes can change meaning across product families. Confirm the complete model number on the data plate before applying any code definition."
+                    : "Remote and controller procedures vary by model. Confirm the complete indoor unit and controller model before applying a reset or replacement instruction.")}
               </p>
             </section>
 
             <ListSection title="What you may notice" items={article.symptoms} />
             <ListSection title="Likely causes" items={article.causes} />
+
+            <ArticleContentBlocks article={article} />
 
             {article.steps && article.steps.length > 0 && (
               <section className="article-section">
