@@ -531,7 +531,16 @@ hr { height: 1px; margin: var(--s6) 0; border: 0; background: var(--line); }
 .hero h1 em { font-style: normal; color: var(--signal-dark); }
 .hero-lede { max-width: 54ch; font-size: var(--fs-md); color: var(--muted); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
-.hero-chips { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s6); }
+/* The row is height-reserved so the monospace face swapping in cannot reflow
+   it and shift the section below. */
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--s2);
+  min-height: 118px;
+  margin-top: var(--s6);
+}
 .hero-chips-label {
   width: 100%;
   margin-bottom: var(--s1);
@@ -540,6 +549,10 @@ hr { height: 1px; margin: var(--s6) 0; border: 0; background: var(--line); }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+@media (min-width: 640px) {
+  .hero-chips { min-height: 70px; }
 }
 
 @media (min-width: 1024px) {

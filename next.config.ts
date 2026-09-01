@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   compress: true,
+  experimental: {
+    // The stylesheet is small and most visitors arrive from search on a page
+    // they have never loaded, so inlining beats a render-blocking round trip.
+    inlineCss: true,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },
