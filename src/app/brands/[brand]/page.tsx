@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ArticleCard } from "@/components/article-card";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { getAllBrands, getArticlesByBrand, getBrandBySlug } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
+export const dynamicParams = false;
+export function generateStaticParams() { return getAllBrands().map((brand) => ({ brand: brand.slug })); }
+export async function generateMetadata({ params }: { params: Promise<{ brand: string }> }): Promise<Metadata> { const { brand: slug } = await params; const brand = getBrandBySlug(slug); if (!brand) return {}; return pageMetadata({ title: `${brand.name} HVAC error codes and troubleshooting`, description: brand.description, path: `/brands/${brand.slug}/` }); }
+export default async function BrandPage({ params }: { params: Promise<{ brand: string }> }) { const { brand: slug } = await params; const brand = getBrandBySlug(slug); if (!brand) notFound(); const articles = getArticlesByBrand(slug); return <main id="main-content" className="directory-page"><header className="brand-hero"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Brands", path: "/brands/" }, { name: brand.name, path: `/brands/${brand.slug}/` }]} /><div className="brand-hero-grid"><div><span className="eyebrow">Manufacturer file</span><h1>{brand.name}</h1><p>{brand.description}</p></div><div className="brand-file"><span>INDEX STATUS</span><strong>{articles.length}</strong><small>source-verified technical {articles.length === 1 ? "guide" : "guides"}</small></div></div></header><section className="directory-section"><div className="section-heading"><div><span className="eyebrow">Published references</span><h2>{brand.name} guides</h2></div></div>{articles.length > 0 ? <div className="card-grid">{articles.map((article) => <ArticleCard key={article.path} article={article} />)}</div> : <div className="evidence-empty"><h2>No technical guide is published yet</h2><p>This hub is live for navigation, but HVAC Bench will not publish a code meaning until authoritative documentation supports a useful, model-scoped page.</p></div>}</section><section className="family-strip"><h2>Equipment coverage</h2><div>{brand.equipmentTypes.map((type) => <span key={type}>{type.replaceAll("-", " ")}</span>)}</div></section></main>; }
+

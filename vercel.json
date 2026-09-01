@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.hvac-bench.com" }],
+      "destination": "https://hvac-bench.com/:path*",
+      "permanent": true
+    }
+  ]
+}

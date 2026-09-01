@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HVAC Bench
 
-## Getting Started
+HVAC Bench is an evidence-backed HVAC troubleshooting and technical-reference publication at [hvac-bench.com](https://hvac-bench.com). The first release focuses on ductless mini-splits, heat pumps, error codes, controls, and common operating symptoms without restricting the architecture to those categories.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router, React Server Components, and TypeScript
+- Tailwind CSS with a small repository-owned visual system
+- Zod-validated repository content
+- Static generation with minimal client JavaScript
+- Vitest for content, SEO, and UI-contract tests
+- Vercel production hosting
+
+No database, CMS, authentication system, paid search service, or third-party page builder is required.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy `.env.example` to `.env.local` only when adding optional Google Analytics or Search Console values. Empty values are supported and do not block a build.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run test
+npm run typecheck
+npm run lint
+npm run check:links
+npm run build
+npm run verify
+```
 
-## Learn More
+`npm run verify` is the release gate. Content validation runs when the content registry is imported, so malformed records, duplicate paths, unknown sources, invalid brand references, and broken related-content links fail the build.
 
-To learn more about Next.js, take a look at the following resources:
+## Architecture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/content/brands.ts` — typed manufacturer registry
+- `src/content/sources.ts` — authoritative source registry
+- `src/content/articles.ts` — technical content records
+- `src/content/schema.ts` — validation and publishing constraints
+- `src/lib/content.ts` — content queries and controlled internal linking
+- `src/lib/seo.ts` — metadata, canonicals, sitemaps, and structured data
+- `src/app/` — statically generated routes and trust pages
+- `docs/content-authoring.md` — evidence and publishing workflow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Brand and article pages are generated only from validated records. Search is a client-side utility and is intentionally excluded from the sitemap and marked `noindex`.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Production deploys from `main` to the Vercel project named `hvac-bench`. The canonical host is `https://hvac-bench.com`; `www.hvac-bench.com` is permanently redirected at the Vercel edge. Do not link this checkout to any unrelated Vercel project.

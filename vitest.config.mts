@@ -9,6 +9,7 @@ export default defineConfig({
   },
   test: {
     environment: "node",
+    setupFiles: ["./src/test/setup.ts"],
     coverage: {
       reporter: ["text", "json-summary"],
       include: ["src/lib/**/*.ts", "src/content/**/*.ts"],
