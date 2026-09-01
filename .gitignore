@@ -36,6 +36,7 @@ yarn-error.log*
 
 # local visual QA artifacts
 /browser-*.png
+/.worktrees/
 
 # vercel
 .vercel
