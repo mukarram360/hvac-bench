@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 
@@ -51,13 +50,50 @@ function writeChoice(choice: "granted" | "denied") {
   for (const listener of listeners) listener();
 }
 
+const INTERACTION_EVENTS = ["pointerdown", "keydown", "scroll", "touchstart"] as const;
+
 /**
- * Loads the measurement library after the page has settled, and reports the
- * client-side navigations that a single gtag config call would otherwise miss.
+ * Loads the measurement library once the page is genuinely idle, or sooner if
+ * the reader interacts. The consent defaults and the config call are already
+ * queued in the data layer by the bootstrap script, so the queued page view is
+ * sent as soon as the library arrives; keeping it off the critical path is what
+ * protects interaction readiness on a mid-range phone.
  */
 export function Analytics() {
   const pathname = usePathname();
   const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (document.getElementById("ga-library")) return;
+
+    const handles: { timer?: number; idle?: number } = {};
+
+    const load = () => {
+      stop();
+      if (document.getElementById("ga-library")) return;
+      const script = document.createElement("script");
+      script.id = "ga-library";
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+      document.head.append(script);
+    };
+
+    function stop() {
+      for (const event of INTERACTION_EVENTS) window.removeEventListener(event, load);
+      if (handles.timer) window.clearTimeout(handles.timer);
+      if (handles.idle && "cancelIdleCallback" in window) window.cancelIdleCallback(handles.idle);
+    }
+
+    for (const event of INTERACTION_EVENTS) {
+      window.addEventListener(event, load, { once: true, passive: true });
+    }
+    handles.timer = window.setTimeout(load, 2500);
+    if ("requestIdleCallback" in window) {
+      handles.idle = window.requestIdleCallback(load, { timeout: 2500 });
+    }
+
+    return stop;
+  }, []);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -71,13 +107,7 @@ export function Analytics() {
     });
   }, [pathname]);
 
-  return (
-    <Script
-      id="ga-library"
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-      strategy="lazyOnload"
-    />
-  );
+  return null;
 }
 
 /**

@@ -57,7 +57,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-bar">
-        <Link className="brand-lockup" href="/" aria-label="HVAC Bench home">
+        <Link className="brand-lockup" href="/">
           <span className="brand-mark" aria-hidden="true">
             HB
           </span>
