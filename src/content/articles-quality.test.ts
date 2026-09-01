@@ -112,4 +112,64 @@ describe("published article quality", () => {
     expect(parsed).toHaveProperty("sections");
     expect(parsed).toHaveProperty("figures");
   });
+
+  it("completes the remote control guide as a cross brand diagnostic path", () => {
+    const article = articles.find((entry) => entry.path === "/mini-split-remote-not-working/")!;
+    const copy = JSON.stringify(article).toLowerCase();
+
+    expect(article.diagnosticBranches?.map((branch) => branch.title)).toEqual(
+      expect.arrayContaining([
+        expect.stringMatching(/display.*blank/i),
+        expect.stringMatching(/display.*works|screen.*works/i),
+      ]),
+    );
+    expect(article.decisionTable?.rows.length).toBeGreaterThanOrEqual(6);
+    expect(article.figures?.some((figure) => /receiver.*power path/i.test(figure.title))).toBe(true);
+    expect(copy).toMatch(/matched.*batter/);
+    expect(copy).toMatch(/polarity/);
+    expect(copy).toMatch(/reset/);
+    expect(copy).toMatch(/camera/);
+    expect(copy).toMatch(/line of sight/);
+    expect(copy).toMatch(/child lock/);
+    expect(copy).toMatch(/manual operation/);
+    expect(copy).toMatch(/part number/);
+    expect(article.faqs).toHaveLength(6);
+    expect(article.sourceIds).toEqual(
+      expect.arrayContaining([
+        "fujitsu-rls2-operation",
+        "trane-mitsubishi-remote",
+        "lg-console-owner",
+        "daikin-mxs-engineering",
+      ]),
+    );
+    expect(article.scopeNotice).toMatch(/controller|remote/i);
+    expect(article.serviceHandoff).toMatch(/model/i);
+  });
+
+  it("gives every published guide a complete diagnostic and search journey", () => {
+    for (const article of articles) {
+      expect(article.scopeNotice, article.path).toBeTruthy();
+      expect(article.diagnosticBranches?.length, article.path).toBeGreaterThanOrEqual(2);
+      expect(article.decisionTable?.rows.length, article.path).toBeGreaterThanOrEqual(3);
+      expect(article.sections?.length, article.path).toBeGreaterThanOrEqual(2);
+      expect(article.figures?.length, article.path).toBeGreaterThanOrEqual(1);
+      expect(article.serviceHandoff, article.path).toBeTruthy();
+      expect(article.faqs.length, article.path).toBeGreaterThanOrEqual(3);
+      expect(article.keywords.length, article.path).toBeGreaterThanOrEqual(4);
+      expect(article.lastReviewed, article.path).toBe("2026-09-02");
+    }
+  });
+
+  it("keeps the published evidence set limited to manufacturer sources", () => {
+    for (const article of articles) {
+      expect(article.sourceType, article.path).not.toBe("government-guidance");
+    }
+  });
+
+  it("publishes filter cleaning as an ordered procedure", () => {
+    const article = articles.find((entry) => entry.path === "/mini-split-filter-cleaning/")!;
+    expect(article.steps?.length).toBeGreaterThanOrEqual(4);
+    expect(article.steps?.map((step) => step.name).join(" ")).toMatch(/manual|instructions/i);
+    expect(article.steps?.map((step) => step.text).join(" ")).toMatch(/dry/i);
+  });
 });

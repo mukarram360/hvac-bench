@@ -92,7 +92,16 @@ describe("ArticleContentBlocks", () => {
   });
 
   it("does not render empty optional sections", () => {
-    render(<ArticleContentBlocks article={baseArticle} />);
+    const articleWithoutOptionalBlocks = {
+      ...baseArticle,
+      diagnosticBranches: undefined,
+      decisionTable: undefined,
+      comparisonTable: undefined,
+      sections: undefined,
+      figures: undefined,
+      serviceHandoff: undefined,
+    };
+    render(<ArticleContentBlocks article={articleWithoutOptionalBlocks} />);
 
     expect(screen.queryByRole("heading", { name: "Diagnostic paths" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Decision table" })).not.toBeInTheDocument();

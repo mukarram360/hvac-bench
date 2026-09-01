@@ -37,6 +37,6 @@ describe("ArticlePage", () => {
     render(<ArticlePage article={article!} />);
 
     expect(screen.queryByText(/codes can change meaning/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/remote and controller procedures vary by model/i)).toBeInTheDocument();
+    expect(screen.getByText(/remote layouts.*vary by model/i)).toBeInTheDocument();
   });
 });

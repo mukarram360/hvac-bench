@@ -152,7 +152,10 @@ describe("structured data", () => {
       { name: "Home", path: "/" },
       { name: article.title, path: article.path },
     ];
-    const graphWithoutOptionalContent = articleStructuredData(article, breadcrumbs);
+    const graphWithoutOptionalContent = articleStructuredData(
+      { ...article, faqs: [], steps: undefined },
+      breadcrumbs,
+    );
     const typesWithoutOptionalContent = graphWithoutOptionalContent.map((node) => node["@type"]);
 
     expect(typesWithoutOptionalContent).toEqual(["WebPage", "BreadcrumbList", "TechArticle"]);
