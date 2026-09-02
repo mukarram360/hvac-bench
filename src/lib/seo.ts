@@ -360,7 +360,6 @@ export function definedTermJsonLd(term: GlossaryTerm) {
     .map((source) => ({
       "@type": "CreativeWork" as const,
       name: source.title,
-      url: source.url,
       publisher: { "@type": "Organization" as const, name: source.publisher },
     }));
 

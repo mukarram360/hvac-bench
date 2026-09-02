@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getAllArticles, getArticleByPath, getIndexableRoutes } from "./content";
+import { getAllArticles, getArticleByPath, getGlossary, getIndexableRoutes } from "./content";
 import {
   SITE_URL,
   absoluteUrl,
@@ -9,6 +9,7 @@ import {
   articleStructuredData,
   breadcrumbJsonLd,
   collectionPageJsonLd,
+  definedTermJsonLd,
   faqJsonLd,
   howToJsonLd,
   organizationJsonLd,
@@ -101,6 +102,13 @@ describe("structured data", () => {
     expect(schema.citation.every((citation) => !("url" in citation))).toBe(true);
     expect(schema.publisher).toEqual({ "@id": `${SITE_URL}/#organization` });
     expect(JSON.stringify(schema)).not.toMatch(/aggregateRating|ratingValue|reviewRating/);
+  });
+
+  it("keeps glossary evidence attributable without publishing repository source URLs", () => {
+    const term = getGlossary().find((entry) => entry.slug === "air-filter")!;
+    const schema = definedTermJsonLd(term);
+    expect(schema.subjectOf?.length).toBeGreaterThan(0);
+    expect(schema.subjectOf?.every((citation) => !("url" in citation))).toBe(true);
   });
 
   it("omits reviewedBy when no reviewer has actually signed off", () => {

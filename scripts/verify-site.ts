@@ -100,11 +100,18 @@ async function verifyPages() {
     expect(pages.some((page) => page.path === path && page.response.status === 200), `${path} was not verified`);
   }
 
-  for (const path of ["/search/", "/compare/"]) {
+  for (const path of ["/search/"]) {
     const { response, body } = await read(path);
     expect(response.status === 200, `${path} returned ${response.status}`);
     expect(/<meta name="robots" content="[^"]*noindex/i.test(body), `${path} should be noindex`);
   }
+
+  const comparisons = await read("/compare/");
+  expect(comparisons.response.status === 200, `/compare/ returned ${comparisons.response.status}`);
+  expect(
+    !/<meta name="robots" content="[^"]*noindex/i.test(comparisons.body),
+    "/compare/ should be indexable once comparisons are published",
+  );
 
   const robots = await read("/robots.txt");
   expect(robots.response.status === 200, `robots.txt returned ${robots.response.status}`);
