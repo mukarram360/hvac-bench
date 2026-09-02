@@ -18,7 +18,7 @@ export const miniSplitSmellsMusty = publish({
   directAnswer:
     "A mini-split can re-emit odors absorbed from the room, while dust and moisture on internal surfaces can sustain a musty smell; routine filter care may help, but deep cleaning is a different task.",
   scopeNotice:
-    "Filter cleaning is owner work on most models and internal cleaning is not. Where the boundary sits for your equipment is set by its operating manual, and some units also offer a drying or self-clean function that changes what routine care involves.",
+    "The cited manuals identify filter cleaning as owner work on covered models, while internal cleaning may require service. The exact manual sets that boundary and documents any drying or self-clean function.",
   symptoms: [
     "A damp, stale, smoky, or room-like odor appears when the indoor fan starts.",
   ],
@@ -32,14 +32,14 @@ export const miniSplitSmellsMusty = publish({
       observation:
         "Starting the unit produces a noticeable odour that becomes much weaker once it has been running for a while.",
       action:
-        "This pattern fits odours held on damp internal surfaces being carried off by the first airflow. Clean the filter, and if your model has a drying or self-clean function, use it as the manual describes.",
+        "This pattern can fit odours held on internal surfaces being carried by the first airflow, but timing alone does not identify the source. Clean the filter, and use a drying or self-clean function only as the exact manual describes.",
     },
     {
       title: "The smell appears only in cooling",
       observation:
         "Heating and fan-only operation smell normal, and the odour arrives with cooling.",
       action:
-        "Note that, because it points at moisture. Cooling condenses water onto the coil, and a coil or drain pan that stays damp is where this kind of odour develops.",
+        "Note that pattern because it makes moisture and drainage useful areas for a technician to inspect. Cooling can produce condensate at the coil, but the timing does not identify a particular contaminated component.",
     },
     {
       title: "It smells of the room rather than of damp",
@@ -58,7 +58,7 @@ export const miniSplitSmellsMusty = publish({
   ],
   decisionTable: {
     caption: "What the timing of the smell suggests",
-    columns: ["When you notice it", "Most likely origin", "Reasonable response"],
+    columns: ["When you notice it", "Possible origin", "Reasonable response"],
     rows: [
       [
         "Only for a few minutes after start-up",
@@ -86,22 +86,22 @@ export const miniSplitSmellsMusty = publish({
     {
       title: "Why a cooling coil grows a smell",
       paragraphs: [
-        "In cooling, the indoor coil is below the dew point of the room, so water condenses on it continuously. That water carries dust that has passed the filter, and it collects in a pan below. The result is a dark, permanently damp surface with a food supply, which is exactly the environment that biological growth prefers.",
-        "This is why the odour is so often worst at start-up. While the fan is off, growth on those surfaces sits undisturbed. When the fan starts, the first burst of air passes over them and carries the smell into the room, then the effect diminishes as the surfaces dry in the airstream.",
+        "During cooling, moisture can condense on the indoor coil and collect in the drain pan. Manufacturer guidance identifies retained moisture combined with dust or debris, filter restriction, and poor drainage as possible contributors to musty odor or biological growth.",
+        "A startup-only odor and a continuous odor are useful observations, but neither identifies the contaminated component. Record when the smell appears and whether there has also been water leakage or visible filter loading.",
       ],
     },
     {
       title: "What owner cleaning can and cannot reach",
       paragraphs: [
         "Cleaning the filter is worthwhile and it is the part of the airflow path an owner is meant to touch. It removes accumulated dust and it stops that dust adding to what collects on the coil. On a mildly smelly unit that has been neglected, it can be enough.",
-        "What it does not reach is the coil itself, the drain pan, and the blower wheel, which is where an established musty smell usually lives. Those are cleaned by dismantling part of the indoor unit, protecting the electrics, and using chemistry appropriate to aluminium fins. Aerosol coil cleaners sold for the purpose frequently make things worse by leaving residue on a surface that then stays wetter for longer.",
+        "Filter cleaning does not reach the coil, drain pan, blower wheel, or condensate line. Manufacturer guidance identifies moisture, dirt, filter restriction, and drainage problems as possible contributors, and says internal cleaning or drain work may require disassembly by a technician.",
       ],
     },
     {
       title: "Prevention is mostly about drying",
       paragraphs: [
-        "The single most effective habit is letting the indoor unit dry out rather than stopping it wet. Many models include a drying or self-clean function that runs the fan for a period after cooling ends to evaporate moisture from the coil, and switching it on costs nothing.",
-        "Where that function does not exist, running fan-only for ten or fifteen minutes at the end of a cooling session does much the same job. Combined with cleaning the filter on the interval the manual gives, it addresses the moisture rather than the smell, which is the only version of this that lasts.",
+        "Some models provide a documented drying, coil-dry, or self-clean function after cooling. Use it only as the exact operating manual describes; the name, duration, and purpose differ by model.",
+        "Where no such owner function is documented, do not invent a generic drying cycle. Keep the filter on its manual schedule and arrange internal cleaning or drainage service when a musty odor persists.",
       ],
     },
   ],
@@ -109,9 +109,9 @@ export const miniSplitSmellsMusty = publish({
     {
       title: "Where moisture sits between cooling cycles",
       description:
-        "An odour that arrives with the fan is usually about surfaces that stayed wet, so the useful question is where water lingers.",
+        "An odor that arrives with airflow can involve room sources or damp internal surfaces, so the useful observation is when it appears and whether drainage or filter symptoms accompany it.",
       nodes: [
-        { label: "Coil surface", detail: "Condensation forming during every cooling run" },
+        { label: "Coil surface", detail: "Condensation forming when coil conditions cross the room dew point" },
         { label: "Drain pan", detail: "Standing water below the coil" },
         { label: "Blower wheel", detail: "Damp dust on the surface that moves the air" },
         { label: "Drain line", detail: "Where that water is supposed to leave" },
@@ -132,25 +132,25 @@ export const miniSplitSmellsMusty = publish({
     {
       question: "Why does my mini split smell bad when it starts?",
       answer:
-        "Moisture and dust settle on internal surfaces while the fan is off, and the first airflow carries the smell into the room. Cleaning the filter helps, and using a drying or self-clean function where your model has one addresses the moisture that causes it.",
+        "A startup odor can come from damp or dirty internal surfaces, but timing alone does not identify the component. Clean only the user-serviceable filter and use a drying or self-clean function only where the exact manual documents one.",
     },
     {
       question: "Can I spray a coil cleaner into the indoor unit?",
       answer:
-        "It is a common way to make things worse. Aerosol products leave residue on the fins and in the drain pan, which holds moisture and feeds the problem. Proper internal cleaning is done with the unit partly dismantled and the electrics protected.",
+        "Do not apply a cleaner unless the exact manufacturer instructions authorize that product and procedure for owner use. Internal coil, pan, blower, and drain cleaning can require disassembly and protection of electrical components.",
     },
     {
       question: "Is a musty smell from the air conditioner harmful?",
       answer:
-        "That is a question for a medical professional rather than a technical page, particularly if anyone in the household has asthma or allergies. What is fair to say is that the smell indicates dampness and soil that should be cleaned rather than masked.",
+        "A technical page cannot determine health risk; seek medical advice for symptoms or individual exposure concerns. A musty odor can accompany moisture or soil, so investigate and correct the equipment or room source rather than masking it.",
     },
     {
       question: "How do I stop it coming back?",
       answer:
-        "Let the unit dry after cooling, either with a built-in drying function or by running fan-only for ten to fifteen minutes at the end of a session, and keep to the filter cleaning interval in the manual. The aim is to stop surfaces staying wet.",
+        "Use a built-in drying or self-clean function only if the exact operating manual documents it, and keep to the filter-cleaning interval in that manual. Persistent odor still calls for inspection of internal cleanliness and drainage.",
     },
   ],
-  sourceIds: ["fujitsu-troubleshooting", "fujitsu-filter-manual"],
+  sourceIds: ["fujitsu-troubleshooting", "fujitsu-filter-manual", "trane-mini-split-smells"],
   relatedContent: [
     "/troubleshooting/",
     "/mini-split-filter-cleaning/",

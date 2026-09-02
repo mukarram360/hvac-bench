@@ -1,10 +1,6 @@
 import { publish } from "./publish";
 
-/**
- * The question behind this one is almost always "is it supposed to be running
- * right now?". The page answers that first, because an outdoor unit that is
- * correctly idle is the most common finding.
- */
+/** Checks documented idle states before treating outdoor stillness as a fault. */
 export const miniSplitOutdoorUnitNotRunning = publish({
   title: "Mini-split outdoor unit not running: delay, demand, or fault",
   slug: "mini-split-outdoor-unit-not-running",
@@ -28,25 +24,25 @@ export const miniSplitOutdoorUnitNotRunning = publish({
   ],
   diagnosticBranches: [
     {
-      title: "Create a demand it cannot ignore, then wait",
+      title: "Create a clear demand, then wait",
       observation:
         "It is not clear whether the system has any reason to run, because the room may already be at the setpoint.",
       action:
-        "Set Cool with a temperature well below the room, or Heat with one well above, and leave it for the restart protection interval plus a few minutes. An outdoor unit with nothing to do is behaving correctly, and this removes that explanation.",
+        "Set Cool below the room temperature, or Heat above it, and wait through the restart protection interval in the model manual. This helps distinguish an idle system with little demand from one that does not respond to a clear call.",
     },
     {
       title: "The indoor unit is in Fan or Dry",
       observation:
         "Air is moving indoors and the handset shows a mode other than Heat or Cool.",
       action:
-        "Change to a heating or cooling mode. Fan mode never calls for the outdoor unit at all, and Dry runs it very differently, so neither tells you anything about whether the outdoor unit can start.",
+        "Change to a heating or cooling mode. On the documented systems, Fan mode does not call for compressor operation and Dry uses different control logic, so neither is a reliable test of normal heating or cooling response.",
     },
     {
       title: "It is winter and the pause comes with steam",
       observation:
         "The outdoor fan has stopped, the unit is steaming or dripping, and indoor heating has paused with it.",
       action:
-        "Leave it alone for several minutes. A stopped outdoor fan during heating is part of a normal defrost cycle, and interrupting it by cycling the power only makes the system start the process again.",
+        "Do not interrupt it. Compare the fan stop, steam or water, indoor pause, and recovery with the defrost sequence in the exact operating manual.",
     },
     {
       title: "Demand is clear, the wait is over, and nothing happens",
@@ -63,7 +59,7 @@ export const miniSplitOutdoorUnitNotRunning = publish({
       [
         "Room is already at the setpoint",
         "Idle or running at a very low output",
-        "Nothing is wrong; change the setpoint if you want to test it",
+        "This may be normal; create a clear demand if you want to test response",
       ],
       [
         "Switched off and straight back on",
@@ -78,7 +74,7 @@ export const miniSplitOutdoorUnitNotRunning = publish({
       [
         "Clear demand, delay elapsed, mode correct",
         "Running",
-        "Silence here is a genuine fault and needs diagnosis",
+        "Persistent non-response here needs model-specific diagnosis",
       ],
     ],
   },
@@ -86,22 +82,22 @@ export const miniSplitOutdoorUnitNotRunning = publish({
     {
       title: "Inverter systems are quiet on purpose",
       paragraphs: [
-        "Older equipment ran flat out or not at all, so you always knew which it was. Inverter-driven systems instead vary compressor speed to match what the room needs, and at low demand they run slowly enough to be genuinely hard to hear from a few metres away.",
-        "This produces a common false alarm. Someone checks the outdoor unit on a mild day, hears nothing, and concludes it has stopped, when in fact it is ticking over at low output and holding the room exactly where it was asked to. Putting a hand near the discharge, or making the demand unmistakable and watching for a change, resolves it.",
+        "Fixed-speed and inverter-driven systems can behave differently near the setpoint. Manufacturer guidance notes that inverter equipment may continue at reduced capacity rather than cycling fully off.",
+        "Low-output operation can be difficult to judge from sound alone. Create a clear Heat or Cool demand, wait through the documented delay, and observe air movement from outside the discharge grille without reaching into it. If the room already sits close to the setpoint, move the setpoint several degrees further before you judge the result, because a small difference gives the system very little to respond to.",
       ],
     },
     {
-      title: "Three reasons a healthy unit stays still",
+      title: "Three documented reasons an outdoor unit may stay still",
       paragraphs: [
-        "Demand is the first. A satisfied room means nothing to do, and no fault will produce a more convincing silence. The second is restart protection, which holds the compressor off for several minutes after any interruption, so anyone who has just cycled the power is guaranteed to see an idle outdoor unit.",
-        "The third is defrost, which only applies in heating and only in cold damp conditions. During it, the outdoor fan stops while the coil is warmed, so the unit sits there apparently dead, steaming, with the indoor side gone quiet too. All three of these are the system working, and between them they account for most of these calls.",
+        "Low demand is one explanation for an idle outdoor unit. Restart protection is another: documented systems may hold compressor operation after an interruption, so checking immediately after cycling power can give a misleading result.",
+        "Defrost is a third model-dependent explanation in heating. Some documented systems stop the outdoor fan and reduce indoor airflow while clearing frost. Demand, delay, and defrost should be checked against the model manual before treating silence as a failed component.",
       ],
     },
     {
       title: "What not to do while investigating",
       paragraphs: [
-        "The temptation with a stationary fan is to check whether it turns freely, and that is exactly the thing not to do. An inverter unit can start without warning after a delay, and a fan that appears dead may simply be waiting out an interval. Reaching into it is how people lose fingers.",
-        "The same applies to opening the outdoor casing to look for something obvious. There is nothing safely diagnosable in there for a homeowner, and there are capacitors that hold a charge after the supply is removed. Clear loose debris from around the unit with the power off, look for a code on the indoor display, and stop there.",
+        "Do not reach through the grille or try to turn a stationary fan. The unit may start after a delay, and a stopped fan can also occur during model-dependent control states. Its condition cannot be established safely by hand.",
+        "Do not open the outdoor casing. Manufacturer troubleshooting keeps internal electrical, inverter, fan, and compressor diagnosis on the technician side. Clear only loose external debris with the unit off, record any display code, and stop there.",
       ],
     },
   ],
@@ -132,7 +128,7 @@ export const miniSplitOutdoorUnitNotRunning = publish({
     {
       question: "How can I tell if the outdoor unit is running at all?",
       answer:
-        "Set a demand the system cannot ignore, then check for air movement at the discharge grille and a change in sound after the restart interval. Inverter units at low output are much quieter than people expect, which is why silence alone proves nothing.",
+        "Set a clear Heat or Cool demand, wait through the model's restart interval, then observe air movement from outside the discharge grille and listen for a change. Inverter operation can continue at reduced capacity, so sound alone does not establish whether the unit is off.",
     },
     {
       question: "The outdoor fan stopped but the compressor is running. Is that normal?",

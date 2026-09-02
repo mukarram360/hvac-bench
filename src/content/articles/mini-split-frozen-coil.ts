@@ -42,11 +42,11 @@ export const miniSplitFrozenCoil = publish({
         "Stop running it in cooling; the remaining diagnosis needs a qualified technician. Once airflow is genuinely eliminated, the remaining causes are refrigerant charge, the coil sensor, the indoor fan, and the control, and none of them are owner-serviceable.",
     },
     {
-      title: "There is oily residue near the coil or pipework",
+      title: "There is residue near the coil or pipework",
       observation:
-        "A damp oily film or dirt sticking to one spot on the pipework or coil, often with the icing.",
+        "You can see an unexplained film, staining, or concentrated dirt near one part of the pipework or coil alongside the icing.",
       action:
-        "Report this specifically to the technician. Refrigerant oil traces at a joint are a meaningful pointer to a leak and change what should be tested first.",
+        "Photograph and report the location without touching it. Visible residue does not establish a refrigerant leak, but it gives the technician a specific area to inspect.",
     },
     {
       title: "The system was run hard in cool weather",
@@ -88,14 +88,14 @@ export const miniSplitFrozenCoil = publish({
     {
       title: "Low charge produces the same symptom",
       paragraphs: [
-        "A system low on refrigerant ices up too, and it looks identical from the room. The mechanism differs: with less refrigerant in the circuit, the pressure in the coil falls, and a lower pressure means a lower boiling temperature, so the coil runs colder than it should even with perfect airflow.",
-        "The distinction matters because the responses are opposite. An airflow problem is fixed by cleaning something and stays fixed. A low charge means refrigerant has escaped, because it is not consumed in normal operation, and adding more without finding the leak means paying for the same repair again. This is the single most useful thing to understand before agreeing to a top-up.",
+        "Manufacturer guidance lists low refrigerant among conditions that can accompany coil icing, but the appearance from the room does not distinguish it from airflow, sensor, fan, or control problems. Refrigerant pressures and charge require professional measurements.",
+        "If a user-serviceable filter is clogged, cleaning it may correct that restriction. If ice returns with the documented airflow checks complete, the cause still needs diagnosis. Low refrigerant can follow a leak or an incorrect initial charge, so adding refrigerant without establishing the cause is not a complete repair.",
       ],
     },
     {
       title: "Thawing without causing damage",
       paragraphs: [
-        "Switch cooling off and leave the system alone. Running the fan alone will speed it up on many models and is safe, since it moves room air over the coil without cooling it. What you must not do is help it along physically.",
+        "Switch cooling off and let the ice thaw without applying heat or force. Use Fan mode only if the exact operating manual permits it in this condition; otherwise leave the system off until the coil is clear.",
         "Ice bonds to the fins, and chipping, scraping, or levering at it bends them or punctures the tubing behind. A puncture turns a service call into a sealed system repair. Heat guns and boiling water are the other route to the same outcome. Put a towel down for the meltwater, be patient, and let it come off by itself.",
       ],
     },
@@ -127,12 +127,12 @@ export const miniSplitFrozenCoil = publish({
     {
       question: "How long does a frozen coil take to thaw?",
       answer:
-        "Usually a few hours with the system off, and faster if the manual permits running the fan alone. Do not try to speed it up with heat or by breaking the ice away, because both damage the fins and the tubing behind them.",
+        "Thaw time depends on ice thickness and room conditions. Leave cooling off, use Fan mode only if the manual permits it, and wait until the coil is fully clear. Do not apply heat or break ice from the fins.",
     },
     {
       question: "Can I just add refrigerant?",
       answer:
-        "No. Refrigerant is not consumed, so a system that is low has leaked, and adding more without finding and repairing the leak means the fault returns. Handling refrigerant is also regulated work in both the United States and the United Kingdom.",
+        "No. Manufacturer guidance lists leaks and incorrect initial charging among reasons for low refrigerant. A trained technician must identify the cause and handle the sealed refrigerant circuit under the rules that apply locally.",
     },
     {
       question: "Why did the coil freeze right after I cleaned the filter?",

@@ -1,10 +1,6 @@
 import { publish } from "./publish";
 
-/**
- * Most "dead" mini-splits are not dead. The page is built around the restart
- * protection interval, because that single piece of knowledge resolves a large
- * share of these calls before anyone is dispatched.
- */
+/** Separates documented delay and control states from a persistent no-start. */
 export const miniSplitNotTurningOn = publish({
   title: "Mini-split not turning on: power, timer, delay, or fault",
   slug: "mini-split-not-turning-on",
@@ -18,13 +14,13 @@ export const miniSplitNotTurningOn = publish({
   directAnswer:
     "A mini-split may appear dead because of a power interruption, breaker or fuse condition, timer, remote issue, normal compressor restart protection, or an equipment fault.",
   scopeNotice:
-    "Restart protection intervals differ by model and are typically a few minutes. Use the figure in your operating manual rather than a general number, and remember that a system with no display at all is a different problem from one that displays but will not start.",
+    "Restart protection intervals and post-outage behaviour differ by model. Use the interval and restart instructions in your operating manual rather than a general number, and separate a system with no display from one that responds but will not start.",
   symptoms: [
     "The indoor unit shows no response, or the fan responds while the outdoor section does not start immediately.",
   ],
   causes: [
     "A power outage, open breaker, active timer, or remote battery problem can prevent a normal command.",
-    "Many systems intentionally delay compressor restart for several minutes after power or an off-on command.",
+    "Manufacturer manuals document intentional compressor restart delays after power or an off-on command on covered models.",
   ],
   diagnosticBranches: [
     {
@@ -39,21 +35,21 @@ export const miniSplitNotTurningOn = publish({
       observation:
         "The display changes, the unit beeps, the indoor fan may run, but the outdoor unit stays silent.",
       action:
-        "Wait out the restart protection interval before doing anything else. Most systems refuse to restart the compressor for several minutes after being switched off, and a great many service calls are cancelled by simply waiting.",
+        "Wait through the restart protection interval stated in the exact operating manual before treating the outdoor silence as a fault.",
     },
     {
       title: "The breaker keeps tripping",
       observation:
         "The dedicated breaker is found in the tripped position, and resetting it works briefly or trips again straight away.",
       action:
-        "Leave it off after one reset attempt and arrange service. A breaker that trips repeatedly is detecting a real electrical fault, and forcing it back on is genuinely hazardous rather than merely inadvisable.",
+        "Leave it off and arrange service. Manufacturer guidance warns that resetting and restarting after a heat-pump breaker trip can cause further damage.",
     },
     {
       title: "A timer or a lock is holding it off",
       observation:
         "The handset shows a timer icon, a lock symbol, or a schedule that nobody set deliberately.",
       action:
-        "Cancel every active timer and clear the lock using the controller manual, then send a simple on command. Timers set by accident are common, particularly on handsets that are shared or that children can reach.",
+        "Cancel active timers and clear the lock using the controller manual, then send a simple on command. An enabled timer or lock can explain a unit that receives commands but does not start as expected.",
     },
   ],
   decisionTable: {
@@ -81,22 +77,22 @@ export const miniSplitNotTurningOn = publish({
     {
       title: "The delay that gets mistaken for a breakdown",
       paragraphs: [
-        "Compressors do not tolerate being restarted against a pressure imbalance, so systems build in a protection period that refuses to restart for several minutes after being switched off or after power returns. This is a deliberate design feature that protects an expensive component.",
-        "From outside it is indistinguishable from failure. Someone switches the unit off and straight back on, hears nothing from the outdoor unit, and concludes it has broken. Setting a timer for the interval in the manual and simply waiting resolves a striking number of these situations at no cost.",
+        "Operating manuals for documented systems specify a protection delay before compressor operation resumes after shutdown or a power interruption. The duration and restart behaviour are model specific.",
+        "From outside, restart protection can look like failure. After an interruption, wait for the interval stated in the operating manual before deciding that the outdoor unit did not respond. Record any indicator or display change during that documented interval for the service handoff.",
       ],
     },
     {
       title: "After a power cut, expect a pause",
       paragraphs: [
-        "Power interruptions produce this call more than anything else. When supply returns, the system runs its restart protection, and some models also return to a default state rather than the settings they were using, so the unit may sit there apparently ignoring the room.",
-        "Give it the protection interval, then send a fresh command with a clear demand: Cool with a setpoint well below the room, or Heat with one well above. If it responds normally after that, nothing is wrong. If the display is dark and the rest of the property has power, the interruption may have affected this circuit specifically, and that is worth checking at the consumer unit before calling anyone.",
+        "A power interruption can leave a documented system in restart protection, and some models restore settings differently after supply returns. Check the exact manual before assuming the pre-outage command resumed unchanged.",
+        "Give it the documented protection interval, then send a fresh command with a clear demand: Cool with a setpoint below the room, or Heat with one above. A normal response supports restart protection as the explanation, but monitor for recurrence. If the display is dark while other circuits have power, inspect the dedicated breaker position once without repeatedly resetting it.",
       ],
     },
     {
       title: "Where checking stops being sensible",
       paragraphs: [
-        "There is a clear line in this diagnosis. Looking at a breaker position, cancelling a timer, changing batteries, and waiting are all things anyone can do safely. Opening the indoor unit, removing an electrical cover, or resetting a breaker repeatedly to see what happens are not.",
-        "A breaker that trips again after one reset has found a fault, and the whole point of the device is that it operates before something worse does. Heat, a burning smell, scorch marks, or damaged cable mean the system stays off until a technician has seen it, regardless of how inconvenient the weather is.",
+        "Keep owner checks to normal controls, remote batteries, timer or lock settings, the visible breaker position, and the documented wait. Do not open the unit, remove an electrical cover, or repeatedly reset a breaker.",
+        "A tripped breaker can indicate a condition that requires electrical diagnosis. Leave the system off when the breaker has tripped or when there is heat, a burning smell, scorch marking, smoke, or damaged cable.",
       ],
     },
   ],
@@ -118,7 +114,7 @@ export const miniSplitNotTurningOn = publish({
     "Wait at least the model manual's restart-protection interval before judging the outdoor unit.",
   ],
   professionalEscalation: [
-    "Leave the system off if a breaker trips again, a fuse is blown, wiring is damaged, or there is heat, odor, or smoke.",
+    "Leave the system off if its breaker is tripped, a fuse is blown, wiring is damaged, or there is heat, odor, or smoke.",
     "Persistent no-response after basic checks requires qualified electrical and control diagnosis.",
   ],
   serviceHandoff:
@@ -127,7 +123,7 @@ export const miniSplitNotTurningOn = publish({
     {
       question: "Why will my mini split not restart straight away?",
       answer:
-        "Most systems hold the compressor off for several minutes after being switched off or after power returns, to avoid restarting against a pressure imbalance. Check the interval in your manual and wait it out before assuming a fault.",
+        "Many operating manuals document a compressor restart delay after shutdown or power restoration. Check the interval for the exact model and wait through it before assuming a fault.",
     },
     {
       question: "My mini split died after a power cut. What now?",
@@ -137,15 +133,19 @@ export const miniSplitNotTurningOn = publish({
     {
       question: "Is it safe to keep resetting a tripped breaker?",
       answer:
-        "No. Reset it once. If it trips again it has detected a genuine fault, and repeatedly forcing it back on removes the protection that is standing between that fault and a fire.",
+        "No. If the heat-pump breaker is tripped, leave the system off and arrange qualified diagnosis. Repeated resetting is not a troubleshooting procedure and can cause further damage.",
     },
     {
       question: "Could the remote be the whole problem?",
       answer:
-        "Often, yes. Flat batteries, an accidental timer, or a child lock will all make a healthy system look dead. Fresh batteries and a cleared timer are worth trying before anything else.",
+        "It can be. Flat batteries, an active timer, or a controller lock can prevent the expected command. Follow the exact controller manual for batteries, timer cancellation, and lock removal before assuming an equipment fault.",
     },
   ],
-  sourceIds: ["fujitsu-troubleshooting", "fujitsu-rls2-operation"],
+  sourceIds: [
+    "fujitsu-troubleshooting",
+    "fujitsu-rls2-operation",
+    "trane-mini-split-compressor",
+  ],
   relatedContent: [
     "/troubleshooting/",
     "/mini-split-remote-not-working/",

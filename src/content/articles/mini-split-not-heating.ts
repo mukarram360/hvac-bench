@@ -31,7 +31,7 @@ export const miniSplitNotHeating = publish({
       observation:
         "Warm air is delivered normally, then the indoor fan slows or stops, the outdoor unit sounds different, and after several minutes heating resumes. Steam may rise from the outdoor unit.",
       action:
-        "This pattern is consistent with automatic defrost, which is a designed cycle rather than a fault. Time it and count how often it happens. Regular short defrosts in cold damp weather are normal; constant defrosting is not.",
+        "This pattern can match automatic defrost. Record the pause, frost clearing, and return to heat, then compare them with the sequence and limits in the exact operating manual.",
     },
     {
       title: "The fan runs cool for a minute or two at start-up",
@@ -86,21 +86,21 @@ export const miniSplitNotHeating = publish({
       title: "Why a heat pump pauses on purpose",
       paragraphs: [
         "In heating, the outdoor coil is colder than the outside air, so moisture in that air condenses onto it and freezes. Left alone, the frost would build until the coil could no longer absorb heat. The equipment deals with this by periodically reversing to warm the outdoor coil and melt the frost off.",
-        "While that happens, the outdoor unit is not sending heat indoors, and most systems stop or slow the indoor fan so occupants are not blown with cool air. From the sofa this is indistinguishable from a breakdown: the noise changes, the airflow stops, and outside the unit appears to be steaming. It is the system working correctly, and it should end within minutes and return to heating.",
+        "During documented defrost, some systems stop or slow the indoor fan while the outdoor coil is warmed. Noise and airflow can change, and steam or water may appear outside. Normal completion means the model follows its documented sequence and returns to heating within the manual's limits.",
       ],
     },
     {
       title: "The number that separates normal from not",
       paragraphs: [
-        "The useful measurement here is not temperature but frequency. A heat pump defrosting every hour or two in cold damp conditions is behaving as designed. A heat pump defrosting every fifteen minutes, or entering defrost and coming out with the coil still iced, is telling you something is wrong.",
-        "Keep a simple log for a day: the time each pause starts, roughly how long it lasts, and the outdoor temperature. That record costs nothing and is far more useful to a technician than any description of how it feels in the room, because it distinguishes a control problem from a refrigeration problem from a system simply being at the edge of its range.",
+        "Defrost timing is model and weather dependent. Compare the pause and recovery with the operating manual instead of applying a generic interval. Repeated pauses that do not clear frost or restore heat are useful evidence for service.",
+        "Keep a simple log of when each pause starts, roughly how long it lasts, whether frost clears, and the outdoor conditions. The record does not diagnose the cause, but it lets a technician compare actual behaviour with the model's documented sequence.",
       ],
     },
     {
       title: "Cold weather limits are real",
       paragraphs: [
-        "A heat pump moves heat rather than creating it, and there is less heat available in the outside air as it gets colder. Output therefore falls with outdoor temperature, and every system has conditions where it cannot keep up with a building on its own.",
-        "This matters when judging whether something is broken. A system holding temperature at 5C and struggling at minus 10C may be entirely healthy and simply undersized for that condition, which is a design conversation rather than a repair. A system that has stopped keeping up in conditions it handled last winter is a different matter, and that comparison with previous seasons is the most useful thing you can bring to it.",
+        "Manufacturer capacity data show that available heating output varies with outdoor temperature and model. Compare the equipment's published operating range and capacity data with the conditions rather than applying one temperature threshold to every heat pump.",
+        "A system may reach a capacity limit in colder conditions without a component fault, but the symptom alone cannot separate capacity, building load, airflow, or equipment problems. A change from performance under similar past conditions is useful service context.",
       ],
     },
   ],
@@ -114,7 +114,7 @@ export const miniSplitNotHeating = publish({
         { label: "Steady heating", detail: "Warm air delivered to the room" },
         { label: "Frost accumulates", detail: "Moisture freezing on the outdoor coil" },
         { label: "Defrost", detail: "Outdoor coil warmed, indoor fan paused" },
-        { label: "Heating resumes", detail: "Normal operation returns within minutes" },
+        { label: "Heating resumes", detail: "Operation returns within the model's documented sequence" },
       ],
     },
   ],
@@ -132,12 +132,12 @@ export const miniSplitNotHeating = publish({
     {
       question: "Why does my heat pump stop blowing warm air?",
       answer:
-        "Most often because it has entered a defrost cycle to clear frost from the outdoor coil, and the indoor fan pauses so you are not blown with cool air. It should last a few minutes and then return to heating.",
+        "One documented reason is defrost, during which some systems pause or reduce indoor airflow while clearing the outdoor coil. Use the exact manual to judge the sequence and duration, and report a cycle that does not restore heat.",
     },
     {
       question: "How often is defrosting normal?",
       answer:
-        "It depends on how cold and damp the air is, but a cycle every hour or two in genuine winter conditions is unremarkable. Defrosting every fifteen minutes, or coming out of defrost still iced up, is worth reporting.",
+        "There is no reliable cross-brand interval. Frequency depends on the model and outdoor conditions. Compare it with the operating manual and report cycles that do not clear frost or restore heating.",
     },
     {
       question: "Is steam from the outdoor unit a problem?",
@@ -147,7 +147,7 @@ export const miniSplitNotHeating = publish({
     {
       question: "Should I use the emergency or backup heat setting?",
       answer:
-        "Use it if you have it and the house is cold, but treat it as a stopgap rather than a fix. Backup heat is usually far more expensive to run, so a system relying on it continuously needs looking at rather than leaving.",
+        "Use backup heat only as its controls and operating manual direct. If it runs persistently while the heat pump does not recover, record that behaviour for service rather than assuming the backup stage identifies the fault.",
     },
   ],
   sourceIds: ["fujitsu-troubleshooting", "fujitsu-aduh-operation", "trane-mini-split-not-heating"],

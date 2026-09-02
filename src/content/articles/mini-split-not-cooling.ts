@@ -34,21 +34,21 @@ export const miniSplitNotCooling = publish({
       observation:
         "Hold a hand in the supply airstream. It feels like room air, or close to it, no matter how long the system has been running.",
       action:
-        "Check the mode first. Fan and Dry both move air without delivering normal cooling, and both are easy to select by accident. If the mode is right and the air is still not cold, the problem is on the equipment side and belongs with a technician.",
+        "Check the mode first. Fan mode does not provide cooling, while Dry mode can use different airflow and temperature control from Cool on documented systems. If Cool is selected and the air still is not cold after the model's normal start delay, the equipment needs diagnosis.",
     },
     {
       title: "The air is cold but the room never gets there",
       observation:
         "The supply air is noticeably cold, the system runs for long periods, and the room temperature falls slowly or stalls a few degrees above the setpoint.",
       action:
-        "Treat this as a load problem rather than a fault. Sun through glass, an open door to unconditioned space, kitchen or appliance heat, and a room that has been left to heat-soak all show up exactly like this.",
+        "Check room load as well as the equipment. Sun through glass, an open door to unconditioned space, kitchen or appliance heat, and a heat-soaked room can all make delivered cooling insufficient; cold outlet air alone does not prove rated capacity.",
     },
     {
       title: "Cooling has faded gradually across a season",
       observation:
         "Performance was fine and has declined slowly enough that no single day stood out, and the unit now runs much longer than it used to.",
       action:
-        "Start with the filter and the outdoor coil; if that does not restore cooling, the next diagnosis needs a technician. A slow decline usually means something accumulating rather than something breaking.",
+        "Start with the user-serviceable filter and visible outdoor airflow clearance. If that does not restore cooling, a gradual decline can also reflect a coil, fan, refrigerant, sensor, or control problem that needs a technician.",
     },
     {
       title: "There is ice, water, or a code on the display",
@@ -83,22 +83,22 @@ export const miniSplitNotCooling = publish({
     {
       title: "Two different complaints share one name",
       paragraphs: [
-        "When someone says a mini-split is not cooling, they usually mean one of two things, and the fix has almost nothing in common between them. Either the equipment is not producing cooling, or it is producing cooling that the room is cancelling out faster than it arrives.",
-        "The test that separates them takes ten seconds. Put a hand in the airstream at the indoor unit after the system has been running for a while. Cold air at the outlet means capacity is being produced and the question becomes what is happening to it in the room. Room-temperature air at the outlet means capacity is not arriving, and that is an equipment question.",
+        "A not-cooling complaint can involve cooling that is not being produced, cooling that is not being delivered through enough airflow, or delivered cooling that cannot keep up with the room load. Those paths overlap, so one observation should narrow the check rather than declare the cause.",
+        "After the model's normal start delay, compare the supply airstream with the room. Noticeably cooler air supports checking airflow and room load next. Air that stays near room temperature supports checking mode and setpoint before arranging equipment diagnosis. This is a useful observation, not a capacity measurement.",
       ],
     },
     {
       title: "Settings that look like faults",
       paragraphs: [
-        "Dry mode is the most common false alarm in this category. It is designed to remove humidity with reduced airflow, and on a mild damp day it does its job perfectly while a room full of people concludes the system has failed. Quiet and Eco settings similarly cap output on purpose, and a fan speed left on low will do the same thing quietly.",
-        "Setpoint is the other one. A system will not cool a room to a temperature below the number it has been given, and a setpoint at or above the current room temperature is a complete explanation for no cooling. Before anything else, set Cool, choose a temperature clearly below the room, and put the fan on a normal speed rather than low.",
+        "Fan mode does not provide cooling. Dry, Quiet, and Eco behaviour varies by model and may use reduced airflow or different temperature control. For a clear test, use Cool and a normal fan setting unless the operating manual directs otherwise.",
+        "A setpoint at or above the measured room temperature may create little or no cooling demand. Set Cool and choose a temperature below the room, then allow the documented start delay before judging the response.",
       ],
     },
     {
       title: "When the room is the problem",
       paragraphs: [
-        "A ductless head is sized for a particular room doing particular things. Change what the room does and the same equipment stops keeping up, without anything having gone wrong with it. West-facing glass in late afternoon, a door left open to a stairwell, a new oven, more people, or a computer that was not there last summer all add load the system was never asked to carry.",
-        "This is worth checking properly before paying for a diagnostic visit, because a technician who finds correct operation and a heavy load has done nothing wrong and will still charge for the call. Close the door, shade the glass, run the system for an hour with the room settled, and see whether the story changes.",
+        "System sizing and room conditions both affect whether a unit can hold the setpoint. Sun exposure, open doors, added occupants, appliances, insulation, and adjoining unconditioned spaces are among the load factors named in manufacturer sizing guidance.",
+        "Close exterior openings, reduce avoidable heat gain, and observe whether the temperature trend improves after the model has had time to operate normally. A poor trend with settings, airflow, and room load checked still needs equipment diagnosis.",
       ],
     },
   ],
@@ -135,17 +135,17 @@ export const miniSplitNotCooling = publish({
     {
       question: "How long should a mini split take to cool a room?",
       answer:
-        "Longer than most people expect, particularly for a room that has heat-soaked through a hot day. Give it an hour with doors closed before judging it. What matters more than speed is whether the room reaches the setpoint at all.",
+        "There is no cross-brand time because capacity, room load, starting temperature, and control logic differ. Use the operating manual's delay guidance, close exterior openings, and watch whether room temperature trends toward the setpoint.",
     },
     {
       question: "Does a dirty filter really stop cooling?",
       answer:
-        "It reduces airflow across the coil, which cuts delivered capacity and can eventually lead to a frozen coil that stops cooling completely. It is the cheapest thing to rule out and the most commonly neglected.",
+        "A clogged filter can restrict airflow, reduce cooling, and contribute to coil icing. It is one of the first owner checks named in manufacturer troubleshooting guidance.",
     },
     {
       question: "Is low refrigerant the usual cause?",
       answer:
-        "It is one possibility, and a system that is low has a leak, because refrigerant is not consumed. Anyone offering to top it up without finding the leak is selling you the same repair again next year. It needs proper diagnosis rather than assumption.",
+        "It is one possibility, but the symptom does not establish it. Manufacturer guidance lists leaks and incorrect initial charging among reasons for low refrigerant. A trained technician should identify the cause before repairing and charging the sealed system.",
     },
   ],
   sourceIds: ["fujitsu-rls2-operation", "trane-mini-split-not-cooling", "daikin-mxs-engineering"],

@@ -32,7 +32,7 @@ export const miniSplitMakingNoise = publish({
       observation:
         "The noise dates from installation or from the first time the system was used in a particular mode, and nothing about it has changed since.",
       action:
-        "Compare it with the normal sounds listed in the operating manual before treating it as a fault. Refrigerant movement, plastic expanding as temperature changes, and valve operation are all audible and all expected.",
+        "Compare it with the normal sounds listed in the exact operating manual before treating it as a fault. Cited manuals document refrigerant flow, temperature-related plastic movement, and valve operation on covered models, but the expected sounds are model-specific.",
     },
     {
       title: "The sound is new",
@@ -83,12 +83,12 @@ export const miniSplitMakingNoise = publish({
       [
         "Grinding, scraping, or knocking",
         "None; this is not a documented normal sound",
-        "Always worth stopping the system for",
+        "Stop the system and arrange service",
       ],
       [
         "Electrical buzzing or crackling",
         "None; this is not a documented normal sound",
-        "Always urgent, particularly with any smell of heat or burning",
+        "Stop the system; arrange urgent service if heat or burning odor is present",
       ],
     ],
   },
@@ -103,15 +103,15 @@ export const miniSplitMakingNoise = publish({
     {
       title: "Change is the signal, not volume",
       paragraphs: [
-        "The most useful question about a noise is not how loud it is but whether it is new. An unchanged sound that has been present since installation is almost always a characteristic of the equipment. A new sound in a machine that used to make a different one is worth investigating even if it is quiet.",
+        "Whether a sound is new, changing, or tied to a particular mode is useful context. An unchanged sound may match normal noises listed in the exact operating manual, while a new or worsening sound deserves comparison with that manual and the other symptoms present.",
         "Bearings do not fail silently, fan blades that have picked up debris announce it, and mountings that have worked loose produce a vibration that was not there before. In each case the useful description is comparative: what it used to sound like, what it sounds like now, and when the change happened.",
       ],
     },
     {
       title: "Recording it properly",
       paragraphs: [
-        "Take a phone recording of the sound while noting which unit it comes from, what mode the system is in, and whether it happens constantly or at particular moments. Intermittent noises are notorious for disappearing the moment a technician arrives, and a recording is often the only evidence that survives the visit.",
-        "Also check the simple things around the equipment before assuming the machine is at fault. Objects resting on top of an outdoor unit buzz, loose line covers rattle, and a picture frame near an indoor unit will happily vibrate in sympathy with a fan. These cost nothing to eliminate and are a genuinely common answer.",
+        "Take a phone recording while noting which unit it comes from, the operating mode, and when it occurs. A recording can preserve an intermittent sound for comparison when it is absent during service.",
+        "Also check for loose objects outside the equipment before assuming an internal fault. An object touching the cabinet or a nearby cover can vibrate, but do not remove panels or reach through a grille to investigate.",
       ],
     },
   ],
@@ -142,7 +142,7 @@ export const miniSplitMakingNoise = publish({
     {
       question: "Why does my mini split sound like running water?",
       answer:
-        "That is usually refrigerant moving through the circuit, which manufacturers list among the normal operating sounds. It is most noticeable at start-up and shutdown. It only becomes a concern if it comes with a loss of heating or cooling performance.",
+        "Some manufacturer manuals list refrigerant flow among normal sounds on covered models, including around start-up or shutdown. Compare the sound with the exact manual and report it if it is new, changed, or paired with lost performance.",
     },
     {
       question: "Is a clicking noise at start-up a problem?",
@@ -152,7 +152,7 @@ export const miniSplitMakingNoise = publish({
     {
       question: "The outdoor unit hisses in winter. Should I worry?",
       answer:
-        "Hissing and sizzling during heating usually accompanies a defrost cycle melting frost off the coil. Provided the coil clears and heating returns afterwards, it is the system doing what it is designed to do.",
+        "Some manufacturer manuals document hissing or sizzling during a defrost sequence. Compare the sound and the coil-clearing sequence with the exact manual; persistent ice, missing heat, or a new sound needs diagnosis.",
     },
     {
       question: "Can I stop the indoor unit rattling myself?",

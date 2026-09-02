@@ -17,9 +17,9 @@ export const miniSplitFilterCleaning = publish({
   models: ["Cross-brand ductless indoor units; filter type and washability vary by model"],
   problemType: "filter-maintenance",
   directAnswer:
-    "Most ductless indoor filters are homeowner-serviceable, but removal, washing, drying, and reset steps vary; the exact operating manual remains the authority for your model.",
+    "The cited operating manuals identify specific indoor filters as owner-serviceable, but removal, washing, drying, replacement, and reset steps vary; the exact operating manual remains the authority for your model.",
   scopeNotice:
-    "Ductless indoor units carry different filter types, and some hold additional catalytic, carbon, or electrostatic elements alongside the main mesh. Those extra filters usually must not be washed at all and are replaced on their own schedule, so check what your unit contains before treating everything behind the panel the same way.",
+    "Ductless indoor units carry different filter types, and some hold additional deodorizing, catalytic, carbon, or electrostatic elements alongside the main mesh. Cited manuals give those elements separate care instructions and may prohibit wetting them, so identify each filter before cleaning.",
   symptoms: [
     "Reduced airflow, lower heating or cooling performance, higher operating noise, or a filter reminder can indicate maintenance is due.",
   ],
@@ -32,14 +32,14 @@ export const miniSplitFilterCleaning = publish({
       observation:
         "Lifting the front panel reveals one or more mesh filters, and possibly smaller coloured or framed elements clipped to them.",
       action:
-        "Identify each one against the operating manual before removing anything. The main mesh is usually washable; additional elements often are not, and washing one of those ruins it.",
+        "Identify each filter against the operating manual before removal. Wash, vacuum, or replace each element only as that manual directs; a washable main mesh does not mean an attached element is also washable.",
     },
     {
       title: "Decide whether it can be washed or only vacuumed",
       observation:
         "The manual states whether the filter is washable and, if so, what water temperature and detergent are permitted.",
       action:
-        "Follow it exactly rather than improvising. Hot water distorts plastic mesh permanently, and a distorted filter will not seat properly afterwards, which lets dust past it into the coil.",
+        "Follow it exactly rather than improvising. Manufacturer instructions commonly specify cool or lukewarm water because heat can deform filter material and affect how it fits.",
     },
   ],
   steps: [
@@ -57,19 +57,19 @@ export const miniSplitFilterCleaning = publish({
     },
     {
       name: "Separate any additional elements",
-      text: "Unclip any catalytic, carbon, or electrostatic elements from the main mesh and set them aside. These are usually replaced rather than washed, and water will destroy them.",
+      text: "If the manual identifies a separate deodorizing, catalytic, carbon, or electrostatic element, follow its own removal and care instructions. Do not wet an element unless the exact manual says it is washable.",
     },
     {
       name: "Vacuum the loose dust first",
-      text: "Use a soft brush attachment on the dirty face of the mesh to lift loose dust before any water is involved. On a lightly loaded filter this may be all that is needed.",
+      text: "If the manual permits vacuuming, use the attachment and direction it specifies. On models whose instructions allow either vacuuming or washing, light loading may not require water.",
     },
     {
       name: "Wash only if the manual permits it",
-      text: "Rinse from the clean side towards the dirty side so debris is pushed out rather than driven deeper, using lukewarm water and only the detergent the manual allows. Do not use hot water, which distorts the mesh.",
+      text: "Use the direction, water temperature, and detergent specified by the manual. Cited procedures use gentle rinsing or hand washing and warn that excessive heat or force can damage filter material.",
     },
     {
       name: "Dry completely away from direct heat",
-      text: "Shake off excess water and leave the filter to dry fully in the shade. A radiator, direct sun, or a hairdryer will warp the frame, and a filter refitted damp will grow exactly the smell you were trying to avoid.",
+      text: "Shake off excess water and leave the filter to dry fully by the method in the manual. Documented instructions require complete drying before refitting and may prohibit direct heat or sun because filter materials can deform.",
     },
     {
       name: "Refit in the original orientation and close up",
@@ -86,12 +86,12 @@ export const miniSplitFilterCleaning = publish({
     rows: [
       [
         "Ordinary domestic room, moderate use",
-        "Check monthly during the season it runs most",
+        "Use the manual interval and inspect sooner if loading increases",
         "Visible grey loading across the mesh is the signal, not the calendar",
       ],
       [
         "Pets, smokers, or heavy dust",
-        "Check every two to three weeks in the running season",
+        "Inspect more often than the baseline when the environment loads it faster",
         "Loading concentrated in one area can indicate an airflow pattern worth mentioning",
       ],
       [
@@ -105,22 +105,22 @@ export const miniSplitFilterCleaning = publish({
     {
       title: "Why this is the one job worth doing yourself",
       paragraphs: [
-        "Filter loading is the most common cause of reduced performance in ductless equipment, and it is the only part of the airflow path the manufacturer intends an owner to touch. A blocked filter reduces the air crossing the indoor coil, which cuts delivered capacity, raises running cost, and in cooling can take the coil down towards freezing.",
-        "It also costs nothing and takes about ten minutes. A great many service calls that end with a technician cleaning a filter and charging for the visit could have ended differently, which is a strong argument for putting a monthly reminder in your phone during the season the system works hardest.",
+        "Manufacturer troubleshooting guidance identifies clogged filters as one cause of reduced airflow, poor heating or cooling, water leakage, odor, and coil icing. The filter is also a component many operating manuals explicitly identify for owner maintenance.",
+        "Use the inspection and cleaning interval in the exact operating manual. Some documented units call for checks as often as every two weeks during heavy use, while other filters and room conditions require a different schedule. Dust, pets, and long run hours load a filter faster than light seasonal use, so treat the published interval as a starting point and look at the filter rather than assume it is still clean.",
       ],
     },
     {
       title: "The mistakes that cost money",
       paragraphs: [
-        "Hot water is the most common one. Mesh filters are plastic, and hot water distorts the frame permanently. A warped filter no longer seats against its guides, so air bypasses it and carries dust straight onto the coil, which is the expensive thing you were protecting.",
-        "Refitting a damp filter is the second. Moisture in the airstream on a dusty coil is how a musty smell establishes itself, so a filter that is put back wet undoes the point of cleaning it. The third is washing an element that was never meant to be washed, which usually means an additional catalytic or carbon filter that should have been replaced instead.",
+        "Avoid water hotter than the manual permits and avoid forceful vacuum suction, both of which manufacturers warn can damage filter material. A damaged or distorted filter may not fit its guides correctly.",
+        "Do not refit a washable filter until it is completely dry, and do not wash a separate element unless the exact manual permits it. Different filter layers can have different care and replacement instructions even when they sit in the same panel.",
       ],
     },
     {
       title: "Where the owner boundary sits",
       paragraphs: [
-        "Everything reachable by opening the front panel by hand is yours to clean. That is the filter and the surfaces you can see without disturbing anything. If a step requires a screwdriver, removes a cover with electrical warnings on it, or means touching the coil fins or the blower wheel, it belongs with a technician.",
-        "The coil behind the filter is a good illustration. It looks accessible and it is often visibly dirty, and it is also soft aluminium with sharp edges and live parts nearby. Cleaning it properly means dismantling part of the unit and protecting the electrics, which is a service task rather than an ambitious afternoon.",
+        "Clean only the filters and exposed surfaces that the exact operating manual identifies as user-serviceable. A front panel that opens by hand does not make every component behind it an owner-maintenance item.",
+        "Coil, drain-pan, and blower cleaning can require disassembly and protection of electrical parts. Unless the model manual gives an owner procedure, those components belong within professional maintenance rather than this filter routine.",
       ],
     },
   ],
@@ -139,22 +139,22 @@ export const miniSplitFilterCleaning = publish({
     {
       question: "How often should I clean a mini split filter?",
       answer:
-        "Check monthly during the season the system runs hardest, and every two to three weeks with pets, smokers, or heavy dust. Go by how the mesh looks rather than the calendar, since rooms load filters at very different rates.",
+        "Use the interval in the exact operating manual and inspect more often when the room is dusty or the system runs heavily. Manufacturer examples range from roughly two-week checks in peak use to monthly cleaning in lighter use.",
     },
     {
       question: "Can I wash the filter in hot water?",
       answer:
-        "No. Use lukewarm water only. Hot water distorts the plastic mesh permanently, and a warped filter no longer seats properly, which lets dust bypass it and settle on the coil instead.",
+        "Use only the water temperature permitted by the exact manual. Documented procedures commonly specify cool or lukewarm water because excessive heat can deform filter material.",
     },
     {
       question: "How long does a washed filter take to dry?",
       answer:
-        "Give it several hours in the shade, and confirm it is dry to the touch across the whole mesh before refitting. Never use a radiator, direct sun, or a hairdryer, and never refit it damp.",
+        "Let it dry completely by the method in the exact manual before refitting. Do not use direct heat or sun where the manufacturer prohibits it.",
     },
     {
       question: "Do I need to replace the filter or just clean it?",
       answer:
-        "The main mesh is normally cleaned and reused for the life of the unit unless it is torn or distorted. Additional catalytic, carbon, or electrostatic elements are consumables and are replaced on the schedule in the manual.",
+        "Some cited mesh filters are reusable, but replacement rules differ by filter and model. Replace a filter when its manual or maintenance schedule requires it, or when the documented damage criteria apply; follow separate instructions for additional elements.",
     },
     {
       question: "Cleaning the filter did not help. What now?",

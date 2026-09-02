@@ -32,7 +32,7 @@ export const heatPumpOutdoorUnitIcedOver = publish({
       observation:
         "The coil looks frosted rather than iced, and at some point the unit changes note, steams, and comes back with the coil clear.",
       action:
-        "Nothing to do. That is the defrost cycle working. Note roughly how often it happens so you have a baseline if the behaviour changes later in the winter.",
+        "This is consistent with the documented defrost sequence. Note whether the frost clears and heating returns, and compare the timing with the exact operating manual.",
     },
     {
       title: "Solid ice that survives repeated defrost cycles",
@@ -63,7 +63,7 @@ export const heatPumpOutdoorUnitIcedOver = publish({
       [
         "Even white frost across the coil face",
         "Moisture freezing out of the air during normal heating",
-        "Nothing, provided a defrost cycle clears it",
+        "Monitor whether documented defrost clears it and heating returns",
       ],
       [
         "Clear glazed ice filling the fin gaps",
@@ -93,8 +93,8 @@ export const heatPumpOutdoorUnitIcedOver = publish({
     {
       title: "Watching one cycle properly",
       paragraphs: [
-        "Look at the unit, note the time, and come back every twenty minutes or so through a couple of hours. What you are looking for is the moment the fan stops and the unit begins steaming, followed by a coil that is visibly clearer than it was. That is a complete defrost cycle and it is the thing worth reporting.",
-        "If several hours pass with no cycle at all while ice continues to build, or if cycles happen but the coil never comes back clear, you have something specific to describe rather than a general worry. Both of those are worth a call. A coil that clears every time, even if it frosts again quickly, is a system doing its job in difficult weather.",
+        "Observe from a safe distance through the defrost behaviour described in the model's operating manual. On documented systems the outdoor fan may stop, steam or water may appear, and heating may pause before returning. Record what happens rather than applying a generic time interval.",
+        "If ice continues to build without the documented recovery, or a defrost event does not clear enough frost for normal operation to resume, report that sequence. A cycle that clears frost and restores heat supports normal defrost, but rapid recurrence still needs comparison with weather and the model manual.",
       ],
     },
     {
@@ -137,7 +137,7 @@ export const heatPumpOutdoorUnitIcedOver = publish({
     {
       question: "Can I pour warm water over the ice?",
       answer:
-        "Not boiling water, which can crack components and simply refreezes into a worse blockage. If the machine cannot clear the ice with its own defrost cycle, the reason for that needs diagnosing rather than melting.",
+        "Do not pour water on the coil or apply external heat unless the exact manufacturer procedure explicitly authorizes it. If documented defrost does not restore operation, the cause needs diagnosis rather than forced thawing.",
     },
     {
       question: "Why is ice building up underneath the unit?",

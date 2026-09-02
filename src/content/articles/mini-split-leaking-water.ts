@@ -32,7 +32,7 @@ export const miniSplitLeakingWater = publish({
       observation:
         "Drips or a wet trail come from the bottom edge of the cabinet, usually while the system is cooling, and stop some time after it is switched off.",
       action:
-        "Turn cooling off and protect the floor and any finishes below. Water is escaping the drain pan rather than leaving through the drain, and running the system for longer only adds to it.",
+        "Turn cooling off and protect the floor and any finishes below. The pattern is consistent with condensate not following its intended path, and continued cooling can produce more water.",
     },
     {
       title: "There is ice on the coil behind the filter",
@@ -60,7 +60,7 @@ export const miniSplitLeakingWater = publish({
     {
       title: "Where the water is supposed to go",
       description:
-        "In cooling, moisture condenses on the indoor coil and runs into a pan below it. Every leak is water leaving this route before the end of it.",
+        "In cooling, moisture can condense on the indoor coil and drain through a pan and line. Water from the indoor cabinet often indicates that this documented condensate path, airflow, mounting, or a related component needs attention.",
       nodes: [
         { label: "Indoor coil", detail: "Where moisture condenses out of room air" },
         { label: "Drain pan", detail: "Collects condensate under the coil" },
@@ -80,21 +80,21 @@ export const miniSplitLeakingWater = publish({
     {
       title: "Why the drain gets blocked",
       paragraphs: [
-        "Condensate drains are dark, permanently damp, and carry whatever dust gets past the filter. That combination grows a biological slime that gradually narrows the pipe until water backs up into the pan and finds the front edge instead. It is the single most common reason a mini-split starts dripping after several trouble-free years.",
-        "The other common cause is arrangement rather than blockage. Drains rely on a continuous fall, and a line that has been nudged by later building work, or that sags between fixings, will hold water at the low point. This is why an installation that has always been marginal can start leaking after someone else works nearby.",
+        "Manufacturer guidance identifies clogged drain lines and dirt on the evaporator section among causes of condensate backup. The visible symptom does not establish which part of the path is restricted.",
+        "Mounting and drain arrangement can also matter. Manufacturer guidance identifies an unlevel indoor unit, damaged pan, drain-line condition, and a failed condensate pump where fitted as other possibilities that require inspection.",
       ],
     },
     {
       title: "What to do while you wait for the visit",
       paragraphs: [
-        "Switch cooling off and leave it off. Every additional hour of running produces more condensate to escape into the room, and there is nothing to be gained from proving the leak twice. If the room is unbearable, run Fan mode only, which moves air without condensing moisture onto the coil.",
-        "Protect what is below. Water tracking down a wall reaches skirting, flooring, and anything electrical mounted underneath, and damage from a slow leak often costs more than the repair that stops it. Put something absorbent under the unit, move furniture, and photograph the staining before you clean it up, because that record matters if the installation itself turns out to be at fault.",
+        "Switch cooling off and leave it off. Continued cooling can produce more condensate. Use Fan mode only if the exact manual permits it while the unit is in this condition.",
+        "Protect what is below. Water can track down a wall toward finishes or electrical items. Put something absorbent under the unit, move furniture, and photograph the staining before cleaning it up so the service technician can see the pattern.",
       ],
     },
   ],
   decisionTable: {
     caption: "Where the water appears and what it suggests",
-    columns: ["Where you find it", "Most likely origin", "What to report"],
+    columns: ["Where you find it", "Possible origin", "What to report"],
     rows: [
       [
         "Dripping from the bottom of the indoor unit",
@@ -108,8 +108,8 @@ export const miniSplitLeakingWater = publish({
       ],
       [
         "Pooling under the outdoor unit in summer",
-        "Normal condensate drainage leaving the system as designed",
-        "This one is usually fine; mention it only if the volume is unusual",
+        "Condensate drainage that may be normal for the installed system",
+        "Compare the location with the manual and report unusual volume or indoor leakage",
       ],
       [
         "Appearing after the system has been off for a while",
@@ -132,25 +132,25 @@ export const miniSplitLeakingWater = publish({
     {
       question: "Is the water from my mini split refrigerant?",
       answer:
-        "No. Refrigerant escapes as a gas and would not collect as liquid in the room. Water from an indoor unit is condensate, and a leak means it is not reaching the drain rather than that the sealed system has failed.",
+        "Indoor dripping is generally condensate rather than refrigerant. Manufacturer guidance also notes that low refrigerant can contribute indirectly by icing the coil, which then sheds water as it thaws. Do not identify the sealed-system condition from the puddle alone.",
     },
     {
       question: "Can I clear the drain myself?",
       answer:
-        "Blowing through a drain line or dosing it with chemicals can push a blockage into a worse place or damage the pan, and reaching the connection usually means disturbing the unit. Clearing it properly is a service task and it is a quick one.",
+        "Do not blow through or add chemicals to the drain unless the exact manufacturer instructions provide an owner procedure. Reaching or disassembling the drain connection is a service task.",
     },
     {
       question: "Why has it started leaking after years?",
       answer:
-        "Drains narrow gradually as dust and biological growth accumulate in a permanently damp pipe. Nothing has to break for a system that drained fine for five summers to start backing up in the sixth.",
+        "A drain can become restricted over time as debris accumulates, and a pan, line, mounting condition, or condensate pump can also change. A previously working system therefore still needs the whole documented condensate path checked.",
     },
     {
       question: "Can I keep using it if I put a towel underneath?",
       answer:
-        "It is better to stop cooling until it is fixed. A towel catches what you can see, while water tracking inside the wall or across a ceiling does damage you will not notice until later. Fan mode moves air without producing condensate.",
+        "Stop cooling until it is fixed. A towel catches only visible water; moisture may also track behind finishes. Use Fan mode only if the exact manual permits it in this condition.",
     },
   ],
-  sourceIds: ["gree-water-leak", "fujitsu-rls2-operation"],
+  sourceIds: ["gree-water-leak", "fujitsu-rls2-operation", "trane-mini-split-leak"],
   relatedContent: ["/troubleshooting/", "/mini-split-frozen-coil/", "/mini-split-filter-cleaning/"],
   keywords: [
     "mini split leaking water",

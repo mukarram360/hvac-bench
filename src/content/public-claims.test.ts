@@ -132,6 +132,14 @@ describe("public pages do not publish an outbound source journey", () => {
     }
   });
 
+  it("puts the internal-only evidence policy in the homepage primary-source summary", () => {
+    const homepage = readProjectFile("src/app/page.tsx");
+    const occurrences = homepage.match(
+      /OEM evidence is verified and retained internally, not publicly linked/gi,
+    );
+    expect(occurrences?.length ?? 0).toBeGreaterThanOrEqual(2);
+  });
+
   it("publishes no dealer, booking, or local-pro claims", () => {
     const forbidden = [
       /\bdealer\b/i,

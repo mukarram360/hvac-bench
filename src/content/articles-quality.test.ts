@@ -192,4 +192,33 @@ describe("published article quality", () => {
     expect(article.steps?.map((step) => step.name).join(" ")).toMatch(/manual|instructions/i);
     expect(article.steps?.map((step) => step.text).join(" ")).toMatch(/dry/i);
   });
+
+  it("keeps cross-brand guidance free of unsupported prevalence and timing claims", () => {
+    const crossBrand = articles.filter((article) => !article.brand);
+    const unsupportedAbsolutes = [
+      /\b(?:the )?most common\b/i,
+      /\bsingle most\b/i,
+      /\ba great many\b/i,
+      /\bstriking number\b/i,
+      /\baccount for most\b/i,
+      /\bclassic cause\b/i,
+      /\bsame repair again next year\b/i,
+      /\bevery hour or two\b/i,
+      /\bevery fifteen minutes\b/i,
+      /\bten or fifteen minutes\b/i,
+      /\beverything reachable\b/i,
+      /\bwill grow exactly\b/i,
+      /\bcomplete explanation\b/i,
+      /\balmost always a characteristic\b/i,
+      /\bguaranteed to see\b/i,
+      /\banyone offering\b/i,
+    ];
+
+    for (const article of crossBrand) {
+      const prose = JSON.stringify(article);
+      for (const pattern of unsupportedAbsolutes) {
+        expect(prose, `${article.path} contains ${pattern}`).not.toMatch(pattern);
+      }
+    }
+  });
 });

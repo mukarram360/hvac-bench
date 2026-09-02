@@ -162,9 +162,8 @@ export default function Home() {
             <ScopeIcon />
             <strong>Primary sources first</strong>
             <p>
-              Every technical claim is written from a manufacturer service manual, operation
-              manual, or official support article, and each page states which documentation class
-              it was checked against.
+              OEM evidence is verified and retained internally, not publicly linked. Each page
+              states the documentation class and product scope used for its technical claims.
             </p>
           </div>
           <div>
