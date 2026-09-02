@@ -146,18 +146,38 @@ describe("published article quality", () => {
     expect(article.serviceHandoff).toMatch(/model/i);
   });
 
+  /**
+   * This used to require a decision table and a figure on every page, which is
+   * how the library ended up with one decision table repeated two dozen times.
+   * The requirement now is substance, and which aids carry it is the article's
+   * decision. `template-leakage.test.ts` enforces the rest.
+   */
   it("gives every published guide a complete diagnostic and search journey", () => {
     for (const article of articles) {
       expect(article.scopeNotice, article.path).toBeTruthy();
       expect(article.diagnosticBranches?.length, article.path).toBeGreaterThanOrEqual(2);
-      expect(article.decisionTable?.rows.length, article.path).toBeGreaterThanOrEqual(3);
       expect(article.sections?.length, article.path).toBeGreaterThanOrEqual(2);
-      expect(article.figures?.length, article.path).toBeGreaterThanOrEqual(1);
       expect(article.serviceHandoff, article.path).toBeTruthy();
       expect(article.faqs.length, article.path).toBeGreaterThanOrEqual(3);
       expect(article.keywords.length, article.path).toBeGreaterThanOrEqual(4);
       expect(article.lastReviewed, article.path).toBe("2026-09-02");
     }
+  });
+
+  it("lets the library use a range of reasoning aids rather than one shape", () => {
+    const shapes = new Set(
+      articles.map((article) =>
+        [
+          article.decisionTable ? "decision" : "",
+          article.comparisonTable ? "comparison" : "",
+          article.figures?.length ? "figure" : "",
+          article.steps?.length ? "steps" : "",
+        ]
+          .filter(Boolean)
+          .join("+"),
+      ),
+    );
+    expect(shapes.size, "every article uses the same combination of aids").toBeGreaterThan(2);
   });
 
   it("keeps the published evidence set limited to manufacturer sources", () => {

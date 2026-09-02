@@ -107,8 +107,13 @@ export const diagnosticBranchSchema = z.object({
   action: z.string().min(30),
 });
 
-export const decisionRowSchema = z.array(z.string().min(12)).min(2);
-export const comparisonRowSchema = z.array(z.string().min(12)).min(2);
+/**
+ * Table cells carry a label in the first column and reasoning in the rest.
+ * A useful label is often one word ("Cooling", "P0 or PC00"), so the floor is
+ * low enough to allow that while still rejecting an empty cell.
+ */
+export const decisionRowSchema = z.array(z.string().min(3)).min(2);
+export const comparisonRowSchema = z.array(z.string().min(3)).min(2);
 
 const diagnosticTableSchema = z.object({
   caption: z.string().min(12),
