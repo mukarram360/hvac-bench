@@ -33,7 +33,9 @@ const foundingPaths = [
 
 describe("published article quality", () => {
   it("keeps the complete founding route inventory in scope", () => {
-    expect(articles.map((article) => article.path).sort()).toEqual([...foundingPaths].sort());
+    const published = new Set(articles.map((article) => article.path));
+    for (const path of foundingPaths) expect(published, path).toContain(path);
+    expect(foundingPaths).toHaveLength(25);
   });
 
   it("keeps search summaries and direct answers unique", () => {

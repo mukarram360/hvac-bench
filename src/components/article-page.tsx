@@ -5,8 +5,10 @@ import { EQUIPMENT_TYPES } from "@/content/taxonomy";
 import {
   getAuthorBySlug,
   getBrandBySlug,
+  getGlossaryTerm,
   getRelatedArticles,
   getSourceById,
+  glossaryPath,
 } from "@/lib/content";
 import { ArticleCard } from "./article-card";
 import { ArticleContentBlocks } from "./article-content-blocks";
@@ -64,6 +66,27 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
     EQUIPMENT_TYPES[article.equipmentType as keyof typeof EQUIPMENT_TYPES]?.singular ??
     article.equipmentType.replaceAll("-", " ");
 
+  const format = article.articleType === "maintenance" ? "how-to" : article.articleType;
+  const formatHub = {
+    "error-code": { name: "Error codes", path: "/error-codes/" },
+    troubleshooting: { name: "Troubleshooting", path: "/troubleshooting/" },
+    "how-to": { name: "How-to", path: "/how-to/" },
+    guide: { name: "Guides", path: "/guides/" },
+    comparison: { name: "Comparisons", path: "/compare/" },
+  }[format];
+  const listTitlesByFormat: Record<string, [string, string]> = {
+    guide: ["What this guide covers", "What changes the answer"],
+    "how-to": ["Before you start", "Why the procedure changes"],
+    comparison: ["Criteria compared", "Decision factors"],
+  };
+  const listTitles = listTitlesByFormat[format] ?? ["What you may notice", "Likely causes"];
+  const glossaryTerms = (article.glossaryTerms ?? [])
+    .map(getGlossaryTerm)
+    .filter((term) => term !== undefined);
+  const relatedBrands = (article.relatedBrands ?? [])
+    .map(getBrandBySlug)
+    .filter((item) => item !== undefined);
+
   const breadcrumbs = [
     { name: "Home", path: "/" },
     ...(brand
@@ -71,7 +94,7 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
           { name: "Brands", path: "/brands/" },
           { name: brand.name, path: `/brands/${brand.slug}/` },
         ]
-      : [{ name: "Troubleshooting", path: "/troubleshooting/" }]),
+      : [formatHub]),
     { name: article.errorCode ?? article.title, path: article.path },
   ];
 
@@ -127,8 +150,8 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
               </p>
             </section>
 
-            <ListSection title="What you may notice" items={article.symptoms} />
-            <ListSection title="Likely causes" items={article.causes} />
+            <ListSection title={listTitles[0]} items={article.symptoms} />
+            <ListSection title={listTitles[1]} items={article.causes} />
 
             <ArticleContentBlocks article={article} />
 
@@ -204,10 +227,10 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
               </summary>
               <div className="evidence-record-body">
                 <p>
-                  Every technical claim above was written from manufacturer documentation held in
-                  the HVAC Bench evidence record: {documentationSummary}. Where a manufacturer
-                  limits a definition to certain models, that limit is repeated here rather than
-                  generalised across the brand.
+                  Every technical claim above was written from primary documentation held in the
+                  HVAC Bench evidence record: {documentationSummary}. Where a source limits a
+                  definition to certain models, test conditions, or product classes, that limit is
+                  repeated here rather than generalised.
                 </p>
                 <dl className="verification-plate">
                   <div>
@@ -260,7 +283,14 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
               </dl>
               <div className="rail-links">
                 {brand && <Link href={`/brands/${brand.slug}/`}>All {brand.name} references</Link>}
-                <Link href="/error-codes/">Error code index</Link>
+                {relatedBrands.map((item) => (
+                  <Link href={`/brands/${item.slug}/`} key={item.slug}>{item.name} references</Link>
+                ))}
+                <Link href={formatHub.path}>{formatHub.name}</Link>
+                <Link href={`/equipment/${article.equipmentType}/`}>{equipmentLabel}</Link>
+                {glossaryTerms.map((term) => (
+                  <Link href={glossaryPath(term.slug)} key={term.slug}>{term.term}</Link>
+                ))}
                 <Link href="/safety-disclaimer/">Safety limits</Link>
               </div>
             </div>

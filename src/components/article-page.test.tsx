@@ -43,4 +43,39 @@ describe("ArticlePage", () => {
     expect(screen.queryByText(/codes can change meaning/i)).not.toBeInTheDocument();
     expect(screen.getByText(/remote layouts.*vary by model/i)).toBeInTheDocument();
   });
+
+  it("uses format-aware navigation and links educational pages into the taxonomy", () => {
+    const article = getArticleByPath("/how-mini-splits-work/");
+    expect(article).toBeDefined();
+
+    render(<ArticlePage article={article!} />);
+
+    expect(screen.getByRole("navigation", { name: "Breadcrumb" })).toHaveTextContent("Guides");
+    expect(screen.getByRole("heading", { name: "What this guide covers" })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "Ductless mini-split" })[0]).toHaveAttribute(
+      "href",
+      "/equipment/ductless-mini-split",
+    );
+    expect(screen.getAllByRole("link", { name: "Ductless mini-split" })[1]).toHaveAttribute(
+      "href",
+      "/glossary/ductless-mini-split",
+    );
+    expect(screen.getAllByRole("link", { name: "Guides" })[0]).toHaveAttribute("href", "/guides");
+  });
+
+  it("links both manufacturers from a brand comparison", () => {
+    const article = getArticleByPath("/daikin-vs-mitsubishi-mini-splits/");
+    expect(article).toBeDefined();
+
+    render(<ArticlePage article={article!} />);
+
+    expect(screen.getByRole("link", { name: "Daikin references" })).toHaveAttribute(
+      "href",
+      "/brands/daikin",
+    );
+    expect(screen.getByRole("link", { name: "Mitsubishi Electric references" })).toHaveAttribute(
+      "href",
+      "/brands/mitsubishi",
+    );
+  });
 });

@@ -111,7 +111,9 @@ export function buildPassageIndex(): PassageIndex {
       equipmentType: article.equipmentType,
       problemType: article.problemType,
       productFamily: article.productFamily,
-      tokens: tokenize(`${question ?? ""} ${text}`),
+      // Retrieval only tests token presence, so retaining repeats wastes memory
+      // without changing relevance scoring.
+      tokens: [...new Set(tokenize(`${question ?? ""} ${text}`))],
     });
   };
 
@@ -155,9 +157,9 @@ export function buildPassageIndex(): PassageIndex {
       articlePath: glossaryPath(term.slug),
       articleTitle: `${term.term} in the HVAC glossary`,
       codes: [],
-      tokens: tokenize(
+      tokens: [...new Set(tokenize(
         `${term.term} ${term.aliases.join(" ")} ${term.definition} ${term.shortAnswer ?? ""}`,
-      ),
+      ))],
     });
   }
 
@@ -171,7 +173,9 @@ export function buildPassageIndex(): PassageIndex {
       articleTitle: `${brand.name} error codes and troubleshooting`,
       brand: brand.slug,
       codes: [],
-      tokens: tokenize(`${brand.name} ${brand.aliases.join(" ")} ${brand.series.join(" ")}`),
+      tokens: [...new Set(tokenize(
+        `${brand.name} ${brand.aliases.join(" ")} ${brand.series.join(" ")}`,
+      ))],
     });
   }
 

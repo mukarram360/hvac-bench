@@ -440,6 +440,7 @@ export const controls = [
           "No. Ductless systems use their own controllers on a manufacturer communication bus rather than a 24-volt thermostat circuit, so the question does not arise on them.",
       },
     ],
+    sourceIds: ["ashrae-terminology"],
   },
   {
     term: "Auxiliary heat",

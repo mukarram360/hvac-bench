@@ -32,9 +32,17 @@ export default async function RootArticle({ params }: { params: Promise<{ slug: 
   const article = getArticleByPath(`/${slug}/`);
   if (!article || article.brand) notFound();
 
+  const format = article.articleType === "maintenance" ? "how-to" : article.articleType;
+  const parent = {
+    troubleshooting: { name: "Troubleshooting", path: "/troubleshooting/" },
+    "how-to": { name: "How-to", path: "/how-to/" },
+    guide: { name: "Guides", path: "/guides/" },
+    comparison: { name: "Comparisons", path: "/compare/" },
+    "error-code": { name: "Error codes", path: "/error-codes/" },
+  }[format];
   const breadcrumbs = [
     { name: "Home", path: "/" },
-    { name: "Troubleshooting", path: "/troubleshooting/" },
+    parent,
     { name: article.title, path: article.path },
   ];
 

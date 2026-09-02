@@ -433,6 +433,7 @@ export const systemTypes = [
         note: "Boilers appear mainly in older hydronic and steam systems; forced air furnaces are the more common comparison point.",
       },
     ],
+    sourceIds: ["ashrae-terminology", "doe-heat-pumps"],
   },
   {
     term: "Ducted split system",
@@ -627,5 +628,6 @@ export const systemTypes = [
           "Yes, usually a washable filter behind the front grille that the room-side air passes through. Cleaning it is routine housekeeping work rather than a service visit.",
       },
     ],
+    sourceIds: ["ashrae-terminology"],
   },
 ] satisfies GlossaryTermInput[];

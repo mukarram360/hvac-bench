@@ -25,6 +25,7 @@ import { pioneerE1Communication } from "./pioneer-e1-communication";
 import { pioneerE1Sensor } from "./pioneer-e1-sensor";
 import { senvilleEh02 } from "./senville-eh02";
 import { senvillePc0a } from "./senville-pc0a";
+import { expandedArticles } from "./expanded-library";
 
 /**
  * One module per article.
@@ -61,4 +62,5 @@ export const articles = [
   miniSplitSmellsMusty,
   miniSplitShortCycling,
   miniSplitFilterCleaning,
+  ...expandedArticles,
 ] satisfies TechnicalArticle[];

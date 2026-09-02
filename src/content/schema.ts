@@ -270,6 +270,10 @@ export const articleSchema = z.object({
   lastReviewed: isoDate,
   reviewStatus: z.enum(["source-verified", "editorial-review"]),
   relatedContent: z.array(absolutePath).max(8),
+  /** Authored links to definitions used on this page. */
+  glossaryTerms: z.array(slug).max(8).optional(),
+  /** Additional manufacturer hubs relevant to cross-brand comparisons. */
+  relatedBrands: z.array(slug).max(4).optional(),
   keywords: z.array(z.string().min(2)).max(12),
 });
 

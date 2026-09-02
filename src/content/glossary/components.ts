@@ -297,6 +297,7 @@ export const components = [
           "The drain pan under the coil collects condensate, and if the drain line, its trap, or the pump is obstructed, the water backs up. A secondary pan and float switch are commonly fitted for exactly this reason.",
       },
     ],
+    sourceIds: ["ashrae-terminology"],
   },
   {
     term: "Blower motor",
@@ -505,6 +506,7 @@ export const components = [
           "No. It sits inside the sealed refrigerant circuit, so any work on it requires recovery and recharge by a certified technician.",
       },
     ],
+    sourceIds: ["ashrae-terminology", "epa-section-608"],
   },
   {
     term: "Line set",

@@ -165,6 +165,7 @@ export const airflow = [
           "It is not worse when installed straight, supported, and at full stretch. It becomes worse when it sags, kinks, or is left compressed, because the inner liner ripples and adds resistance.",
       },
     ],
+    sourceIds: ["ashrae-terminology"],
   },
   {
     term: "Return air",
@@ -229,6 +230,7 @@ export const airflow = [
           "Yes, and it is often the fix for a system that is short of return path. Sizing it means calculating the free area needed for the airflow, which is why it is designed rather than guessed.",
       },
     ],
+    sourceIds: ["ashrae-terminology"],
   },
   {
     term: "Air filter",

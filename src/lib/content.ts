@@ -88,6 +88,11 @@ export function validateContentSet(input: ContentSetInput): ValidatedContentSet 
     if (article.brand && !brandSlugs.has(article.brand)) {
       throw new Error(`${article.path} references unknown brand: ${article.brand}`);
     }
+    for (const brandSlug of article.relatedBrands ?? []) {
+      if (!brandSlugs.has(brandSlug)) {
+        throw new Error(`${article.path} references unknown related brand: ${brandSlug}`);
+      }
+    }
     if (!(article.equipmentType in EQUIPMENT_TYPES)) {
       throw new Error(`${article.path} references unknown equipment type: ${article.equipmentType}`);
     }
@@ -105,6 +110,11 @@ export function validateContentSet(input: ContentSetInput): ValidatedContentSet 
     for (const route of article.relatedContent) {
       if (!validRoutes.has(route)) {
         throw new Error(`${article.path} references unknown related route: ${route}`);
+      }
+    }
+    for (const termSlug of article.glossaryTerms ?? []) {
+      if (!glossarySlugs.has(termSlug)) {
+        throw new Error(`${article.path} links to unknown glossary term: ${termSlug}`);
       }
     }
   }
