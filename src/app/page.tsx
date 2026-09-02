@@ -325,14 +325,14 @@ export default function Home() {
         <div className="container method-inner">
           <div>
             <span className="eyebrow">How this site works</span>
-            <h2>A citation is part of the diagnosis, not decoration</h2>
+            <h2>Evidence stays traceable without becoming an outbound journey</h2>
           </div>
           <p>
-            Pages state the equipment they apply to, keep the uncertainty that exists in the source,
-            link the documentation they were built from, and put hazardous testing on the
+            Pages state the equipment they apply to and keep the uncertainty found in the source.
+            OEM evidence is verified and retained internally, not publicly linked, while the page
+            names the documentation class and scope used. Hazardous testing stays on the
             technician&apos;s side of the line. Where {Object.keys(PROBLEM_TYPES).length} symptom
-            families meet {brands.length} manufacturers, that discipline is the only thing that makes
-            the answer trustworthy.
+            families meet {brands.length} manufacturers, that discipline keeps the answer honest.
           </p>
           <Link className="btn btn-inverse" href="/sources-methodology/">
             Read the method

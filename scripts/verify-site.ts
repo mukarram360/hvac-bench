@@ -32,6 +32,19 @@ function sitemapPaths(xml: string) {
   });
 }
 
+function visibleText(html: string) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&#x27;|&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 async function verifyPages() {
   const sitemap = await read("/sitemap.xml");
   expect(sitemap.response.status === 200, `sitemap returned ${sitemap.response.status}`);
@@ -49,6 +62,7 @@ async function verifyPages() {
       `${path} has a missing or incorrect canonical`,
     );
     expect(!/href="[^"]*(?:quote|dealer|installer|booking|local-pro)/i.test(body), `${path} exposes a service CTA link`);
+    expect(!/\bdealer\b|\bbooking\b|\blocal[- ]pro\b/i.test(visibleText(body)), `${path} exposes a service-marketplace claim`);
     expect(!body.includes("Observe,Check safely,Escalate"), `${path} exposes the generic diagnostic figure`);
     expect(!/What does How to |Can I safely reset How to /i.test(body), `${path} exposes a generated FAQ artifact`);
 
@@ -58,6 +72,27 @@ async function verifyPages() {
 
     if (path === "/" || path === "/benchmark/" || articlePaths.has(path)) {
       expect(body.includes("application/ld+json"), `${path} has no JSON-LD`);
+    }
+  }
+
+  for (const article of articles) {
+    const page = pages.find((candidate) => candidate.path === article.path);
+    expect(page !== undefined, `${article.path} was not crawled`);
+    if (!page) continue;
+
+    const text = visibleText(page.body);
+    const bespokeMarkers = [
+      article.title,
+      article.directAnswer,
+      ...(article.sections ?? []).map((section) => section.title),
+      ...(article.figures ?? []).map((figure) => figure.title),
+      ...(article.decisionTable ? [article.decisionTable.caption] : []),
+      ...(article.comparisonTable ? [article.comparisonTable.caption] : []),
+      ...article.faqs.map((faq) => faq.question),
+    ];
+
+    for (const marker of bespokeMarkers) {
+      expect(text.includes(marker), `${article.path} is missing current bespoke marker: ${marker}`);
     }
   }
 

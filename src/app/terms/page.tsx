@@ -45,9 +45,9 @@ export default function TermsPage() {
           ],
         },
         {
-          title: "External links",
+          title: "External sites",
           paragraphs: [
-            "Pages link to manufacturer manuals, support articles, and official guidance so you can check the source. We do not control those sites, we are not responsible for their content, and a link is not an endorsement of anything else the linked party publishes or sells.",
+            "Technical pages keep manufacturer evidence internal and publish no outbound evidence URLs. Links to other sites may appear for non-evidence purposes; we do not control those sites, and a link is not an endorsement of anything else the linked party publishes or sells.",
           ],
         },
         {

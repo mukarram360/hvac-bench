@@ -47,7 +47,7 @@ export default function SourcesMethodologyPage() {
             "The description is rewritten in plain language without changing its meaning or narrowing its conditions.",
             "Causes are separated from symptoms, and both are separated from actions.",
             "Actions are split into checks that are safe for an owner and work that requires a technician, using the conservative test described in the editorial policy.",
-            "The page records which documentation class the definition came from and the model scope that document covers. The underlying manufacturer documents, their locations, and the scope notes are held in the HVAC Bench evidence record rather than published as outbound links.",
+            "The page records which documentation class the definition came from and the model scope that document covers. OEM evidence, document locations, and scope notes are verified and retained internally, not publicly linked.",
           ],
         },
         {
@@ -62,8 +62,8 @@ export default function SourcesMethodologyPage() {
         {
           title: "When documentation does not exist",
           paragraphs: [
-            "Some codes are simply not published outside a dealer portal. In that case we either leave the page unwritten or publish what can be established, clearly labelled, with the gap named.",
-            "Saying that a definition could not be verified is more useful than inventing one, and it tells a reader to go to the installer or the manufacturer instead of following a guess.",
+            "Some codes are not available in public manufacturer documentation. In that case we either leave the page unwritten or publish only what can be established, clearly labelled, with the gap named.",
+            "Saying that a definition could not be verified is more useful than inventing one, and it tells a reader where the published evidence stops instead of inviting them to follow a guess.",
           ],
         },
         {

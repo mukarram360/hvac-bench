@@ -28,8 +28,12 @@ const publicSurfaces = [
   "src/components/format-hub.tsx",
   "src/components/site-footer.tsx",
   "src/app/page.tsx",
+  "src/app/guides/page.tsx",
   "src/app/sources-methodology/page.tsx",
   "src/app/editorial-policy/page.tsx",
+  "src/app/terms/page.tsx",
+  "src/app/privacy/page.tsx",
+  "src/app/llms.txt/route.ts",
   "src/app/faq/page.tsx",
   "src/app/about/page.tsx",
   "src/app/opengraph-image.tsx",
@@ -91,6 +95,11 @@ describe("public pages do not publish an outbound source journey", () => {
       /sources listed/i,
       /links to the manufacturer/i,
       /source links/i,
+      /link the documentation/i,
+      /documentation .* cited on the page/i,
+      /pages link to manufacturer manuals/i,
+      /external links to manufacturer documentation/i,
+      /each page names its sources at the foot/i,
     ];
 
     for (const surface of publicSurfaces) {
@@ -99,6 +108,46 @@ describe("public pages do not publish an outbound source journey", () => {
         expect(
           pattern.test(contents),
           `${surface} promises a public source link (${pattern})`,
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("states consistently that OEM evidence is retained internally and not publicly linked", () => {
+    const policySurfaces = [
+      "src/app/page.tsx",
+      "src/app/guides/page.tsx",
+      "src/app/editorial-policy/page.tsx",
+      "src/app/sources-methodology/page.tsx",
+    ];
+
+    for (const surface of policySurfaces) {
+      const contents = readProjectFile(surface);
+      expect(contents, `${surface} must state that evidence is retained internally`).toMatch(
+        /retained internally/i,
+      );
+      expect(contents, `${surface} must state that evidence is not publicly linked`).toMatch(
+        /not publicly linked/i,
+      );
+    }
+  });
+
+  it("publishes no dealer, booking, or local-pro claims", () => {
+    const forbidden = [
+      /\bdealer\b/i,
+      /\bbooking\b/i,
+      /\blocal[- ]pro\b/i,
+      /find (?:a|an) (?:local )?(?:dealer|installer|contractor)/i,
+      /(?:book|schedule) (?:a|an|your) (?:visit|appointment|service)/i,
+      /get (?:a|your) quote/i,
+    ];
+
+    for (const surface of publicSurfaces) {
+      const contents = readProjectFile(surface);
+      for (const pattern of forbidden) {
+        expect(
+          pattern.test(contents),
+          `${surface} contains a public service-marketplace claim (${pattern})`,
         ).toBe(false);
       }
     }

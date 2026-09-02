@@ -78,7 +78,7 @@ export default function PrivacyPage() {
           title: "Third parties",
           paragraphs: [
             "The site uses Vercel for hosting, Google Analytics for measurement, and Google Fonts served as self-hosted files rather than from Google's servers, so loading a page does not contact a font server.",
-            "External links to manufacturer documentation take you to sites governed by their own privacy policies, which we do not control.",
+            "If you follow a non-evidence link to another site, that site is governed by its own privacy policy, which we do not control.",
           ],
         },
         {

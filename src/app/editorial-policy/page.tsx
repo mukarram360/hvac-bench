@@ -24,7 +24,7 @@ export default function EditorialPolicyPage() {
         {
           title: "Every technical claim names its source",
           paragraphs: [
-            "A page cannot state what a code means, what a component does, or what a manufacturer requires without a source that says so. Every claim remains mapped to its manufacturer document in the internal evidence record, while the public page names the documentation class and the product scope it supports.",
+            "A page cannot state what a code means, what a component does, or what a manufacturer requires without a source that says so. OEM evidence is verified and retained internally, not publicly linked. The public page names the documentation class and product scope it supports.",
             "We prefer manufacturer service manuals, then installation and operation manuals, then official manufacturer support articles, then government and standards-body guidance. Forum posts, retailer blog content, and video walkthroughs are not treated as sources.",
           ],
         },
@@ -52,7 +52,7 @@ export default function EditorialPolicyPage() {
         {
           title: "Review status is visible",
           paragraphs: [
-            "Pages carry one of two states. Source verified means the technical claims have been checked against the cited documentation. Editorial review means the page has been written and edited but is awaiting that verification.",
+            "Pages carry one of two states. Source verified means the technical claims have been checked against the retained documentation. Editorial review means the page has been written and edited but is awaiting that verification.",
             "Where a qualified technician or engineer has reviewed a page, they are named on it with their credentials. We do not invent bylines, and we do not describe experience the desk does not have.",
           ],
         },
@@ -67,7 +67,7 @@ export default function EditorialPolicyPage() {
           title: "How AI tooling is used",
           paragraphs: [
             "AI tools assist with drafting, structuring, and editing, in the same way a word processor or a research assistant would. They do not decide what is true.",
-            "Every technical claim is checked against the cited manufacturer documentation by a person before publication, and no page is published because a model produced a fluent-sounding answer. Where verification is not possible, the page does not publish.",
+            "Every technical claim is checked against retained manufacturer documentation by a person before publication, and no page is published because a model produced a fluent-sounding answer. Where verification is not possible, the page does not publish.",
           ],
         },
         {

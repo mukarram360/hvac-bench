@@ -36,7 +36,7 @@ export default function GuidesPage() {
         },
         {
           heading: "Sourced, not remembered",
-          copy: "Manufacturer documentation and government guidance are cited on the page. Where the sources disagree or stay silent, the guide says so instead of filling the gap.",
+          copy: "OEM evidence is verified and retained internally, not publicly linked. Each guide names the documentation class and product scope used, and reports disagreement or silence instead of filling the gap.",
         },
       ]}
       emptyHeading="The first guides are being written"
