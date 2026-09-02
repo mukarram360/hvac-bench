@@ -161,6 +161,7 @@ export const hubRoutes = [
   "/compare/",
   "/glossary/",
   "/faq/",
+  "/benchmark/",
 ];
 
 export const staticRoutes = [
@@ -312,7 +313,15 @@ const HUB_LISTINGS: Record<string, () => TechnicalArticle[]> = {
 };
 
 /** Hubs whose value is their own content rather than a list of articles. */
-const REFERENCE_HUBS = new Set(["/brands/", "/equipment/", "/glossary/", "/faq/"]);
+const REFERENCE_HUBS = new Set([
+  "/brands/",
+  "/equipment/",
+  "/glossary/",
+  "/faq/",
+  // The benchmark page documents the rating method, so it carries content of
+  // its own whether or not any family currently has a published score.
+  "/benchmark/",
+]);
 
 export function countArticlesForHub(hubPath: string) {
   return HUB_LISTINGS[hubPath]?.().length ?? 0;

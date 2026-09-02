@@ -117,6 +117,7 @@ export const primaryNav: NavGroup[] = [
         links: [
           { label: "Glossary", href: "/glossary/", description: "Plain-language HVAC vocabulary" },
           { label: "Questions", href: "/faq/", description: "Answers to what readers ask most" },
+          { label: "HVAC Bench Score", href: "/benchmark/", description: "How equipment families are rated" },
           { label: "How we research", href: "/sources-methodology/", description: "Sources, scope, and verification" },
         ],
       },
@@ -143,7 +144,7 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
       { label: "How-to", href: "/how-to/" },
       { label: "Comparisons", href: "/compare/" },
       { label: "Questions", href: "/faq/" },
-      { label: "Search", href: "/search/" },
+      { label: "HVAC Bench Score", href: "/benchmark/" },
     ],
   },
   {

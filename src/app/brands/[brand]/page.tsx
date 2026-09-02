@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ArticleCard } from "@/components/article-card";
+import { BenchmarkScorecard } from "@/components/benchmark-scorecard";
 import { JsonLd } from "@/components/json-ld";
 import { PageHead } from "@/components/page-head";
 import { EQUIPMENT_TYPES, REGIONS } from "@/content/taxonomy";
@@ -12,6 +13,8 @@ import {
   getBrandBySlug,
   isBrandIndexable,
 } from "@/lib/content";
+import { getScorecardSubjectsForBrand } from "@/content/benchmark/subjects";
+import { getBenchmark } from "@/lib/benchmark-content";
 import { brandJsonLd, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -51,6 +54,7 @@ export default async function BrandPage({ params }: { params: Promise<{ brand: s
   const articles = getArticlesByBrand(slug);
   const codeArticles = articles.filter((article) => article.errorCode);
   const symptomArticles = articles.filter((article) => !article.errorCode);
+  const scorecards = getScorecardSubjectsForBrand(slug);
   const breadcrumbs = [
     { name: "Home", path: "/" },
     { name: "Brands", path: "/brands/" },
@@ -103,6 +107,29 @@ export default async function BrandPage({ params }: { params: Promise<{ brand: s
           <section className="callout callout-note">
             <span className="eyebrow">How {brand.name} reports faults</span>
             <p>{brand.faultDisplay}</p>
+          </section>
+        )}
+
+        {scorecards.length > 0 && (
+          <section className="band-tight">
+            <div className="section-head">
+              <div>
+                <span className="eyebrow">HVAC Bench Score</span>
+                <h2>Family scorecards</h2>
+                <p>
+                  What manufacturer documentation establishes about each family, and what owner
+                  evidence we hold. A score appears only where that evidence clears the{" "}
+                  <Link href="/benchmark/">published threshold</Link>.
+                </p>
+              </div>
+            </div>
+            {scorecards.map((subject) => {
+              const result = getBenchmark(subject.id);
+              if (!result) return null;
+              return (
+                <BenchmarkScorecard key={subject.id} subject={subject} result={result} />
+              );
+            })}
           </section>
         )}
 
