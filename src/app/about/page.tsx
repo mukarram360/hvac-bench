@@ -32,7 +32,7 @@ export default function AboutPage() {
         {
           title: "What we publish",
           paragraphs: [
-            "Error-code references scoped to the product families the documentation actually covers. Symptom guides for behaviour rather than codes. Maintenance and how-to procedures with the stop point stated up front. Equipment and brand hubs that organise the library. A glossary written for someone reading a manual for the first time.",
+            "Error-code references scoped to the product families the documentation actually covers. Symptom references for behaviour rather than codes. How-to procedures with the stop point stated up front. Equipment and brand hubs that organise the library. A glossary written for someone reading a manual for the first time.",
             "The library begins with ductless mini-splits and heat pumps because that is where documentation is most fragmented and demand is highest. The structure already carries central air, furnaces, boilers, controls, indoor air quality, and light commercial equipment, and those sections fill as references are verified.",
           ],
         },

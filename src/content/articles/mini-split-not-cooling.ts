@@ -143,7 +143,7 @@ export const miniSplitNotCooling = publish({
         "A clogged filter can restrict airflow, reduce cooling, and contribute to coil icing. It is one of the first owner checks named in manufacturer troubleshooting guidance.",
     },
     {
-      question: "Is low refrigerant the usual cause?",
+      question: "Does this mean the system is low on refrigerant?",
       answer:
         "It is one possibility, but the symptom does not establish it. Manufacturer guidance lists leaks and incorrect initial charging among reasons for low refrigerant. A trained technician should identify the cause before repairing and charging the sealed system.",
     },

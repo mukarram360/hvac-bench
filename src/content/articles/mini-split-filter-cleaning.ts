@@ -12,7 +12,7 @@ export const miniSplitFilterCleaning = publish({
   path: "/mini-split-filter-cleaning/",
   description:
     "A model-first filter-cleaning routine covering safe shutdown, gentle dust removal, washing only when allowed, complete drying, and service limits.",
-  articleType: "maintenance",
+  articleType: "how-to",
   equipmentType: "ductless-mini-split",
   models: ["Cross-brand ductless indoor units; filter type and washability vary by model"],
   problemType: "filter-maintenance",

@@ -154,8 +154,8 @@ export default function ErrorCodesPage() {
         <section className="empty-state">
           <h2>Your code is not listed yet</h2>
           <p>
-            The index grows in the order that real lookups arrive. If your code is missing, the
-            symptom guides often cover the same underlying behaviour, and the manufacturer hub for
+            The index grows in the order that real lookups arrive. If your code is missing, a
+            symptom reference may cover the same underlying behaviour, and the manufacturer hub for
             your brand lists what has been verified so far.
           </p>
           <div className="hero-actions">

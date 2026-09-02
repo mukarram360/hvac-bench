@@ -9,6 +9,13 @@ export type NavLink = {
   label: string;
   href: string;
   description?: string;
+  /**
+   * A format hub that only belongs in the menus once it lists something. An
+   * empty hub stays a live, crawlable route and keeps its place on the site
+   * map, but promoting it in the header and footer sends readers to a page
+   * that cannot answer them.
+   */
+  requiresContent?: string;
 };
 
 export type NavGroup = {
@@ -102,21 +109,36 @@ export const primaryNav: NavGroup[] = [
   },
   {
     label: "Learn",
-    href: "/guides/",
+    href: "/glossary/",
     columns: [
       {
-        heading: "Reference",
+        heading: "Explanations and procedures",
         links: [
-          { label: "Guides", href: "/guides/", description: "Longer explanations of how systems behave" },
-          { label: "How-to", href: "/how-to/", description: "Step-by-step procedures with safety limits" },
-          { label: "Comparisons", href: "/compare/", description: "Like-for-like equipment comparisons" },
+          {
+            label: "How-to",
+            href: "/how-to/",
+            description: "Ordered procedures with the stop point marked",
+            requiresContent: "/how-to/",
+          },
+          {
+            label: "Guides",
+            href: "/guides/",
+            description: "How a system is meant to behave before anything fails",
+            requiresContent: "/guides/",
+          },
+          {
+            label: "Comparisons",
+            href: "/compare/",
+            description: "Like-for-like equipment comparisons",
+            requiresContent: "/compare/",
+          },
         ],
       },
       {
         heading: "Look it up",
         links: [
           { label: "Glossary", href: "/glossary/", description: "Plain-language HVAC vocabulary" },
-          { label: "Questions", href: "/faq/", description: "Answers to what readers ask most" },
+          { label: "Questions", href: "/faq/", description: "Short answers that link to the full reference" },
           { label: "HVAC Bench Score", href: "/benchmark/", description: "How equipment families are rated" },
           { label: "Ask HVAC Bench", href: "/ask/", description: "Answers from our published references" },
           { label: "How we research", href: "/sources-methodology/", description: "Sources, scope, and verification" },
@@ -141,9 +163,9 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
   {
     heading: "Learn",
     links: [
-      { label: "Guides", href: "/guides/" },
-      { label: "How-to", href: "/how-to/" },
-      { label: "Comparisons", href: "/compare/" },
+      { label: "How-to", href: "/how-to/", requiresContent: "/how-to/" },
+      { label: "Guides", href: "/guides/", requiresContent: "/guides/" },
+      { label: "Comparisons", href: "/compare/", requiresContent: "/compare/" },
       { label: "Questions", href: "/faq/" },
       { label: "HVAC Bench Score", href: "/benchmark/" },
       { label: "Ask HVAC Bench", href: "/ask/" },
@@ -172,3 +194,31 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
     ],
   },
 ];
+
+/**
+ * Menus render only the sections that can answer a reader. Both helpers take
+ * the set of hub paths that currently list nothing, which the layout reads
+ * from the content library, so a hub reappears in the menus on the deploy that
+ * publishes its first page. The site map still lists every route.
+ */
+export function visiblePrimaryNav(emptyHubs: readonly string[]): NavGroup[] {
+  const hidden = new Set(emptyHubs);
+  const keep = (link: NavLink) => !link.requiresContent || !hidden.has(link.requiresContent);
+
+  return primaryNav.map((group) => ({
+    ...group,
+    columns: group.columns
+      ?.map((column) => ({ ...column, links: column.links.filter(keep) }))
+      .filter((column) => column.links.length > 0),
+  }));
+}
+
+export function visibleFooterNav(emptyHubs: readonly string[]) {
+  const hidden = new Set(emptyHubs);
+  return footerNav.map((column) => ({
+    ...column,
+    links: column.links.filter(
+      (link) => !link.requiresContent || !hidden.has(link.requiresContent),
+    ),
+  }));
+}

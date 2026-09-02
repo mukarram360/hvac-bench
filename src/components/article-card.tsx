@@ -14,7 +14,7 @@ export function ArticleCard({ article }: { article: TechnicalArticle }) {
       </h3>
       <p>{article.description}</p>
       <Link className="link-arrow" href={article.path}>
-        Open the guide
+        Open the reference
       </Link>
     </article>
   );

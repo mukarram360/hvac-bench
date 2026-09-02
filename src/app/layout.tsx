@@ -6,6 +6,8 @@ import { consentBootstrap } from "@/lib/analytics-config";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { emptyFormatHubs } from "@/lib/content";
+import { visibleFooterNav, visiblePrimaryNav } from "@/lib/nav";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -91,6 +93,9 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  /* A format hub joins the menus on the deploy that gives it its first page. */
+  const hidden = emptyFormatHubs();
+
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <head>
@@ -104,9 +109,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>
-        <SiteHeader />
+        <SiteHeader groups={visiblePrimaryNav(hidden)} />
         {children}
-        <SiteFooter />
+        <SiteFooter columns={visibleFooterNav(hidden)} />
         <JsonLd data={siteJsonLd()} />
         <Analytics />
         <ConsentNotice />

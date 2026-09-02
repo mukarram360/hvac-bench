@@ -86,7 +86,9 @@ export default function Home() {
   const featuredCodes = codeArticles.slice(0, 6);
   const coveredBrands = brands.filter((brand) => isBrandIndexable(brand.slug));
   const brandTiles = [...coveredBrands, ...brands.filter((brand) => !isBrandIndexable(brand.slug))].slice(0, 10);
-  const startingGuides = articles.filter((article) => !article.errorCode).slice(0, 3);
+  const symptomReferences = articles
+    .filter((article) => article.articleType === "troubleshooting")
+    .slice(0, 3);
 
   const equipmentRows = [
     { label: "Ductless mini-splits", slug: "ductless-mini-split", note: "Single and multi-zone" },
@@ -192,7 +194,7 @@ export default function Home() {
             <h2>What is the system actually doing?</h2>
             <p>
               Most people arrive with a behaviour rather than a code. Pick the one that matches, and
-              the guide narrows it from there.
+              the reference narrows it from there.
             </p>
           </div>
           <Link className="link-arrow" href="/troubleshooting/">
@@ -302,19 +304,19 @@ export default function Home() {
       <section className="container band">
         <div className="section-head">
           <div>
-            <span className="eyebrow">Working references</span>
-            <h2>Guides worth reading before you call anyone</h2>
+            <span className="eyebrow">Symptom references</span>
+            <h2>Worth reading before you call anyone</h2>
             <p>
-              Symptom guides that cover the checks a competent owner can make, and explain what a
-              technician will do next.
+              Behaviour-led references that cover the checks a competent owner can make, and explain
+              what a technician will do next.
             </p>
           </div>
-          <Link className="link-arrow" href="/guides/">
-            All guides
+          <Link className="link-arrow" href="/troubleshooting/">
+            All {totals.troubleshooting} symptom references
           </Link>
         </div>
         <div className="grid grid-3">
-          {startingGuides.map((article) => (
+          {symptomReferences.map((article) => (
             <ArticleCard article={article} key={article.path} />
           ))}
         </div>

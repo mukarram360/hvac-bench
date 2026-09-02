@@ -71,6 +71,9 @@ export function validateContentSet(input: ContentSetInput): ValidatedContentSet 
         throw new Error(`Glossary term ${term.slug} links to unknown term: ${related}`);
       }
     }
+    if (term.seeAlso && !validRoutes.has(term.seeAlso.path)) {
+      throw new Error(`Glossary term ${term.slug} points at unknown route: ${term.seeAlso.path}`);
+    }
   }
 
   for (const article of parsed.articles) {
@@ -228,6 +231,26 @@ export function getArticlesBySymptomFamily(family: ProblemTypeSlug) {
   return content.articles.filter((article) => symptomFamilyOf(article) === family);
 }
 
+/**
+ * The one-word label for what a page is. Four formats, one name each: an
+ * error code carries its own code, behaviour pages are symptom references,
+ * ordered procedures are how-to, and background explanation is a guide.
+ */
+export function formatLabel(article: TechnicalArticle) {
+  if (article.errorCode) return article.errorCode;
+  switch (article.articleType) {
+    case "troubleshooting":
+      return "Symptom";
+    case "how-to":
+    case "maintenance":
+      return "How-to";
+    case "comparison":
+      return "Comparison";
+    default:
+      return "Guide";
+  }
+}
+
 export function getErrorCodeArticles() {
   return content.articles.filter((article) => Boolean(article.errorCode));
 }
@@ -306,8 +329,8 @@ export function isEquipmentIndexable(equipmentType: string) {
  * cannot claim a total that its own listing contradicts.
  */
 const HUB_LISTINGS: Record<string, () => TechnicalArticle[]> = {
-  "/guides/": () => [...getArticlesByType("guide"), ...getArticlesByType("maintenance")],
-  "/how-to/": () => getArticlesByType("how-to"),
+  "/guides/": () => getArticlesByType("guide"),
+  "/how-to/": () => [...getArticlesByType("how-to"), ...getArticlesByType("maintenance")],
   "/compare/": () => getArticlesByType("comparison"),
   "/error-codes/": () => getErrorCodeArticles(),
   "/troubleshooting/": () => getArticlesByType("troubleshooting"),
@@ -338,10 +361,26 @@ export function isHubIndexable(hubPath: string) {
 }
 
 /**
+ * Format hubs that currently list nothing. They stay live and crawlable and
+ * keep their place on the site map, but the header and footer leave them out
+ * until they can answer a reader.
+ */
+export function emptyFormatHubs() {
+  return Object.keys(HUB_LISTINGS).filter((hubPath) => countArticlesForHub(hubPath) === 0);
+}
+
+/**
  * One source for every headline number on the site. `references` is the whole
  * published library; the format counts are what each hub actually lists. The
  * homepage used to call the library total "guides", which contradicted the
  * guides hub reading "1 published".
+ *
+ * The four formats do not overlap. An error-code reference is filed under a
+ * manufacturer, a symptom reference starts from behaviour, a how-to is an
+ * ordered procedure, and a guide explains how something works before anything
+ * has gone wrong. A page belongs to exactly one of them, which is what stops
+ * the same article being called a guide in one place and a symptom page in
+ * another.
  */
 export function libraryTotals() {
   return {
@@ -400,7 +439,7 @@ export function buildSearchIndex(): SearchEntry[] {
     title: article.title,
     path: article.path,
     description: article.description,
-    label: article.errorCode ?? "Guide",
+    label: formatLabel(article),
     terms: [
       article.brand ?? "",
       article.problemType.replaceAll("-", " "),

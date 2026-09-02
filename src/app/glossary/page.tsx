@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { JsonLd } from "@/components/json-ld";
 import { PageHead } from "@/components/page-head";
@@ -24,6 +25,9 @@ export const metadata: Metadata = pageMetadata({
 export default function GlossaryPage() {
   const terms = getGlossary();
   const groups = getGlossaryByLetter();
+  /* Related slugs are stored, not spelled out, so the label is looked up once. */
+  const labels = new Map(terms.map((term) => [term.slug, term.term]));
+  const labelFor = (slug: string) => labels.get(slug) ?? slug;
   const activeLetters = new Set(groups.map(([letter]) => letter));
   const breadcrumbs = [
     { name: "Home", path: "/" },
@@ -48,7 +52,7 @@ export default function GlossaryPage() {
       <PageHead
         eyebrow="Reference vocabulary"
         title="HVAC glossary"
-        description="Manuals assume vocabulary that nobody is taught. These definitions cover the terms that appear in service documentation and on this site, including the places where United States and United Kingdom usage differ."
+        description="Manuals assume vocabulary that nobody is taught. Each entry says what the term means, what the thing does, and where you meet it in the library, including the places where United States and United Kingdom usage differ."
         breadcrumbs={breadcrumbs}
         meta={[`${terms.length} terms defined`, "US and UK usage", "Updated as the library grows"]}
       />
@@ -79,6 +83,27 @@ export default function GlossaryPage() {
                     {term.definition}
                     {term.aliases.length > 0 && (
                       <span className="also">Also called: {term.aliases.join(", ")}</span>
+                    )}
+                    {(term.related.length > 0 || term.seeAlso) && (
+                      <span className="term-links">
+                        {term.related.length > 0 && (
+                          <span>
+                            Related terms:{" "}
+                            {term.related.map((slug, index) => (
+                              <span key={slug}>
+                                {index > 0 && ", "}
+                                <a href={`#${slug}`}>{labelFor(slug)}</a>
+                              </span>
+                            ))}
+                          </span>
+                        )}
+                        {term.seeAlso && (
+                          <span>
+                            Where you meet it:{" "}
+                            <Link href={term.seeAlso.path}>{term.seeAlso.label}</Link>
+                          </span>
+                        )}
+                      </span>
                     )}
                   </dd>
                 </div>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { primaryNav } from "@/lib/nav";
+import type { NavGroup } from "@/lib/nav";
 
 function Caret() {
   return (
@@ -22,7 +22,7 @@ function SearchIcon({ size = 15 }: { size?: number }) {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ groups }: { groups: NavGroup[] }) {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -71,8 +71,8 @@ export function SiteHeader() {
 
         <nav className="primary-nav" aria-label="Primary" ref={navRef}>
           <ul className="nav-list">
-            {primaryNav.map((group) =>
-              group.columns ? (
+            {groups.map((group) =>
+              group.columns?.length ? (
                 <li key={group.label}>
                   <button
                     type="button"
@@ -149,8 +149,8 @@ export function SiteHeader() {
       {drawerOpen && (
         <div className="mobile-drawer" id="mobile-drawer">
           <div className="container drawer-inner">
-            {primaryNav.map((group) =>
-              group.columns ? (
+            {groups.map((group) =>
+              group.columns?.length ? (
                 <details className="drawer-group" key={group.label}>
                   <summary>{group.label}</summary>
                   <div className="drawer-links">
@@ -159,9 +159,11 @@ export function SiteHeader() {
                         {link.label}
                       </Link>
                     ))}
-                    <Link href={group.href} onClick={closeAll}>
-                      All {group.label.toLowerCase()}
-                    </Link>
+                    {group.footerLink && (
+                      <Link href={group.footerLink.href} onClick={closeAll}>
+                        {group.footerLink.label}
+                      </Link>
+                    )}
                   </div>
                 </details>
               ) : (

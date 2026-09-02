@@ -179,7 +179,7 @@ export default async function BrandPage({ params }: { params: Promise<{ brand: s
             <div className="section-head">
               <div>
                 <span className="eyebrow">Symptoms</span>
-                <h2>Behaviour guides that apply here</h2>
+                <h2>Symptom references that apply here</h2>
               </div>
             </div>
             <div className="grid grid-3">
@@ -195,8 +195,8 @@ export default async function BrandPage({ params }: { params: Promise<{ brand: s
             <h2>No {brand.name} reference has been published yet</h2>
             <p>
               This hub is open, but it stays out of search results until it carries verified content,
-              because an empty page helps nobody. In the meantime, the cross-brand symptom guides
-              cover behaviour that applies to most{" "}
+              because an empty page helps nobody. In the meantime, the cross-brand symptom
+              references cover behaviour common to{" "}
               {EQUIPMENT_TYPES[brand.equipmentTypes[0] as keyof typeof EQUIPMENT_TYPES]?.label.toLowerCase() ??
                 "systems"}
               , and the error-code index may already document a code that matches yours.

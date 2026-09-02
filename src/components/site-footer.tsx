@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { footerNav } from "@/lib/nav";
+type FooterColumn = { heading: string; links: { label: string; href: string }[] };
 
-export function SiteFooter() {
+export function SiteFooter({ columns }: { columns: FooterColumn[] }) {
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -16,7 +16,7 @@ export function SiteFooter() {
             Covering systems installed across the United States, United Kingdom, and Europe.
           </p>
         </div>
-        {footerNav.map((column) => (
+        {columns.map((column) => (
           <nav className="footer-col" key={column.heading} aria-label={column.heading}>
             <h2>{column.heading}</h2>
             {column.links.map((link) => (

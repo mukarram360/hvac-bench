@@ -12,7 +12,7 @@ const PATH = "/troubleshooting/";
 export const metadata: Metadata = pageMetadata({
   title: "HVAC troubleshooting by symptom",
   description:
-    "Start from what the system is doing: not cooling, not heating, leaking water, icing up, short cycling, or refusing to start. Each guide separates safe checks from technician work.",
+    "Start from what the system is doing: not cooling, not heating, leaking water, icing up, short cycling, or refusing to start. Each reference separates safe checks from technician work.",
   path: PATH,
   keywords: [
     "hvac troubleshooting",
@@ -38,7 +38,7 @@ export default function TroubleshootingPage() {
           collectionPageJsonLd({
             title: "HVAC troubleshooting by symptom",
             description:
-              "Symptom-led diagnostic guides for ductless mini-splits and heat pumps, with safe checks separated from technician work.",
+              "Symptom-led diagnostic references for ductless mini-splits and heat pumps, with safe checks separated from technician work.",
             path: PATH,
             items: articles
               .filter((article) => !article.errorCode)
@@ -51,7 +51,7 @@ export default function TroubleshootingPage() {
       <PageHead
         eyebrow="Symptom index"
         title="Troubleshooting by symptom"
-        description="Most people arrive with a behaviour rather than a code. Find what the system is doing, work through the checks that are safe to make, and stop where the guide says a technician takes over."
+        description="Most people arrive with a behaviour rather than a code. This index groups the whole library by what the system is doing, error-code references included, so a code that produces a symptom appears under that symptom as well as under its manufacturer. Work through the checks that are safe to make, and stop where the reference says a technician takes over."
         breadcrumbs={breadcrumbs}
         meta={[`${families.length} symptom families published`, "Homeowner checks marked", "Stop points stated"]}
         aside={
@@ -80,7 +80,7 @@ export default function TroubleshootingPage() {
                 <p>{family.summary}</p>
               </div>
               <span className="badge badge-neutral">
-                {family.articles.length} {family.articles.length === 1 ? "guide" : "guides"}
+                {family.articles.length} {family.articles.length === 1 ? "reference" : "references"}
               </span>
             </div>
             <div className="grid grid-3">

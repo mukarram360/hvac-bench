@@ -18,7 +18,7 @@ const PATH = "/site-map/";
 export const metadata: Metadata = pageMetadata({
   title: "Site map",
   description:
-    "Every published section of HVAC Bench in one place: error codes, symptom guides, manufacturer hubs, equipment categories, reference material, and site policies.",
+    "Every published section of HVAC Bench in one place: error codes, symptom references, procedures, manufacturer hubs, equipment categories, reference material, and site policies.",
   path: PATH,
 });
 
@@ -26,7 +26,10 @@ export default function SiteMapPage() {
   const brands = getAllBrands();
   const articles = getAllArticles();
   const codeArticles = getErrorCodeArticles();
-  const symptomArticles = articles.filter((article) => !article.errorCode);
+  const symptomArticles = articles.filter((article) => article.articleType === "troubleshooting");
+  const procedures = articles.filter(
+    (article) => article.articleType === "how-to" || article.articleType === "maintenance",
+  );
   const breadcrumbs = [
     { name: "Home", path: "/" },
     { name: "Site map", path: PATH },
@@ -87,7 +90,7 @@ export default function SiteMapPage() {
           <div className="section-head">
             <div>
               <span className="eyebrow">Symptoms</span>
-              <h2>Troubleshooting guides</h2>
+              <h2>Symptom references</h2>
             </div>
             <Link className="link-arrow" href="/troubleshooting/">
               Symptom index
@@ -106,6 +109,32 @@ export default function SiteMapPage() {
             ))}
           </ul>
         </section>
+
+        {procedures.length > 0 && (
+          <section className="band-tight">
+            <div className="section-head">
+              <div>
+                <span className="eyebrow">Procedures</span>
+                <h2>How-to</h2>
+              </div>
+              <Link className="link-arrow" href="/how-to/">
+                How-to index
+              </Link>
+            </div>
+            <ul className="doc-list">
+              {procedures.map((article) => (
+                <li key={article.path}>
+                  <Link href={article.path}>
+                    <span>
+                      <strong>{article.title}</strong>
+                    </span>
+                    <small>{article.problemType.replaceAll("-", " ")}</small>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section className="band-tight">
           <div className="section-head">

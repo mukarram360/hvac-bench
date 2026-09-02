@@ -89,6 +89,14 @@ export const glossaryTermSchema = z.object({
   ]),
   aliases: z.array(z.string().min(1)).default([]),
   related: z.array(slug).default([]),
+  /**
+   * Where a reader actually meets the term. A definition that ends without
+   * saying where the word turns up leaves the reader holding vocabulary and
+   * no route back into the library.
+   */
+  seeAlso: z
+    .object({ label: z.string().min(4), path: absolutePath })
+    .optional(),
 });
 
 export const faqSchema = z.object({

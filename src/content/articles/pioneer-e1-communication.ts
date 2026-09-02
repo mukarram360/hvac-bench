@@ -90,7 +90,7 @@ export const pioneerE1Communication = publish({
       title: "Why the same code means two different things",
       paragraphs: [
         "Manufacturers reassign codes when product ranges change, and Pioneer did exactly that. On the discontinued Quantum families, E1 and its EL01 variants report that the indoor and outdoor units cannot complete a conversation. On the families Pioneer currently lists, E1 reports a failed room temperature sensor.",
-        "Nothing about the display tells you which one you are looking at. Only the model does. This is the most common way an owner ends up chasing the wrong fault: they find a confident answer online, follow it, and it was written for the other half of the range.",
+        "Nothing about the display tells you which one you are looking at. Only the model does. That is how an owner ends up chasing the wrong fault: they find a confident answer online, follow it, and it was written for the other half of the range.",
       ],
     },
     {

@@ -28,7 +28,7 @@ export default function ComparePage() {
       promises={[
         {
           heading: "Criteria before conclusion",
-          copy: "The comparison names what it is measuring — capacity, low-temperature performance, controls, parts availability — before it ranks anything.",
+          copy: "The comparison names what it is measuring, whether that is capacity, low-temperature performance, controls, or parts availability, before it ranks anything.",
         },
         {
           heading: "Specifications, not impressions",
@@ -40,7 +40,7 @@ export default function ComparePage() {
         },
       ]}
       emptyHeading="Comparisons start once the reference library supports them"
-      emptyCopy="A useful comparison depends on knowing how each system fails, not only how it is advertised. These pages publish after the underlying equipment references are in place."
+      emptyCopy="A useful comparison depends on knowing how each system fails, not only how it is advertised, so these pages publish after the underlying equipment references are in place. This section stays out of search results and out of the menus while it is empty."
     />
   );
 }

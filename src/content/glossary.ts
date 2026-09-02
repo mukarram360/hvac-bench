@@ -12,7 +12,7 @@ export const glossary = [
     term: "Ductless mini-split",
     slug: "ductless-mini-split",
     definition:
-      "A heating and cooling system with one or more indoor units connected to an outdoor unit by refrigerant pipes and a control cable, with no duct network in between. Because each indoor unit conditions the space it is mounted in, a fault often affects one room rather than the whole building.",
+      "A heating and cooling system with one or more indoor units connected to an outdoor unit by refrigerant pipes and a control cable, with no duct network in between. Because each indoor unit conditions the space it is mounted in, a fault can affect one room while the rest of the building carries on normally.",
     category: "system-types",
     aliases: ["mini split", "ductless system", "split air conditioner"],
     related: ["multi-zone-system", "line-set", "heat-pump"],
@@ -57,7 +57,7 @@ export const glossary = [
     term: "Ducted split system",
     slug: "ducted-split-system",
     definition:
-      "A central system with an indoor air handler or furnace coil and an outdoor condensing unit, distributing conditioned air through ducts. Symptoms in ducted systems frequently trace to airflow through the duct network rather than to the equipment itself.",
+      "A central system with an indoor air handler or furnace coil and an outdoor condensing unit, distributing conditioned air through ducts. Because the duct network sits between the equipment and the room, a ducted diagnosis has to separate what the equipment is doing from what the ducts are delivering.",
     category: "system-types",
     aliases: ["central air", "central heating and air"],
     related: ["air-handler", "static-pressure", "ductwork"],
@@ -75,7 +75,7 @@ export const glossary = [
     term: "PTAC unit",
     slug: "ptac-unit",
     definition:
-      "A packaged terminal air conditioner: a self-contained heating and cooling unit installed through an exterior wall, most often in hotels, care homes, and apartments. All components sit in one chassis, so service usually means removing the unit rather than working on separate indoor and outdoor sections.",
+      "A packaged terminal air conditioner: a self-contained heating and cooling unit installed through an exterior wall, used in hotels, care homes, and apartments. All components sit in one chassis, so service usually means removing the unit rather than working on separate indoor and outdoor sections.",
     category: "system-types",
     aliases: ["PTAC", "through-the-wall unit"],
     related: ["air-handler"],
@@ -86,7 +86,7 @@ export const glossary = [
     term: "Compressor",
     slug: "compressor",
     definition:
-      "The pump at the centre of the refrigeration circuit. It raises the pressure and temperature of refrigerant vapour so heat can be rejected at the condenser. Most protection codes exist to stop the compressor before it is damaged by pressure, current, or temperature outside its design range.",
+      "The pump at the centre of the refrigeration circuit. It raises the pressure and temperature of refrigerant vapour so heat can be rejected at the condenser. Protection codes exist to stop the compressor before pressure, current, or temperature moves outside its design range.",
     category: "components",
     aliases: ["compressor motor"],
     related: ["inverter-compressor", "protection-code", "capacitor"],
@@ -95,7 +95,7 @@ export const glossary = [
     term: "Condenser coil",
     slug: "condenser-coil",
     definition:
-      "The coil that releases heat from the refrigerant to the surrounding air. In cooling it sits in the outdoor unit. A blocked, dirty, or restricted condenser raises operating pressure and is a common root cause behind high-pressure protection codes.",
+      "The coil that releases heat from the refrigerant to the surrounding air. In cooling it sits in the outdoor unit. Anything that restricts air across it, or lets it draw back its own discharge air, raises operating pressure, which is the condition high-pressure protection codes are written to detect.",
     category: "components",
     aliases: ["outdoor coil"],
     related: ["evaporator-coil", "protection-code"],
@@ -108,6 +108,7 @@ export const glossary = [
     category: "components",
     aliases: ["indoor coil"],
     related: ["condensate-drain", "frozen-coil", "delta-t"],
+    seeAlso: { label: "Mini-split smells musty", path: "/mini-split-smells-musty/" },
   },
   {
     term: "Air handler",
@@ -126,6 +127,7 @@ export const glossary = [
     category: "components",
     aliases: ["indoor fan motor", "fan motor"],
     related: ["air-handler", "static-pressure"],
+    seeAlso: { label: "Mini-split making noise", path: "/mini-split-making-noise/" },
   },
   {
     term: "Reversing valve",
@@ -135,6 +137,7 @@ export const glossary = [
     category: "components",
     aliases: ["four-way valve", "changeover valve"],
     related: ["heat-pump", "defrost-cycle"],
+    seeAlso: { label: "Mini-split not heating", path: "/mini-split-not-heating/" },
   },
   {
     term: "Expansion valve",
@@ -149,7 +152,7 @@ export const glossary = [
     term: "Line set",
     slug: "line-set",
     definition:
-      "The pair of insulated copper pipes connecting an indoor unit to an outdoor unit: a smaller liquid line and a larger suction line. Length, insulation, and the quality of the flare connections all affect performance and are frequent sources of leaks.",
+      "The pair of insulated copper pipes connecting an indoor unit to an outdoor unit: a smaller liquid line and a larger suction line. Length and insulation affect performance, and every flare connection is a mechanical joint that has to be made correctly to stay sealed.",
     category: "components",
     aliases: ["refrigerant lines", "pipe run"],
     related: ["refrigerant-leak", "ductless-mini-split"],
@@ -158,19 +161,21 @@ export const glossary = [
     term: "Condensate drain",
     slug: "condensate-drain",
     definition:
-      "The path that carries water from the drain pan out of the building, by gravity or with a pump. A blocked drain is the usual reason an indoor unit leaks water, and many systems now include a float switch that stops the unit before water overflows.",
+      "The path that carries water from the drain pan out of the building, by gravity or with a pump. If the path is obstructed or a pump stops, water collects in the pan instead of leaving the building. Many systems include a float switch that halts operation before the pan overflows.",
     category: "components",
     aliases: ["drain line", "condensate pump", "drain pan"],
     related: ["evaporator-coil", "float-switch"],
+    seeAlso: { label: "Mini-split leaking water", path: "/mini-split-leaking-water/" },
   },
   {
     term: "Float switch",
     slug: "float-switch",
     definition:
-      "A safety switch in the drain pan or condensate pump that interrupts operation when water rises above a set level. A system that stops in cooling but runs in fan mode, with no fault beyond a water symptom, often has a tripped float switch.",
+      "A safety switch in the drain pan or condensate pump that interrupts operation when water rises above a set level. Because it cuts the call for cooling rather than the whole unit, a tripped float switch shows up as a system that will run in fan mode but not cool.",
     category: "components",
     aliases: ["safety switch", "overflow switch"],
     related: ["condensate-drain"],
+    seeAlso: { label: "Mini-split leaking water", path: "/mini-split-leaking-water/" },
   },
   {
     term: "Capacitor",
@@ -180,15 +185,17 @@ export const glossary = [
     category: "components",
     aliases: ["run capacitor", "start capacitor", "dual capacitor"],
     related: ["contactor", "compressor"],
+    seeAlso: { label: "Outdoor unit not running", path: "/mini-split-outdoor-unit-not-running/" },
   },
   {
     term: "Contactor",
     slug: "contactor",
     definition:
-      "An electrically operated switch that connects mains power to the compressor and outdoor fan when the control system calls for them. Pitted or welded contacts are a common cause of an outdoor unit that will not start or will not stop.",
+      "An electrically operated switch that connects mains power to the compressor and outdoor fan when the control system calls for them. Its contacts carry the full load current, so when they pit or weld the outdoor unit can fail to start or fail to stop. Checking one means opening a live electrical compartment, which makes it technician work.",
     category: "components",
     aliases: ["relay"],
     related: ["capacitor", "control-board"],
+    seeAlso: { label: "Outdoor unit not running", path: "/mini-split-outdoor-unit-not-running/" },
   },
   {
     term: "Control board",
@@ -198,15 +205,17 @@ export const glossary = [
     category: "components",
     aliases: ["PCB", "main board", "controller board"],
     related: ["error-code", "inverter-module"],
+    seeAlso: { label: "Gree E6 communication code", path: "/brands/gree/e6-error-code/" },
   },
   {
     term: "Inverter module",
     slug: "inverter-module",
     definition:
-      "The power electronics that vary compressor speed, often called the IPM or intelligent power module. Inverter-module protection codes usually mean the module measured current, voltage, or temperature outside limits and stopped before damage occurred.",
+      "The power electronics that vary compressor speed, also called the IPM or intelligent power module. Inverter-module protection codes usually mean the module measured current, voltage, or temperature outside limits and stopped before damage occurred.",
     category: "components",
     aliases: ["IPM", "inverter board", "power module"],
     related: ["inverter-compressor", "protection-code"],
+    seeAlso: { label: "MRCOOL P1 / PC01 code", path: "/brands/mrcool/p1-pc01-error-code/" },
   },
   {
     term: "Thermistor",
@@ -216,6 +225,7 @@ export const glossary = [
     category: "components",
     aliases: ["temperature sensor", "NTC sensor"],
     related: ["sensor-fault", "control-board"],
+    seeAlso: { label: "Daikin A5 coil temperature code", path: "/brands/daikin/a5-error-code/" },
   },
   {
     term: "Branch box",
@@ -299,12 +309,13 @@ export const glossary = [
     category: "refrigeration",
     aliases: ["gas leak"],
     related: ["refrigerant", "line-set", "f-gas-regulation"],
+    seeAlso: { label: "Mini-split not cooling", path: "/mini-split-not-cooling/" },
   },
   {
     term: "Evacuation",
     slug: "evacuation",
     definition:
-      "Pulling a deep vacuum on a system with a vacuum pump to remove air and moisture before charging, measured in microns or millibar. Skipped or shortened evacuation is a common origin of faults that appear months after installation.",
+      "Pulling a deep vacuum on a system with a vacuum pump to remove air and moisture before charging, measured in microns or millibar. Air and moisture left inside react with the oil and refrigerant over time, which is why manufacturers publish a target vacuum level and a hold test as part of commissioning.",
     category: "service",
     aliases: ["vacuum", "pull down"],
     related: ["commissioning", "refrigerant-charge"],
@@ -342,10 +353,11 @@ export const glossary = [
     term: "Air filter",
     slug: "air-filter",
     definition:
-      "The filter that protects the coil and blower from dust. In ductless systems it is a washable mesh screen behind the front panel; in ducted systems it is a replaceable panel filter. A blocked filter is the single most common cause of reduced airflow.",
+      "The filter that protects the coil and blower from dust. In ductless systems it is a washable mesh screen behind the front panel; in ducted systems it is a replaceable panel filter. As it loads it restricts airflow across the coil, and that restriction is what connects filter condition to capacity, coil temperature, and icing.",
     category: "airflow",
     aliases: ["filter", "MERV filter"],
     related: ["merv-rating", "return-air", "frozen-coil"],
+    seeAlso: { label: "How to clean a mini-split filter", path: "/mini-split-filter-cleaning/" },
   },
   {
     term: "MERV rating",
@@ -364,6 +376,7 @@ export const glossary = [
     category: "measurement",
     aliases: ["temperature split", "ΔT"],
     related: ["evaporator-coil", "return-air"],
+    seeAlso: { label: "Mini-split not cooling", path: "/mini-split-not-cooling/" },
   },
   {
     term: "Frozen coil",
@@ -373,6 +386,7 @@ export const glossary = [
     category: "airflow",
     aliases: ["iced coil", "coil icing"],
     related: ["air-filter", "static-pressure", "refrigerant-charge"],
+    seeAlso: { label: "Frozen indoor coil", path: "/mini-split-frozen-coil/" },
   },
 
   /* ----------------------------------------------------------- controls -- */
@@ -384,6 +398,7 @@ export const glossary = [
     category: "controls",
     aliases: ["fault code", "alarm code"],
     related: ["protection-code", "control-board", "data-plate"],
+    seeAlso: { label: "Error code index", path: "/error-codes/" },
   },
   {
     term: "Protection code",
@@ -393,6 +408,7 @@ export const glossary = [
     category: "controls",
     aliases: ["protection fault", "limit fault"],
     related: ["error-code", "inverter-module"],
+    seeAlso: { label: "Error code index", path: "/error-codes/" },
   },
   {
     term: "Defrost cycle",
@@ -402,6 +418,7 @@ export const glossary = [
     category: "controls",
     aliases: ["defrost", "defrost mode"],
     related: ["heat-pump", "reversing-valve"],
+    seeAlso: { label: "Outdoor unit iced over", path: "/heat-pump-outdoor-unit-iced-over/" },
   },
   {
     term: "Short cycling",
@@ -411,6 +428,7 @@ export const glossary = [
     category: "controls",
     aliases: ["cycling on and off"],
     related: ["protection-code", "thermostat"],
+    seeAlso: { label: "Mini-split short cycling", path: "/mini-split-short-cycling/" },
   },
   {
     term: "Thermostat",
@@ -420,12 +438,13 @@ export const glossary = [
     category: "controls",
     aliases: ["room stat", "programmable thermostat"],
     related: ["c-wire", "auxiliary-heat", "short-cycling"],
+    seeAlso: { label: "Remote or controller not working", path: "/mini-split-remote-not-working/" },
   },
   {
     term: "C wire",
     slug: "c-wire",
     definition:
-      "The common conductor that gives a thermostat a continuous 24-volt supply. Smart thermostats generally need one, and installations without it are a common source of thermostats that lose power, restart, or drop their connection.",
+      "The common conductor that gives a thermostat a continuous 24-volt supply. Smart thermostats need a continuous supply to run their display and radio, so an installation without a common wire has to power the thermostat some other way or it can restart or drop its connection.",
     category: "controls",
     aliases: ["common wire"],
     related: ["thermostat"],
@@ -434,7 +453,7 @@ export const glossary = [
     term: "Auxiliary heat",
     slug: "auxiliary-heat",
     definition:
-      "Supplementary heating that runs when a heat pump alone cannot meet demand, usually electric resistance elements in North America or an immersion heater and boiler in United Kingdom hydronic systems. Frequent auxiliary operation is expensive and worth investigating.",
+      "Supplementary heating that runs when a heat pump alone cannot meet demand, usually electric resistance elements in North America or an immersion heater and boiler in United Kingdom hydronic systems. It costs more to run than the heat pump itself, so a change in how much it operates is worth investigating.",
     category: "controls",
     aliases: ["aux heat", "emergency heat", "backup heat"],
     related: ["heat-pump", "balance-point"],
@@ -526,10 +545,11 @@ export const glossary = [
     term: "Balance point",
     slug: "balance-point",
     definition:
-      "The outdoor temperature at which a heat pump's output exactly matches the building's heat loss. Below it, the system needs auxiliary heat or longer run times, which is why cold-snap complaints often have nothing to do with a fault.",
+      "The outdoor temperature at which a heat pump's output exactly matches the building's heat loss. Below it, the system needs auxiliary heat or longer run times, so a complaint that appears during a cold snap can describe correct operation rather than a fault.",
     category: "efficiency",
     aliases: ["thermal balance point"],
     related: ["auxiliary-heat", "heat-pump"],
+    seeAlso: { label: "Mini-split not heating", path: "/mini-split-not-heating/" },
   },
   {
     term: "Inverter compressor",
@@ -550,6 +570,7 @@ export const glossary = [
     category: "service",
     aliases: ["nameplate", "rating plate", "spec plate"],
     related: ["error-code", "service-manual"],
+    seeAlso: { label: "Error code index", path: "/error-codes/" },
   },
   {
     term: "Service manual",
@@ -595,5 +616,6 @@ export const glossary = [
     category: "service",
     aliases: ["sensor error"],
     related: ["thermistor", "error-code"],
+    seeAlso: { label: "Pioneer E1 temperature sensor code", path: "/brands/pioneer/e1-temperature-sensor-error-code/" },
   },
 ] satisfies GlossaryTerm[];

@@ -39,8 +39,8 @@ export default function GuidesPage() {
           copy: "OEM evidence is verified and retained internally, not publicly linked. Each guide names the documentation class and product scope used, and reports disagreement or silence instead of filling the gap.",
         },
       ]}
-      emptyHeading="The first guides are being written"
-      emptyCopy="Guides publish once their sources are verified. Until then, the symptom guides carry the practical checks and the glossary covers the vocabulary those guides will assume."
+      emptyHeading="No guide is published yet"
+      emptyCopy="A guide explains how a system is meant to behave before anything has gone wrong, which is a different job from diagnosing a fault. Until the first ones are verified, the symptom references carry the practical checks and the glossary covers the vocabulary a guide would assume. This section stays out of search results and out of the menus while it is empty."
     />
   );
 }

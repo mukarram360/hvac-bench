@@ -91,7 +91,7 @@ export const daikinA5 = publish({
     {
       title: "Where to look, depending on the mode",
       paragraphs: [
-        "In cooling, the restriction is almost always on the way in. The filter loads up, the intake is close to a wall or a shelf, or the coil behind the filter has picked up a felt of dust that a filter clean does not touch. Warm room air stops arriving at the coil in the volume the system expects, and the coil temperature falls.",
+        "In cooling, look at the way in before anything else. The filter loads up, the intake sits close to a wall or a shelf, or the coil behind the filter has picked up a felt of dust that a filter clean does not touch. Any of those stops warm room air arriving at the coil in the volume the system expects, and the coil temperature falls.",
         "In heating, look at where the air leaves. A discharge aimed straight into a curtain, a louvre closed for comfort, or a unit mounted where its own warm air loops back into the intake will all raise coil temperature. The unit is fighting itself, and peak-cut control is the equipment noticing before something is damaged.",
       ],
     },

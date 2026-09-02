@@ -22,7 +22,7 @@ export default function HowToPage() {
     <FormatHub
       eyebrow="Procedures"
       title="How-to"
-      description="Ordered steps for tasks that are genuinely safe to do without a licence: cleaning filters, clearing a condensate path, checking settings, and preparing a system for the season. Anything requiring isolation, gauges, or refrigerant handling is named as such and stops here."
+      description="Ordered steps for tasks that are genuinely safe to do without a licence, written against the manufacturer instructions for the equipment involved. Anything requiring isolation, gauges, or refrigerant handling is named as such and stops here. The section grows one procedure at a time, in the order the evidence supports."
       path={PATH}
       articles={articles}
       promises={[
@@ -40,7 +40,7 @@ export default function HowToPage() {
         },
       ]}
       emptyHeading="Procedures are in preparation"
-      emptyCopy="How-to pages publish only when each step can be traced to manufacturer instructions for the equipment involved. The maintenance guidance already published covers filter care and seasonal checks in the meantime."
+      emptyCopy="How-to pages publish only when each step can be traced to manufacturer instructions for the equipment involved. The symptom references carry the practical checks in the meantime."
     />
   );
 }

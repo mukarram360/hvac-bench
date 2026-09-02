@@ -186,29 +186,45 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
               </section>
             )}
 
-            <section className="sources">
-              <h2>How this page was checked</h2>
-              <p>
-                Every technical claim above was written from manufacturer documentation held in the
-                HVAC Bench evidence record: {documentationSummary}. Where a manufacturer limits a
-                definition to certain models, that limit is repeated here rather than generalised
-                across the brand.
-              </p>
-              <dl className="verification-plate">
-                <div>
-                  <dt>Documentation class</dt>
-                  <dd>{documentClasses.join(", ")}</dd>
-                </div>
-                <div>
-                  <dt>Scope of the definition</dt>
-                  <dd>{article.productFamily ?? "Confirm against the exact model manual"}</dd>
-                </div>
-                <div>
-                  <dt>Last checked</dt>
-                  <dd>{article.lastReviewed}</dd>
-                </div>
-              </dl>
-            </section>
+            {/*
+              The evidence record stays on the page in full, but a reader who
+              has finished the diagnosis should not have to scroll past it. The
+              closed state keeps the two facts that carry the signal, the
+              documentation class and the review date, and the rest opens.
+            */}
+            <details className="sources evidence-record">
+              <summary>
+                <span>
+                  <span className="eyebrow">Evidence record</span>
+                  <h2>How this page was checked</h2>
+                </span>
+                <small>
+                  {documentClasses.join(", ")} · checked {article.lastReviewed}
+                </small>
+              </summary>
+              <div className="evidence-record-body">
+                <p>
+                  Every technical claim above was written from manufacturer documentation held in
+                  the HVAC Bench evidence record: {documentationSummary}. Where a manufacturer
+                  limits a definition to certain models, that limit is repeated here rather than
+                  generalised across the brand.
+                </p>
+                <dl className="verification-plate">
+                  <div>
+                    <dt>Documentation class</dt>
+                    <dd>{documentClasses.join(", ")}</dd>
+                  </div>
+                  <div>
+                    <dt>Scope of the definition</dt>
+                    <dd>{article.productFamily ?? "Confirm against the exact model manual"}</dd>
+                  </div>
+                  <div>
+                    <dt>Last checked</dt>
+                    <dd>{article.lastReviewed}</dd>
+                  </div>
+                </dl>
+              </div>
+            </details>
           </article>
 
           <aside className="rail" aria-label="Reference card">

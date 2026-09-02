@@ -134,7 +134,7 @@ export const greeE6 = publish({
     {
       question: "Why did E6 start right after my installer left?",
       answer:
-        "Work on the interconnect cable is the most common thing to change immediately before a communication code. A reversed pair, a loose terminal, or a joint that is not tight enough will read as a failed conversation. Ask the installer to return and prove the path before anyone orders parts.",
+        "Work on the interconnect cable changes the path the code is reporting on, which makes recent work worth establishing before anything else. A reversed pair, a loose terminal, or a joint that is not tight enough will read as a failed conversation. Ask the installer to return and prove the path before anyone orders parts.",
     },
   ],
   sourceIds: ["gree-e6-guide", "gree-multi21-service"],

@@ -19,7 +19,11 @@ export function GET() {
   const brands = getAllBrands();
   const covered = brands.filter((brand) => isBrandIndexable(brand.slug));
   const codes = getErrorCodeArticles();
-  const symptoms = getAllArticles().filter((article) => !article.errorCode);
+  const all = getAllArticles();
+  const symptoms = all.filter((article) => article.articleType === "troubleshooting");
+  const procedures = all.filter(
+    (article) => article.articleType === "how-to" || article.articleType === "maintenance",
+  );
 
   const body = `# ${SITE_NAME}
 
@@ -35,19 +39,24 @@ export function GET() {
 ## Reference hubs
 
 - [Error code index](${absoluteUrl("/error-codes/")}): ${codes.length} manufacturer-scoped code references.
-- [Troubleshooting by symptom](${absoluteUrl("/troubleshooting/")}): ${symptoms.length} behaviour-led diagnostic guides.
+- [Troubleshooting by symptom](${absoluteUrl("/troubleshooting/")}): ${symptoms.length} behaviour-led symptom references.
 - [Brand directory](${absoluteUrl("/brands/")}): ${brands.length} manufacturers across US, UK, and EU markets.
 - [Equipment types](${absoluteUrl("/equipment/")}): category definitions from mini-splits to light commercial.
 - [Glossary](${absoluteUrl("/glossary/")}): plain-language definitions, including US and UK terminology differences.
-- [Questions](${absoluteUrl("/faq/")}): common questions with direct answers.
+- [How-to](${absoluteUrl("/how-to/")}): ${procedures.length} ordered procedures with the owner and technician boundary marked.
+- [Questions](${absoluteUrl("/faq/")}): short answers that link to the reference carrying the full diagnosis.
 
 ## Error code references
 
 ${codes.map((article) => `- [${article.title}](${absoluteUrl(article.path)}): ${article.description}`).join("\n")}
 
-## Symptom guides
+## Symptom references
 
 ${symptoms.map((article) => `- [${article.title}](${absoluteUrl(article.path)}): ${article.description}`).join("\n")}
+
+## Procedures
+
+${procedures.map((article) => `- [${article.title}](${absoluteUrl(article.path)}): ${article.description}`).join("\n")}
 
 ## Manufacturers with published references
 

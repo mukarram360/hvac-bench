@@ -1180,6 +1180,44 @@ hr { height: 1px; margin: var(--s6) 0; border: 0; background: var(--line); }
   .verification-plate > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
 
+/* The evidence record keeps its signal in the closed state and folds the rest
+   away, so a finished diagnosis is not followed by a screen of metadata. */
+.evidence-record summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s4);
+  min-height: 48px;
+  padding: var(--s4) 0 var(--s3);
+  list-style: none;
+  cursor: pointer;
+}
+.evidence-record summary::-webkit-details-marker { display: none; }
+.evidence-record summary h2 {
+  margin: 0;
+  font-size: var(--fs-h3);
+  font-weight: 600;
+}
+.evidence-record summary small {
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.evidence-record summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: var(--fs-lg);
+  line-height: 1;
+  color: var(--signal-dark);
+}
+.evidence-record[open] summary::after { content: "\2013"; }
+.evidence-record-body { padding-bottom: var(--s5); }
+.evidence-record-body > p { max-width: 68ch; color: var(--muted); font-size: var(--fs-sm); }
+
 .rail { display: grid; gap: var(--s4); }
 .rail-code {
   padding: var(--s4) var(--s5) 0;
@@ -1265,6 +1303,15 @@ hr { height: 1px; margin: var(--s6) 0; border: 0; background: var(--line); }
 .faq-item summary::after { content: "+"; flex: 0 0 auto; font-family: var(--mono); font-size: var(--fs-lg); color: var(--signal-dark); }
 .faq-item[open] summary::after { content: "\2013"; }
 .faq-answer { max-width: 68ch; padding-bottom: var(--s5); color: var(--muted); }
+.faq-answer .faq-reference {
+  margin-top: var(--s3);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.faq-answer .faq-reference a { color: var(--ink); text-underline-offset: 3px; }
 
 /* Glossary */
 .alpha-index { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--s6); }
@@ -1305,6 +1352,15 @@ hr { height: 1px; margin: var(--s6) 0; border: 0; background: var(--line); }
   text-transform: uppercase;
   color: var(--muted-dark);
 }
+.glossary-term .term-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px var(--s5);
+  margin-top: 7px;
+  font-size: var(--fs-label);
+  color: var(--muted-dark);
+}
+.glossary-term .term-links a { color: var(--ink); text-underline-offset: 3px; }
 
 /* Status and empty states */
 .empty-state { padding: var(--s6); background: var(--surface); border: 1px dashed var(--line-strong); border-radius: var(--radius); }

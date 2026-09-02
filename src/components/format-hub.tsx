@@ -9,7 +9,8 @@ import { PageHead } from "./page-head";
 /**
  * Shared template for the format hubs (guides, how-to, comparisons). Each hub
  * explains what that format promises the reader, which is what makes the page
- * worth landing on before any article exists beneath it.
+ * worth landing on before any article exists beneath it. An empty hub stays
+ * live and crawlable but is left out of the header and footer menus.
  */
 export function FormatHub({
   eyebrow,
@@ -97,7 +98,7 @@ export function FormatHub({
             <p>{emptyCopy}</p>
             <div className="hero-actions">
               <Link className="btn btn-primary" href="/troubleshooting/">
-                Browse symptom guides
+                Browse symptom references
               </Link>
               <Link className="btn btn-secondary" href="/error-codes/">
                 Error code index

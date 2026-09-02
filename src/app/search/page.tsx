@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 import { PageHead } from "@/components/page-head";
 import { SearchPanel, SiteSearch, type SearchEntry } from "@/components/site-search";
-import { getAllBrands, getErrorCodeArticles } from "@/lib/content";
+import { formatLabel, getAllBrands, getErrorCodeArticles } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 const PATH = "/search/";
@@ -25,7 +25,7 @@ export default function SearchPage() {
         title: article.title,
         path: article.path,
         description: article.description,
-        label: article.errorCode ?? "Guide",
+        label: formatLabel(article),
         terms: "",
       })),
     ...getAllBrands()

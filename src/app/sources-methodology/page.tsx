@@ -37,7 +37,7 @@ export default function SourcesMethodologyPage() {
           title: "Establishing product scope",
           paragraphs: [
             "Before a code definition is written, we identify which models the source document covers. That list becomes the scope statement on the page.",
-            "If a service manual covers three capacities in one series, the page says those three capacities. It does not say the brand. This is the single most common failure in HVAC content online, and it is the reason a reader can follow correct-looking advice to the wrong conclusion.",
+            "If a service manual covers three capacities in one series, the page says those three capacities. It does not say the brand. Generalising a definition beyond the documentation that supports it is how a reader follows correct-looking advice to the wrong conclusion, and it is the failure this rule exists to prevent.",
           ],
         },
         {

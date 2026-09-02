@@ -106,7 +106,7 @@ export default async function EquipmentTypePage({
             <div className="section-head">
               <div>
                 <span className="eyebrow">Published references</span>
-                <h2>Guides for {equipment.label.toLowerCase()}</h2>
+                <h2>References for {equipment.label.toLowerCase()}</h2>
               </div>
             </div>
             <div className="grid grid-3">
