@@ -81,7 +81,7 @@ export const senvilleEh02 = publish({
       paragraphs: [
         "The documented restart specifies a complete power removal for two minutes. It is easy to treat that as approximate, and it is worth understanding why it is not. Control electronics hold stored states and residual charge briefly after the supply is removed, and the interval exists so those states genuinely clear before power returns.",
         "A restart that is too short can leave the equipment in the same state it was already in, which produces a misleading result: the code returns and it looks like a standing fault when the test was never properly performed. Time it, do it once, and treat the outcome as real either way.",
-        "Time it with a clock rather than counting. Two minutes feels considerably longer than it is when you are standing at a consumer unit in a cold hallway, and a restart that was actually forty seconds produces a result you cannot rely on. The whole value of the step is that it is repeatable and specified.",
+        "Time it with a clock rather than counting. Two minutes feels far longer than it is when you are standing at a consumer unit in a cold hallway, and a restart that was actually forty seconds produces a result you cannot rely on. The whole value of the step is that it is repeatable and specified.",
       ],
     },
   ],

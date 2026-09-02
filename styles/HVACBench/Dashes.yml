@@ -1,0 +1,8 @@
+extends: existence
+message: "Replace '%s'. House style uses no em dash and no double hyphen."
+level: error
+nonword: true
+tokens:
+  - '—'
+  - '–'
+  - '(?<![-<!])--(?![->])'

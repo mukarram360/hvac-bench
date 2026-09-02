@@ -68,12 +68,12 @@ export const miniSplitNotCooling = publish({
         "Confirm the mode and setpoint, then arrange diagnosis if nothing changes",
       ],
       [
-        "Clearly cold air, weak volume",
+        "Cold air, weak volume",
         "Capacity exists but airflow is restricted somewhere",
         "Check the filter, the intake path, and the outdoor coil for obstruction",
       ],
       [
-        "Clearly cold air, good volume, room still warm",
+        "Cold air, good volume, room still warm",
         "The room load is beating the delivered capacity",
         "Look at solar gain, open doors, ventilation, and heat sources in the room",
       ],

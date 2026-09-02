@@ -11,7 +11,7 @@ const PATH = "/equipment/";
 export const metadata: Metadata = pageMetadata({
   title: "HVAC equipment types explained",
   description:
-    "Mini-splits, heat pumps, ducted systems, air handlers, boilers, controls, and light commercial equipment: what each type is, how it behaves, and where its faults usually start.",
+    "Mini-splits, heat pumps, ducted systems, air handlers, boilers, controls, and light commercial equipment: what each type is, how it behaves, and where its faults begin.",
   path: PATH,
   keywords: ["hvac equipment types", "types of heat pump", "ductless vs ducted", "hvac system types"],
 });

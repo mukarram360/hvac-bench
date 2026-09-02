@@ -17,7 +17,7 @@ export default function CookiePolicyPage() {
     <TrustPage
       title="Cookie policy"
       eyebrow="Browser storage"
-      intro="This site uses very little. There is no advertising network, no social tracking, and no cross-site profiling. What follows is the complete list."
+      intro="This site sets no advertising cookies, runs no social tracking, and builds no cross-site profile. What follows is the complete list."
       path={PATH}
       updated="September 1, 2026"
       sections={[

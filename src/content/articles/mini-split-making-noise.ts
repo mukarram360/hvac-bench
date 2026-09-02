@@ -6,7 +6,7 @@ import { publish } from "./publish";
  * which sounds have a documented normal explanation.
  */
 export const miniSplitMakingNoise = publish({
-  title: "Mini-split making noise: normal sounds versus warning signs",
+  title: "Mini-split noise: normal sounds and warning signs",
   slug: "mini-split-making-noise",
   path: "/mini-split-making-noise/",
   description:
@@ -97,7 +97,7 @@ export const miniSplitMakingNoise = publish({
       title: "Ductless systems are not silent, and that is by design",
       paragraphs: [
         "A mini-split moves refrigerant through pipework by boiling and condensing it, and both of those are audible. So is the plastic case of the indoor unit as it changes temperature, and so are the valves that change the direction of flow. Manufacturers list these sounds in their manuals precisely because owners ring up about them.",
-        "The equipment is also mounted on a wall in a quiet room, which is a very different acoustic situation from a boiler in a cupboard. Sounds that would go unnoticed elsewhere are perfectly audible at two in the morning, and a system that has been running for two years without anyone noticing may simply be being heard for the first time in a newly quiet house.",
+        "The equipment is also mounted on a wall in a quiet room, which is a different acoustic situation from a boiler in a cupboard. Sounds that would go unnoticed elsewhere are perfectly audible at two in the morning, and a system that has been running for two years without anyone noticing may simply be being heard for the first time in a newly quiet house.",
       ],
     },
     {

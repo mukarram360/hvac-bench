@@ -6,7 +6,7 @@ import { publish } from "./publish";
  * of the trip tells you.
  */
 export const senvillePc0a = publish({
-  title: "Senville PC 0A error code: condenser high-temperature protection",
+  title: "Senville PC 0A: condenser high-temperature protection",
   slug: "pc0a-error-code",
   path: "/brands/senville/pc0a-error-code/",
   description:

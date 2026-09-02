@@ -6,7 +6,7 @@ import { publish } from "./publish";
  * appearing rather than around a list of parts.
  */
 export const miniSplitLeakingWater = publish({
-  title: "Mini-split leaking water: shut down, inspect, and escalate safely",
+  title: "Mini-split leaking water: shut down and inspect",
   slug: "mini-split-leaking-water",
   path: "/mini-split-leaking-water/",
   description:
@@ -30,7 +30,7 @@ export const miniSplitLeakingWater = publish({
     {
       title: "Water is running down the wall from the indoor unit",
       observation:
-        "Drips or a wet trail come from the bottom edge of the cabinet, usually while the system is cooling, and stop some time after it is switched off.",
+        "Drips or a wet trail come from the bottom edge of the cabinet while the system is cooling, and stop some time after it is switched off.",
       action:
         "Turn cooling off and protect the floor and any finishes below. The pattern is consistent with condensate not following its intended path, and continued cooling can produce more water.",
     },
@@ -132,7 +132,7 @@ export const miniSplitLeakingWater = publish({
     {
       question: "Is the water from my mini split refrigerant?",
       answer:
-        "Indoor dripping is generally condensate rather than refrigerant. Manufacturer guidance also notes that low refrigerant can contribute indirectly by icing the coil, which then sheds water as it thaws. Do not identify the sealed-system condition from the puddle alone.",
+        "Indoor dripping points at condensate rather than refrigerant. Manufacturer guidance also notes that low refrigerant can contribute indirectly by icing the coil, which then sheds water as it thaws. Do not identify the sealed-system condition from the puddle alone.",
     },
     {
       question: "Can I clear the drain myself?",

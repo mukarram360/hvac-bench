@@ -82,7 +82,7 @@ export const mideaE1 = publish({
     {
       title: "Why the model gate comes first here",
       paragraphs: [
-        "Most error code pages put the definition first and the scope note at the bottom. That order is wrong for this code. Midea is a very large manufacturer with product categories that do not share a code table, and E1 is a short, heavily reused string. Applying the Aurora Xtreme meaning to a Midea window unit or a ducted system is not a small inaccuracy, it is a different fault entirely.",
+        "Most error code pages put the definition first and the scope note at the bottom. That order is wrong for this code. Midea builds across product categories that do not share a code table, and E1 is a short, heavily reused string. Applying the Aurora Xtreme meaning to a Midea window unit or a ducted system is not a small inaccuracy, it is a different fault entirely.",
         "So the first job is identification, and it takes two photographs. The rating plate on the indoor unit and the rating plate on the outdoor unit together tell you the series, the capacity, and the supply voltage. If they do not match the model named above, nothing further on this page applies to your equipment.",
       ],
     },

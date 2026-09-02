@@ -185,11 +185,12 @@ export const diagnosticBranchSchema = z.object({
 
 /**
  * Table cells carry a label in the first column and reasoning in the rest.
- * A useful label is often one word ("Cooling", "P0 or PC00"), so the floor is
- * low enough to allow that while still rejecting an empty cell.
+ * A useful label is often one word ("Cooling", "P0 or PC00") and sometimes two
+ * characters ("No"), so the floor is low enough to allow the clearest possible
+ * answer while still rejecting an empty cell.
  */
-export const decisionRowSchema = z.array(z.string().min(3)).min(2);
-export const comparisonRowSchema = z.array(z.string().min(3)).min(2);
+export const decisionRowSchema = z.array(z.string().min(2)).min(2);
+export const comparisonRowSchema = z.array(z.string().min(2)).min(2);
 
 const diagnosticTableSchema = z.object({
   caption: z.string().min(12),
@@ -248,8 +249,14 @@ export const articleSchema = z.object({
   comparisonTable: diagnosticTableSchema.optional(),
   sections: z.array(contentSectionSchema).min(1).optional(),
   figures: z.array(articleFigureSchema).min(1).optional(),
-  safeChecks: z.array(z.string().min(20)).min(1),
-  professionalEscalation: z.array(z.string().min(20)).min(1),
+  /**
+   * Owner-safe checks and the stop point. Required on anything a reader might
+   * act on with the equipment in front of them, and deliberately absent from
+   * pages that explain a rating or compare two product ranges: a safety notice
+   * repeated onto a page with nothing to touch trains readers to skip it.
+   */
+  safeChecks: z.array(z.string().min(20)).min(1).optional(),
+  professionalEscalation: z.array(z.string().min(20)).min(1).optional(),
   serviceHandoff: z.string().min(60).optional(),
   resetGuidance: z.string().min(30).optional(),
   /** Ordered steps. Present only when the page really is a procedure. */
@@ -274,8 +281,38 @@ export const articleSchema = z.object({
   glossaryTerms: z.array(slug).max(8).optional(),
   /** Additional manufacturer hubs relevant to cross-brand comparisons. */
   relatedBrands: z.array(slug).max(4).optional(),
+  /**
+   * The order the authored blocks appear in, chosen by the page.
+   *
+   * A definition page needs the metric table before the discussion; a
+   * diagnostic page needs the branches first; a procedure page needs the
+   * numbered steps before anything discursive. Forcing one order on all of
+   * them is how a library ends up reading as though one hand filled in the
+   * same outline fifty times. Omit it and the default order applies.
+   */
+  layout: z
+    .array(
+      z.enum([
+        "branches",
+        "figures",
+        "decisionTable",
+        "comparisonTable",
+        "sections",
+        "steps",
+        "serviceHandoff",
+      ]),
+    )
+    .optional(),
   keywords: z.array(z.string().min(2)).max(12),
-});
+}).refine(
+  (article) =>
+    !["error-code", "troubleshooting", "maintenance", "how-to"].includes(article.articleType) ||
+    (Boolean(article.safeChecks?.length) && Boolean(article.professionalEscalation?.length)),
+  {
+    message: "a page a reader can act on must state the owner-safe checks and the stop point",
+    path: ["safeChecks"],
+  },
+);
 
 export type Author = z.infer<typeof authorSchema>;
 export type Brand = z.infer<typeof brandSchema>;

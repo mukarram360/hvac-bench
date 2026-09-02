@@ -6,7 +6,7 @@ import { publish } from "./publish";
  * snapshot, and separates snow and drainage problems from coil frost.
  */
 export const heatPumpOutdoorUnitIcedOver = publish({
-  title: "Heat-pump outdoor unit iced over: defrost or a real fault?",
+  title: "Heat pump iced over: defrost or a real fault?",
   slug: "heat-pump-outdoor-unit-iced-over",
   path: "/heat-pump-outdoor-unit-iced-over/",
   description:
@@ -100,7 +100,7 @@ export const heatPumpOutdoorUnitIcedOver = publish({
     {
       title: "Clearing snow without causing a repair",
       paragraphs: [
-        "Loose snow around the outdoor unit can be moved by hand or with a soft brush, and doing so restores the airflow the unit needs. Keep away from the coil face itself, which is soft aluminium that bends under very little pressure, and never put anything into the fan.",
+        "Loose snow around the outdoor unit can be moved by hand or with a soft brush, and doing so restores the airflow the unit needs. Keep away from the coil face itself, which is soft aluminium that bends under fingertip pressure, and never put anything into the fan.",
         "The instinct to speed up thawing is where the real damage happens. Boiling water refreezes and can crack components, hot air guns melt plastic and stress the coil, and anything used as a chisel goes straight through the tubing. If the ice is beyond what the machine can clear itself, it needs a technician, not force.",
       ],
     },

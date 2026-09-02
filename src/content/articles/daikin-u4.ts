@@ -21,7 +21,7 @@ export const daikinU4 = publish({
   directAnswer:
     "For the documented Daikin SkyAir RZR-P and RZQ-P(9) systems, U4 is a transmission error between indoor and outdoor units after normal communication is absent for the specified interval.",
   scopeNotice:
-    "This definition is taken from the SkyAir service manual covering RZR-P and RZQ-P(9) equipment and the indoor units listed with it. Daikin uses structured code letters across several very different product lines, so a U4 on VRV, Altherma, or a residential split needs the manual for that line rather than this page.",
+    "This definition is taken from the SkyAir service manual covering RZR-P and RZQ-P(9) equipment and the indoor units listed with it. Daikin uses structured code letters across product lines that share little else, so a U4 on VRV, Altherma, or a residential split needs the manual for that line rather than this page.",
   symptoms: [
     "The controller displays U4 and the connected system cannot continue normal operation.",
   ],
@@ -90,7 +90,7 @@ export const daikinU4 = publish({
     {
       title: "Why the pattern matters more than the code",
       paragraphs: [
-        "U4 tells you that expected communication was absent for the interval Daikin specifies. On a single split that would be the end of the story, but SkyAir equipment usually serves several indoor units from one outdoor unit, and that turns the code into something more useful. The distribution of the fault across the system is evidence in its own right.",
+        "U4 tells you that expected communication was absent for the interval Daikin specifies. On a single split that would be the end of the story, but SkyAir equipment serves several indoor units from one outdoor unit, and that turns the code into something more useful. The distribution of the fault across the system is evidence in its own right.",
         "A whole system reporting together and one room reporting alone are different problems with different costs. Establishing which one you have takes a walk around the building and costs nothing, and it is the difference between a technician tracing an entire network and going straight to a branch.",
       ],
     },

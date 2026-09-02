@@ -1,0 +1,29 @@
+extends: existence
+message: "'%s' asserts a size or an obviousness without measuring it. Say the amount, or cut the word."
+level: error
+ignorecase: true
+nonword: true
+tokens:
+  - '\bobviously\b'
+  - '\bclearly\b'
+  - '\bof course\b'
+  - '\bneedless to say\b'
+  - '\bquite\b'
+  - '\brelatively\b'
+  - '\bfairly\b'
+  - '\blargely\b'
+  - '\bmostly\b'
+  - '\bvarious\b'
+  - '\bsubstantially\b'
+  - '\bsignificantly\b'
+  - '\bconsiderably\b'
+  - '\bdramatically\b'
+  - '\bremarkably\b'
+  - '\bsurprisingly\b'
+  - '\bexceedingly\b'
+  - '\bextremely\b'
+  - '\binterestingly\b'
+  - '\bhuge\b'
+  - '\bvast\b'
+  - '\btiny\b'
+  - '\bmassive\b'

@@ -18,6 +18,7 @@ export const refrigeration = [
     category: "refrigeration",
     aliases: ["gas", "coolant"],
     related: ["refrigerant-leak", "r410a", "r32"],
+    seeAlso: { label: "Identity, safety class, and the law", path: "/hvac-refrigerants-explained/" },
     shortAnswer:
       "Refrigerant is the fluid that carries heat around a system by boiling at low pressure and condensing at high pressure. It circulates in a sealed loop and is not used up in normal operation.",
     metaTitle: "Refrigerant: what it actually does",
@@ -69,7 +70,7 @@ export const refrigeration = [
       {
         question: "Can I buy refrigerant and add it myself?",
         answer:
-          "Handling refrigerant requires certification: EPA Section 608 in the United States and an F-Gas qualification in the United Kingdom and Europe. It is a legal requirement rather than a manufacturer preference.",
+          "Refrigerant handling is a licensed activity on both sides of the Atlantic, and venting to atmosphere is prohibited outright. It is a legal requirement rather than a manufacturer preference.",
       },
       {
         question: "What do the letters after a refrigerant number mean?",
@@ -88,6 +89,7 @@ export const refrigeration = [
     category: "refrigeration",
     aliases: ["410A", "Puron"],
     related: ["refrigerant", "r32", "f-gas-regulation"],
+    seeAlso: { label: "How R-410A and R-32 differ", path: "/hvac-refrigerants-explained/" },
     shortAnswer:
       "R-410A is a near-azeotropic blend of R-32 and R-125 used in split systems and heat pumps since the 2000s. It runs at higher pressures than the R-22 it replaced and is classified A1.",
     metaTitle: "R-410A refrigerant explained",
@@ -170,6 +172,7 @@ export const refrigeration = [
     category: "refrigeration",
     aliases: ["R32", "A2L refrigerant"],
     related: ["refrigerant", "r410a", "f-gas-regulation"],
+    seeAlso: { label: "What the A2L classification changes", path: "/hvac-refrigerants-explained/" },
     shortAnswer:
       "R-32 is a single-component refrigerant with roughly a third of the global warming potential of R-410A. It is classified A2L, meaning mildly flammable, which changes how it is installed and serviced.",
     metaTitle: "R-32 refrigerant and A2L rules",
@@ -193,7 +196,7 @@ export const refrigeration = [
       {
         title: "Confirm A2L before any service work",
         detail:
-          "The data plate states the refrigerant, and A2L systems are usually labelled. Tools, recovery equipment, and procedures differ from A1.",
+          "The data plate states the refrigerant, and an A2L system carries a flammability label. Tools, recovery equipment, and procedures differ from A1.",
         performedBy: "technician",
       },
       {
@@ -252,6 +255,7 @@ export const refrigeration = [
     category: "refrigeration",
     aliases: [],
     related: ["subcooling", "expansion-valve", "saturation-temperature"],
+    seeAlso: { label: "Why charge is a weighed figure", path: "/hvac-refrigerants-explained/" },
     shortAnswer:
       "Superheat is how many degrees the refrigerant vapour has risen above its boiling temperature at the pressure it is at. It shows whether the evaporator is being fed the right amount of liquid.",
     metaTitle: "Superheat: what the number means",
@@ -324,6 +328,7 @@ export const refrigeration = [
     category: "refrigeration",
     aliases: [],
     related: ["superheat", "refrigerant-charge", "saturation-temperature"],
+    seeAlso: { label: "Where charge measurement sits", path: "/hvac-refrigerants-explained/" },
     shortAnswer:
       "Subcooling is how many degrees the liquid refrigerant has been cooled below its condensing temperature. It indicates how much liquid the condenser is holding, which is closely tied to charge.",
     metaTitle: "Subcooling: what the number means",
@@ -389,6 +394,7 @@ export const refrigeration = [
     category: "refrigeration",
     aliases: ["sat temp"],
     related: ["superheat", "subcooling", "refrigerant"],
+    seeAlso: { label: "Boiling and condensing in the circuit", path: "/how-mini-splits-work/" },
     shortAnswer:
       "Saturation temperature is the temperature at which a refrigerant boils or condenses at a given pressure. The relationship is fixed per refrigerant, so a pressure reading converts directly to a temperature.",
     metaTitle: "Saturation temperature in HVAC",
@@ -454,6 +460,7 @@ export const refrigeration = [
     category: "refrigeration",
     aliases: ["charge", "gas charge"],
     related: ["subcooling", "data-plate", "line-set"],
+    seeAlso: { label: "Reading charge off the data plate", path: "/how-to-read-hvac-data-plate/" },
     shortAnswer:
       "Refrigerant charge is the mass of refrigerant a system is designed to hold, given on the data plate and adjusted at installation for the actual length of the pipe run.",
     metaTitle: "Refrigerant charge and pipe length",
@@ -469,7 +476,7 @@ export const refrigeration = [
     howItWorks:
       "Manufacturers pre-charge the outdoor unit for a stated line length and publish an amount to add per unit of length beyond it. Charge is a mass rather than a pressure, because pressure changes with temperature and load while the amount of refrigatant in the circuit does not. Getting it wrong in either direction changes how the coils behave: too little starves the evaporator, too much backs liquid up in the condenser.",
     whereYouMeetIt: [
-      "On the data plate, where the factory charge and the pre-charged line length are printed.",
+      "On a service report, where the weighed charge is recorded against the length of pipe actually installed.",
       "On a commissioning record, where the added charge for the actual pipe run should be written down.",
       "In a protection code investigation, where an overcharge raises head pressure toward the limit that stopped the system.",
     ],
@@ -532,10 +539,10 @@ export const refrigeration = [
       { label: "Legal duty", value: "Repair and record, under F-Gas or EPA rules" },
     ],
     howItWorks:
-      "Refrigerant escapes as gas, so a leak leaves no puddle and often no visible sign. Capacity falls gradually as charge is lost, which is why the complaint is usually that the system is not as strong as last year rather than that it stopped. Oil carried with the refrigerant sometimes stains around the leak point, which is one of the clues a technician looks for.",
+      "Refrigerant escapes as gas, so a leak leaves no puddle and often no visible sign. Capacity falls gradually as charge is lost, which is why the complaint arrives as a system that is not as strong as last year rather than one that stopped. Oil carried with the refrigerant sometimes stains around the leak point, which is one of the clues a technician looks for.",
     whereYouMeetIt: [
-      "In a season-on-season capacity complaint, where the system worked and now does not quite.",
-      "In an icing complaint, where a low charge drove the coil surface below freezing.",
+      "In a season-on-season capacity complaint, where the system worked last season and now falls short.",
+      "In an icing complaint, because a circuit short of charge boils refrigerant at a lower temperature than it was designed to.",
       "In a compliance record, where the leak, its repair, and the recharged quantity all have to be logged.",
     ],
     howToCheck: [

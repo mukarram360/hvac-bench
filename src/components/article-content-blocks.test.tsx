@@ -74,7 +74,10 @@ describe("ArticleContentBlocks", () => {
     expect(
       screen.getByRole("heading", { name: "The remote display is completely blank" }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/fresh matched battery pair/i)).toBeInTheDocument();
+    const branch = screen
+      .getByRole("heading", { name: "The remote display is completely blank" })
+      .closest("article")!;
+    expect(within(branch).getByText(/fresh matched battery pair/i)).toBeInTheDocument();
 
     const decisionTable = screen.getByRole("table", {
       name: "Remote response decision table",
@@ -112,5 +115,22 @@ describe("ArticleContentBlocks", () => {
     expect(screen.queryByRole("heading", { name: "Diagnostic paths" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Decision table" })).not.toBeInTheDocument();
     expect(screen.queryByRole("figure")).not.toBeInTheDocument();
+  });
+
+  it("renders the blocks in the order the page asked for", () => {
+    const { container } = render(
+      <ArticleContentBlocks
+        article={{
+          ...completeArticle,
+          steps: undefined,
+          layout: ["sections", "decisionTable", "branches"],
+        }}
+      />,
+    );
+
+    const headings = [...container.querySelectorAll("h2")].map((node) => node.textContent);
+    expect(headings.indexOf("Check replacement compatibility")).toBeLessThan(
+      headings.indexOf("Diagnostic paths"),
+    );
   });
 });

@@ -260,9 +260,16 @@ describe("performance", () => {
     expect(perQuery, `${perQuery.toFixed(2)}ms per query`).toBeLessThan(15);
   });
 
-  it("keeps the index small enough to hold in memory and ship", () => {
+  /**
+   * The index lives in module scope on the server and is never sent to a
+   * browser, so the ceiling is a memory bound rather than a payload one. It
+   * moved from 1.5 MB when twenty-six generated pages were replaced by written
+   * ones, which carry more text per page; the passage count is the floor that
+   * catches an index that has silently stopped covering the library.
+   */
+  it("keeps the retrieval index within its memory budget", () => {
     expect(index.passages.length).toBeGreaterThan(200);
-    expect(JSON.stringify(index).length).toBeLessThan(1_500_000);
+    expect(JSON.stringify(index).length).toBeLessThan(2_500_000);
   });
 });
 

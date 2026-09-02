@@ -25,16 +25,49 @@ import { pioneerE1Communication } from "./pioneer-e1-communication";
 import { pioneerE1Sensor } from "./pioneer-e1-sensor";
 import { senvilleEh02 } from "./senville-eh02";
 import { senvillePc0a } from "./senville-pc0a";
-import { expandedArticles } from "./expanded-library";
+import { btuSizingExplained } from "./btu-sizing-explained";
+import { daikinVsMitsubishiMiniSplits } from "./daikin-vs-mitsubishi-mini-splits";
+import { ductlessVsDuctedHeatPump } from "./ductless-vs-ducted-heat-pump";
+import { greeVsMideaMiniSplits } from "./gree-vs-midea-mini-splits";
+import { heatPumpOperatingTemperatures } from "./heat-pump-operating-temperatures";
+import { heatPumpVsFurnace } from "./heat-pump-vs-furnace";
+import { howHeatPumpDefrostWorks } from "./how-heat-pump-defrost-works";
+import { howMiniSplitsWork } from "./how-mini-splits-work";
+import { howToCheckMiniSplitCondensateDrain } from "./how-to-check-mini-split-condensate-drain";
+import { howToCheckMiniSplitRemote } from "./how-to-check-mini-split-remote";
+import { howToCleanAroundOutdoorUnit } from "./how-to-clean-around-outdoor-unit";
+import { howToDocumentHvacFaultForService } from "./how-to-document-hvac-fault-for-service";
+import { howToFindMiniSplitModelNumber } from "./how-to-find-mini-split-model-number";
+import { howToPrepareMiniSplitForWinter } from "./how-to-prepare-mini-split-for-winter";
+import { howToReadHvacDataPlate } from "./how-to-read-hvac-data-plate";
+import { howToResetMiniSplitSafely } from "./how-to-reset-mini-split-safely";
+import { howToTellIfMiniSplitIsInDefrost } from "./how-to-tell-if-mini-split-is-in-defrost";
+import { hvacRefrigerantsExplained } from "./hvac-refrigerants-explained";
+import { inverterTechnologyExplained } from "./inverter-technology-explained";
+import { miniSplitLifespan } from "./mini-split-lifespan";
+import { miniSplitVsCentralAir } from "./mini-split-vs-central-air";
+import { mitsubishiVsFujitsuMiniSplits } from "./mitsubishi-vs-fujitsu-mini-splits";
+import { mrcoolVsPioneerMiniSplits } from "./mrcool-vs-pioneer-mini-splits";
+import { seer2Explained } from "./seer2-explained";
+import { senvilleVsPioneerMiniSplits } from "./senville-vs-pioneer-mini-splits";
+import { singleZoneVsMultiZoneMiniSplit } from "./single-zone-vs-multi-zone-mini-split";
 
 /**
- * One module per article.
+ * One module per article, with no exceptions.
  *
- * The previous version of this file held every article as a single line of
- * data and generated the reasoning from a shared template, which is why two
- * dozen pages shared a decision table and why FAQ questions were built out of
- * headlines. Splitting the library into modules makes the alternative
- * structural: a page is written where it lives, for the question it answers.
+ * Two generations of this file tried to hold content as data and derive the
+ * prose from it. The first held every article as a single line and built the
+ * reasoning from a template; the second kept twenty-six guides, procedures,
+ * and comparisons in one `expanded-library.ts` whose `page()` function wrote
+ * the sections, the branches, the safety list, and the FAQ closers for all of
+ * them from a handful of seed strings. Both produced pages that differed by a
+ * noun and agreed on everything else.
+ *
+ * There is now no shared prose producer anywhere in this directory. `publish`
+ * fills in publication facts only: the desk, the dates, and the evidence class
+ * read from the cited records. Every sentence a reader sees is written in the
+ * module named after the page it appears on, and two tests hold that line:
+ * template-leakage.test.ts and prose-similarity.test.ts.
  */
 export const articles = [
   greeE6,
@@ -62,5 +95,36 @@ export const articles = [
   miniSplitSmellsMusty,
   miniSplitShortCycling,
   miniSplitFilterCleaning,
-  ...expandedArticles,
+
+  /* ------------------------------------------------------------- guides -- */
+  howMiniSplitsWork,
+  howHeatPumpDefrostWorks,
+  seer2Explained,
+  btuSizingExplained,
+  inverterTechnologyExplained,
+  miniSplitLifespan,
+  heatPumpOperatingTemperatures,
+  hvacRefrigerantsExplained,
+
+  /* ------------------------------------------------------------ how-to -- */
+  howToFindMiniSplitModelNumber,
+  howToResetMiniSplitSafely,
+  howToCheckMiniSplitRemote,
+  howToPrepareMiniSplitForWinter,
+  howToCleanAroundOutdoorUnit,
+  howToTellIfMiniSplitIsInDefrost,
+  howToReadHvacDataPlate,
+  howToCheckMiniSplitCondensateDrain,
+  howToDocumentHvacFaultForService,
+
+  /* ------------------------------------------------------- comparisons -- */
+  daikinVsMitsubishiMiniSplits,
+  mitsubishiVsFujitsuMiniSplits,
+  greeVsMideaMiniSplits,
+  mrcoolVsPioneerMiniSplits,
+  senvilleVsPioneerMiniSplits,
+  miniSplitVsCentralAir,
+  singleZoneVsMultiZoneMiniSplit,
+  heatPumpVsFurnace,
+  ductlessVsDuctedHeatPump,
 ] satisfies TechnicalArticle[];

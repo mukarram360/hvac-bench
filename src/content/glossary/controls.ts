@@ -63,7 +63,7 @@ export const controls = [
       },
     ],
     mistakes: [
-      "A code does not name a broken part. It names a condition the board detected, and several parts can produce that condition.",
+      "A code does not name a broken part. It reports which of the board's checks failed, which is narrower than a symptom and wider than a diagnosis.",
       "The same characters do not carry the same meaning across a manufacturer's range. Product family decides the table.",
       "Clearing a code is not a repair. If the condition persists the code returns, and repeated clearing hides a developing fault.",
     ],
@@ -92,7 +92,7 @@ export const controls = [
     slug: "protection-code",
     question: "What is a protection code?",
     definition:
-      "A code that reports the system stopping itself deliberately, for example on high pressure, high current, or module temperature. It records that a limit was reached rather than that a part failed, and clearing it without finding the cause simply repeats the event.",
+      "A code that reports the system stopping itself deliberately, for example on high pressure, high current, or module temperature. The stop is the protection working rather than a part failed, and clearing it without finding the cause simply repeats the event.",
     category: "controls",
     aliases: ["protection fault", "limit fault"],
     related: ["error-code", "inverter-module", "compressor"],
@@ -181,7 +181,7 @@ export const controls = [
       { label: "Duration", value: "Minutes, then heating resumes on its own" },
     ],
     howItWorks:
-      "In heating the outdoor coil runs below the outdoor air temperature, so moisture in that air condenses on it and freezes. Frost insulates the coil and blocks airflow, so the control reverses the valve, sends hot gas outdoors, and stops the outdoor fan. The frost melts as water and steam, and the system returns to heating. The indoor fan is usually held off so the room does not get a blast of cold air.",
+      "Frost forms because a coil collecting heat has to sit below the air it is collecting from, and moisture in that air freezes onto it. Frost insulates the coil and blocks airflow, so the control reverses the valve, sends hot gas outdoors, and stops the outdoor fan. The frost melts as water and steam, and the system returns to heating. The indoor fan is held off so the room does not get a blast of cold air.",
     whereYouMeetIt: [
       "In a complaint about steam pouring off the outdoor unit, which is melted frost rather than smoke.",
       "In a complaint about cool air in heating, when the pause happens to coincide with a call.",
@@ -237,7 +237,7 @@ export const controls = [
     slug: "short-cycling",
     question: "What is short cycling?",
     definition:
-      "Repeatedly starting and stopping after only a few minutes of running. It wastes energy, wears the compressor, and usually points to a control, sizing, airflow, or refrigerant problem rather than to normal thermostat behaviour.",
+      "Repeatedly starting and stopping after only a few minutes of running. It wastes energy, wears the compressor, and points at a control, sizing, airflow, or refrigerant problem rather than to normal thermostat behaviour.",
     category: "controls",
     aliases: ["cycling on and off"],
     related: ["protection-code", "thermostat", "inverter-compressor"],
@@ -288,7 +288,7 @@ export const controls = [
       {
         question: "Do mini-splits turn off when they reach the set temperature?",
         answer:
-          "Inverter systems generally slow down rather than stop, holding the room steady at reduced output. A ductless system that stops and restarts repeatedly is behaving differently from its design intent.",
+          "An inverter system slows down rather than stopping, holding the room steady at reduced output. A ductless system that stops and restarts repeatedly is behaving differently from its design intent.",
       },
       {
         question: "Can an oversized system cause short cycling?",
@@ -322,8 +322,8 @@ export const controls = [
     facts: [
       { label: "Measures", value: "Temperature at its own location, not the whole room" },
       { label: "Controls", value: "Whatever the wiring at that point allows" },
-      { label: "Heat pump terminals", value: "Usually include O or B for the reversing valve" },
-      { label: "Smart models need", value: "A continuous supply, commonly a C wire" },
+      { label: "Heat pump terminals", value: "Include O or B for the reversing valve" },
+      { label: "Smart models need", value: "A continuous supply, on a C wire" },
     ],
     howItWorks:
       "The thermostat closes circuits between terminals to call for a function: cooling, heating, fan, second stage, or reversing valve position. Each function needs a conductor, so a replacement can only do what the existing cable supports. On a heat pump, the reversing valve terminal and the auxiliary heat staging are what make its wiring different from a furnace and air conditioner pair.",
@@ -361,12 +361,12 @@ export const controls = [
       {
         question: "Why is my smart thermostat incompatible?",
         answer:
-          "Usually because the cable run does not carry the conductors it needs, most often a common wire for continuous power. Heat pump staging terminals are the other frequent gap.",
+          "Because the cable run does not carry the conductors it needs, and the missing one is a common wire for continuous power. Heat pump staging terminals are the other frequent gap.",
       },
       {
         question: "Does a thermostat control a mini-split?",
         answer:
-          "Ductless systems are usually controlled by their own handheld or wall controller rather than by a conventional thermostat. Interfaces exist to bridge them, and they are model specific.",
+          "Ductless systems are controlled by their own handheld or wall controller rather than by a conventional thermostat. Interfaces exist to bridge them, and they are model specific.",
       },
       {
         question: "Where should a thermostat be installed?",
@@ -447,12 +447,13 @@ export const controls = [
     slug: "auxiliary-heat",
     question: "What is auxiliary heat?",
     definition:
-      "Supplementary heating that runs when a heat pump alone cannot meet demand, usually electric resistance elements in North America or an immersion heater and boiler in United Kingdom hydronic systems. It costs more to run than the heat pump itself, so a change in how much it operates is worth investigating.",
+      "Supplementary heating that runs when a heat pump alone cannot meet demand: electric resistance elements in North American ducted systems, or an immersion heater and boiler in United Kingdom hydronic systems. It costs more to run than the heat pump itself, so a change in how much it operates is worth investigating.",
     category: "controls",
     aliases: ["aux heat", "emergency heat", "backup heat"],
     related: ["heat-pump", "balance-point"],
+    seeAlso: { label: "Where the balance point falls", path: "/heat-pump-operating-temperatures/" },
     shortAnswer:
-      "Auxiliary heat is supplementary heating that runs when a heat pump cannot meet demand on its own. It is usually electric resistance, which costs more per unit of heat than the heat pump.",
+      "Auxiliary heat is supplementary heating that runs when a heat pump cannot meet demand on its own. It is electric resistance in a ducted system, which costs more per unit of heat than the heat pump.",
     metaTitle: "Auxiliary heat and emergency heat",
     metaDescription:
       "What auxiliary heat is, how it differs from emergency heat, why it costs more to run than the heat pump, and what makes it come on more often than it should.",
@@ -464,7 +465,7 @@ export const controls = [
       { label: "Emergency heat", value: "A separate setting that runs backup heat alone" },
     ],
     howItWorks:
-      "Below the balance point, or during recovery from a setback, the heat pump cannot deliver everything the building is losing. Auxiliary heat makes up the shortfall. Because resistance heating delivers one unit of heat per unit of electricity while the heat pump delivers several, the same comfort costs considerably more while auxiliary is running, which is why the control logic that brings it in matters.",
+      "Below the balance point, or during recovery from a setback, the heat pump cannot deliver everything the building is losing. Auxiliary heat makes up the shortfall. Because resistance heating delivers one unit of heat per unit of electricity while the heat pump delivers several, the same comfort costs several times as much while auxiliary is running, which is why the control logic that brings it in matters.",
     whereYouMeetIt: [
       "On a thermostat display, where an auxiliary or emergency heat indicator shows the backup is running.",
       "In a bill investigation, where a mild winter with high costs points at auxiliary running more than it needs to.",
@@ -508,7 +509,7 @@ export const controls = [
       {
         question: "Does the United Kingdom use auxiliary heat the same way?",
         answer:
-          "The idea is the same but the hardware differs. Hydronic heat pumps commonly use an immersion heater in the cylinder, or a boiler in a hybrid arrangement, rather than duct-mounted resistance elements.",
+          "The idea is the same but the hardware differs. Hydronic heat pumps use an immersion heater in the cylinder, or a boiler in a hybrid arrangement, rather than duct-mounted resistance elements.",
       },
     ],
     sourceIds: ["doe-heat-pumps"],
@@ -522,6 +523,7 @@ export const controls = [
     category: "controls",
     aliases: ["flow temp", "leaving water temperature"],
     related: ["air-to-water-heat-pump", "weather-compensation", "boiler"],
+    seeAlso: { label: "Comparing running costs", path: "/heat-pump-vs-furnace/" },
     shortAnswer:
       "Flow temperature is the temperature of the water leaving a boiler or heat pump toward the radiators or underfloor loops. Lowering it raises heat pump efficiency and lets a boiler condense.",
     metaTitle: "Flow temperature: the key setting",
@@ -557,7 +559,7 @@ export const controls = [
       {
         title: "Check emitter output at the design temperature",
         detail:
-          "Radiator output tables are published at stated temperature differences. A radiator sized for 70 C delivers substantially less at 45 C.",
+          "Radiator output tables are published at stated temperature differences. A radiator sized for 70 C delivers a fraction of that output at 45 C, which is why a heat pump conversion can need larger emitters.",
         performedBy: "technician",
       },
     ],

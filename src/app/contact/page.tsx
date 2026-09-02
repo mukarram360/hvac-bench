@@ -60,7 +60,7 @@ export default function ContactPage() {
         {
           title: "What to expect",
           paragraphs: [
-            "This is a small desk. Corrections are acknowledged quickly. Technical questions usually get a reply within a few working days. Anything requiring documentation we do not already hold takes longer, and we will say so rather than leaving you waiting.",
+            "This is a small desk. Corrections are acknowledged quickly. Technical questions get a reply within a few working days. Anything requiring documentation we do not already hold takes longer, and we will say so rather than leaving you waiting.",
           ],
         },
       ]}

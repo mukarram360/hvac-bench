@@ -16,6 +16,7 @@ export const systemTypes = [
     category: "system-types",
     aliases: ["mini split", "ductless system", "split air conditioner"],
     related: ["multi-zone-system", "line-set", "heat-pump"],
+    seeAlso: { label: "How a mini-split moves heat", path: "/how-mini-splits-work/" },
     shortAnswer:
       "A ductless mini-split is an air conditioner or heat pump that connects an outdoor compressor unit to one or more wall, floor, or ceiling indoor units through refrigerant piping instead of ducts.",
     metaTitle: "Ductless mini-split: what it is",
@@ -50,7 +51,7 @@ export const systemTypes = [
       {
         title: "Read the model number from both units",
         detail:
-          "Indoor and outdoor model numbers differ, and the pairing is what a service manual is indexed by. Photograph both plates before calling anyone.",
+          "The head and the outdoor unit are separate products with separate labels. Photograph both plates before calling anyone, because which one answers a question depends on the question.",
         performedBy: "owner",
       },
     ],
@@ -82,7 +83,7 @@ export const systemTypes = [
       },
       {
         region: "uk",
-        note: "Usually called air conditioning or an air-to-air heat pump, sized in kilowatts, and quoted with SEER and SCOP.",
+        note: "Called air conditioning or an air-to-air heat pump, sized in kilowatts, and quoted with SEER and SCOP.",
       },
     ],
     sourceIds: ["trane-ductless-maintenance", "fujitsu-troubleshooting"],
@@ -96,6 +97,7 @@ export const systemTypes = [
     category: "system-types",
     aliases: ["multi split", "multi-split"],
     related: ["ductless-mini-split", "branch-box"],
+    seeAlso: { label: "Single-zone or multi-zone", path: "/single-zone-vs-multi-zone-mini-split/" },
     shortAnswer:
       "A multi-zone system is one outdoor unit feeding two or more indoor units that are set and run independently, so each room holds its own temperature from shared refrigeration equipment.",
     metaTitle: "Multi-zone system in HVAC",
@@ -137,7 +139,7 @@ export const systemTypes = [
       {
         question: "Can one zone heat while another cools?",
         answer:
-          "On residential multi-zone systems, generally not. The reversing valve sits in the shared outdoor unit, so the whole system runs in one mode. Simultaneous heating and cooling needs a heat recovery VRF arrangement.",
+          "On residential multi-zone systems, no. The reversing valve sits in the shared outdoor unit, so the whole system runs in one mode. Simultaneous heating and cooling needs a heat recovery VRF arrangement.",
       },
       {
         question: "Does a zone that is switched off still cost anything?",
@@ -241,11 +243,11 @@ export const systemTypes = [
     regionNotes: [
       {
         region: "us",
-        note: "Usually a ducted or ductless air-to-air system paired with electric auxiliary heat, rated with SEER2 and HSPF2.",
+        note: "A ducted or ductless air-to-air system paired with electric auxiliary heat, rated with SEER2 and HSPF2.",
       },
       {
         region: "uk",
-        note: "Usually an air-to-water system replacing a boiler and feeding radiators or underfloor loops, rated with SCOP.",
+        note: "An air-to-water system replacing a boiler and feeding radiators or underfloor loops, rated with SCOP.",
       },
     ],
     sourceIds: ["doe-heat-pumps", "trane-mini-split-not-heating"],
@@ -256,10 +258,11 @@ export const systemTypes = [
     slug: "air-to-water-heat-pump",
     question: "What is an air-to-water heat pump?",
     definition:
-      "A heat pump that transfers heat from outside air into a water circuit serving radiators, underfloor loops, or a hot water cylinder. This is the common domestic arrangement in the United Kingdom and much of Europe, where it usually replaces a boiler rather than a ducted system.",
+      "A heat pump that transfers heat from outside air into a water circuit serving radiators, underfloor loops, or a hot water cylinder. This is the common domestic arrangement in the United Kingdom and much of Europe, where it replaces a boiler rather than a ducted system.",
     category: "system-types",
     aliases: ["hydronic heat pump", "monobloc heat pump"],
     related: ["heat-pump", "flow-temperature", "boiler"],
+    seeAlso: { label: "Heat pump or furnace", path: "/heat-pump-vs-furnace/" },
     shortAnswer:
       "An air-to-water heat pump takes heat from outdoor air and puts it into a water circuit, so it heats radiators, underfloor pipes, and a hot water cylinder in place of a boiler.",
     metaTitle: "Air-to-water heat pump explained",
@@ -328,7 +331,7 @@ export const systemTypes = [
       {
         question: "Can it heat hot water as well as the rooms?",
         answer:
-          "Yes, through a cylinder with a heat pump coil. The system switches between space heating and cylinder heating, and the cylinder usually runs a periodic higher temperature cycle for hygiene.",
+          "Yes, through a cylinder with a heat pump coil. The system switches between space heating and cylinder heating, and the cylinder runs a periodic higher temperature cycle for hygiene.",
       },
       {
         question: "Why is my flow temperature so much lower than my old boiler?",
@@ -353,10 +356,11 @@ export const systemTypes = [
     slug: "boiler",
     question: "What is a boiler?",
     definition:
-      "An appliance that heats water for radiators, underfloor circuits, or a hot water cylinder, rather than heating air directly. Boilers dominate United Kingdom and European domestic heating, and are the equipment an air-to-water heat pump usually replaces or works alongside.",
+      "An appliance that heats water for radiators, underfloor circuits, or a hot water cylinder, rather than heating air directly. Boilers dominate United Kingdom and European domestic heating, and are the equipment an air-to-water heat pump replaces or works alongside.",
     category: "system-types",
     aliases: ["combi boiler", "system boiler", "condensing boiler"],
     related: ["air-to-water-heat-pump", "flow-temperature"],
+    seeAlso: { label: "Comparing a heat pump with a furnace", path: "/heat-pump-vs-furnace/" },
     shortAnswer:
       "A boiler heats water for a wet central heating system rather than heating air. Combi boilers make hot water on demand, system and heat-only boilers heat a stored cylinder.",
     metaTitle: "Boiler types and terms",
@@ -380,7 +384,7 @@ export const systemTypes = [
       {
         title: "Identify the type from the pipework",
         detail:
-          "A combi has no hot water cylinder and takes mains cold water directly. A system or heat-only boiler feeds a cylinder, which is what a heat pump conversion usually reuses or replaces.",
+          "A combi has no hot water cylinder and takes mains cold water directly. A system or heat-only boiler feeds a cylinder, which is what a heat pump conversion reuses or replaces.",
         performedBy: "owner",
       },
       {
@@ -444,6 +448,7 @@ export const systemTypes = [
     category: "system-types",
     aliases: ["central air", "central heating and air"],
     related: ["air-handler", "static-pressure", "ductwork"],
+    seeAlso: { label: "Ductless or ducted delivery", path: "/ductless-vs-ducted-heat-pump/" },
     shortAnswer:
       "A ducted split system pairs an outdoor condensing unit with an indoor air handler or furnace coil and delivers conditioned air to every room through a duct network.",
     metaTitle: "Ducted split system in HVAC",
@@ -490,12 +495,12 @@ export const systemTypes = [
       {
         question: "Why do some rooms cool better than others?",
         answer:
-          "One blower serves the whole duct network, so branch length, duct size, leakage, and the return path decide how much each room receives. That distribution is measured at the registers rather than at the equipment.",
+          "A single blower and a single thermostat condition the whole house to one setting, so a room that runs warm is a distribution problem rather than a capacity one. That distribution is measured at the registers rather than at the equipment.",
       },
       {
         question: "Is a furnace coil the same as an air handler?",
         answer:
-          "They do the same job in the refrigerant circuit. A furnace coil sits above a gas furnace that supplies the blower, while an air handler contains its own blower and usually electric heat.",
+          "They do the same job in the refrigerant circuit. A furnace coil sits above a gas furnace that supplies the blower, while an air handler contains its own blower, and electric heat where it is fitted.",
       },
     ],
     sourceIds: ["ahri-directory"],
@@ -570,7 +575,7 @@ export const systemTypes = [
     slug: "ptac-unit",
     question: "What is a PTAC unit?",
     definition:
-      "A packaged terminal air conditioner: a self-contained heating and cooling unit installed through an exterior wall, used in hotels, care homes, and apartments. All components sit in one chassis, so service usually means removing the unit rather than working on separate indoor and outdoor sections.",
+      "A packaged terminal air conditioner: a self-contained heating and cooling unit installed through an exterior wall, used in hotels, care homes, and apartments. All components sit in one chassis, so service means removing the unit rather than working on separate indoor and outdoor sections.",
     category: "system-types",
     aliases: ["PTAC", "through-the-wall unit"],
     related: ["air-handler", "ductless-mini-split"],
@@ -625,7 +630,7 @@ export const systemTypes = [
       {
         question: "Do PTAC units have filters?",
         answer:
-          "Yes, usually a washable filter behind the front grille that the room-side air passes through. Cleaning it is routine housekeeping work rather than a service visit.",
+          "Yes, a washable filter behind the front grille that the room-side air passes through. Cleaning it is routine housekeeping work rather than a service visit.",
       },
     ],
     sourceIds: ["ashrae-terminology"],

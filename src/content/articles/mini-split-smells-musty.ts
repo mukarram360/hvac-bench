@@ -98,7 +98,7 @@ export const miniSplitSmellsMusty = publish({
       ],
     },
     {
-      title: "Prevention is mostly about drying",
+      title: "Prevention comes down to drying",
       paragraphs: [
         "Some models provide a documented drying, coil-dry, or self-clean function after cooling. Use it only as the exact operating manual describes; the name, duration, and purpose differ by model.",
         "Where no such owner function is documented, do not invent a generic drying cycle. Keep the filter on its manual schedule and arrange internal cleaning or drainage service when a musty odor persists.",
@@ -137,7 +137,7 @@ export const miniSplitSmellsMusty = publish({
     {
       question: "Can I spray a coil cleaner into the indoor unit?",
       answer:
-        "Do not apply a cleaner unless the exact manufacturer instructions authorize that product and procedure for owner use. Internal coil, pan, blower, and drain cleaning can require disassembly and protection of electrical components.",
+        "Do not apply a cleaner unless the exact manufacturer instructions authorize that product and procedure for owner use. Reaching the coil, the pan, and the blower means taking the casing apart and working around electrical parts.",
     },
     {
       question: "Is a musty smell from the air conditioner harmful?",

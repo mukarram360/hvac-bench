@@ -69,7 +69,7 @@ export const components = [
       {
         question: "Why does the compressor stop but the fan keeps running?",
         answer:
-          "Boards commonly keep the fan running after stopping the compressor, either to cool the outdoor coil or as part of a protection routine. It tells you power reaches the unit and the control board is still awake.",
+          "Boards can keep the fan running after stopping the compressor, either to cool the outdoor coil or as part of a protection routine. It tells you power reaches the unit and the control board is still awake.",
       },
       {
         question: "How long should a compressor last?",
@@ -94,6 +94,7 @@ export const components = [
     category: "components",
     aliases: ["outdoor coil"],
     related: ["evaporator-coil", "protection-code", "compressor"],
+    seeAlso: { label: "Clearing the outdoor unit", path: "/how-to-clean-around-outdoor-unit/" },
     shortAnswer:
       "The condenser coil is where refrigerant gives up its heat and turns back into liquid. In cooling it is the outdoor coil, and anything blocking airflow across it raises system pressure.",
     metaTitle: "Condenser coil: what it does",
@@ -181,7 +182,7 @@ export const components = [
       "Cold low-pressure liquid enters the coil and boils as room air passes over the fins, and the heat that boiling absorbs is the heat removed from the room. Because the surface sits below the dew point of the air, water condenses on it and runs into the pan, which is why a working system in humid weather produces a steady trickle at the drain.",
     whereYouMeetIt: [
       "In a delta T measurement, because the temperature drop across this coil is what the reading describes.",
-      "In an icing complaint, where reduced airflow or low charge has pushed the coil surface below freezing.",
+      "In an icing complaint, because this is the surface the ice forms on and the one that has to be thawed before anything is measured.",
       "In a musty smell complaint, where the permanently damp coil and pan are the surfaces being cleaned.",
     ],
     howToCheck: [
@@ -205,7 +206,7 @@ export const components = [
       },
     ],
     mistakes: [
-      "Water at the indoor unit is not automatically a refrigerant leak. Condensate is a normal product of cooling, and where it ends up is a drainage question.",
+      "Frost on this coil is a symptom, not the fault. It forms when airflow across it drops or the charge is low, and it will re-form after any thaw unless that cause is dealt with.",
       "A frozen coil is not fixed by running the system harder. Cooling has to stop so the ice can clear before anything can be measured.",
     ],
     faqs: [
@@ -233,10 +234,11 @@ export const components = [
     slug: "air-handler",
     question: "What is an air handler?",
     definition:
-      "The indoor assembly containing the blower, the evaporator coil, the filter rack, and usually the drain pan. In a ducted system it moves conditioned air into the supply ducts and pulls room air back through the returns.",
+      "The indoor assembly containing the blower, the evaporator coil, the filter rack, and the drain pan. In a ducted system it moves conditioned air into the supply ducts and pulls room air back through the returns.",
     category: "components",
     aliases: ["AHU", "fan coil unit", "indoor unit"],
     related: ["blower-motor", "ductwork", "evaporator-coil"],
+    seeAlso: { label: "Where the capacity is delivered", path: "/ductless-vs-ducted-heat-pump/" },
     shortAnswer:
       "An air handler is the indoor half of a system: a cabinet holding the blower, the evaporator coil, the filter, and the drain pan, which pushes conditioned air into the ducts.",
     metaTitle: "Air handler: what is inside it",
@@ -260,7 +262,7 @@ export const components = [
       {
         title: "Find the filter rack and check the direction arrow",
         detail:
-          "A filter fitted backwards restricts more than it should. The arrow points the way the air travels, which is toward the coil.",
+          "A filter fitted backwards restricts more than it should. Check the arrow against the direction the blower pulls, not against the shape of the rack.",
         performedBy: "owner",
       },
       {
@@ -289,12 +291,12 @@ export const components = [
       {
         question: "Where is the filter in an air handler?",
         answer:
-          "Usually in a rack at the return side of the cabinet, sometimes in a return grille elsewhere in the house. The manual for the unit shows the location and the size the rack takes.",
+          "In a rack at the return side of the cabinet, or in a return grille elsewhere in the house. The manual for the unit shows the location and the size the rack takes.",
       },
       {
         question: "Why does my air handler drip in the loft?",
         answer:
-          "The drain pan under the coil collects condensate, and if the drain line, its trap, or the pump is obstructed, the water backs up. A secondary pan and float switch are commonly fitted for exactly this reason.",
+          "The drain pan under the coil collects condensate, and if the drain line, its trap, or the pump is obstructed, the water backs up. A secondary pan and float switch are fitted for exactly this reason.",
       },
     ],
     sourceIds: ["ashrae-terminology"],
@@ -324,7 +326,7 @@ export const components = [
       "A variable-speed motor is told what airflow to deliver and adjusts its own speed to achieve it, so as ducts, filters, or bearings add resistance it draws more power to keep the airflow constant. That is useful until the motor reaches its limit, at which point airflow falls and the coil begins to suffer, and the board may report the fan feedback rather than the motor.",
     whereYouMeetIt: [
       "In a fan or zero-crossing code, where the board could not confirm the fan was turning at the speed it commanded.",
-      "In a coil icing complaint, where lost airflow is what pushed the coil surface below freezing.",
+      "In a coil icing complaint, because a fan that has slowed or stalled starves the coil of the air it needs.",
       "In a noise report, where a bearing or an out-of-balance wheel changes the sound the unit makes.",
     ],
     howToCheck: [
@@ -365,7 +367,7 @@ export const components = [
       {
         question: "Can a blower motor be replaced on its own?",
         answer:
-          "Usually yes, though variable-speed motors are often supplied as a motor and control module pair, and the replacement has to match the airflow programming the system was commissioned with.",
+          "Yes, though variable-speed motors can be supplied as a motor and control module pair, and the replacement has to match the airflow programming the system was commissioned with.",
       },
     ],
     sourceIds: ["senville-eh02"],
@@ -396,7 +398,7 @@ export const components = [
       "A solenoid shifts an internal slide that re-routes compressor discharge to one coil or the other. Whichever coil receives hot discharge gas becomes the condenser, so the same hardware heats or cools depending only on which way the valve is set. Defrost uses the same movement briefly to send hot gas to the outdoor coil.",
     whereYouMeetIt: [
       "In a complaint of cool air on a heat call, where the valve did not complete its changeover.",
-      "In a defrost sequence, where the valve shifts, the outdoor fan stops, and the indoor fan is usually held off.",
+      "In a defrost sequence, where the valve shifts, the outdoor fan stops, and the indoor fan is held off.",
       "In a service diagnosis, where valve body temperatures across the four ports are compared to see whether the slide moved.",
     ],
     howToCheck: [
@@ -452,6 +454,7 @@ export const components = [
     category: "components",
     aliases: ["TXV", "EEV", "metering device"],
     related: ["superheat", "control-board", "evaporator-coil"],
+    seeAlso: { label: "Its place in the circuit", path: "/how-mini-splits-work/" },
     shortAnswer:
       "An expansion valve is the metering device that drops refrigerant pressure before the evaporator and regulates how much liquid enters it, which is what sets superheat.",
     metaTitle: "Expansion valve: TXV and EEV",
@@ -517,6 +520,7 @@ export const components = [
     category: "components",
     aliases: ["refrigerant lines", "pipe run"],
     related: ["refrigerant-leak", "ductless-mini-split", "refrigerant-charge"],
+    seeAlso: { label: "Pre-charged and field-charged pipework", path: "/mrcool-vs-pioneer-mini-splits/" },
     shortAnswer:
       "A line set is the pair of insulated copper refrigerant pipes between an indoor and outdoor unit: a small liquid line and a larger suction line, joined by flare or brazed connections.",
     metaTitle: "Line set: the pipes between units",
@@ -629,7 +633,7 @@ export const components = [
       {
         question: "How much water should a mini-split produce?",
         answer:
-          "Enough to be a steady drip or trickle at the outside discharge in humid weather, and very little in dry conditions. The amount tracks how much moisture the air holds, not how hard the unit is working.",
+          "Enough to be a steady drip or trickle at the outside discharge in humid weather, and little in dry conditions. The amount tracks how much moisture the air holds, not how hard the unit is working.",
       },
       {
         question: "Why does my system cool for an hour then stop?",
@@ -663,7 +667,7 @@ export const components = [
     facts: [
       { label: "Job", value: "Stops operation before the pan overflows" },
       { label: "Location", value: "Primary pan, secondary pan, or condensate pump" },
-      { label: "Interrupts", value: "The cooling call, not usually the fan" },
+      { label: "Interrupts", value: "The cooling call, not the fan" },
       { label: "Resets", value: "On its own once the water level drops" },
     ],
     howItWorks:
@@ -766,7 +770,7 @@ export const components = [
       {
         question: "What is a dual run capacitor?",
         answer:
-          "One case containing two capacitors, typically one for the compressor and one for the outdoor fan, sharing a common terminal. The terminals are marked HERM, FAN, and C.",
+          "One case containing two capacitors, one for the compressor and one for the outdoor fan, sharing a common terminal. The terminals are marked HERM, FAN, and C.",
       },
       {
         question: "Can I replace a capacitor myself?",
@@ -914,7 +918,7 @@ export const components = [
     slug: "inverter-module",
     question: "What is an inverter module?",
     definition:
-      "The power electronics that vary compressor speed, also called the IPM or intelligent power module. Inverter-module protection codes usually mean the module measured current, voltage, or temperature outside limits and stopped before damage occurred.",
+      "The power electronics that vary compressor speed, also called the IPM or intelligent power module. An inverter-module protection code means the module measured current, voltage, or temperature outside limits and stopped before damage occurred.",
     category: "components",
     aliases: ["IPM", "inverter board", "power module"],
     related: ["inverter-compressor", "protection-code", "control-board"],
@@ -1019,12 +1023,12 @@ export const components = [
       {
         title: "Inspect the connector and the harness route",
         detail:
-          "Corrosion at the plug, a pin backed out of its housing, or chafing where the harness passes a panel edge all read as a sensor fault.",
+          "Resistance falls as temperature rises on the negative-coefficient type used here, so the curve runs the opposite way to intuition.",
         performedBy: "technician",
       },
     ],
     mistakes: [
-      "A sensor code is not proof the sensor failed. Connector, harness, and board input sit in the same measurement path.",
+      "A thermistor that reads a plausible but wrong value raises no code at all. Only a reading outside the expected range is caught.",
       "A sensor reporting an alarming temperature may be entirely healthy. Confirm the reading is wrong before replacing the part that reported it.",
     ],
     faqs: [
@@ -1056,6 +1060,7 @@ export const components = [
     category: "components",
     aliases: ["distribution box", "branch selector"],
     related: ["multi-zone-system", "vrf-system"],
+    seeAlso: { label: "What a shared compressor changes", path: "/single-zone-vs-multi-zone-mini-split/" },
     shortAnswer:
       "A branch box is the distribution unit on some multi-zone systems that splits refrigerant and control wiring from one outdoor unit out to several indoor units.",
     metaTitle: "Branch box on multi-zone systems",
@@ -1105,7 +1110,7 @@ export const components = [
           "Yes. Each branch has its own valve and wiring, so a fault confined to one branch presents exactly like a fault in the indoor unit it serves.",
       },
       {
-        question: "Where is the branch box usually installed?",
+        question: "Where is the branch box installed?",
         answer:
           "Above a ceiling, in a loft, or in a plant space near the middle of the pipe runs. Its location should be recorded at handover because service access to it is needed later.",
       },

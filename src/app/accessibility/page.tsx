@@ -51,7 +51,7 @@ export default function AccessibilityPage() {
           bullets: [
             "Some manufacturer documents we link to are scanned PDFs published by third parties, and those files are frequently not accessible. We cannot fix them, so we describe their relevant content on the page rather than only linking to them.",
             "The site currently offers a single light theme. A dark theme is planned.",
-            "Wide reference tables scroll horizontally inside their own container on small screens. The container is keyboard scrollable, but a very wide table remains harder to read on a phone than on a laptop.",
+            "Wide reference tables scroll horizontally inside their own container on small screens. The container is keyboard scrollable, but a wide table remains harder to read on a phone than on a laptop.",
           ],
         },
         {

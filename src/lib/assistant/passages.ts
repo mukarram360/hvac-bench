@@ -118,12 +118,22 @@ export function buildPassageIndex(): PassageIndex {
   };
 
   for (const article of articles) {
-    push(article, "direct-answer", article.directAnswer, "0");
+    // The direct answer carries the page's title and its query shapes as well
+    // as its own text. A page that answers "how long do mini-splits last" by
+    // refusing to give a number still has to be findable by that question, and
+    // nothing here changes a word a reader sees.
+    push(
+      article,
+      "direct-answer",
+      article.directAnswer,
+      "0",
+      `${article.title}. ${article.keywords.join(". ")}`,
+    );
     if (article.scopeNotice) push(article, "scope", article.scopeNotice, "0");
     article.symptoms.forEach((text, i) => push(article, "symptom", text, String(i)));
     article.causes.forEach((text, i) => push(article, "cause", text, String(i)));
-    article.safeChecks.forEach((text, i) => push(article, "safe-check", text, String(i)));
-    article.professionalEscalation.forEach((text, i) => push(article, "escalation", text, String(i)));
+    (article.safeChecks ?? []).forEach((text, i) => push(article, "safe-check", text, String(i)));
+    (article.professionalEscalation ?? []).forEach((text, i) => push(article, "escalation", text, String(i)));
     if (article.resetGuidance) push(article, "reset", article.resetGuidance, "0");
     if (article.serviceHandoff) push(article, "handoff", article.serviceHandoff, "0");
 

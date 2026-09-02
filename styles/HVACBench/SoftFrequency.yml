@@ -1,0 +1,16 @@
+# "Often" and "in some cases" sit a step below the words in Prevalence.yml:
+# they claim a tendency rather than the default case, and sometimes they are
+# the honest word, as in a warranty term that is often shorter for labour than
+# for parts. They are flagged so an editor decides each one, and they do not
+# fail the build.
+extends: existence
+message: "'%s' still claims a frequency. Keep it only where the cited document supports the tendency."
+level: warning
+ignorecase: true
+nonword: true
+tokens:
+  - '\boften\b'
+  - '\bfrequently\b'
+  - '\brarely\b'
+  - '\bseldom\b'
+  - '\bin many cases\b'

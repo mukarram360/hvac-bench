@@ -154,16 +154,48 @@ describe("published article quality", () => {
    * The requirement now is substance, and which aids carry it is the article's
    * decision. `template-leakage.test.ts` enforces the rest.
    */
-  it("gives every published guide a complete diagnostic and search journey", () => {
+  it("gives every published page a scope, an explanation, and a search journey", () => {
     for (const article of articles) {
       expect(article.scopeNotice, article.path).toBeTruthy();
-      expect(article.diagnosticBranches?.length, article.path).toBeGreaterThanOrEqual(2);
       expect(article.sections?.length, article.path).toBeGreaterThanOrEqual(2);
-      expect(article.serviceHandoff, article.path).toBeTruthy();
       expect(article.faqs.length, article.path).toBeGreaterThanOrEqual(3);
       expect(article.keywords.length, article.path).toBeGreaterThanOrEqual(4);
       expect(article.lastReviewed, article.path).toBe("2026-09-02");
     }
+  });
+
+  /**
+   * Branches, a stop point, and a handoff belong to a page a reader can act on
+   * with the equipment in front of them. Requiring them everywhere is what put
+   * a homeowner-safe checklist on a page about a laboratory efficiency metric,
+   * where it had nothing to refer to and taught readers to scroll past it.
+   */
+  it("holds the actionable formats to the diagnostic requirements", () => {
+    const actionable = ["error-code", "troubleshooting", "maintenance", "how-to"];
+    for (const article of articles) {
+      if (!actionable.includes(article.articleType)) continue;
+      const branches = article.diagnosticBranches?.length ?? 0;
+      const steps = article.steps?.length ?? 0;
+      expect(
+        branches >= 2 || steps >= 4,
+        `${article.path} has neither branches nor a procedure`,
+      ).toBe(true);
+      expect(article.serviceHandoff, article.path).toBeTruthy();
+      expect(article.safeChecks?.length ?? 0, article.path).toBeGreaterThanOrEqual(1);
+      expect(article.professionalEscalation?.length ?? 0, article.path).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it("keeps the safety callouts off the pages with nothing to touch", () => {
+    const explainers = articles.filter((article) =>
+      ["guide", "comparison"].includes(article.articleType),
+    );
+    const withChecks = explainers.filter((article) => article.safeChecks?.length);
+    expect(explainers.length, "no explainer pages published").toBeGreaterThan(10);
+    expect(
+      withChecks.length,
+      "every explainer carries an owner checklist, which reads as boilerplate",
+    ).toBeLessThan(explainers.length / 2);
   });
 
   it("lets the library use a range of reasoning aids rather than one shape", () => {

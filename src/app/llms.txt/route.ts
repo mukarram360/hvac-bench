@@ -78,7 +78,7 @@ ${termLines}
 
 ## Editorial standards
 
-- [Editorial policy](${absoluteUrl("/editorial-policy/")}): sourcing rules, scope requirements, review status, and how AI tooling is used.
+- [Editorial policy](${absoluteUrl("/editorial-policy/")}): sourcing rules, scope requirements, review status, and how pages are produced.
 - [Sources and methodology](${absoluteUrl("/sources-methodology/")}): the source hierarchy and how a page is built.
 - [Corrections](${absoluteUrl("/corrections/")}): what gets corrected and how it is logged.
 - [Safety disclaimer](${absoluteUrl("/safety-disclaimer/")}): the boundary between owner checks and certified work.

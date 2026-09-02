@@ -1,0 +1,33 @@
+extends: existence
+message: "'%s' is a frequency claim. The cited documentation supports mechanism, not prevalence."
+level: error
+ignorecase: true
+nonword: true
+tokens:
+  # Adverbs that assert a default case. The evidence record behind this site
+  # establishes how equipment works, not how often a given thing happens, so a
+  # claim about the usual case has nothing standing behind it. Scope the
+  # sentence to the cited documentation instead, or state the mechanism plainly.
+  # "Normally" is deliberately absent. In equipment writing it nearly always
+  # means "in the normal operating state" rather than "in most cases", and
+  # flagging it would push writers away from the plainest word for a system
+  # that is working as designed.
+  - '\busually\b'
+  - '\bgenerally\b'
+  - '\btypically\b'
+  - '\bcommonly\b'
+  - '\bmost common\b'
+  - '\bsingle most\b'
+  - '\bcommon(?:est)? (?:root )?cause\b'
+  - '\bthe usual (?:cause|reason|culprit|suspect)\b'
+  - '\balmost always\b'
+  - '\bnine times out of ten\b'
+  - '\bmore often than not\b'
+  - '\bmain culprit\b'
+  - '\btypical(?:ly)? fail(?:s|ure|ures)?\b'
+  - '\bin most cases\b'
+  - '\bmost (?:systems|units|installations|homeowners|technicians)\b'
+  - '\bbiggest cause\b'
+  - '\bgenerally last(?:s)? \d'
+  - '\bwill save you \d'
+  - '\bup to \d+\s?% (?:savings|less|lower)\b'

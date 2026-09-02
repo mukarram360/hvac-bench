@@ -5,7 +5,7 @@ import { publish } from "./publish";
  * by the mode the system was in. That distinction is the page.
  */
 export const daikinA5 = publish({
-  title: "Daikin A5 error code: freeze-up or heating peak-cut control",
+  title: "Daikin A5 error code: freeze-up or peak-cut",
   slug: "a5-error-code",
   path: "/brands/daikin/a5-error-code/",
   description:
@@ -39,7 +39,7 @@ export const daikinA5 = publish({
     {
       title: "A5 appeared while the system was heating",
       observation:
-        "The unit was in heating mode when the code showed, and warm air had been delivered normally until the pause.",
+        "The unit was in heating mode when the code showed, and warm air had been delivered until the pause.",
       action:
         "Treat this as peak-cut control acting on a high indoor coil temperature. The airflow question is the same but the direction is reversed: warm air needs somewhere to go, so look at what is blocking the discharge rather than the intake.",
     },

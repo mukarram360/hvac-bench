@@ -39,7 +39,7 @@ export const miniSplitFilterCleaning = publish({
       observation:
         "The manual states whether the filter is washable and, if so, what water temperature and detergent are permitted.",
       action:
-        "Follow it exactly rather than improvising. Manufacturer instructions commonly specify cool or lukewarm water because heat can deform filter material and affect how it fits.",
+        "Follow it exactly rather than improvising. Manufacturer instructions specify cool or lukewarm water because heat can deform filter material and affect how it fits.",
     },
   ],
   steps: [
@@ -144,7 +144,7 @@ export const miniSplitFilterCleaning = publish({
     {
       question: "Can I wash the filter in hot water?",
       answer:
-        "Use only the water temperature permitted by the exact manual. Documented procedures commonly specify cool or lukewarm water because excessive heat can deform filter material.",
+        "Use only the water temperature permitted by the exact manual. Documented procedures specify cool or lukewarm water because excessive heat can deform filter material.",
     },
     {
       question: "How long does a washed filter take to dry?",

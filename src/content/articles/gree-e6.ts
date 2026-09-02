@@ -49,7 +49,7 @@ export const greeE6 = publish({
       observation:
         "Operation was normal, nothing was worked on, the weather was unremarkable, and the code appeared on its own.",
       action:
-        "Leave the system off; professional diagnosis is needed. A path that degrades without an obvious trigger usually means a connection or a board circuit, and both need power isolated and continuity measured.",
+        "Leave the system off; professional diagnosis is needed. A path that degrades without an obvious trigger points at a connection or a board circuit, and both need power isolated and continuity measured.",
     },
   ],
   figures: [

@@ -18,6 +18,7 @@ export const efficiency = [
     category: "efficiency",
     aliases: ["SEER", "SEER2"],
     related: ["hspf", "eer", "static-pressure"],
+    seeAlso: { label: "What SEER2 measures", path: "/seer2-explained/" },
     shortAnswer:
       "SEER is seasonal cooling output divided by the electricity used to produce it. SEER2 is the current United States test, run at a higher external static pressure, so its numbers read lower than SEER.",
     metaTitle: "SEER and SEER2: what changed",
@@ -31,7 +32,7 @@ export const efficiency = [
       { label: "Comparable with", value: "Other SEER2 figures only" },
     ],
     howItWorks:
-      "The test runs equipment across a set of conditions meant to represent a cooling season and divides the total cooling delivered by the total electricity used. SEER2 keeps the idea and changes the conditions, most significantly by testing ducted equipment against a realistic duct resistance instead of a nearly free-blowing one, which is why the same machine scores lower under the new procedure.",
+      "The test runs equipment across a set of conditions meant to represent a cooling season and divides the total cooling delivered by the total electricity used. SEER2 keeps the idea and changes the conditions, the main change being that ducted equipment is tested against a realistic duct resistance instead of a nearly free-blowing one, which is why the same machine scores lower under the new procedure.",
     whereYouMeetIt: [
       "On a North American equipment label and in the AHRI certified ratings directory.",
       "In a minimum efficiency requirement, where regional standards set a floor for what may be installed.",
@@ -101,6 +102,7 @@ export const efficiency = [
     category: "efficiency",
     aliases: ["HSPF", "HSPF2"],
     related: ["seer", "scop", "heat-pump"],
+    seeAlso: { label: "Which metric answers which question", path: "/seer2-explained/" },
     shortAnswer:
       "HSPF is seasonal heating output divided by the electricity used, expressed in BTU per watt-hour. HSPF2 is the current United States procedure and reads lower than HSPF for the same equipment.",
     metaTitle: "HSPF and HSPF2 for heat pumps",
@@ -183,6 +185,7 @@ export const efficiency = [
     category: "efficiency",
     aliases: ["energy efficiency ratio", "EER2"],
     related: ["seer", "cop"],
+    seeAlso: { label: "Rating conditions and seasonal averages", path: "/seer2-explained/" },
     shortAnswer:
       "EER is cooling output divided by electrical input at one fixed operating condition. Unlike SEER it is a single-point figure, which makes it useful for comparing performance on a hot day.",
     metaTitle: "EER: the single-point rating",
@@ -196,7 +199,7 @@ export const efficiency = [
       { label: "Current US variant", value: "EER2, matching the 2023 test conditions" },
     ],
     howItWorks:
-      "EER fixes the operating conditions and reports the ratio at that point, commonly a high outdoor temperature. Because it does not average across a season, it says how the equipment behaves when it is working hardest, which is the number that matters in a climate where the design day dominates the cooling bill.",
+      "EER fixes the operating conditions and reports the ratio at that point, which is a high outdoor temperature. Because it does not average across a season, it says how the equipment behaves when it is working hardest, which is the number that matters in a climate where the design day dominates the cooling bill.",
     whereYouMeetIt: [
       "On a North American data sheet, quoted alongside SEER2 rather than instead of it.",
       "In a hot climate specification, where performance at high outdoor temperature is what is being bought.",
@@ -260,6 +263,7 @@ export const efficiency = [
     category: "efficiency",
     aliases: ["coefficient of performance"],
     related: ["scop", "heat-pump", "eer"],
+    seeAlso: { label: "The running-cost arithmetic", path: "/heat-pump-vs-furnace/" },
     shortAnswer:
       "COP is heat delivered divided by electricity consumed at one operating condition, as a plain ratio. A COP of 3.5 means three and a half units of heat for every unit of electricity used.",
     metaTitle: "COP: heat per unit of power",
@@ -343,6 +347,7 @@ export const efficiency = [
     category: "efficiency",
     aliases: ["seasonal COP"],
     related: ["cop", "hspf", "air-to-water-heat-pump"],
+    seeAlso: { label: "Comparing across procedures", path: "/seer2-explained/" },
     shortAnswer:
       "SCOP is the seasonal coefficient of performance: heat delivered across a whole heating season divided by the electricity used, measured against a defined European climate profile.",
     metaTitle: "SCOP: the European season rating",
@@ -380,12 +385,12 @@ export const efficiency = [
       {
         context: "Quoted at low flow temperature",
         value: "Higher SCOP",
-        note: "Typically the 35 C figure, suited to underfloor heating",
+        note: "The 35 C figure, suited to underfloor heating",
       },
       {
         context: "Quoted at higher flow temperature",
         value: "Lower SCOP",
-        note: "Typically the 55 C figure, suited to radiator systems",
+        note: "The 55 C figure, suited to radiator systems",
       },
       {
         context: "North American counterpart",
@@ -491,6 +496,7 @@ export const efficiency = [
     category: "efficiency",
     aliases: ["variable speed compressor", "DC inverter"],
     related: ["inverter-module", "compressor", "short-cycling"],
+    seeAlso: { label: "What inverter really means", path: "/inverter-technology-explained/" },
     shortAnswer:
       "An inverter compressor varies its speed to match demand instead of switching fully on and off. It holds room temperature more steadily and uses less energy at part load than a fixed-speed compressor.",
     metaTitle: "Inverter compressor: variable speed",
@@ -532,7 +538,7 @@ export const efficiency = [
       {
         question: "Does an inverter system ever switch off completely?",
         answer:
-          "It reduces output rather than stopping once the room is close to the set point, and manufacturers describe that behaviour directly. A unit that appears never to switch off is usually doing exactly what it was designed to do.",
+          "It reduces output rather than stopping once the room is close to the set point, and manufacturers describe that behaviour directly. A unit that appears never to switch off is doing what it was designed to do.",
       },
       {
         question: "Why is an inverter system more efficient?",

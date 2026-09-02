@@ -14,6 +14,20 @@ import { ArticleCard } from "./article-card";
 import { ArticleContentBlocks } from "./article-content-blocks";
 import { Breadcrumbs } from "./breadcrumbs";
 
+/**
+ * What the scope box calls the coverage when a page is not tied to one product
+ * family. A comparison of two product classes is not "symptom guidance", and
+ * labelling it that way was a leftover from the days when every page was a
+ * symptom page.
+ */
+const SCOPE_LABELS: Record<string, string> = {
+  "error-code": "Cross-brand symptom guidance",
+  troubleshooting: "Cross-brand symptom guidance",
+  "how-to": "Cross-brand procedure; the exact steps come from your model manual",
+  guide: "Cross-brand explanation; product figures come from the model documentation",
+  comparison: "Product classes compared; figures belong to specific matched systems",
+};
+
 const DOCUMENT_CLASS_LABELS: Record<string, string> = {
   "oem-service-manual": "service manual",
   "oem-operation-manual": "operation manual",
@@ -136,7 +150,7 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
 
             <section className="scope-box">
               <h2>Equipment and model context</h2>
-              <p>{article.productFamily ?? "Cross-brand symptom guidance"}</p>
+              <p>{article.productFamily ?? SCOPE_LABELS[format]}</p>
               <ul>
                 {article.models.map((model) => (
                   <li key={model}>{model}</li>
@@ -155,28 +169,17 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
 
             <ArticleContentBlocks article={article} />
 
-            {article.steps && article.steps.length > 0 && (
-              <section className="article-section">
-                <h2>Procedure</h2>
+            {article.safeChecks && article.safeChecks.length > 0 && (
+              <section className="callout callout-safe">
+                <span className="eyebrow">Homeowner safe</span>
+                <h2>Safe homeowner checks</h2>
                 <ol className="check-list">
-                  {article.steps.map((step, index) => (
-                    <li key={step.name} id={`step-${index + 1}`}>
-                      <strong>{step.name}.</strong> {step.text}
-                    </li>
+                  {article.safeChecks.map((item) => (
+                    <li key={item}>{item}</li>
                   ))}
                 </ol>
               </section>
             )}
-
-            <section className="callout callout-safe">
-              <span className="eyebrow">Homeowner safe</span>
-              <h2>Safe homeowner checks</h2>
-              <ol className="check-list">
-                {article.safeChecks.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
-            </section>
 
             {article.resetGuidance && (
               <section className="article-section">
@@ -185,15 +188,17 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
               </section>
             )}
 
-            <section className="callout callout-pro">
-              <span className="eyebrow">Stop point</span>
-              <h2>When to call a technician</h2>
-              <ul className="check-list">
-                {article.professionalEscalation.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
+            {article.professionalEscalation && article.professionalEscalation.length > 0 && (
+              <section className="callout callout-pro">
+                <span className="eyebrow">Stop point</span>
+                <h2>When to call a technician</h2>
+                <ul className="check-list">
+                  {article.professionalEscalation.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             {article.faqs.length > 0 && (
               <section className="article-section">

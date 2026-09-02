@@ -35,7 +35,7 @@ const FAQS = [
   {
     question: "Where do I find the model number I need to look up a code?",
     answer:
-      "On the data plate: a printed or etched label on the side or rear of the outdoor unit and on the chassis of the indoor unit, usually behind or beneath the front panel. It lists the full model and serial number, electrical ratings, and the refrigerant charge.",
+      "On the data plate: a printed or etched label on the side or rear of the outdoor unit and on the chassis of the indoor unit, behind or beneath the front panel. It lists the full model and serial number, electrical ratings, and the refrigerant charge.",
   },
   {
     question: "Is an error code always a fault?",

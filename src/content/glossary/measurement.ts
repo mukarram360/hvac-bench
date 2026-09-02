@@ -13,10 +13,11 @@ export const measurement = [
     slug: "btu",
     question: "What is a BTU?",
     definition:
-      "The British thermal unit, the heat needed to raise one pound of water by one degree Fahrenheit. Equipment capacity is usually quoted in BTU per hour in North America, while the same figure appears in kilowatts in the United Kingdom and Europe.",
+      "The British thermal unit, the heat needed to raise one pound of water by one degree Fahrenheit. Equipment capacity is quoted in BTU per hour in North America, while the same figure appears in kilowatts in the United Kingdom and Europe.",
     category: "measurement",
     aliases: ["BTU/h", "British thermal unit"],
     related: ["ton-of-refrigeration", "seer"],
+    seeAlso: { label: "Why floor area is the weakest input", path: "/btu-sizing-explained/" },
     shortAnswer:
       "A BTU is the heat needed to raise one pound of water by one degree Fahrenheit. Equipment capacity is quoted in BTU per hour, which is a rate rather than a quantity.",
     metaTitle: "BTU: the unit of capacity",
@@ -85,7 +86,7 @@ export const measurement = [
       {
         question: "Why is capacity in the model number?",
         answer:
-          "Many North American manufacturers encode the nominal capacity in thousands of BTU per hour into the model number, so a model ending in 12 is commonly a 12,000 BTU/h unit. Confirm it on the data plate rather than assuming.",
+          "Many North American manufacturers encode the nominal capacity in thousands of BTU per hour into the model number, so a model ending in 12 points at a 12,000 BTU/h unit. Confirm it on the data plate rather than assuming.",
       },
     ],
     sourceIds: ["ashrae-terminology"],
@@ -99,6 +100,7 @@ export const measurement = [
     category: "measurement",
     aliases: ["ton", "tonnage"],
     related: ["btu", "ducted-split-system"],
+    seeAlso: { label: "Sizing from a load calculation", path: "/btu-sizing-explained/" },
     shortAnswer:
       "A ton of refrigeration is 12,000 BTU per hour, about 3.5 kilowatts. The name comes from the cooling once produced by melting one ton of ice over twenty-four hours.",
     metaTitle: "Ton of refrigeration: the unit",
@@ -152,7 +154,7 @@ export const measurement = [
       {
         question: "How many tons is my air conditioner?",
         answer:
-          "Divide the rated capacity in BTU per hour by 12,000. Many North American model numbers also encode it, commonly as a two-digit number that is the tonnage multiplied by twelve.",
+          "Divide the rated capacity in BTU per hour by 12,000. Many North American model numbers also encode it, as a two-digit number that is the tonnage multiplied by twelve.",
       },
       {
         question: "Is tonnage used outside North America?",
@@ -229,7 +231,7 @@ export const measurement = [
       {
         question: "Does high delta T mean the system is working well?",
         answer:
-          "Not necessarily. A large drop on very little airflow moves less total heat than a moderate drop on full airflow, and it is a signature of restricted airflow rather than of good performance.",
+          "Not necessarily. A large drop across a starved coil moves less total heat than a moderate drop at full airflow, and it is a signature of restricted airflow rather than of good performance.",
       },
       {
         question: "Can I measure delta T on a mini-split?",

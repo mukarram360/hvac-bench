@@ -18,6 +18,7 @@ export const service = [
     category: "service",
     aliases: ["vacuum", "pull down"],
     related: ["commissioning", "refrigerant-charge", "refrigerant"],
+    seeAlso: { label: "Who may open the circuit", path: "/mrcool-vs-pioneer-mini-splits/" },
     shortAnswer:
       "Evacuation is pulling a deep vacuum on a refrigerant circuit to remove air and moisture before charging. It is measured with a micron gauge and confirmed by a hold test, not by time.",
     metaTitle: "Evacuation: pulling a vacuum",
@@ -53,7 +54,7 @@ export const service = [
     ],
     typicalValues: [
       {
-        context: "Commonly specified target",
+        context: "Specified target",
         value: "500 microns",
         note: "Manufacturers state their own figure, and the manual overrides any general value",
       },
@@ -123,7 +124,7 @@ export const service = [
       {
         title: "Photograph both plates in full",
         detail:
-          "Indoor and outdoor model numbers differ and the pairing is what a service manual is indexed by. Capture the whole label rather than just the model line.",
+          "Indoor and outdoor model numbers differ, and a service manual is indexed by the pairing. Capture the whole label rather than just the model line.",
         performedBy: "owner",
       },
       {
@@ -148,12 +149,12 @@ export const service = [
       {
         question: "Where is the data plate on a mini-split?",
         answer:
-          "On the outdoor unit it is usually on the side or rear casing. On the indoor head it is commonly behind the hinged front panel, near the filters, or on the underside of the casing.",
+          "On the outdoor unit it is on the side or rear casing. On the indoor head it sits behind the hinged front panel, near the filters, or on the underside of the casing.",
       },
       {
         question: "What if the data plate is unreadable?",
         answer:
-          "Installation paperwork, the commissioning record, and any warranty registration usually carry the model number. Failing that, a technician can sometimes identify the family from board part numbers, which is slower and less certain.",
+          "Installation paperwork, the commissioning record, and any warranty registration all carry the model number. Failing that, a technician can sometimes identify the family from board part numbers, which is slower and less certain.",
       },
       {
         question: "Why do I need both indoor and outdoor model numbers?",
@@ -173,6 +174,7 @@ export const service = [
     category: "service",
     aliases: ["technical manual", "installation manual"],
     related: ["data-plate", "error-code"],
+    seeAlso: { label: "Finding the numbers it is indexed by", path: "/how-to-find-mini-split-model-number/" },
     shortAnswer:
       "A service manual is the manufacturer document written for technicians. It carries the wiring diagrams, code tables, pressure data, and diagnostic sequences an owner manual leaves out.",
     metaTitle: "Service manual: the settling source",
@@ -238,6 +240,7 @@ export const service = [
     category: "service",
     aliases: ["handover", "start-up"],
     related: ["evacuation", "refrigerant-charge", "superheat"],
+    seeAlso: { label: "Judging a repair-or-replace call", path: "/mini-split-lifespan/" },
     shortAnswer:
       "Commissioning is the measured handover of a new system: charge verified, airflow set, controls configured, and every reading written down as the baseline later visits compare against.",
     metaTitle: "Commissioning: the measured handover",
@@ -309,6 +312,7 @@ export const service = [
     category: "service",
     aliases: ["F Gas", "FGas certification"],
     related: ["refrigerant", "epa-608", "refrigerant-leak"],
+    seeAlso: { label: "Refrigerant handling in practice", path: "/hvac-refrigerants-explained/" },
     shortAnswer:
       "F-Gas regulation is the United Kingdom and European Union framework controlling fluorinated refrigerants: who may handle them, when systems must be leak checked, and what has to be recorded.",
     metaTitle: "F-Gas regulation: what it requires",
@@ -355,7 +359,7 @@ export const service = [
       {
         question: "How often does a system need leak checking?",
         answer:
-          "The interval depends on the size of the charge expressed in carbon dioxide equivalent, so it scales with both the quantity and the global warming potential of the refrigerant. Small domestic systems commonly fall below the threshold.",
+          "The interval depends on the size of the charge expressed in carbon dioxide equivalent, so it scales with both the quantity and the global warming potential of the refrigerant. A small domestic system can fall below the threshold; check the charge on the data plate against the current figure.",
       },
       {
         question: "Is F-Gas the same as EPA Section 608?",
@@ -374,6 +378,7 @@ export const service = [
     category: "service",
     aliases: ["EPA 608", "Section 608"],
     related: ["f-gas-regulation", "refrigerant"],
+    seeAlso: { label: "What certification covers", path: "/hvac-refrigerants-explained/" },
     shortAnswer:
       "EPA Section 608 is the United States certification required to handle refrigerants under the Clean Air Act. It divides into type classes covering small appliances, low pressure, and high pressure equipment.",
     metaTitle: "EPA Section 608 certification",
@@ -488,21 +493,21 @@ export const service = [
         performedBy: "owner",
       },
       {
-        title: "Measure at the plug and compare with the resistance table",
+        title: "Measure at the board plug, not at the sensor",
         detail:
-          "A reading taken at a known temperature and checked against the published table separates a drifted sensor from a broken connection.",
+          "Reading resistance where the harness lands on the board tests the sensor and the wiring together. Repeating it at the sensor itself says which half of that path is at fault.",
         performedBy: "technician",
       },
       {
         title: "Inspect the harness route and the pins",
         detail:
-          "Chafing where the harness passes a panel edge, corrosion at the plug, and a pin backed out of its housing all produce the same code.",
+          "Follow the harness for pinch points at panel edges and for a plug that has been disturbed by earlier work. Both produce a code that comes and goes.",
         performedBy: "technician",
       },
     ],
     mistakes: [
       "A sensor fault does not mean the sensor failed. It means the measurement path did not return a valid value.",
-      "A sensor reporting an extreme temperature may be entirely correct. Confirm the reading is wrong before replacing the part that reported it.",
+      "A sensor code is an instruction to check the condition being reported, not a parts order. The extreme value may be real.",
       "Replacing a sensor without inspecting its connector can leave the same code with a new part fitted.",
     ],
     faqs: [
@@ -514,12 +519,12 @@ export const service = [
       {
         question: "Can I replace a sensor myself?",
         answer:
-          "It usually means opening the indoor or outdoor unit, working near live terminals, and identifying the correct part by model. That places it on the technician side even where the sensor itself is a low cost part.",
+          "It means opening the indoor or outdoor unit, working near live terminals, and identifying the correct part by model. That places it on the technician side even where the sensor itself is a low cost part.",
       },
       {
         question: "Does a sensor fault stop the system?",
         answer:
-          "It depends on which sensor. A board that has lost a reading it depends on for protection will usually stop rather than run blind, while a less critical sensor can leave the system running with reduced function.",
+          "It depends on which sensor. A board that has lost a reading it depends on for protection stops rather than running blind, while a less critical sensor can leave the system running with reduced function.",
       },
     ],
     sourceIds: ["pioneer-quantum-e1", "daikin-a5-service", "pioneer-current-e1-e2"],

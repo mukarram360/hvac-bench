@@ -77,14 +77,14 @@ export const pioneerE1Sensor = publish({
       title: "What a room sensor actually does",
       paragraphs: [
         "The indoor unit decides when to run, how hard, and when to stop by reading the temperature of the air arriving at it. If that reading is wrong, every decision built on it is wrong too, even though the compressor, the fan, and the refrigerant circuit may be in perfect condition.",
-        "This is why the fault is worth taking seriously despite sounding minor. A system working from a bad reading can overshoot, undershoot, run far longer than it needs to, or stop while the room is still uncomfortable. The equipment is not faulty in the way people usually mean; it is being told the wrong thing.",
+        "This is why the fault is worth taking seriously despite sounding minor. A system working from a bad reading can overshoot, undershoot, run far longer than it needs to, or stop while the room is still uncomfortable. The equipment is not faulty in the way the word suggests; it is being told the wrong thing.",
       ],
     },
     {
       title: "The comparison you can make yourself",
       paragraphs: [
         "The one genuinely useful check here needs a room thermometer and nothing else. Put it near the indoor unit, out of direct sunlight and away from a draught or a doorway, give it time to settle, and compare it with what the unit reports.",
-        "A close match tells you the sensed value is not obviously wrong at that moment, which is worth knowing but does not clear the fault. A large gap, a reading that never changes as the room does, or a value that is simply not credible for the conditions is a concrete piece of evidence. Either way, write down both numbers and the time, because a technician arriving to a system that has been reset has nothing to work from otherwise.",
+        "A close match tells you the sensed value is credible at that moment, which is worth knowing but does not clear the fault. A large gap, a reading that never changes as the room does, or a value that is simply not credible for the conditions is a concrete piece of evidence. Either way, write down both numbers and the time, because a technician arriving to a system that has been reset has nothing to work from otherwise.",
       ],
     },
   ],

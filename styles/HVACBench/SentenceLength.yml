@@ -1,0 +1,6 @@
+extends: occurrence
+message: "Sentence runs past 42 words. Break it or cut it."
+level: warning
+scope: sentence
+max: 42
+token: '\b\w+\b'

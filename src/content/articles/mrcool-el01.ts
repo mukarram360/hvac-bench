@@ -22,7 +22,7 @@ export const mrcoolEl01 = publish({
   errorCode: "EL01 / E1",
   problemType: "communication-fault",
   directAnswer:
-    "MRCOOL identifies EL01 or E1 on the supported mini-split families as an indoor-to-outdoor communication malfunction, commonly involving the connection path but not proving one component failed.",
+    "MRCOOL identifies EL01 or E1 on the supported mini-split families as an indoor-to-outdoor communication malfunction, which implicates the connection path without proving one component failed.",
   scopeNotice:
     "MRCOOL revises its code display between product generations, which is why the same fault reaches you as EL01 on some equipment and E1 on others. Match the characters you see and the generation of your indoor unit against the official code table before acting, because the table is the thing that resolves which entry applies.",
   symptoms: [
@@ -89,7 +89,7 @@ export const mrcoolEl01 = publish({
       paragraphs: [
         "The official guidance opens with switching off at the breaker, waiting, and restoring power. That is a designed step with a purpose: it clears stored states and shows whether the communication failure survives a full power interruption.",
         "Doing it repeatedly does not extend the benefit. If the code comes back, you have your answer, and further cycling of the breaker only interrupts a system that is already reporting a fault. It also removes the pattern a technician would use, because a fault that returns immediately and a fault that returns after twenty minutes of running are different leads.",
-        "There is also a practical reason to get the model and serial numbers written down before you call. MRCOOL support and most service companies will ask for them first, and reading them off a photograph on your phone is considerably easier than standing on a chair with a torch while somebody waits on the line.",
+        "There is also a practical reason to get the model and serial numbers written down before you call. MRCOOL support and most service companies will ask for them first, and reading them off a photograph on your phone beats standing on a chair with a torch while somebody waits on the line.",
       ],
     },
   ],

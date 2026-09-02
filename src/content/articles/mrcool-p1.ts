@@ -46,7 +46,7 @@ export const mrcoolP1 = publish({
       observation:
         "Everything else in the property behaves normally, and the protection appears on this equipment alone.",
       action:
-        "Note that clearly, because it narrows the search to this circuit and this equipment: the dedicated breaker, the run to the unit, the terminals, and the power electronics. All of that requires a qualified visit.",
+        "Write that down, because it narrows the search to this circuit and this equipment: the dedicated breaker, the run to the unit, the terminals, and the power electronics. All of that requires a qualified visit.",
     },
     {
       title: "The breaker has tripped rather than the unit reporting",

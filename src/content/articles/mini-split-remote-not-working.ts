@@ -25,7 +25,7 @@ export const miniSplitRemoteNotWorking = publish({
       "The remote display is blank, faded, intermittent, or visible only after a battery is moved.",
       "The remote display changes but the indoor unit does not beep or apply the command.",
       "The indoor unit beeps, yet the mode, set temperature, fan, or timer does not change as expected.",
-      "The remote works only very close to the indoor unit or from one narrow angle.",
+      "The remote works only within a metre of the indoor unit, or from one narrow angle.",
     ],
     causes: [
       "Both batteries may be exhausted, mismatched, reversed, loose against the contacts, or affected by leakage or corrosion.",
@@ -93,7 +93,7 @@ export const miniSplitRemoteNotWorking = publish({
           "Cancel locks and timers and compare the requested mode with the exact operating manual",
         ],
         [
-          "The remote works only very close or intermittently",
+          "The remote works only at close range, or intermittently",
           "Weak batteries, angle, bright light, a dirty receiver window, or a deteriorating transmitter may reduce range",
           "Fit fresh batteries, clean only exposed surfaces with a soft dry cloth, and test away from strong light",
         ],
@@ -270,7 +270,7 @@ export const miniSplitRemoteNotWorking = publish({
       "/mini-split-not-turning-on/",
       "/mini-split-not-cooling/",
       "/mini-split-not-heating/",
-      "/brands/fujitsu/",
+      "/how-to-check-mini-split-remote/",
       "/brands/daikin/",
     ],
 });

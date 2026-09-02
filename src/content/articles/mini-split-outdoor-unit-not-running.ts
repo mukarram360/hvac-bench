@@ -2,7 +2,7 @@ import { publish } from "./publish";
 
 /** Checks documented idle states before treating outdoor stillness as a fault. */
 export const miniSplitOutdoorUnitNotRunning = publish({
-  title: "Mini-split outdoor unit not running: delay, demand, or fault",
+  title: "Outdoor unit not running: delay, demand, or fault",
   slug: "mini-split-outdoor-unit-not-running",
   path: "/mini-split-outdoor-unit-not-running/",
   description:
@@ -58,7 +58,7 @@ export const miniSplitOutdoorUnitNotRunning = publish({
     rows: [
       [
         "Room is already at the setpoint",
-        "Idle or running at a very low output",
+        "Idle or running at low output",
         "This may be normal; create a clear demand if you want to test response",
       ],
       [
@@ -83,7 +83,7 @@ export const miniSplitOutdoorUnitNotRunning = publish({
       title: "Inverter systems are quiet on purpose",
       paragraphs: [
         "Fixed-speed and inverter-driven systems can behave differently near the setpoint. Manufacturer guidance notes that inverter equipment may continue at reduced capacity rather than cycling fully off.",
-        "Low-output operation can be difficult to judge from sound alone. Create a clear Heat or Cool demand, wait through the documented delay, and observe air movement from outside the discharge grille without reaching into it. If the room already sits close to the setpoint, move the setpoint several degrees further before you judge the result, because a small difference gives the system very little to respond to.",
+        "Low-output operation can be difficult to judge from sound alone. Create a clear Heat or Cool demand, wait through the documented delay, and observe air movement from outside the discharge grille without reaching into it. If the room already sits close to the setpoint, move the setpoint several degrees further before you judge the result, because a small difference gives the system almost nothing to respond to.",
       ],
     },
     {

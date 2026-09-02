@@ -6,7 +6,7 @@ import { publish } from "./publish";
  * ice returns, because that is the observation a technician cannot make.
  */
 export const miniSplitFrozenCoil = publish({
-  title: "Mini-split frozen coil: airflow, thawing, and service limits",
+  title: "Mini-split frozen coil: airflow, thawing, limits",
   slug: "mini-split-frozen-coil",
   path: "/mini-split-frozen-coil/",
   description:
@@ -51,7 +51,7 @@ export const miniSplitFrozenCoil = publish({
     {
       title: "The system was run hard in cool weather",
       observation:
-        "Cooling was left running with a very low setpoint on a mild evening, or overnight with windows open.",
+        "Cooling was left running with the setpoint far below the room on a mild evening, or overnight with windows open.",
       action:
         "Note the conditions, thaw the coil, and use a more moderate setpoint. Cooling operation at low outdoor and indoor temperatures brings coil temperature closer to freezing before any fault is involved.",
     },
@@ -82,7 +82,7 @@ export const miniSplitFrozenCoil = publish({
       title: "Why a coil freezes at all",
       paragraphs: [
         "The indoor coil is cold because refrigerant is absorbing heat from the room air passing over it. That balance depends on enough air arriving. When airflow falls, the coil has less heat to absorb, its temperature drops below freezing, and the moisture condensing on it turns to ice instead of running into the drain pan.",
-        "The ice then makes everything worse, because it blocks the very airflow that was already short. This is why a coil goes from slightly reduced performance to a solid block of ice quickly once it starts. It is a runaway condition rather than a gradual one.",
+        "The ice then makes everything worse, because it blocks the airflow that was already short. This is why a coil goes from slightly reduced performance to a solid block of ice quickly once it starts. It is a runaway condition rather than a gradual one.",
       ],
     },
     {
@@ -132,7 +132,7 @@ export const miniSplitFrozenCoil = publish({
     {
       question: "Can I just add refrigerant?",
       answer:
-        "No. Manufacturer guidance lists leaks and incorrect initial charging among reasons for low refrigerant. A trained technician must identify the cause and handle the sealed refrigerant circuit under the rules that apply locally.",
+        "No. A sealed circuit does not consume refrigerant, so a low charge means it escaped or was never correct. Adding more without finding the cause leaves the fault in place and vents a regulated substance.",
     },
     {
       question: "Why did the coil freeze right after I cleaned the filter?",

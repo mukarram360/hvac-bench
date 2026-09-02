@@ -17,6 +17,7 @@ export const airflow = [
     category: "airflow",
     aliases: ["external static pressure", "ESP"],
     related: ["ductwork", "blower-motor", "frozen-coil"],
+    seeAlso: { label: "What the pressure budget buys", path: "/ductless-vs-ducted-heat-pump/" },
     shortAnswer:
       "Static pressure is the resistance a duct system puts in front of the blower, measured in inches of water column or pascals. High readings mean the blower cannot move the air the equipment was rated for.",
     metaTitle: "Static pressure: what it measures",
@@ -38,7 +39,7 @@ export const airflow = [
       "A blower is rated to deliver a certain airflow against a certain resistance. Undersized ducts, crushed flexible runs, restrictive filters, and closed registers all add resistance, and once the total exceeds what the blower was selected for, airflow falls. Less air across the coil means less heat carried away, which is why an airflow problem looks like a capacity problem.",
     whereYouMeetIt: [
       "In a capacity complaint on equipment that measures correctly on the refrigerant side.",
-      "In coil icing, where lost airflow drove the coil surface below freezing.",
+      "In coil icing, because resistance the blower cannot overcome is what took the airflow away.",
       "In efficiency testing, because the SEER2 procedure raised the external static pressure ducted systems are tested at.",
     ],
     howToCheck: [
@@ -81,7 +82,7 @@ export const airflow = [
       {
         question: "Why did SEER2 change the static pressure used in testing?",
         answer:
-          "The older SEER test ran ducted systems at a very low external static pressure that did not reflect real duct systems. SEER2 raised it to 0.5 in. w.c., which is why SEER2 numbers read lower than SEER for the same equipment.",
+          "The older SEER test ran ducted systems against an external static pressure far below what a real duct system presents. SEER2 raised it to 0.5 in. w.c., which is why SEER2 numbers read lower than SEER for the same equipment.",
       },
       {
         question: "Can high static pressure damage the equipment?",
@@ -105,6 +106,7 @@ export const airflow = [
     category: "airflow",
     aliases: ["ducts", "duct system"],
     related: ["static-pressure", "return-air", "air-handler"],
+    seeAlso: { label: "Whether to keep using ducts", path: "/mini-split-vs-central-air/" },
     shortAnswer:
       "Ductwork is the network of supply and return ducts carrying air between the air handler and the rooms. It decides how much of the equipment's capacity actually reaches each room.",
     metaTitle: "Ductwork: what it decides",
@@ -128,7 +130,7 @@ export const airflow = [
       {
         title: "Look at any accessible flexible duct",
         detail:
-          "Compressed, kinked, or sharply bent flexible duct restricts air noticeably, and loft runs are usually visible without tools.",
+          "Compressed, kinked, or sharply bent flexible duct restricts air noticeably, and an exposed loft run can be inspected without tools.",
         performedBy: "owner",
       },
       {
@@ -176,15 +178,16 @@ export const airflow = [
     category: "airflow",
     aliases: ["return", "return duct"],
     related: ["air-filter", "delta-t", "ductwork"],
+    seeAlso: { label: "Distribution and its losses", path: "/mini-split-vs-central-air/" },
     shortAnswer:
       "Return air is the room air drawn back to the air handler to be filtered and conditioned again. A system can only supply as much air as its returns let it draw.",
     metaTitle: "Return air: the half people forget",
     metaDescription:
-      "What return air is, why supply and return have to balance, how closed doors starve a single-return house, and why the filter usually sits in the return path.",
+      "What return air is, why supply and return have to balance, how closed doors starve a single-return house, and why the filter sits in the return path.",
     keywords: ["return air", "return duct", "blocked return vent", "why is my return vent loud"],
     facts: [
       { label: "Direction", value: "Room air back toward the air handler" },
-      { label: "Usually holds", value: "The filter, in the grille or at the cabinet" },
+      { label: "Holds", value: "The filter, in the grille or at the cabinet" },
       { label: "Must balance", value: "Whatever the supply side delivers" },
       { label: "Common restriction", value: "Furniture, closed doors, or a loaded filter" },
     ],
@@ -217,7 +220,7 @@ export const airflow = [
       {
         question: "Why does my return vent whistle?",
         answer:
-          "Air moving too fast through too small a free area makes noise. It usually means the return is undersized for the airflow the blower is trying to move, or that something is partially blocking it.",
+          "Air moving too fast through too small a free area makes noise. It points at a return undersized for the airflow the blower is trying to move, or at something partially blocking it.",
       },
       {
         question: "Should I keep interior doors open?",
@@ -257,7 +260,7 @@ export const airflow = [
       "Air passes through the filter before it reaches the coil, and dust that would otherwise settle on the fins is caught on the medium instead. A loading filter catches more but also passes less, and the airflow lost is airflow the coil needed to shed its heat, which is how a maintenance item becomes a capacity and icing question.",
     whereYouMeetIt: [
       "In routine maintenance, as the single check most manufacturers put in the owner manual.",
-      "In an icing complaint, where a blocked filter is the restriction that took airflow away.",
+      "In an icing complaint, because the filter is the restriction an owner can inspect and correct.",
       "In a smell complaint, where the filter and the surfaces behind it are what get cleaned.",
     ],
     howToCheck: [
@@ -289,7 +292,7 @@ export const airflow = [
       {
         question: "How often should I clean a mini-split filter?",
         answer:
-          "Manufacturers commonly specify a check every few weeks in heavy use, with the interval depending on the environment rather than the calendar. Pets, carpets, and building work all shorten it.",
+          "Manufacturer instructions specify a check every few weeks in heavy use, with the interval depending on the environment rather than the calendar. Pets, carpets, and building work all shorten it.",
       },
       {
         question: "Can a dirty filter freeze the coil?",
@@ -314,6 +317,7 @@ export const airflow = [
     category: "airflow",
     aliases: ["MERV"],
     related: ["air-filter", "static-pressure"],
+    seeAlso: { label: "Cleaning a ductless filter", path: "/mini-split-filter-cleaning/" },
     shortAnswer:
       "MERV is a 1 to 16 scale rating how well a filter captures particles across defined size ranges. A higher number captures more but adds resistance the blower has to overcome.",
     metaTitle: "MERV rating: what the number means",
@@ -331,7 +335,7 @@ export const airflow = [
     whereYouMeetIt: [
       "On the frame of any North American panel filter, alongside the nominal dimensions.",
       "In an airflow investigation, where a high rated filter in a small slot is the added resistance.",
-      "In an air quality discussion, where MERV 13 is the level commonly referenced for fine particles.",
+      "In an air quality discussion, where MERV 13 is the level referenced for fine particles.",
     ],
     howToCheck: [
       {
@@ -382,7 +386,7 @@ export const airflow = [
       {
         question: "Do mini-splits use MERV filters?",
         answer:
-          "Not usually. Ductless indoor units use washable mesh screens rather than rated panel filters, and any additional filtration is a manufacturer accessory for that model.",
+          "Not as standard. Ductless indoor units use washable mesh screens rather than rated panel filters, and any additional filtration is a manufacturer accessory for that model.",
       },
     ],
     sourceIds: ["ashrae-terminology"],
@@ -392,7 +396,7 @@ export const airflow = [
     slug: "frozen-coil",
     question: "What is a frozen coil?",
     definition:
-      "Ice forming on the indoor coil, usually because airflow has dropped or the refrigerant charge is low. Running a frozen system risks liquid refrigerant reaching the compressor, so the standard response is to stop cooling and let it thaw before diagnosing.",
+      "Ice forming on the indoor coil, which follows a drop in airflow or a low refrigerant charge. Running a frozen system risks liquid refrigerant reaching the compressor, so the standard response is to stop cooling and let it thaw before diagnosing.",
     category: "airflow",
     aliases: ["iced coil", "coil icing"],
     related: ["air-filter", "static-pressure", "refrigerant-charge"],
@@ -444,7 +448,7 @@ export const airflow = [
       {
         question: "How long does a frozen coil take to thaw?",
         answer:
-          "Running the fan alone, usually one to a few hours depending on how much ice formed and how warm the room is. Nothing measured before it is completely clear will be reliable.",
+          "Running the fan alone, for one to a few hours depending on how much ice formed and how warm the room is. Nothing measured before it is completely clear will be reliable.",
       },
       {
         question: "Can I just change the filter and carry on?",

@@ -524,7 +524,8 @@ export function howToJsonLd(article: TechnicalArticle) {
     name: article.title,
     description: article.description,
     inLanguage: "en",
-    totalTime: "PT20M",
+    // No totalTime. It was hard-coded at twenty minutes for every procedure on
+    // the site, which is a figure no page states and no source supports.
     step: article.steps.map((step, index) => ({
       "@type": "HowToStep",
       position: index + 1,

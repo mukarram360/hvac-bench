@@ -8,7 +8,7 @@ const PATH = "/editorial-policy/";
 export const metadata: Metadata = pageMetadata({
   title: "Editorial policy",
   description:
-    "The rules HVAC Bench publishes under: sourcing, product scope, safety boundaries, review status, independence from manufacturers, and how AI tooling is and is not used.",
+    "The rules HVAC Bench publishes under: sourcing, product scope, safety boundaries, review status, independence from manufacturers, and how pages are actually produced.",
   path: PATH,
 });
 
@@ -64,10 +64,12 @@ export default function EditorialPolicyPage() {
           ],
         },
         {
-          title: "How AI tooling is used",
+          title: "How this site is produced, including the AI part",
           paragraphs: [
-            "AI tools assist with drafting, structuring, and editing, in the same way a word processor or a research assistant would. They do not decide what is true.",
-            "Every technical claim is checked against retained manufacturer documentation by a person before publication, and no page is published because a model produced a fluent-sounding answer. Where verification is not possible, the page does not publish.",
+            "Pages are researched and drafted with AI assistance, working from the manufacturer and regulator documents listed in the evidence record on each page. That is stated here because it is true and because you are entitled to know it, not as a disclaimer bolted on after the fact.",
+            "What the assistance does not do is decide what is true. A claim reaches a page only if it can be traced to a document in the source registry, and where the documentation does not settle a question the page says so instead of filling the gap. The pages on lifespan and on brand comparisons are the clearest examples: both refuse to publish figures that no cited source supports.",
+            "Before anything deploys, the repository runs automated checks that a person can inspect and re-run: schema validation on every page, a prose linter carrying this site's banned phrases and its rule against frequency claims, a cross-page similarity audit that fails if two pages share a paragraph or a sentence, an internal link check, and a full production build. Those checks catch template writing and unsupported wording. They cannot verify a technical fact, which is why the source list on each page is the thing to judge it by.",
+            "An operator reviews and publishes. Where a qualified technician or engineer has reviewed a page, that person is named on it. No page claims a review that did not happen.",
           ],
         },
         {

@@ -22,7 +22,7 @@ const SECTIONS: { id: RegionCode; heading: string; blurb: string }[] = [
     id: "us",
     heading: "United States",
     blurb:
-      "Manufacturers commonly installed across North America, including the ductless specialists sold through online and contractor channels.",
+      "Manufacturers installed across North America, including the ductless specialists sold through online and contractor channels.",
   },
   {
     id: "uk",

@@ -85,7 +85,7 @@ export const miniSplitNotHeating = publish({
     {
       title: "Why a heat pump pauses on purpose",
       paragraphs: [
-        "In heating, the outdoor coil is colder than the outside air, so moisture in that air condenses onto it and freezes. Left alone, the frost would build until the coil could no longer absorb heat. The equipment deals with this by periodically reversing to warm the outdoor coil and melt the frost off.",
+        "Frost on the outdoor unit is expected in this mode. The coil has to sit below the air it draws heat from, so moisture in that air freezes. Left alone, the frost would build until the coil could no longer absorb heat. The equipment deals with this by periodically reversing to warm the outdoor coil and melt the frost off.",
         "During documented defrost, some systems stop or slow the indoor fan while the outdoor coil is warmed. Noise and airflow can change, and steam or water may appear outside. Normal completion means the model follows its documented sequence and returns to heating within the manual's limits.",
       ],
     },

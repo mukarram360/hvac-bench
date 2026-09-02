@@ -2,7 +2,7 @@ import { publish } from "./publish";
 
 /** Makes the reader distinguish measured starts and stops from modulation. */
 export const miniSplitShortCycling = publish({
-  title: "Mini-split short cycling: settings, airflow, and service clues",
+  title: "Mini-split short cycling: settings and airflow",
   slug: "mini-split-short-cycling",
   path: "/mini-split-short-cycling/",
   description:
@@ -73,7 +73,7 @@ export const miniSplitShortCycling = publish({
       ],
       [
         "When it happens",
-        "Mild weather, when the room needs very little",
+        "Mild weather, when the room needs almost nothing",
         "Any conditions, including when the system should be working hard",
       ],
     ],

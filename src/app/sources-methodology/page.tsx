@@ -62,7 +62,7 @@ export default function SourcesMethodologyPage() {
         {
           title: "When documentation does not exist",
           paragraphs: [
-            "Some codes are not available in public manufacturer documentation. In that case we either leave the page unwritten or publish only what can be established, clearly labelled, with the gap named.",
+            "Some codes are not available in public manufacturer documentation. In that case we either leave the page unwritten or publish only what can be established, labelled as partial, with the gap named.",
             "Saying that a definition could not be verified is more useful than inventing one, and it tells a reader where the published evidence stops instead of inviting them to follow a guess.",
           ],
         },

@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Generated at build time by scripts/build-search-index.ts
 /public/search-index.json
+
+# Markdown rendered from the content model for the Vale gate
+/.prose/

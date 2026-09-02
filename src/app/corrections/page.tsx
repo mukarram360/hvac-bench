@@ -40,7 +40,7 @@ export default function CorrectionsPage() {
         {
           title: "Withdrawing a page",
           paragraphs: [
-            "Occasionally the right answer is that a page should not exist, usually because the source we relied on turned out not to cover the equipment we applied it to.",
+            "Occasionally the right answer is that a page should not exist, because the source we relied on turned out not to cover the equipment we applied it to.",
             "In that case the page is withdrawn rather than quietly rewritten, and the URL explains what happened and points to the material that is still accurate.",
           ],
         },

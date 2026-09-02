@@ -1,0 +1,25 @@
+extends: existence
+message: "Template stem '%s'. This sentence shape was produced by a shared generator; write the sentence this page needs."
+level: error
+ignorecase: true
+nonword: true
+tokens:
+  - '\bUse this (?:guide|procedure|comparison|article) when\b'
+  - '\bThe answer may change when\b'
+  - '\bThis observation belongs to\b'
+  - '\bKeep that decision tied to\b'
+  - '\bThat answer is scoped to\b'
+  - '\bRead the table as a decision aid\b'
+  - '\bRatings and instructions belong to\b'
+  - '\bSystem layout, building load\b'
+  - '\bevidence path\b'
+  - '\bThe useful starting point is\b'
+  - '\bas part of the answer rather than as paperwork\b'
+  - '\bEvidence-led scope, decision criteria\b'
+  - '\bhomeowner-safe checks, and clear boundaries\b'
+  - '\bA text path showing the specific facts\b'
+  - '\bpause at that boundary\b'
+  - '\bwhere the owner-safe observations stop\b'
+  - '\bshould not be transferred to a different product family\b'
+  - '\bcan change the practical result even when\b'
+  - '\bbelongs to the named model or matched combination\b'

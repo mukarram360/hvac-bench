@@ -57,7 +57,7 @@ export default function AffiliateDisclosurePage() {
           title: "The rules this is written to meet",
           paragraphs: [
             "United States readers: the Federal Trade Commission requires clear and conspicuous disclosure of material connections under its Endorsement Guides, which is why disclosure sits near the link rather than only in the footer.",
-            "United Kingdom readers: the Consumer Protection from Unfair Trading Regulations and the CAP Code require advertising to be obviously identifiable as such.",
+            "United Kingdom readers: the Consumer Protection from Unfair Trading Regulations and the CAP Code require advertising to be identifiable as such.",
             "European Union readers: the Unfair Commercial Practices Directive and consumer protection rules in each member state impose equivalent requirements.",
           ],
         },
