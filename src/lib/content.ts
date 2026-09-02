@@ -173,6 +173,7 @@ export const staticRoutes = [
   ...trustRoutes,
   "/site-map/",
   "/search/",
+  "/ask/",
 ];
 
 export const content = validateContentSet({

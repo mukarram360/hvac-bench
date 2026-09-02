@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ArticleCard } from "@/components/article-card";
+import { AssistantConsole } from "@/components/assistant-console";
 import { JsonLd } from "@/components/json-ld";
-import { SiteSearch, type SearchEntry } from "@/components/site-search";
 import { PROBLEM_TYPES } from "@/content/taxonomy";
 import {
   getAllArticles,
@@ -88,14 +88,6 @@ export default function Home() {
   const brandTiles = [...coveredBrands, ...brands.filter((brand) => !isBrandIndexable(brand.slug))].slice(0, 10);
   const startingGuides = articles.filter((article) => !article.errorCode).slice(0, 3);
 
-  const quickLinks: SearchEntry[] = featuredCodes.slice(0, 4).map((article) => ({
-    title: article.title,
-    path: article.path,
-    description: article.description,
-    label: article.errorCode ?? "Guide",
-    terms: "",
-  }));
-
   const equipmentRows = [
     { label: "Ductless mini-splits", slug: "ductless-mini-split", note: "Single and multi-zone" },
     { label: "Heat pumps", slug: "heat-pump", note: "Air source, ducted and hydronic" },
@@ -148,13 +140,17 @@ export default function Home() {
 
           <div className="plate plate-ink">
             <div className="plate-head">
-              <span>Index lookup</span>
+              <span>Ask HVAC Bench</span>
               <span>
                 {totals.references} references · {totals.brandsCovered} brands covered
               </span>
             </div>
             <div className="plate-body">
-              <SiteSearch quickLinks={quickLinks} />
+              <AssistantConsole compact />
+              <p className="assistant-meta">
+                Answers come from published references only.{" "}
+                <Link href="/search/">Search the index</Link> if you would rather browse.
+              </p>
             </div>
           </div>
         </div>
