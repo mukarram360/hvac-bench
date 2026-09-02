@@ -13,7 +13,12 @@ function DiagnosticTable({
 }) {
   return (
     <section className="article-section">
-      <div className="diagnostic-table-wrap">
+      <div
+        className="diagnostic-table-wrap"
+        role="region"
+        aria-label={table.caption}
+        tabIndex={0}
+      >
         <table className={className}>
           <caption>{table.caption}</caption>
           <thead>

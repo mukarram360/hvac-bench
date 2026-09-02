@@ -1601,6 +1601,13 @@ hr { height: 1px; margin: var(--s6) 0; border: 0; background: var(--line); }
 .assistant-suggestions a { font-weight: 500; }
 .assistant-meta { margin: var(--s3) 0 0; font-size: var(--fs-xs); color: var(--muted); }
 
+.plate-ink .assistant-question,
+.plate-ink .assistant-meta,
+.plate-ink .assistant-examples,
+.plate-ink .assistant-waiting { color: #a9c1bd; }
+.plate-ink .assistant-turn { border-color: rgba(255, 255, 255, 0.18); }
+.plate-ink .assistant-links a:hover { color: var(--signal-bright); }
+
 .band-ink .assistant-input { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.28); color: #fff; }
 .band-ink .assistant-input::placeholder { color: rgba(255, 255, 255, 0.6); }
 .band-ink .assistant-question,

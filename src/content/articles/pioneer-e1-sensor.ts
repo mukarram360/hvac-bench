@@ -127,7 +127,7 @@ export const pioneerE1Sensor = publish({
     {
       question: "Is it safe to keep using the system with E1?",
       answer:
-        "It is not a safety code, but comfort and running cost suffer while the control is working from an unreliable reading. Book the repair rather than living with it, and keep a note of how the system behaves in the meantime.",
+        "It is not a safety code, but comfort and running cost suffer while the control is working from an unreliable reading. The repair needs a technician; keep a note of how the system behaves in the meantime.",
     },
     {
       question: "The displayed temperature looks about right. Now what?",

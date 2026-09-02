@@ -151,6 +151,12 @@ describe("FAQ questions read like questions people ask", () => {
 });
 
 describe("every article carries real reasoning", () => {
+  it("contains no booking CTA language", () => {
+    for (const article of articles) {
+      expect(JSON.stringify(article), article.path).not.toMatch(/\bbook(?:ed|ing)?\b/i);
+    }
+  });
+
   it("supplies its own diagnostic branches and FAQs", () => {
     for (const article of articles) {
       expect(article.diagnosticBranches?.length ?? 0, article.slug).toBeGreaterThanOrEqual(2);

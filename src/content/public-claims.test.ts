@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 
 import { articles } from "./articles";
 import { sources } from "./sources";
+import { articleJsonLd } from "@/lib/seo";
 
 /**
  * HVAC Bench keeps every OEM URL in the repository so a claim can be traced
@@ -31,6 +32,7 @@ const publicSurfaces = [
   "src/app/editorial-policy/page.tsx",
   "src/app/faq/page.tsx",
   "src/app/about/page.tsx",
+  "src/app/opengraph-image.tsx",
   "src/lib/seo.ts",
 ];
 
@@ -70,10 +72,23 @@ describe("public pages do not publish an outbound source journey", () => {
     }
   });
 
+  it("keeps internal evidence URLs out of published article schema", () => {
+    const evidenceUrls = new Set(sources.map((source) => source.url));
+
+    for (const article of articles) {
+      const publishedSchema = JSON.stringify(articleJsonLd(article));
+      for (const url of evidenceUrls) {
+        expect(publishedSchema, `${article.path} publishes ${url}`).not.toContain(url);
+      }
+    }
+  });
+
   it("does not promise visible source links in public copy", () => {
     const forbidden = [
       /listed at the foot of the page/i,
+      /listed at the foot of every technical page/i,
       /sources listed on every page/i,
+      /sources listed/i,
       /links to the manufacturer/i,
       /source links/i,
     ];

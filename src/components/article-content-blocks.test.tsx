@@ -81,6 +81,12 @@ describe("ArticleContentBlocks", () => {
     });
     expect(within(decisionTable).getAllByRole("columnheader")).toHaveLength(3);
     expect(within(decisionTable).getByText(/manual operation works/i)).toBeInTheDocument();
+    expect(decisionTable.parentElement).toMatchObject({ tabIndex: 0 });
+    expect(decisionTable.parentElement).toHaveAttribute("role", "region");
+    expect(decisionTable.parentElement).toHaveAttribute(
+      "aria-label",
+      "Remote response decision table",
+    );
 
     expect(
       screen.getByRole("figure", { name: "Remote, receiver, and unit power path" }),

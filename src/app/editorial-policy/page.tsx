@@ -24,7 +24,7 @@ export default function EditorialPolicyPage() {
         {
           title: "Every technical claim names its source",
           paragraphs: [
-            "A page cannot state what a code means, what a component does, or what a manufacturer requires without a source that says so. Sources are listed at the foot of every technical page with the publisher and the document named, and links go to the original wherever it is publicly available.",
+            "A page cannot state what a code means, what a component does, or what a manufacturer requires without a source that says so. Every claim remains mapped to its manufacturer document in the internal evidence record, while the public page names the documentation class and the product scope it supports.",
             "We prefer manufacturer service manuals, then installation and operation manuals, then official manufacturer support articles, then government and standards-body guidance. Forum posts, retailer blog content, and video walkthroughs are not treated as sources.",
           ],
         },

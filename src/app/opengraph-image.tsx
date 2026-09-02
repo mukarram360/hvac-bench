@@ -65,7 +65,7 @@ export default function OpenGraphImage() {
             fontSize: 19,
           }}
         >
-          <span>Model scope stated · Sources listed · Safety line drawn</span>
+          <span>Model scope stated · Evidence checked · Safety line drawn</span>
           <span>hvac-bench.com</span>
         </div>
       </div>

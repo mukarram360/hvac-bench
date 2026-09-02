@@ -39,14 +39,14 @@ export const miniSplitFrozenCoil = publish({
       observation:
         "The filter has been cleaned, nothing blocks the intake or the outlet, and the coil ices up again within a day or two of restarting.",
       action:
-        "Stop running it in cooling and book service. Once airflow is genuinely eliminated, the remaining causes are refrigerant charge, the coil sensor, the indoor fan, and the control, and none of them are owner-serviceable.",
+        "Stop running it in cooling; the remaining diagnosis needs a qualified technician. Once airflow is genuinely eliminated, the remaining causes are refrigerant charge, the coil sensor, the indoor fan, and the control, and none of them are owner-serviceable.",
     },
     {
       title: "There is oily residue near the coil or pipework",
       observation:
         "A damp oily film or dirt sticking to one spot on the pipework or coil, often with the icing.",
       action:
-        "Report this specifically when booking. Refrigerant oil traces at a joint are a meaningful pointer to a leak, and mentioning it means the technician arrives prepared to test for one.",
+        "Report this specifically to the technician. Refrigerant oil traces at a joint are a meaningful pointer to a leak and change what should be tested first.",
     },
     {
       title: "The system was run hard in cool weather",

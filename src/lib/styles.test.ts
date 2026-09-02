@@ -37,6 +37,14 @@ describe("colour system", () => {
     expect(contrast("#ffffff", hex("signal-dark"))).toBeGreaterThanOrEqual(4.5);
     expect(contrast(hex("signal-bright"), hex("ink"))).toBeGreaterThanOrEqual(4.5);
     expect(contrast("#ffffff", hex("verify"))).toBeGreaterThanOrEqual(4.5);
+    expect(contrast("#a9c1bd", hex("ink"))).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it("applies the readable secondary colour to assistant copy inside ink plates", () => {
+    expect(css).toContain(".plate-ink .assistant-question,");
+    expect(css).toContain(".plate-ink .assistant-meta,");
+    expect(css).toContain(".plate-ink .assistant-examples,");
+    expect(css).toMatch(/\.plate-ink \.assistant-waiting\s*\{[^}]*color:\s*#a9c1bd/);
   });
 
   it("uses the darker signal for primary buttons rather than the graphic accent", () => {

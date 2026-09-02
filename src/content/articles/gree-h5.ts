@@ -74,7 +74,7 @@ export const greeH5 = publish({
       ],
       [
         "Everything is clean and H5 still returns",
-        "Book diagnosis and leave the system off",
+        "Leave the system off for professional diagnosis",
         "The remaining causes sit inside the sealed system and the drive, where measurement is the only way forward",
       ],
     ],

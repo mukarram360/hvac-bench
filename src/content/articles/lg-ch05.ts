@@ -82,7 +82,7 @@ export const lgCh05 = publish({
       [
         "What electrical events preceded the code",
         "Points at supply and terminals rather than at control boards",
-        "Tell the technician when you book the visit",
+        "Tell the technician before diagnosis begins",
       ],
     ],
   },

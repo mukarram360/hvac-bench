@@ -53,7 +53,7 @@ export const miniSplitLeakingWater = publish({
       observation:
         "There is a small pump near the indoor unit, or a thin flexible tube running upwards rather than a pipe falling away, and you may hear the pump running or clicking.",
       action:
-        "Mention the pump when you book service. Pumps have their own failure modes and their own safety switch behaviour, and an installation that lifts condensate cannot be diagnosed as though gravity were doing the work.",
+        "Tell the technician about the pump. Pumps have their own failure modes and their own safety switch behaviour, and an installation that lifts condensate cannot be diagnosed as though gravity were doing the work.",
     },
   ],
   figures: [
@@ -94,7 +94,7 @@ export const miniSplitLeakingWater = publish({
   ],
   decisionTable: {
     caption: "Where the water appears and what it suggests",
-    columns: ["Where you find it", "Most likely origin", "What to say when booking"],
+    columns: ["Where you find it", "Most likely origin", "What to report"],
     rows: [
       [
         "Dripping from the bottom of the indoor unit",

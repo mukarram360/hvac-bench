@@ -68,7 +68,7 @@ export const miniSplitSmellsMusty = publish({
       [
         "Whenever cooling runs, continuously",
         "Damp conditions on the coil or in the drain pan",
-        "Book a professional internal clean and have the drain checked",
+        "Professional internal cleaning and a drain check are needed",
       ],
       [
         "In every mode, smelling of the room",

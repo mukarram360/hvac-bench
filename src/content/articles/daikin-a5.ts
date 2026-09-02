@@ -127,7 +127,7 @@ export const daikinA5 = publish({
     {
       question: "The code cleared by itself. Do I still need service?",
       answer:
-        "If it cleared once after you corrected an obvious airflow restriction, monitor it. If it returns with airflow genuinely clear, book diagnosis rather than waiting, because the remaining candidates are the coil sensor and the indoor control board.",
+        "If it cleared once after you corrected an obvious airflow restriction, monitor it. If it returns with airflow genuinely clear, professional diagnosis is needed rather than more waiting, because the remaining candidates are the coil sensor and the indoor control board.",
     },
   ],
   sourceIds: ["daikin-a5-service"],

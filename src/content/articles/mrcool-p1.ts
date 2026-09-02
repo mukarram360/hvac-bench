@@ -128,7 +128,7 @@ export const mrcoolP1 = publish({
     {
       question: "Can a generator or inverter supply cause P1?",
       answer:
-        "Supply outside the acceptable range for your configuration is what the protection responds to, so any supply arrangement is worth mentioning when you book service. Confirm what your specific system accepts from the official material rather than assuming.",
+        "Supply outside the acceptable range for your configuration is what the protection responds to, so report the supply arrangement to the technician. Confirm what your specific system accepts from the official material rather than assuming.",
     },
     {
       question: "Should I keep resetting the breaker?",

@@ -49,7 +49,7 @@ export const daikinU4 = publish({
       observation:
         "An electrician, a ceiling contractor, or an HVAC visit preceded the code, even if the work was not on this equipment.",
       action:
-        "Say so when you book the visit. Transmission cable is routinely disturbed by trades working above ceilings, and knowing that changes where a technician starts looking.",
+        "Tell the technician about it. Transmission cable is routinely disturbed by trades working above ceilings, and knowing that changes where the diagnosis starts.",
     },
   ],
   figures: [

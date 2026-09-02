@@ -48,7 +48,7 @@ export const miniSplitNotCooling = publish({
       observation:
         "Performance was fine and has declined slowly enough that no single day stood out, and the unit now runs much longer than it used to.",
       action:
-        "Start with the filter and the outdoor coil, then book service if that does not restore it. A slow decline usually means something accumulating rather than something breaking.",
+        "Start with the filter and the outdoor coil; if that does not restore cooling, the next diagnosis needs a technician. A slow decline usually means something accumulating rather than something breaking.",
     },
     {
       title: "There is ice, water, or a code on the display",

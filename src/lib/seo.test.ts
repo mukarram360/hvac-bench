@@ -98,6 +98,7 @@ describe("structured data", () => {
     const schema = articleJsonLd(article);
     expect(schema["@type"]).toBe("TechArticle");
     expect(schema.citation.length).toBeGreaterThan(0);
+    expect(schema.citation.every((citation) => !("url" in citation))).toBe(true);
     expect(schema.publisher).toEqual({ "@id": `${SITE_URL}/#organization` });
     expect(JSON.stringify(schema)).not.toMatch(/aggregateRating|ratingValue|reviewRating/);
   });
@@ -162,9 +163,16 @@ describe("structured data", () => {
     expect(graphWithoutOptionalContent[2]).toMatchObject({
       abstract: article.directAnswer,
       citation: expect.arrayContaining([
-        expect.objectContaining({ url: expect.stringMatching(/^https:\/\//) }),
+        expect.objectContaining({
+          "@type": "CreativeWork",
+          name: expect.any(String),
+          publisher: expect.objectContaining({ name: expect.any(String) }),
+        }),
       ]),
     });
+    expect(JSON.stringify(graphWithoutOptionalContent[2])).not.toMatch(
+      /https:\/\/(?:www\.)?(?:gree|daikin|lg|midea|mrcool|pioneer|senville|fujitsugeneral|trane)\./i,
+    );
 
     const steps = [
       {

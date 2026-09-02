@@ -42,7 +42,7 @@ export const senvillePc0a = publish({
       observation:
         "Fencing, decking, planting, stored items, or a recent extension has reduced the clear space around the outdoor unit, or debris has packed against it.",
       action:
-        "With the system off, remove loose material and movable obstructions. If a permanent structure now sits close to the unit, mention it when you book service, because installed clearance is a genuine cause rather than an excuse.",
+        "With the system off, remove loose material and movable obstructions. If a permanent structure now sits close to the unit, report it to the technician, because installed clearance is a genuine cause rather than an excuse.",
     },
     {
       title: "The protection appears in mild weather",
@@ -69,7 +69,7 @@ export const senvillePc0a = publish({
       [
         "Mild weather, unit clear and clean",
         "Something inside the system is limiting heat rejection",
-        "Stop running it and book a refrigeration and controls diagnosis",
+        "Stop running it; refrigeration and controls diagnosis is required",
       ],
     ],
   },

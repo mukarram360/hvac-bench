@@ -120,6 +120,21 @@ describe("brand and code contamination", () => {
     expect(result.links[0]?.path.includes("/daikin/")).toBe(false);
   });
 
+  it("never crosses brands for any covered code asked with the wrong brand", () => {
+    const cases = [
+      ["daikin e6 error code", "/brands/gree/"],
+      ["gree u4 error code", "/brands/daikin/"],
+      ["lg pc0a error code", "/brands/senville/"],
+      ["senville ch05 error code", "/brands/lg/"],
+      ["pioneer p1 error code", "/brands/mrcool/"],
+    ] as const;
+
+    for (const [question, forbiddenPath] of cases) {
+      const result = ask(question);
+      expect(result.links.some((link) => link.path.startsWith(forbiddenPath)), question).toBe(false);
+    }
+  });
+
   it("asks which brand when a code is shared and none was given", () => {
     const result = ask("what does e1 mean");
     expect(result.needsModel).toBe(true);
@@ -149,6 +164,20 @@ describe("questions the site cannot answer", () => {
   it("offers a next step instead of a dead end", () => {
     const result = ask("what is the airspeed velocity of an unladen swallow");
     expect(result.suggestions.length).toBeGreaterThan(0);
+  });
+
+  it("refuses pricing, quote, dealer, and installer recommendation requests", () => {
+    for (const question of [
+      "how much should a Gree repair cost",
+      "get me a quote for a mini split",
+      "find a dealer near me",
+      "who is the best installer in my area",
+    ]) {
+      const result = ask(question);
+      expect(result.answered, question).toBe(false);
+      expect(result.links, question).toHaveLength(0);
+      expect(result.answer, question).toMatch(/does not cover|do not have|not covered/i);
+    }
   });
 
   it("never returns prose that is not on the site", () => {
