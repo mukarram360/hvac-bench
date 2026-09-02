@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-
+import { GlossaryBrowser } from "@/components/glossary-browser";
 import { JsonLd } from "@/components/json-ld";
 import { PageHead } from "@/components/page-head";
 import {
   getGlossary,
   getGlossaryByCategory,
-  getGlossaryByLetter,
   glossaryPath,
 } from "@/lib/content";
 import {
@@ -17,8 +15,6 @@ import {
 } from "@/lib/seo";
 
 const PATH = "/glossary/";
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-
 export const metadata: Metadata = pageMetadata({
   title: "HVAC glossary: every term on its own page",
   description:
@@ -36,8 +32,6 @@ export const metadata: Metadata = pageMetadata({
 export default function GlossaryPage() {
   const terms = getGlossary();
   const categories = getGlossaryByCategory();
-  const groups = getGlossaryByLetter();
-  const activeLetters = new Set(groups.map(([letter]) => letter));
   const breadcrumbs = [
     { name: "Home", path: "/" },
     { name: "Glossary", path: PATH },
@@ -72,68 +66,21 @@ export default function GlossaryPage() {
       />
 
       <div className="container page-tail">
-        <nav className="glossary-subjects" aria-label="Browse by subject">
-          {categories.map((category) => (
-            <a className="subject-chip" href={`#${category.slug}`} key={category.slug}>
-              <span>{category.label}</span>
-              <small>{category.terms.length}</small>
-            </a>
-          ))}
-        </nav>
-
-        {categories.map((category) => (
-          <section className="glossary-group" key={category.slug} id={category.slug}>
-            <div className="glossary-group-head">
-              <h2>{category.label}</h2>
-              <p>{category.blurb}</p>
-            </div>
-            <ul className="term-index">
-              {category.terms.map((term) => (
-                <li key={term.slug}>
-                  <Link href={glossaryPath(term.slug)}>
-                    <strong>{term.term}</strong>
-                    <span>{term.shortAnswer ?? term.definition}</span>
-                    {term.aliases.length > 0 && (
-                      <small>Also called: {term.aliases.join(", ")}</small>
-                    )}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-
-        <section className="glossary-group" id="a-to-z">
-          <div className="glossary-group-head">
-            <h2>A to Z</h2>
-            <p>The same terms in alphabetical order, for when you know the word already.</p>
-          </div>
-          <nav className="alpha-index" aria-label="Jump to letter">
-            {ALPHABET.map((letter) =>
-              activeLetters.has(letter) ? (
-                <a key={letter} href={`#letter-${letter}`}>
-                  {letter}
-                </a>
-              ) : (
-                <span key={letter} aria-hidden="true">
-                  {letter}
-                </span>
-              ),
-            )}
-          </nav>
-          {groups.map(([letter, letterTerms]) => (
-            <div className="alpha-block" key={letter} id={`letter-${letter}`}>
-              <h3>{letter}</h3>
-              <ul className="alpha-terms">
-                {letterTerms.map((term) => (
-                  <li key={term.slug}>
-                    <Link href={glossaryPath(term.slug)}>{term.term}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </section>
+        <GlossaryBrowser
+          terms={terms.map((term) => ({
+            term: term.term,
+            slug: term.slug,
+            category: term.category,
+            aliases: term.aliases,
+            shortAnswer: term.shortAnswer,
+            definition: term.definition,
+          }))}
+          subjects={categories.map((category) => ({
+            slug: category.slug,
+            label: category.label,
+            count: category.terms.length,
+          }))}
+        />
       </div>
     </main>
   );
