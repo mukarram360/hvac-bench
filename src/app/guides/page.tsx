@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { FormatHub } from "@/components/format-hub";
-import { getArticlesByType } from "@/lib/content";
+import { getArticlesForHub, isHubIndexable } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 const PATH = "/guides/";
@@ -11,14 +11,12 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Longer-form explanations of how mini-splits, heat pumps, and controls actually behave, written so a symptom makes sense before you start replacing parts.",
   path: PATH,
+  noIndex: !isHubIndexable(PATH),
   keywords: ["hvac guides", "how heat pumps work", "mini split maintenance guide"],
 });
 
 export default function GuidesPage() {
-  const articles = [
-    ...getArticlesByType("guide"),
-    ...getArticlesByType("maintenance"),
-  ];
+  const articles = getArticlesForHub(PATH);
 
   return (
     <FormatHub

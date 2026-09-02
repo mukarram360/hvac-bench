@@ -47,7 +47,7 @@ export default function SourcesMethodologyPage() {
             "The description is rewritten in plain language without changing its meaning or narrowing its conditions.",
             "Causes are separated from symptoms, and both are separated from actions.",
             "Actions are split into checks that are safe for an owner and work that requires a technician, using the conservative test described in the editorial policy.",
-            "The sources are listed with their scope notes, so a reader can go to the original and check the reasoning.",
+            "The page records which documentation class the definition came from and the model scope that document covers. The underlying manufacturer documents, their locations, and the scope notes are held in the HVAC Bench evidence record rather than published as outbound links.",
           ],
         },
         {

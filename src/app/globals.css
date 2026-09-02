@@ -1152,12 +1152,33 @@ hr { height: 1px; margin: var(--s6) 0; border: 0; background: var(--line); }
 .sources { margin-top: var(--s7); padding-top: var(--s6); border-top: 2px solid var(--ink); }
 .sources h2 { margin-bottom: var(--s3); font-size: var(--fs-h2); }
 .sources > p { color: var(--muted); font-size: var(--fs-sm); }
-.sources ol { margin: var(--s5) 0 0; padding-left: 1.3em; }
-.sources li { margin-bottom: var(--s5); }
-.sources li a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-.sources li a:hover { color: var(--signal-dark); }
-.sources cite { display: block; margin-top: 3px; font-style: normal; color: var(--muted); font-size: var(--fs-xs); }
-.sources small { display: block; margin-top: 3px; color: var(--muted); font-size: var(--fs-xs); }
+.verification-plate {
+  margin: var(--s5) 0 0;
+  border: 1px solid var(--line-strong);
+  border-top: 3px solid var(--signal);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.verification-plate > div {
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  gap: var(--s2) var(--s4);
+  padding: 10px var(--s5);
+  border-bottom: 1px solid var(--line);
+}
+.verification-plate > div:last-child { border-bottom: 0; }
+.verification-plate dt {
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.verification-plate dd { margin: 0; font-size: var(--fs-sm); }
+@media (max-width: 640px) {
+  .verification-plate > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
 
 .rail { display: grid; gap: var(--s4); }
 .rail-code {

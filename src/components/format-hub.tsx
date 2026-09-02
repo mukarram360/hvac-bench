@@ -55,7 +55,7 @@ export function FormatHub({
         breadcrumbs={breadcrumbs}
         meta={[
           articles.length > 0 ? `${articles.length} published` : "First pages in preparation",
-          "Sources listed on every page",
+          "Checked against manufacturer documentation",
         ]}
       />
 

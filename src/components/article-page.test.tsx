@@ -9,7 +9,7 @@ import { ArticlePage } from "./article-page";
 afterEach(cleanup);
 
 describe("ArticlePage", () => {
-  it("renders direct evidence, safety boundaries, sources, and breadcrumbs", () => {
+  it("renders direct evidence, safety boundaries, verification, and breadcrumbs", () => {
     const article = getArticleByPath("/brands/gree/e6-error-code/");
     expect(article).toBeDefined();
 
@@ -24,7 +24,11 @@ describe("ArticlePage", () => {
     expect(
       screen.getByRole("heading", { name: "When to call a technician" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Sources" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "How this page was checked" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/Gree Comfort technical literature/)).toBeInTheDocument();
+    expect(document.querySelectorAll('a[target="_blank"]')).toHaveLength(0);
     expect(screen.getByRole("navigation", { name: "Breadcrumb" })).toHaveTextContent(
       "Gree",
     );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { FormatHub } from "@/components/format-hub";
-import { getArticlesByType } from "@/lib/content";
+import { getArticlesForHub, isHubIndexable } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 const PATH = "/compare/";
@@ -11,11 +11,12 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Comparisons of HVAC systems, brands, and technologies built from published specifications and documented behaviour, with the criteria stated before the verdict.",
   path: PATH,
+  noIndex: !isHubIndexable(PATH),
   keywords: ["mini split comparison", "heat pump vs furnace", "hvac brand comparison"],
 });
 
 export default function ComparePage() {
-  const articles = getArticlesByType("comparison");
+  const articles = getArticlesForHub(PATH);
 
   return (
     <FormatHub

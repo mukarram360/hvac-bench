@@ -11,6 +11,7 @@ import {
   getArticlesByEquipment,
   getErrorCodeArticles,
   isBrandIndexable,
+  libraryTotals,
 } from "@/lib/content";
 import { SITE_DESCRIPTION, pageMetadata, webPageJsonLd } from "@/lib/seo";
 
@@ -80,6 +81,7 @@ function LimitIcon() {
 export default function Home() {
   const brands = getAllBrands();
   const articles = getAllArticles();
+  const totals = libraryTotals();
   const codeArticles = getErrorCodeArticles();
   const featuredCodes = codeArticles.slice(0, 6);
   const coveredBrands = brands.filter((brand) => isBrandIndexable(brand.slug));
@@ -148,7 +150,7 @@ export default function Home() {
             <div className="plate-head">
               <span>Index lookup</span>
               <span>
-                {articles.length} guides · {brands.length} brands
+                {totals.references} references · {totals.brandsCovered} brands covered
               </span>
             </div>
             <div className="plate-body">
@@ -164,8 +166,9 @@ export default function Home() {
             <ScopeIcon />
             <strong>Primary sources first</strong>
             <p>
-              Every technical claim traces to a manufacturer service manual, operation manual, or
-              official support article, listed at the foot of the page.
+              Every technical claim is written from a manufacturer service manual, operation
+              manual, or official support article, and each page states which documentation class
+              it was checked against.
             </p>
           </div>
           <div>

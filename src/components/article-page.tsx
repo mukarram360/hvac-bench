@@ -12,6 +12,14 @@ import { ArticleCard } from "./article-card";
 import { ArticleContentBlocks } from "./article-content-blocks";
 import { Breadcrumbs } from "./breadcrumbs";
 
+const DOCUMENT_CLASS_LABELS: Record<string, string> = {
+  "oem-service-manual": "service manual",
+  "oem-operation-manual": "operation manual",
+  "oem-support": "official manufacturer support article",
+  "government-guidance": "government guidance",
+  "standards-body": "standards body publication",
+};
+
 function ListSection({
   title,
   items,
@@ -42,6 +50,16 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
   const sourceRecords = article.sourceIds
     .map(getSourceById)
     .filter((source) => source !== undefined);
+  // Publishers and document classes describe the evidence without sending the
+  // reader to a manufacturer site. The URLs stay in the repository record.
+  const publishers = Array.from(new Set(sourceRecords.map((source) => source.publisher)));
+  const documentClasses = Array.from(
+    new Set(sourceRecords.map((source) => DOCUMENT_CLASS_LABELS[source.sourceType])),
+  );
+  const documentationSummary =
+    publishers.length === 1
+      ? `${publishers[0]} technical literature`
+      : `${publishers.slice(0, -1).join(", ")} and ${publishers.at(-1)} technical literature`;
   const equipmentLabel =
     EQUIPMENT_TYPES[article.equipmentType as keyof typeof EQUIPMENT_TYPES]?.singular ??
     article.equipmentType.replaceAll("-", " ");
@@ -169,25 +187,27 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
             )}
 
             <section className="sources">
-              <h2>Sources</h2>
+              <h2>How this page was checked</h2>
               <p>
-                Technical claims on this page are scoped to the documentation below and paraphrased
-                for clarity. Where a manufacturer limits a definition to certain models, that limit is
-                repeated here rather than generalised.
+                Every technical claim above was written from manufacturer documentation held in the
+                HVAC Bench evidence record: {documentationSummary}. Where a manufacturer limits a
+                definition to certain models, that limit is repeated here rather than generalised
+                across the brand.
               </p>
-              <ol>
-                {sourceRecords.map((source) => (
-                  <li key={source.id}>
-                    <a href={source.url} target="_blank" rel="noreferrer nofollow">
-                      {source.title}
-                    </a>
-                    <cite>
-                      {source.publisher} · {source.sourceType.replaceAll("-", " ")}
-                    </cite>
-                    {source.scopeNote && <small>{source.scopeNote}</small>}
-                  </li>
-                ))}
-              </ol>
+              <dl className="verification-plate">
+                <div>
+                  <dt>Documentation class</dt>
+                  <dd>{documentClasses.join(", ")}</dd>
+                </div>
+                <div>
+                  <dt>Scope of the definition</dt>
+                  <dd>{article.productFamily ?? "Confirm against the exact model manual"}</dd>
+                </div>
+                <div>
+                  <dt>Last checked</dt>
+                  <dd>{article.lastReviewed}</dd>
+                </div>
+              </dl>
             </section>
           </article>
 

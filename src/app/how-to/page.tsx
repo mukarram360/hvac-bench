@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { FormatHub } from "@/components/format-hub";
-import { getArticlesByType } from "@/lib/content";
+import { getArticlesForHub, isHubIndexable } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 const PATH = "/how-to/";
@@ -11,11 +11,12 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Step-by-step procedures for the maintenance and checks an owner can safely carry out, with the point where the job becomes technician work stated before you start.",
   path: PATH,
+  noIndex: !isHubIndexable(PATH),
   keywords: ["how to clean mini split filter", "hvac how to", "mini split maintenance steps"],
 });
 
 export default function HowToPage() {
-  const articles = getArticlesByType("how-to");
+  const articles = getArticlesForHub(PATH);
 
   return (
     <FormatHub

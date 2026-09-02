@@ -296,8 +296,67 @@ export function isEquipmentIndexable(equipmentType: string) {
   return getArticlesByEquipment(equipmentType).length > 0;
 }
 
+/* ------------------------------------------------- hub counts + index ---- */
+
+/**
+ * Every hub declares which articles it lists. The hub page, the sitemap, the
+ * robots directive, and any headline count all read this one map, so a hub
+ * cannot claim a total that its own listing contradicts.
+ */
+const HUB_LISTINGS: Record<string, () => TechnicalArticle[]> = {
+  "/guides/": () => [...getArticlesByType("guide"), ...getArticlesByType("maintenance")],
+  "/how-to/": () => getArticlesByType("how-to"),
+  "/compare/": () => getArticlesByType("comparison"),
+  "/error-codes/": () => getErrorCodeArticles(),
+  "/troubleshooting/": () => getArticlesByType("troubleshooting"),
+};
+
+/** Hubs whose value is their own content rather than a list of articles. */
+const REFERENCE_HUBS = new Set(["/brands/", "/equipment/", "/glossary/", "/faq/"]);
+
+export function countArticlesForHub(hubPath: string) {
+  return HUB_LISTINGS[hubPath]?.().length ?? 0;
+}
+
+export function getArticlesForHub(hubPath: string) {
+  return HUB_LISTINGS[hubPath]?.() ?? [];
+}
+
+export function isHubIndexable(hubPath: string) {
+  if (REFERENCE_HUBS.has(hubPath)) return true;
+  return countArticlesForHub(hubPath) > 0;
+}
+
+/**
+ * One source for every headline number on the site. `references` is the whole
+ * published library; the format counts are what each hub actually lists. The
+ * homepage used to call the library total "guides", which contradicted the
+ * guides hub reading "1 published".
+ */
+export function libraryTotals() {
+  return {
+    references: content.articles.length,
+    guides: countArticlesForHub("/guides/"),
+    howTo: countArticlesForHub("/how-to/"),
+    comparisons: countArticlesForHub("/compare/"),
+    errorCodes: countArticlesForHub("/error-codes/"),
+    troubleshooting: countArticlesForHub("/troubleshooting/"),
+    brandsTracked: content.brands.length,
+    brandsCovered: content.brands.filter((brand) => isBrandIndexable(brand.slug)).length,
+    equipmentCovered: Object.keys(EQUIPMENT_TYPES).filter((type) =>
+      isEquipmentIndexable(type),
+    ).length,
+  };
+}
+
 export function getIndexableRoutes() {
   const excluded = new Set<string>(["/search/"]);
+
+  for (const hubPath of Object.keys(HUB_LISTINGS)) {
+    if (!isHubIndexable(hubPath)) {
+      excluded.add(hubPath);
+    }
+  }
 
   for (const brand of content.brands) {
     if (!isBrandIndexable(brand.slug)) {
