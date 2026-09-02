@@ -2,6 +2,8 @@ import {
   getAllBrands,
   getErrorCodeArticles,
   getAllArticles,
+  getGlossary,
+  glossaryPath,
   isBrandIndexable,
 } from "@/lib/content";
 import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/seo";
@@ -19,6 +21,14 @@ export function GET() {
   const brands = getAllBrands();
   const covered = brands.filter((brand) => isBrandIndexable(brand.slug));
   const codes = getErrorCodeArticles();
+  const terms = getGlossary();
+  // Built outside the template so the glossary block stays one line per term.
+  const termLines = terms
+    .map(
+      (term) =>
+        `- [${term.term}](${absoluteUrl(glossaryPath(term.slug))}): ${term.shortAnswer ?? term.definition}`,
+    )
+    .join("\n");
   const all = getAllArticles();
   const symptoms = all.filter((article) => article.articleType === "troubleshooting");
   const procedures = all.filter(
@@ -42,7 +52,7 @@ export function GET() {
 - [Troubleshooting by symptom](${absoluteUrl("/troubleshooting/")}): ${symptoms.length} behaviour-led symptom references.
 - [Brand directory](${absoluteUrl("/brands/")}): ${brands.length} manufacturers across US, UK, and EU markets.
 - [Equipment types](${absoluteUrl("/equipment/")}): category definitions from mini-splits to light commercial.
-- [Glossary](${absoluteUrl("/glossary/")}): plain-language definitions, including US and UK terminology differences.
+- [Glossary](${absoluteUrl("/glossary/")}): ${terms.length} defined terms, each on its own URL, including US and UK terminology differences.
 - [How-to](${absoluteUrl("/how-to/")}): ${procedures.length} ordered procedures with the owner and technician boundary marked.
 - [Questions](${absoluteUrl("/faq/")}): short answers that link to the reference carrying the full diagnosis.
 
@@ -61,6 +71,10 @@ ${procedures.map((article) => `- [${article.title}](${absoluteUrl(article.path)}
 ## Manufacturers with published references
 
 ${covered.map((brand) => `- [${brand.name}](${absoluteUrl(`/brands/${brand.slug}/`)}): ${brand.description}`).join("\n")}
+
+## Defined terms
+
+${termLines}
 
 ## Editorial standards
 

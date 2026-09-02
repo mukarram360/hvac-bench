@@ -9,7 +9,7 @@ HVAC Bench publishes a URL only when its content record exists and passes valida
 | `src/content/sources.ts` | Manufacturer and government documentation, with scope notes |
 | `src/content/authors.ts` | Author and reviewer records used for bylines and Person schema |
 | `src/content/brands.ts` | Manufacturer registry: regions, series, equipment, fault-display note |
-| `src/content/glossary.ts` | Defined terms, published as `DefinedTermSet` schema |
+| `src/content/glossary/` | Defined terms, one module per subject, each published as its own page |
 | `src/content/articles.ts` | Every published technical page |
 | `src/content/taxonomy.ts` | Equipment types, symptom families, content formats, regions |
 | `src/content/schema.ts` | The validation rules all of the above must satisfy |
@@ -56,7 +56,27 @@ Use the narrowest accurate scope. If a source does not establish manufacturer-wi
 
 New manufacturers go in `src/content/brands.ts` with `regions`, `series`, `group`, and a `faultDisplay` note explaining how that manufacturer reports faults. A brand hub is generated immediately but stays `noindex` and out of the sitemap until it carries at least one article, which is handled automatically by `isBrandIndexable`.
 
-New glossary terms go in `src/content/glossary.ts`. Cross-references in `related` must point at terms that exist, and the build enforces it.
+New glossary terms go in the subject module under `src/content/glossary/` that matches their `category`, and `src/content/glossary/index.ts` collects them. Cross-references in `related` must point at terms that exist, and the build enforces it.
+
+Every term is published at `/glossary/<slug>/`, so a term record has to carry a page rather than a paragraph. `src/content/glossary-depth.test.ts` enforces the floor:
+
+| Field | Requirement |
+| --- | --- |
+| `question` | The question the page answers, authored rather than templated, ending in a question mark |
+| `shortAnswer` | 90 to 340 characters, names its own subject, and reads correctly with no page around it |
+| `metaTitle` | Written per term, at most 60 characters because the layout appends the site name |
+| `metaDescription` | 110 to 165 characters |
+| `keywords` | At least three query shapes the page is actually written to answer |
+| `facts` | At least three term-plate rows: unit, where measured, who measures it, why it matters |
+| `howItWorks` | The mechanism, in the plainest terms the physics allows |
+| `whereYouMeetIt` | At least three concrete situations where a reader meets the word |
+| `howToCheck` | At least two checks, each marked `owner` or `technician` |
+| `mistakes` | At least two confusions, phrased as what the term is not |
+| `faqs` | At least three follow-up questions, none of them asked on another term page |
+| `typicalValues` | Optional, and only for definitional constants, regulatory values, or figures a manual states. Diagnostic targets that vary by model are named as belonging to the manual instead of given a number |
+| `sourceIds` | Cite where a held document supports the definition. A term that defines vocabulary rather than model behaviour cites nothing and says so on the page |
+
+The test also rejects `shortAnswer`, `metaTitle`, `metaDescription`, and `howItWorks` shared between two terms, which is the failure mode of writing sixty pages in one pass.
 
 ## Review before publishing
 

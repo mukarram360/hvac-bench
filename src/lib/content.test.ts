@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import type { Author, Brand, GlossaryTerm, Source, TechnicalArticle } from "@/content/schema";
+import type {
+  Author,
+  Brand,
+  GlossaryTermInput,
+  Source,
+  TechnicalArticle,
+} from "@/content/schema";
 
 import {
   buildSearchIndex,
@@ -52,7 +58,7 @@ const validSource: Source = {
   sourceType: "oem-service-manual",
 };
 
-const validTerm: GlossaryTerm = {
+const validTerm: GlossaryTermInput = {
   term: "Compressor",
   slug: "compressor",
   definition:

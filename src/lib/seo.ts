@@ -38,6 +38,12 @@ type PageMetadataInput = {
   authorName?: string;
   /** A route that generates its own social card. Defaults to the site card. */
   ogImagePath?: string;
+  /**
+   * What the card shows, for `og:image:alt`. Falls back to the page title,
+   * which is accurate but says nothing a screen reader could not already get
+   * from the heading, so pages that draw a real card should describe it.
+   */
+  ogImageAlt?: string;
 };
 
 /**
@@ -45,8 +51,8 @@ type PageMetadataInput = {
  * `trailingSlash` would otherwise redirect every crawler that asks for one, and
  * not every social or answer-engine fetcher follows redirects for images.
  */
-function socialImage(path: string, title: string) {
-  return [{ url: `${absoluteUrl(path)}opengraph-image/`, width: 1200, height: 630, alt: title }];
+function socialImage(path: string, alt: string) {
+  return [{ url: `${absoluteUrl(path)}opengraph-image/`, width: 1200, height: 630, alt }];
 }
 
 const robotsAllowed = {
@@ -75,9 +81,10 @@ export function pageMetadata({
   modifiedTime,
   authorName,
   ogImagePath,
+  ogImageAlt,
 }: PageMetadataInput): Metadata {
   const url = absoluteUrl(path);
-  const images = socialImage(ogImagePath ?? "/", title);
+  const images = socialImage(ogImagePath ?? "/", ogImageAlt ?? title);
 
   return {
     title,
@@ -309,25 +316,114 @@ export function faqJsonLd(faqs: { question: string; answer: string }[], path: st
   } as const;
 }
 
+export const GLOSSARY_PATH = "/glossary/";
+export const GLOSSARY_SET_ID = `${absoluteUrl(GLOSSARY_PATH)}#glossary`;
+
+/**
+ * The set node lives on the hub and every term page references it by @id, so
+ * a crawler that lands on one definition can still see which vocabulary it
+ * belongs to without the hub repeating all sixty-odd definitions inline.
+ */
 export function definedTermSetJsonLd(terms: GlossaryTerm[], path: string) {
   const url = absoluteUrl(path);
   return {
     "@context": "https://schema.org",
     "@type": "DefinedTermSet",
-    "@id": `${url}#glossary`,
+    "@id": GLOSSARY_SET_ID,
     name: "HVAC glossary",
+    description:
+      "Defined terms used across HVAC Bench, covering system types, components, refrigeration, airflow, controls, measurement units, efficiency ratings, and service regulation.",
     url,
     inLanguage: "en",
     publisher: { "@id": ORG_ID },
     hasDefinedTerm: terms.map((term) => ({
       "@type": "DefinedTerm",
-      "@id": `${url}#${term.slug}`,
+      "@id": `${absoluteUrl(`/glossary/${term.slug}/`)}#term`,
       name: term.term,
-      description: term.definition,
-      url: `${url}#${term.slug}`,
-      inDefinedTermSet: { "@id": `${url}#glossary` },
+      description: term.shortAnswer ?? term.definition,
+      url: absoluteUrl(`/glossary/${term.slug}/`),
+      inDefinedTermSet: { "@id": GLOSSARY_SET_ID },
     })),
   } as const;
+}
+
+/**
+ * A single term, published on its own URL. `DefinedTerm` carries the meaning,
+ * and the page adds `FAQPage` and `BreadcrumbList` nodes beside it rather than
+ * nesting them, so each node keeps a stable @id that other pages can cite.
+ */
+export function definedTermJsonLd(term: GlossaryTerm) {
+  const url = absoluteUrl(`/glossary/${term.slug}/`);
+  const citations = term.sourceIds
+    .map(getSourceById)
+    .filter((source) => source !== undefined)
+    .map((source) => ({
+      "@type": "CreativeWork" as const,
+      name: source.title,
+      url: source.url,
+      publisher: { "@type": "Organization" as const, name: source.publisher },
+    }));
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${url}#term`,
+    name: term.term,
+    url,
+    description: term.shortAnswer ?? term.definition,
+    inLanguage: "en",
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      "@id": GLOSSARY_SET_ID,
+      name: "HVAC glossary",
+      url: absoluteUrl(GLOSSARY_PATH),
+    },
+    termCode: term.slug,
+    ...(term.aliases.length ? { alternateName: term.aliases } : {}),
+    ...(citations.length ? { subjectOf: citations } : {}),
+    mainEntityOfPage: { "@id": `${url}#webpage` },
+    image: {
+      "@type": "ImageObject",
+      url: `${url}opengraph-image/`,
+      width: 1200,
+      height: 630,
+      caption: `${term.term} defined on HVAC Bench, with its unit and where it is measured`,
+    },
+  } as const;
+}
+
+/**
+ * The full node set for one term page. An answer engine reading this gets the
+ * definition, the questions the page answers, and the trail back to the hub.
+ */
+export function glossaryTermStructuredData(
+  term: GlossaryTerm,
+  breadcrumbs: { name: string; path: string }[],
+) {
+  const path = `/glossary/${term.slug}/`;
+  const nodes: object[] = [
+    webPageJsonLd({
+      title: `${term.term} in HVAC`,
+      description: term.shortAnswer ?? term.definition,
+      path,
+      breadcrumbs,
+    }),
+    breadcrumbJsonLd(breadcrumbs),
+    definedTermJsonLd(term),
+  ];
+  /*
+   * The heading question and its short answer become the first Question node,
+   * ahead of the page's own FAQ. "What is superheat" is the query the page is
+   * written for, and an answer engine should find it stated as a question
+   * rather than have to infer it from an H2.
+   */
+  const primary =
+    term.question && term.shortAnswer
+      ? [{ question: term.question, answer: term.shortAnswer }]
+      : [];
+  const questions = [...primary, ...term.faqs];
+  if (questions.length) nodes.push(faqJsonLd(questions, path));
+  return nodes;
 }
 
 export function brandJsonLd(brand: Brand, articleCount: number) {
@@ -481,7 +577,18 @@ export function sitemapEntries(): MetadataRoute.Sitemap {
     const article = getArticleByPath(path);
     const depth = path.split("/").filter(Boolean).length;
 
-    const priority = path === "/" ? 1 : HUB_ROUTES.has(path) ? 0.9 : article ? 0.8 : depth <= 1 ? 0.5 : 0.6;
+    const priority =
+      path === "/"
+        ? 1
+        : HUB_ROUTES.has(path)
+          ? 0.9
+          : article
+            ? 0.8
+            : path.startsWith("/glossary/")
+              ? 0.7
+              : depth <= 1
+                ? 0.5
+                : 0.6;
 
     return {
       url: absoluteUrl(path),

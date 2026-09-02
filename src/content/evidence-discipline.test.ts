@@ -4,7 +4,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { articles } from "./articles";
-import { glossary } from "./glossary";
+import { glossary } from "./glossary/index";
 import { getIndexableRoutes, staticRoutes, getAllArticles } from "@/lib/content";
 
 /**
@@ -52,7 +52,15 @@ const PREVALENCE_CLAIMS = [
  * excluded because they describe the publication rather than the equipment.
  */
 const EDITORIAL_SURFACES = [
-  "src/content/glossary.ts",
+  "src/content/glossary/system-types.ts",
+  "src/content/glossary/components.ts",
+  "src/content/glossary/refrigeration.ts",
+  "src/content/glossary/airflow.ts",
+  "src/content/glossary/controls.ts",
+  "src/content/glossary/measurement.ts",
+  "src/content/glossary/efficiency.ts",
+  "src/content/glossary/service.ts",
+  "src/app/glossary/[term]/page.tsx",
   "src/app/faq/page.tsx",
   "src/app/page.tsx",
   "src/app/guides/page.tsx",
@@ -61,6 +69,7 @@ const EDITORIAL_SURFACES = [
   "src/app/troubleshooting/page.tsx",
   "src/app/error-codes/page.tsx",
   "src/app/glossary/page.tsx",
+  "src/components/glossary-term-page.tsx",
   "src/app/sources-methodology/page.tsx",
   "src/app/editorial-policy/page.tsx",
   "src/app/about/page.tsx",

@@ -10,6 +10,8 @@ import {
   getAllBrands,
   getArticlesByBrand,
   getErrorCodeArticles,
+  getGlossaryByCategory,
+  glossaryPath,
 } from "@/lib/content";
 import { breadcrumbJsonLd, pageMetadata, webPageJsonLd } from "@/lib/seo";
 
@@ -26,6 +28,11 @@ export default function SiteMapPage() {
   const brands = getAllBrands();
   const articles = getAllArticles();
   const codeArticles = getErrorCodeArticles();
+  const glossaryCategories = getGlossaryByCategory();
+  const glossaryCount = glossaryCategories.reduce(
+    (total, category) => total + category.terms.length,
+    0,
+  );
   const symptomArticles = articles.filter((article) => article.articleType === "troubleshooting");
   const procedures = articles.filter(
     (article) => article.articleType === "how-to" || article.articleType === "maintenance",
@@ -58,6 +65,7 @@ export default function SiteMapPage() {
           `${articles.length} references`,
           `${brands.length} manufacturer hubs`,
           `${Object.keys(EQUIPMENT_TYPES).length} equipment categories`,
+          `${glossaryCount} defined terms`,
         ]}
       />
 
@@ -185,6 +193,30 @@ export default function SiteMapPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className="band-tight">
+          <div className="section-head">
+            <div>
+              <span className="eyebrow">Vocabulary</span>
+              <h2>Glossary terms</h2>
+            </div>
+            <Link className="link-arrow" href="/glossary/">
+              Full glossary
+            </Link>
+          </div>
+          {glossaryCategories.map((category) => (
+            <div className="alpha-block" key={category.slug}>
+              <h3>{category.label}</h3>
+              <ul className="alpha-terms">
+                {category.terms.map((term) => (
+                  <li key={term.slug}>
+                    <Link href={glossaryPath(term.slug)}>{term.term}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </section>
 
         <section className="band-tight">

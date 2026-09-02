@@ -73,6 +73,32 @@ export const sourceSchema = z.object({
 
 /* -------------------------------------------------------------- reference */
 
+export const faqSchema = z.object({
+  question: z.string().min(12),
+  answer: z.string().min(60),
+});
+
+/** One row of the data plate that opens a term page: a label and a value. */
+export const glossaryFactSchema = z.object({
+  label: z.string().min(2),
+  value: z.string().min(1),
+});
+
+/** A check a reader can make, with the boundary between owner and technician. */
+export const glossaryCheckSchema = z.object({
+  title: z.string().min(6),
+  detail: z.string().min(40),
+  /** Who the check is written for, so the safety boundary travels with it. */
+  performedBy: z.enum(["owner", "technician"]).default("technician"),
+});
+
+/** A published figure with the condition it applies to. */
+export const glossaryValueSchema = z.object({
+  context: z.string().min(3),
+  value: z.string().min(1),
+  note: z.string().min(6).optional(),
+});
+
 export const glossaryTermSchema = z.object({
   term: z.string().min(2),
   slug,
@@ -97,11 +123,53 @@ export const glossaryTermSchema = z.object({
   seeAlso: z
     .object({ label: z.string().min(4), path: absolutePath })
     .optional(),
-});
 
-export const faqSchema = z.object({
-  question: z.string().min(12),
-  answer: z.string().min(60),
+  /* ------------------------------------------------ the standalone page -- */
+
+  /**
+   * The one-sentence answer, written to be lifted whole by an answer engine or
+   * a featured snippet. It has to stand up with no page around it, so it names
+   * the term, says what it is, and states the unit or the boundary that makes
+   * it useful. Capped because a snippet that runs long stops being quoted.
+   */
+  shortAnswer: z.string().min(90).max(340).optional(),
+  /**
+   * The question the page is written to answer, used as the heading above the
+   * short answer. Authored rather than templated, because "What is compressor"
+   * and "What is a compressor" are not the same string and only one of them is
+   * what anybody types.
+   */
+  question: z.string().min(10).max(80).optional(),
+  /**
+   * Written rather than templated. Sixty-four pages generated from one title
+   * pattern compete with each other and read as a database dump, so each term
+   * states its own promise. The layout appends the site name, which is why the
+   * ceiling here is lower than the sixty characters a SERP will show.
+   */
+  metaTitle: z.string().min(18).max(60).optional(),
+  metaDescription: z.string().min(110).max(165).optional(),
+  /** Query shapes the page is written to answer, not a keyword stuffing list. */
+  keywords: z.array(z.string().min(3)).default([]),
+  /** Data-plate rows: unit, where measured, who measures it, why it matters. */
+  facts: z.array(glossaryFactSchema).default([]),
+  /** The mechanism, in the plainest terms the physics allows. */
+  howItWorks: z.string().min(80).optional(),
+  /** Concrete situations where the word turns up in front of a reader. */
+  whereYouMeetIt: z.array(z.string().min(30)).default([]),
+  /** How to establish the value or the condition, in order. */
+  howToCheck: z.array(glossaryCheckSchema).default([]),
+  /** Published figures, each tied to the condition it was measured at. */
+  typicalValues: z.array(glossaryValueSchema).default([]),
+  /** Confusions worth heading off, phrased as what the term is not. */
+  mistakes: z.array(z.string().min(30)).default([]),
+  /** Questions asked about the term itself rather than about a fault. */
+  faqs: z.array(faqSchema).default([]),
+  /** Where United States, United Kingdom, and European practice diverge. */
+  regionNotes: z
+    .array(z.object({ region: regionCode, note: z.string().min(30) }))
+    .default([]),
+  /** Documents that support the definition, by source ID. */
+  sourceIds: z.array(slug).default([]),
 });
 
 export const howToStepSchema = z.object({
@@ -209,6 +277,11 @@ export type Author = z.infer<typeof authorSchema>;
 export type Brand = z.infer<typeof brandSchema>;
 export type Source = z.infer<typeof sourceSchema>;
 export type GlossaryTerm = z.infer<typeof glossaryTermSchema>;
+/** Author-facing shape: the defaulted arrays may be left out of a record. */
+export type GlossaryTermInput = z.input<typeof glossaryTermSchema>;
+export type GlossaryFact = z.infer<typeof glossaryFactSchema>;
+export type GlossaryCheck = z.infer<typeof glossaryCheckSchema>;
+export type GlossaryValue = z.infer<typeof glossaryValueSchema>;
 export type Faq = z.infer<typeof faqSchema>;
 export type HowToStep = z.infer<typeof howToStepSchema>;
 export type DiagnosticBranch = z.infer<typeof diagnosticBranchSchema>;

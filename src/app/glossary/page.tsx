@@ -3,31 +3,40 @@ import Link from "next/link";
 
 import { JsonLd } from "@/components/json-ld";
 import { PageHead } from "@/components/page-head";
-import { getGlossary, getGlossaryByLetter } from "@/lib/content";
+import {
+  getGlossary,
+  getGlossaryByCategory,
+  getGlossaryByLetter,
+  glossaryPath,
+} from "@/lib/content";
 import {
   breadcrumbJsonLd,
+  collectionPageJsonLd,
   definedTermSetJsonLd,
   pageMetadata,
-  webPageJsonLd,
 } from "@/lib/seo";
 
 const PATH = "/glossary/";
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 export const metadata: Metadata = pageMetadata({
-  title: "HVAC glossary: plain-language definitions",
+  title: "HVAC glossary: every term on its own page",
   description:
-    "What HVAC terms actually mean, from superheat and subcooling to SCOP, delta T, and the data plate, written for someone reading a service manual for the first time.",
+    "Plain-language definitions of HVAC vocabulary, one page per term. What superheat, delta T, SCOP, static pressure, and the data plate mean, what units they use, and where United States and United Kingdom practice differs.",
   path: PATH,
-  keywords: ["hvac glossary", "hvac terms", "what is superheat", "hvac definitions"],
+  keywords: [
+    "hvac glossary",
+    "hvac terms explained",
+    "hvac definitions",
+    "heat pump terminology",
+    "what is superheat",
+  ],
 });
 
 export default function GlossaryPage() {
   const terms = getGlossary();
+  const categories = getGlossaryByCategory();
   const groups = getGlossaryByLetter();
-  /* Related slugs are stored, not spelled out, so the label is looked up once. */
-  const labels = new Map(terms.map((term) => [term.slug, term.term]));
-  const labelFor = (slug: string) => labels.get(slug) ?? slug;
   const activeLetters = new Set(groups.map(([letter]) => letter));
   const breadcrumbs = [
     { name: "Home", path: "/" },
@@ -38,11 +47,12 @@ export default function GlossaryPage() {
     <main id="main-content">
       <JsonLd
         data={[
-          webPageJsonLd({
+          collectionPageJsonLd({
             title: "HVAC glossary",
-            description: "Plain-language definitions of HVAC terminology used across the site.",
+            description:
+              "Every term used across HVAC Bench, defined on its own page with units, usage, and the checks the term appears in.",
             path: PATH,
-            breadcrumbs,
+            items: terms.map((term) => ({ name: term.term, path: glossaryPath(term.slug) })),
           }),
           definedTermSetJsonLd(terms, PATH),
           breadcrumbJsonLd(breadcrumbs),
@@ -52,65 +62,78 @@ export default function GlossaryPage() {
       <PageHead
         eyebrow="Reference vocabulary"
         title="HVAC glossary"
-        description="Manuals assume vocabulary that nobody is taught. Each entry says what the term means, what the thing does, and where you meet it in the library, including the places where United States and United Kingdom usage differ."
+        description="Manuals assume vocabulary that nobody is taught. Every term here has its own page: what it means in one sentence, how the thing works, where the word turns up, what a normal figure looks like, and where United States and United Kingdom usage part company."
         breadcrumbs={breadcrumbs}
-        meta={[`${terms.length} terms defined`, "US and UK usage", "Updated as the library grows"]}
+        meta={[
+          `${terms.length} terms defined`,
+          `${categories.length} subjects`,
+          "US and UK usage",
+        ]}
       />
 
       <div className="container page-tail">
-        <nav className="alpha-index" aria-label="Jump to letter">
-          {ALPHABET.map((letter) =>
-            activeLetters.has(letter) ? (
-              <a key={letter} href={`#letter-${letter}`}>
-                {letter}
-              </a>
-            ) : (
-              <span key={letter} aria-hidden="true">
-                {letter}
-              </span>
-            ),
-          )}
+        <nav className="glossary-subjects" aria-label="Browse by subject">
+          {categories.map((category) => (
+            <a className="subject-chip" href={`#${category.slug}`} key={category.slug}>
+              <span>{category.label}</span>
+              <small>{category.terms.length}</small>
+            </a>
+          ))}
         </nav>
 
-        {groups.map(([letter, letterTerms]) => (
-          <section className="glossary-group" key={letter} id={`letter-${letter}`}>
-            <h2>{letter}</h2>
-            <dl className="glossary-list">
-              {letterTerms.map((term) => (
-                <div className="glossary-term" key={term.slug} id={term.slug}>
-                  <dt>{term.term}</dt>
-                  <dd>
-                    {term.definition}
+        {categories.map((category) => (
+          <section className="glossary-group" key={category.slug} id={category.slug}>
+            <div className="glossary-group-head">
+              <h2>{category.label}</h2>
+              <p>{category.blurb}</p>
+            </div>
+            <ul className="term-index">
+              {category.terms.map((term) => (
+                <li key={term.slug}>
+                  <Link href={glossaryPath(term.slug)}>
+                    <strong>{term.term}</strong>
+                    <span>{term.shortAnswer ?? term.definition}</span>
                     {term.aliases.length > 0 && (
-                      <span className="also">Also called: {term.aliases.join(", ")}</span>
+                      <small>Also called: {term.aliases.join(", ")}</small>
                     )}
-                    {(term.related.length > 0 || term.seeAlso) && (
-                      <span className="term-links">
-                        {term.related.length > 0 && (
-                          <span>
-                            Related terms:{" "}
-                            {term.related.map((slug, index) => (
-                              <span key={slug}>
-                                {index > 0 && ", "}
-                                <a href={`#${slug}`}>{labelFor(slug)}</a>
-                              </span>
-                            ))}
-                          </span>
-                        )}
-                        {term.seeAlso && (
-                          <span>
-                            Where you meet it:{" "}
-                            <Link href={term.seeAlso.path}>{term.seeAlso.label}</Link>
-                          </span>
-                        )}
-                      </span>
-                    )}
-                  </dd>
-                </div>
+                  </Link>
+                </li>
               ))}
-            </dl>
+            </ul>
           </section>
         ))}
+
+        <section className="glossary-group" id="a-to-z">
+          <div className="glossary-group-head">
+            <h2>A to Z</h2>
+            <p>The same terms in alphabetical order, for when you know the word already.</p>
+          </div>
+          <nav className="alpha-index" aria-label="Jump to letter">
+            {ALPHABET.map((letter) =>
+              activeLetters.has(letter) ? (
+                <a key={letter} href={`#letter-${letter}`}>
+                  {letter}
+                </a>
+              ) : (
+                <span key={letter} aria-hidden="true">
+                  {letter}
+                </span>
+              ),
+            )}
+          </nav>
+          {groups.map(([letter, letterTerms]) => (
+            <div className="alpha-block" key={letter} id={`letter-${letter}`}>
+              <h3>{letter}</h3>
+              <ul className="alpha-terms">
+                {letterTerms.map((term) => (
+                  <li key={term.slug}>
+                    <Link href={glossaryPath(term.slug)}>{term.term}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
       </div>
     </main>
   );

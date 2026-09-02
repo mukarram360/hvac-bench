@@ -1362,6 +1362,197 @@ hr { height: 1px; margin: var(--s6) 0; border: 0; background: var(--line); }
 }
 .glossary-term .term-links a { color: var(--ink); text-underline-offset: 3px; }
 
+/* Glossary hub: subject index first, alphabet second. */
+.glossary-subjects { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s6); }
+.subject-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 44px;
+  padding: 0 var(--s4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--line-strong);
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink);
+}
+.subject-chip:hover { border-bottom-color: var(--signal); }
+.subject-chip small { font-family: var(--mono); font-size: var(--fs-label); color: var(--muted); }
+.glossary-group-head { margin-bottom: var(--s4); padding-bottom: var(--s2); border-bottom: 2px solid var(--ink); }
+.glossary-group-head h2 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: var(--fs-lg);
+  color: var(--signal-dark);
+}
+.glossary-group-head p { margin: 4px 0 0; max-width: 70ch; color: var(--muted); font-size: var(--fs-sm); }
+.term-index { margin: 0; padding: 0; list-style: none; }
+.term-index li { border-bottom: 1px solid var(--line); }
+.term-index a {
+  display: block;
+  padding: var(--s4) 0;
+  text-decoration: none;
+  color: inherit;
+}
+.term-index a:hover strong { color: var(--signal-dark); text-decoration: underline; text-underline-offset: 3px; }
+.term-index strong { display: block; font-size: var(--fs-md); font-weight: 600; }
+.term-index span { display: block; max-width: 78ch; margin-top: 5px; color: var(--muted); font-size: var(--fs-sm); line-height: 1.6; }
+.term-index small {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-dark);
+}
+.alpha-block { margin-bottom: var(--s5); scroll-margin-top: calc(var(--header-h) + 20px); }
+.alpha-block h3 {
+  margin-bottom: var(--s2);
+  font-family: var(--mono);
+  font-size: var(--fs-md);
+  color: var(--signal-dark);
+}
+.alpha-terms { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); margin: 0; padding: 0; list-style: none; }
+.alpha-terms a { font-size: var(--fs-sm); color: var(--ink); text-underline-offset: 3px; }
+
+/* Glossary term page */
+.term-body .article-header .dek { color: var(--ink); }
+.term-aliases {
+  margin-top: var(--s3);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+.term-aliases span {
+  margin-right: var(--s2);
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-dark);
+}
+.term-checks .who {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 7px;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.who-owner { background: var(--verify-soft); color: var(--verify); }
+.who-tech { background: var(--caution-soft); color: var(--caution); }
+.term-table tbody th { width: 26%; }
+.term-table .mono-cell { font-family: var(--mono); font-size: var(--fs-xs); white-space: nowrap; }
+.region-list { margin: 0; }
+.region-list > div {
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: var(--s2) var(--s4);
+  padding: var(--s3) 0;
+  border-bottom: 1px solid var(--line);
+}
+.region-list > div:last-child { border-bottom: 0; }
+.region-list dt {
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.region-list dd { margin: 0; max-width: 68ch; font-size: var(--fs-sm); line-height: 1.6; }
+@media (max-width: 640px) {
+  .region-list > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+.term-faq-item { padding: var(--s4) 0; border-bottom: 1px solid var(--line); }
+.term-faq-item:last-child { border-bottom: 0; }
+.term-faq-item h3 { margin-bottom: 6px; font-size: var(--fs-md); font-weight: 600; }
+.term-faq-item p { max-width: 72ch; margin: 0; color: var(--muted); font-size: var(--fs-sm); line-height: 1.65; }
+.term-evidence { border-top: 2px solid var(--ink); padding-top: var(--s5); }
+.term-evidence > p { max-width: 70ch; color: var(--muted); font-size: var(--fs-sm); }
+.source-list { margin: var(--s4) 0 0; padding: 0; list-style: none; }
+.source-list li {
+  padding: var(--s3) 0;
+  border-bottom: 1px solid var(--line);
+}
+.source-list li:last-child { border-bottom: 0; }
+.source-title { display: block; font-size: var(--fs-sm); font-weight: 600; }
+.source-meta {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-dark);
+}
+.source-scope { display: block; max-width: 70ch; margin-top: 4px; color: var(--muted); font-size: var(--fs-xs); line-height: 1.55; }
+.term-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s4);
+  margin-top: var(--s6);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line);
+}
+.term-pager a {
+  display: block;
+  min-height: 44px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+.term-pager a:hover { color: var(--signal-dark); text-decoration: underline; text-underline-offset: 3px; }
+.term-pager-next { text-align: right; }
+.term-pager span {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-dark);
+}
+.rail-terms ul { margin: 0; padding: var(--s3) var(--s5) var(--s4); list-style: none; }
+.rail-terms li { padding: 5px 0; }
+.rail-terms a { font-size: var(--fs-sm); color: var(--ink); text-underline-offset: 3px; }
+.term-card {
+  display: block;
+  padding: var(--s5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--signal);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+}
+.term-card:hover { border-color: var(--line-strong); border-top-color: var(--signal-dark); }
+.term-card h3 { margin-bottom: var(--s2); font-size: var(--fs-md); }
+.term-card p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+.term-card-more {
+  display: block;
+  margin-top: var(--s3);
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--signal-dark);
+}
+
 /* Status and empty states */
 .empty-state { padding: var(--s6); background: var(--surface); border: 1px dashed var(--line-strong); border-radius: var(--radius); }
 .empty-state h2 { margin-bottom: var(--s3); font-size: var(--fs-h3); }

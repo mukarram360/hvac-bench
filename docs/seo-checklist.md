@@ -59,7 +59,9 @@ Status key: **Done** is implemented and verified in the build. **Owner** needs a
 | `HowTo`, emitted only when a page carries ordered steps | Done |
 | `FAQPage`, emitted only where real questions and answers exist | Done |
 | `CollectionPage` and `ItemList` on hubs | Done |
-| `DefinedTermSet` and `DefinedTerm` on the glossary | Done |
+| `DefinedTermSet` on the glossary hub, referenced by `@id` from every term page | Done |
+| `DefinedTerm` on each of the 64 term pages, with `termCode`, `alternateName`, `subjectOf` citations, and an `ImageObject` | Done |
+| `FAQPage` on a term page, opening with the heading question so the primary query is stated as a question | Done |
 | `Person` or `Organization` author nodes on author pages | Done |
 | No `aggregateRating`, `review`, or `reviewedBy` unless real | Done, enforced by test |
 
@@ -67,7 +69,7 @@ Status key: **Done** is implemented and verified in the build. **Owner** needs a
 
 | Item | Status | Notes |
 | --- | --- | --- |
-| Every page statically prerendered | Done | 145 static routes at last build |
+| Every page statically prerendered | Done | 209 static routes at last build, including 64 glossary term pages and their social cards |
 | Two font families, two weights each, self-hosted and preloaded | Done | IBM Plex Sans and Mono via `next/font` |
 | `display: swap` on fonts to avoid invisible text | Done | |
 | No layout shift from late-loading elements | Done | No hero image, fixed control sizes, consent notice is fixed-position |

@@ -1,5 +1,5 @@
 import type { TechnicalArticle } from "@/content/schema";
-import { getAllArticles, getAllBrands, getGlossary } from "@/lib/content";
+import { getAllArticles, getAllBrands, getGlossary, glossaryPath } from "@/lib/content";
 
 /**
  * The retrieval index.
@@ -150,12 +150,14 @@ export function buildPassageIndex(): PassageIndex {
     passages.push({
       id: `glossary:${term.slug}`,
       kind: "glossary",
-      text: term.definition,
-      question: term.term,
-      articlePath: "/glossary/",
+      text: term.shortAnswer ?? term.definition,
+      question: `What is ${term.term}?`,
+      articlePath: glossaryPath(term.slug),
       articleTitle: `${term.term} in the HVAC glossary`,
       codes: [],
-      tokens: tokenize(`${term.term} ${term.aliases.join(" ")} ${term.definition}`),
+      tokens: tokenize(
+        `${term.term} ${term.aliases.join(" ")} ${term.definition} ${term.shortAnswer ?? ""}`,
+      ),
     });
   }
 

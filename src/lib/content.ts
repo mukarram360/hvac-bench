@@ -70,9 +70,17 @@ export function validateContentSet(input: ContentSetInput): ValidatedContentSet 
       if (!glossarySlugs.has(related)) {
         throw new Error(`Glossary term ${term.slug} links to unknown term: ${related}`);
       }
+      if (related === term.slug) {
+        throw new Error(`Glossary term ${term.slug} lists itself as a related term`);
+      }
     }
     if (term.seeAlso && !validRoutes.has(term.seeAlso.path)) {
       throw new Error(`Glossary term ${term.slug} points at unknown route: ${term.seeAlso.path}`);
+    }
+    for (const sourceId of term.sourceIds) {
+      if (!sourceIds.has(sourceId)) {
+        throw new Error(`Glossary term ${term.slug} cites unknown source: ${sourceId}`);
+      }
     }
   }
 
@@ -167,9 +175,15 @@ export const hubRoutes = [
   "/benchmark/",
 ];
 
+/** Every defined term is its own page, addressed by slug under the hub. */
+export function glossaryPath(slug: string) {
+  return `/glossary/${slug}/`;
+}
+
 export const staticRoutes = [
   "/",
   ...hubRoutes,
+  ...glossary.map((term) => glossaryPath(term.slug)),
   ...brands.map((brand) => `/brands/${brand.slug}/`),
   ...Object.keys(EQUIPMENT_TYPES).map((slug) => `/equipment/${slug}/`),
   ...authors.map((author) => `/authors/${author.slug}/`),
@@ -278,6 +292,121 @@ export function getGlossary() {
 
 export function getGlossaryTerm(slug: string) {
   return content.glossary.find((term) => term.slug === slug);
+}
+
+/**
+ * The reading order of the categories. A reader who lands on the hub is
+ * browsing by subject far more often than by letter, so the subject index is
+ * the primary one and the alphabet is the fallback.
+ */
+export const GLOSSARY_CATEGORIES = [
+  {
+    slug: "system-types",
+    label: "System types",
+    blurb: "What the equipment is, before anything about how it fails.",
+  },
+  {
+    slug: "components",
+    label: "Components",
+    blurb: "The parts a code, a manual, or a quotation will name.",
+  },
+  {
+    slug: "refrigeration",
+    label: "Refrigeration",
+    blurb: "The circuit, the fluid in it, and the readings taken from it.",
+  },
+  {
+    slug: "airflow",
+    label: "Airflow",
+    blurb: "What moves the air, what restricts it, and what that costs.",
+  },
+  {
+    slug: "controls",
+    label: "Controls and faults",
+    blurb: "How the system decides what to do, and how it reports trouble.",
+  },
+  {
+    slug: "measurement",
+    label: "Measurement",
+    blurb: "Units of capacity and the readings taken in the field.",
+  },
+  {
+    slug: "efficiency",
+    label: "Efficiency ratings",
+    blurb: "The numbers on the label, and what each one was measured under.",
+  },
+  {
+    slug: "service",
+    label: "Service and regulation",
+    blurb: "Documents, procedures, and the certification the law requires.",
+  },
+] as const;
+
+export type GlossaryCategorySlug = (typeof GLOSSARY_CATEGORIES)[number]["slug"];
+
+export function glossaryCategoryLabel(slug: string) {
+  return GLOSSARY_CATEGORIES.find((category) => category.slug === slug)?.label ?? slug;
+}
+
+export function getGlossaryByCategory() {
+  return GLOSSARY_CATEGORIES.map((category) => ({
+    ...category,
+    terms: getGlossary().filter((term) => term.category === category.slug),
+  })).filter((category) => category.terms.length > 0);
+}
+
+/**
+ * A few terms carry a capitalised word that is part of a proper name rather
+ * than a sentence-case artefact, and lowercasing it mid-sentence reads wrong.
+ */
+const SPOKEN_OVERRIDES: Record<string, string> = {
+  "f-gas-regulation": "F-Gas regulation",
+  "epa-608": "EPA Section 608",
+};
+
+/**
+ * The term as it reads inside a sentence. "Heat pump" becomes "heat pump" in
+ * "How heat pump works", while "R-410A", "SCOP", and "PTAC unit" keep their
+ * capitals, because an acronym lowercased mid-heading looks like a typo.
+ */
+export function spokenTerm(term: GlossaryTerm) {
+  const override = SPOKEN_OVERRIDES[term.slug];
+  if (override) return override;
+  return term.term
+    .split(" ")
+    .map((word) =>
+      word
+        .split("-")
+        .map((part) => (/^[A-Z][a-z]+$/.test(part) ? part.toLowerCase() : part))
+        .join("-"),
+    )
+    .join(" ");
+}
+
+/** The stored related slugs, resolved to records, in the order they were given. */
+export function getRelatedGlossaryTerms(term: GlossaryTerm) {
+  return term.related
+    .map((slug) => getGlossaryTerm(slug))
+    .filter((related) => related !== undefined);
+}
+
+/**
+ * Other terms in the same subject, used to keep a term page from being a dead
+ * end when its own `related` list is short.
+ */
+export function getGlossarySiblings(term: GlossaryTerm, limit = 6) {
+  const excluded = new Set([term.slug, ...term.related]);
+  return getGlossary()
+    .filter((candidate) => candidate.category === term.category && !excluded.has(candidate.slug))
+    .slice(0, limit);
+}
+
+/** Previous and next in alphabetical order, so the whole set can be walked. */
+export function getGlossaryNeighbours(slug: string) {
+  const terms = getGlossary();
+  const index = terms.findIndex((term) => term.slug === slug);
+  if (index === -1) return { previous: undefined, next: undefined };
+  return { previous: terms[index - 1], next: terms[index + 1] };
 }
 
 export function getGlossaryByLetter() {
@@ -464,10 +593,10 @@ export function buildSearchIndex(): SearchEntry[] {
 
   const glossaryEntries = content.glossary.map((term) => ({
     title: term.term,
-    path: `/glossary/#${term.slug}`,
-    description: term.definition.slice(0, 155),
+    path: glossaryPath(term.slug),
+    description: term.shortAnswer ?? term.definition.slice(0, 155),
     label: "Term",
-    terms: [term.term, ...term.aliases, term.category].join(" ").toLowerCase(),
+    terms: [term.term, ...term.aliases, term.category, ...term.related].join(" ").toLowerCase(),
   }));
 
   return [...articleEntries, ...brandEntries, ...glossaryEntries];

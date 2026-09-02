@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
-import type { TechnicalArticle } from "@/content/schema";
-import { getBrandBySlug } from "@/lib/content";
+import type { GlossaryTerm, TechnicalArticle } from "@/content/schema";
+import { getBrandBySlug, glossaryCategoryLabel } from "@/lib/content";
 
 export const ogSize = { width: 1200, height: 630 };
 
@@ -98,6 +98,93 @@ export function articleOgImage(article: TechnicalArticle) {
             Reviewed {article.lastReviewed}
           </span>
           <span>hvac-bench.com</span>
+        </div>
+      </div>
+    ),
+    ogSize,
+  );
+}
+
+/**
+ * Social and answer-engine card for a defined term. Same data plate, with the
+ * term where the code normally sits and the first plate row beneath it, so a
+ * card that appears without its page still carries the unit and the scope.
+ */
+export function glossaryOgImage(term: GlossaryTerm) {
+  const summary = term.shortAnswer ?? term.definition;
+  const strapline = summary.length > 150 ? `${summary.slice(0, 147).trimEnd()}...` : summary;
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          background: "#0b2028",
+          color: "#f6f7f4",
+          padding: "56px 64px",
+          fontFamily: "Arial, sans-serif",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 46,
+                height: 46,
+                border: "1px solid #2d5460",
+                borderBottom: "4px solid #df5627",
+                fontSize: 19,
+                fontWeight: 700,
+              }}
+            >
+              HB
+            </span>
+            <span style={{ fontSize: 24, fontWeight: 700 }}>HVAC Bench</span>
+          </div>
+          <span style={{ color: "#8fb1ac", fontSize: 17, letterSpacing: 2 }}>
+            {glossaryCategoryLabel(term.category).toUpperCase()}
+          </span>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", maxWidth: 1000 }}>
+          <span style={{ color: "#8fb1ac", fontSize: 16, letterSpacing: 2, marginBottom: 12 }}>
+            GLOSSARY
+          </span>
+          <span
+            style={{
+              fontSize: term.term.length > 22 ? 62 : 82,
+              fontWeight: 700,
+              color: "#ff8f61",
+              lineHeight: 1.05,
+              letterSpacing: -2,
+            }}
+          >
+            {term.term}
+          </span>
+          <span style={{ marginTop: 20, fontSize: 25, color: "#d5e2df", lineHeight: 1.35 }}>
+            {strapline}
+          </span>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            borderTop: "1px solid #22434e",
+            paddingTop: 20,
+            color: "#a9c1bd",
+            fontSize: 18,
+          }}
+        >
+          <span>{term.facts[0] ? `${term.facts[0].label}: ${term.facts[0].value}` : "Defined term"}</span>
+          <span>hvac-bench.com/glossary</span>
         </div>
       </div>
     ),
