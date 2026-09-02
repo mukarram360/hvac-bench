@@ -64,9 +64,10 @@ import { singleZoneVsMultiZoneMiniSplit } from "./single-zone-vs-multi-zone-mini
  * noun and agreed on everything else.
  *
  * There is now no shared prose producer anywhere in this directory. `publish`
- * fills in publication facts only: the desk, the dates, and the evidence class
- * read from the cited records. Every sentence a reader sees is written in the
- * module named after the page it appears on, and two tests hold that line:
+ * fills in publication facts only: the desk, initial publication date, and the
+ * evidence class read from the cited records. Review provenance is supplied by
+ * each reviewed article. Every sentence a reader sees is written in the module
+ * named after the page it appears on, and two tests hold that line:
  * template-leakage.test.ts and prose-similarity.test.ts.
  */
 export const articles = [

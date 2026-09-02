@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * procedure, then the one-restart rule.
  */
 export const howToResetMiniSplitSafely = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to reset a mini-split safely, and when not to bother",
   slug: "how-to-reset-mini-split-safely",
   path: "/how-to-reset-mini-split-safely/",

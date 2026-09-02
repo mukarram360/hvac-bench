@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * what the reader is going to send to somebody.
  */
 export const howToFindMiniSplitModelNumber = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to find every mini-split model number",
   slug: "how-to-find-mini-split-model-number",
   path: "/how-to-find-mini-split-model-number/",
@@ -62,7 +64,7 @@ export const howToFindMiniSplitModelNumber = publish({
       paragraphs: [
         "A ductless model number is built from segments. One group identifies the product family, another encodes nominal capacity, and trailing letters cover voltage, revision, refrigerant, or region. Two units that look identical on a shelf can differ in the last two characters and take different boards.",
         "The capacity digits are the segment a reader can decode unaided: 09, 12, 18, and 24 correspond to nominal thousands of BTU per hour. The rest is manufacturer-specific and should be transcribed exactly rather than interpreted.",
-        "Copy every character, including hyphens and trailing letters. A model search that returns nothing is more often a dropped suffix than a missing document.",
+        "Copy every character, including hyphens and trailing letters. A dropped suffix can make the correct document disappear from model-search results.",
       ],
     },
     {
@@ -92,7 +94,7 @@ export const howToFindMiniSplitModelNumber = publish({
       ],
       [
         "Outdoor data plate",
-        "Outside face of the cabinet, often near the pipe connections",
+        "Outside cabinet face or beside the pipe connections",
         "Refrigerant, factory charge, electrical supply, outdoor parts",
       ],
       [
@@ -132,12 +134,12 @@ export const howToFindMiniSplitModelNumber = publish({
     {
       question: "Do I really need the outdoor unit number as well?",
       answer:
-        "Yes for anything to do with refrigerant, electrical supply, capacity, or certified efficiency, and often for fault codes. The two halves are separate products and the system is only identified by both.",
+        "Yes for refrigerant, electrical supply, capacity, certified efficiency, and any fault-code table scoped to a matched system. The two halves are separate products, and both identify the system.",
     },
     {
       question: "What do the numbers in the middle mean?",
       answer:
-        "In most ductless families the numeric group is nominal capacity in thousands of BTU per hour, so 12 reads as 12,000. The surrounding letters cover family, voltage, revision, and region and are manufacturer-specific.",
+        "When the product literature defines the numeric group as nominal capacity in thousands of BTU per hour, 12 denotes 12,000. That convention is not universal; other digits and the surrounding letters are manufacturer-specific.",
     },
     {
       question: "My label is unreadable. What now?",

@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * touch the equipment.
  */
 export const howToTellIfMiniSplitIsInDefrost = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to tell whether a mini-split is defrosting or faulty",
   slug: "how-to-tell-if-mini-split-is-in-defrost",
   path: "/how-to-tell-if-mini-split-is-in-defrost/",

@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * of the trip tells you.
  */
 export const senvillePc0a = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Senville PC 0A: condenser high-temperature protection",
   slug: "pc0a-error-code",
   path: "/brands/senville/pc0a-error-code/",
@@ -84,9 +86,9 @@ export const senvillePc0a = publish({
     {
       title: "Where the homeowner boundary sits",
       paragraphs: [
-        "Removing leaves, cut grass, cottonwood, and stacked objects from around the unit with the power off is reasonable and often effective. Rinsing loose surface debris from the outside of the casing is not the same thing as cleaning a coil, and it is worth being clear about the difference.",
+        "With the power off, remove leaves, cut grass, cottonwood, and stacked objects that obstruct the unit. Rinsing loose surface debris from the outside of the casing is not the same as cleaning a coil, and the distinction matters.",
         "A condenser coil that has been fouled over several seasons is cleaned with the correct chemistry, controlled water pressure, and the fins protected from damage. Pressure washing it is a common way to flatten fins and make heat rejection permanently worse, which turns an occasional protection trip into a standing problem. That job belongs with a technician.",
-        "Clearance is also worth checking against the documentation rather than by eye. Units frequently look like they have plenty of room while sitting well inside the figures the manufacturer specifies, particularly where a fence, a wall, or planting has arrived since the installation and nobody thought to measure afterwards.",
+        "Check clearance against the documentation rather than by eye. A unit can appear to have room while sitting inside the manufacturer's minimum clearance, particularly when a fence, wall, or planting was added after installation.",
       ],
     },
   ],
@@ -112,7 +114,7 @@ export const senvillePc0a = publish({
     "Keep the system off if the outdoor unit is hot, damaged, or repeatedly enters protection.",
   ],
   serviceHandoff:
-    "Report the outdoor temperature and time of day when the protection appears, how long the system runs beforehand, what clearance the outdoor unit has on each side, when the coil was last professionally cleaned, and whether the outdoor fan was turning at the moment it stopped.",
+    "Report the outdoor temperature, time of day, and runtime before the protection appears. Include the clearance on each side, the date of the last professional coil cleaning, and whether the outdoor fan was turning when operation stopped.",
   resetGuidance:
     "Allow the unit to cool after clearing only external obstructions; repeated PC 0A should not be reset into continued operation.",
   faqs: [

@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * before anyone reaches for a wet vacuum or a bottle of bleach.
  */
 export const howToCheckMiniSplitCondensateDrain = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to check a mini-split condensate drain",
   slug: "how-to-check-mini-split-condensate-drain",
   path: "/how-to-check-mini-split-condensate-drain/",

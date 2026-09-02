@@ -361,7 +361,7 @@ export const efficiency = [
       { label: "Appears on", value: "The European product energy label" },
     ],
     howItWorks:
-      "The procedure runs the machine across the temperatures a defined heating season contains, weights each by how often it occurs, and includes the electricity used by auxiliary heat and defrost. Because the outcome depends on which climate profile and which flow temperature the manufacturer quotes, two SCOP figures are only comparable when both of those match.",
+      "The procedure runs the machine across the temperatures in a defined heating season, weights each by its share of that profile, and includes the electricity used by auxiliary heat and defrost. Because the outcome depends on the quoted climate profile and flow temperature, two SCOP figures are comparable only when both match.",
     whereYouMeetIt: [
       "On the energy label of any heat pump sold in the United Kingdom or the European Union.",
       "In a grant or incentive scheme, where a minimum SCOP is part of eligibility.",

@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * that single observation splits the whole diagnosis.
  */
 export const miniSplitRemoteNotWorking = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
 
     title: "Mini split remote not working: complete response checks",
     slug: "mini-split-remote-not-working",
@@ -213,7 +215,7 @@ export const miniSplitRemoteNotWorking = publish({
       "A breaker that trips, electrical odor, heat, smoke, water near electrical parts, or damaged wiring requires the unit to remain off.",
     ],
     serviceHandoff:
-      "Give the technician the complete indoor and outdoor unit models, the remote model or part number, a photo of the display, whether the unit beeped, whether manual operation worked, and whether the problem followed battery leakage, a power outage, or other electrical work.",
+      "Give the technician the complete indoor, outdoor, and remote model numbers plus a display photograph. State whether the unit beeped, whether manual operation worked, and whether the problem followed battery leakage, a power outage, or electrical work.",
     resetGuidance:
       "Reset the handset only by the exact controller procedure. A reset may be required after battery replacement on some models, but it cannot repair a damaged transmitter, incompatible remote, failed receiver, loss of unit power, or an equipment fault.",
     faqs: [
@@ -264,7 +266,6 @@ export const miniSplitRemoteNotWorking = publish({
       "universal mini split remote compatibility",
       "run mini split without remote",
     ],
-    lastReviewed: "2026-09-02",
     relatedContent: [
       "/troubleshooting/",
       "/mini-split-not-turning-on/",

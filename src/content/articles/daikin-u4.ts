@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * long before anyone opens a panel.
  */
 export const daikinU4 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Daikin U4 error code: indoor-outdoor transmission error",
   slug: "u4-error-code",
   path: "/brands/daikin/u4-error-code/",

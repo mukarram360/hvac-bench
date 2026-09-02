@@ -5,6 +5,8 @@ import { publish } from "./publish";
  * on identifying the generation from what is on the screen.
  */
 export const mrcoolEl01 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "MRCOOL EL01 or E1 error code: communication malfunction",
   slug: "el01-e1-error-code",
   path: "/brands/mrcool/el01-e1-error-code/",
@@ -89,7 +91,7 @@ export const mrcoolEl01 = publish({
       paragraphs: [
         "The official guidance opens with switching off at the breaker, waiting, and restoring power. That is a designed step with a purpose: it clears stored states and shows whether the communication failure survives a full power interruption.",
         "Doing it repeatedly does not extend the benefit. If the code comes back, you have your answer, and further cycling of the breaker only interrupts a system that is already reporting a fault. It also removes the pattern a technician would use, because a fault that returns immediately and a fault that returns after twenty minutes of running are different leads.",
-        "There is also a practical reason to get the model and serial numbers written down before you call. MRCOOL support and most service companies will ask for them first, and reading them off a photograph on your phone beats standing on a chair with a torch while somebody waits on the line.",
+        "Write down the model and serial numbers before you call. MRCOOL support and service companies can use them to identify the equipment, and a clear photograph avoids reading the label while someone waits on the line.",
       ],
     },
   ],

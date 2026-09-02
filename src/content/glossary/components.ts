@@ -556,7 +556,7 @@ export const components = [
     ],
     mistakes: [
       "Reusing an old line set is not automatically safe. Residual oil from a different refrigerant, and any moisture in the pipe, can contaminate the new system.",
-      "Water dripping from the pipe run is often condensation on damaged insulation rather than refrigerant, because refrigerant leaves as gas.",
+      "Water dripping from the pipe run can be condensation on damaged insulation rather than refrigerant, because refrigerant leaves as gas.",
     ],
     faqs: [
       {
@@ -638,7 +638,7 @@ export const components = [
       {
         question: "Why does my system cool for an hour then stop?",
         answer:
-          "One explanation is a drain that cannot keep up, letting the pan fill until a float switch cuts the cooling call. The fan often keeps running, which is what makes it look like a control fault.",
+          "One explanation is a drain that cannot keep up, letting the pan fill until a float switch cuts the cooling call. The fan can keep running, which makes the symptom resemble a control fault.",
       },
       {
         question: "Can I pour anything down the drain line to clear it?",
@@ -671,7 +671,7 @@ export const components = [
       { label: "Resets", value: "On its own once the water level drops" },
     ],
     howItWorks:
-      "A small buoyant float rides on the water in the pan and opens a set of contacts wired into the control circuit when it rises. Because it is wired into the call for cooling rather than the mains supply, the display stays lit and the fan often keeps running, which is the signature that separates it from a power fault.",
+      "A small buoyant float rides on the water in the pan and opens contacts in the control circuit when it rises. Because it interrupts the cooling call rather than mains power, the display can stay lit and the fan can keep running. That response separates the condition from a power fault.",
     whereYouMeetIt: [
       "In a system that blows air but produces no cooling, with no fault code shown.",
       "In an installation over a finished ceiling, where a secondary pan and switch are required for exactly this reason.",
@@ -1074,7 +1074,7 @@ export const components = [
       { label: "Fault signature", value: "One zone affected while others run" },
     ],
     howItWorks:
-      "Instead of running a separate pipe pair from the outdoor unit to every indoor head, one larger run reaches the box and the box distributes from there. That shortens installation pipework, but it puts valves, sensors, and wiring for several zones inside one enclosure that is often out of sight.",
+      "Instead of running a separate pipe pair from the outdoor unit to every indoor head, one larger run reaches the box and the box distributes from there. That shortens installation pipework, but it puts valves, sensors, and wiring for several zones inside one enclosure that may be concealed.",
     whereYouMeetIt: [
       "On an installation drawing, where the box position determines the pipe runs and the access needed later.",
       "In a single-zone fault on a multi-zone system, where the branch serving that head is part of the shortlist.",

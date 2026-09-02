@@ -216,7 +216,7 @@ export const controls = [
       {
         question: "How often should a heat pump defrost?",
         answer:
-          "As often as conditions put frost on the coil, which means more frequently in cold damp weather and rarely in dry cold. Controls initiate it on time, temperature, or measured coil conditions depending on the design.",
+          "Defrost demand follows frost formation on the coil. Cold, damp weather can create more demand than dry cold, and controls initiate the cycle from time, temperature, or measured coil conditions depending on the design.",
       },
       {
         question: "Is it normal for the outdoor unit to steam?",
@@ -456,7 +456,7 @@ export const controls = [
       "Auxiliary heat is supplementary heating that runs when a heat pump cannot meet demand on its own. It is electric resistance in a ducted system, which costs more per unit of heat than the heat pump.",
     metaTitle: "Auxiliary heat and emergency heat",
     metaDescription:
-      "What auxiliary heat is, how it differs from emergency heat, why it costs more to run than the heat pump, and what makes it come on more often than it should.",
+      "What auxiliary heat is, how it differs from emergency heat, why it costs more than the heat pump, and what can trigger it outside the intended sequence.",
     keywords: ["auxiliary heat", "aux heat", "emergency heat", "heat pump backup heat"],
     facts: [
       { label: "Runs when", value: "The heat pump alone cannot meet demand" },

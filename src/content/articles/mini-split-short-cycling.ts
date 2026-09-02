@@ -2,6 +2,8 @@ import { publish } from "./publish";
 
 /** Makes the reader distinguish measured starts and stops from modulation. */
 export const miniSplitShortCycling = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split short cycling: settings and airflow",
   slug: "mini-split-short-cycling",
   path: "/mini-split-short-cycling/",
@@ -16,7 +18,7 @@ export const miniSplitShortCycling = publish({
   scopeNotice:
     "What counts as normal cycling depends on whether the equipment is fixed speed or inverter driven, and on how the system was sized for the space. The cited material describes the general behaviour of modulating equipment; sizing and commissioning decisions belong to the installation rather than to the model.",
   symptoms: [
-    "The compressor or complete system starts and stops frequently while comfort remains unstable.",
+    "The compressor or complete system repeats short start-stop cycles while comfort remains unstable.",
   ],
   causes: [
     "Small load changes, thermostat satisfaction, or normal inverter modulation can look like cycling.",
@@ -123,12 +125,12 @@ export const miniSplitShortCycling = publish({
     "Sizing, sensor, control, electrical, and refrigerant diagnosis should use model data and qualified tools.",
   ],
   serviceHandoff:
-    "Provide the log of start and stop times with outdoor temperatures, say whether the room actually holds temperature during the pattern, describe where the indoor unit is mounted and what is near it, and state whether the behaviour is new or has always been the case.",
+    "Provide the start-stop log with outdoor temperatures and say whether the room holds temperature during the pattern. Describe the indoor unit's location and nearby objects, then state whether the behaviour is new or has existed since installation.",
   faqs: [
     {
       question: "How often should a mini split cycle?",
       answer:
-        "There is no universal cycle interval. Inverter systems may reduce output near the setpoint, while other systems stop and restart. Frequent measured starts with unstable comfort are worth reporting; judge normal pauses against the exact manual.",
+        "No universal cycle interval applies. Inverter systems may reduce output near the setpoint, while other systems stop and restart. Report measured short cycles with unstable comfort, and judge normal pauses against the exact manual.",
     },
     {
       question: "Is short cycling damaging the compressor?",

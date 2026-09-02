@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * problem is the remote at all.
  */
 export const howToCheckMiniSplitRemote = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to check a mini-split remote before replacing it",
   slug: "how-to-check-mini-split-remote",
   path: "/how-to-check-mini-split-remote/",

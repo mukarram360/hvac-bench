@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * is to send readers with newer systems to the other page.
  */
 export const pioneerE1Communication = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Pioneer E1, EL01, or EL 01: Quantum communication error",
   slug: "e1-communication-error-code",
   path: "/brands/pioneer/e1-communication-error-code/",
@@ -98,7 +100,7 @@ export const pioneerE1Communication = publish({
       paragraphs: [
         "On discontinued equipment there is a second question beyond the diagnosis, which is what happens if a board is genuinely faulty. Parts availability for withdrawn families is not guaranteed, and that changes the economics of the repair in a way it would not on current equipment.",
         "It is worth asking a technician about that early rather than after the diagnosis. If the fault turns out to be a terminal or a length of cable, the age of the system is irrelevant. If it turns out to be a control board, the availability question decides whether repair or replacement is the sensible route, and knowing that before the parts search starts saves everyone time.",
-        "None of this means a discontinued system is not worth fixing. Plenty of these units have years of service left, and communication faults are frequently found in the wiring rather than in the electronics. The point is to have the availability conversation before a diagnosis becomes a parts search, so nobody is surprised by it.",
+        "None of this means a discontinued system is not worth fixing. A communication fault can lie in the wiring rather than the electronics, and the equipment may have useful service life left. Discuss parts availability before a diagnosis becomes a parts search so the repair options are understood.",
       ],
     },
   ],

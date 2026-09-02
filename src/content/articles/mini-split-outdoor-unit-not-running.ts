@@ -2,6 +2,8 @@ import { publish } from "./publish";
 
 /** Checks documented idle states before treating outdoor stillness as a fault. */
 export const miniSplitOutdoorUnitNotRunning = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Outdoor unit not running: delay, demand, or fault",
   slug: "mini-split-outdoor-unit-not-running",
   path: "/mini-split-outdoor-unit-not-running/",
@@ -138,7 +140,7 @@ export const miniSplitOutdoorUnitNotRunning = publish({
     {
       question: "Can I spin the fan to get it going?",
       answer:
-        "No. An inverter system can start after a delay with no warning, and the blade will not wait for your hand to be clear. There is also nothing to be learned from it that a technician cannot establish safely.",
+        "No. An inverter system can start after a delay without warning, and the blade will not wait for your hand to clear. Touching it reveals nothing that a technician cannot establish safely.",
     },
     {
       question: "Why does it run at night but not in the afternoon?",

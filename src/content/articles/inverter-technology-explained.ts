@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * behaviours it produces that get reported as faults.
  */
 export const inverterTechnologyExplained = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "What inverter really means on an HVAC system",
   slug: "inverter-technology-explained",
   path: "/inverter-technology-explained/",

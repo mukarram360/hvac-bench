@@ -68,14 +68,14 @@ export default function EditorialPolicyPage() {
           paragraphs: [
             "Pages are researched and drafted with AI assistance, working from the manufacturer and regulator documents listed in the evidence record on each page. That is stated here because it is true and because you are entitled to know it, not as a disclaimer bolted on after the fact.",
             "What the assistance does not do is decide what is true. A claim reaches a page only if it can be traced to a document in the source registry, and where the documentation does not settle a question the page says so instead of filling the gap. The pages on lifespan and on brand comparisons are the clearest examples: both refuse to publish figures that no cited source supports.",
-            "Before anything deploys, the repository runs automated checks that a person can inspect and re-run: schema validation on every page, a prose linter carrying this site's banned phrases and its rule against frequency claims, a cross-page similarity audit that fails if two pages share a paragraph or a sentence, an internal link check, and a full production build. Those checks catch template writing and unsupported wording. They cannot verify a technical fact, which is why the source list on each page is the thing to judge it by.",
+            "Before deployment, the repository runs inspectable automated checks: page-schema validation, prose linting, cross-page similarity analysis, internal-link checking, and a production build. These checks catch template writing and unsupported wording, but they cannot verify a technical fact. Judge that against the source list on each page.",
             "An operator reviews and publishes. Where a qualified technician or engineer has reviewed a page, that person is named on it. No page claims a review that did not happen.",
           ],
         },
         {
           title: "Updating and dating",
           paragraphs: [
-            "Every technical page shows when it was last reviewed. A review means the sources were re-checked and the content still matches them, not simply that a date was changed.",
+            "Source verified pages show a review date for the latest source check. Editorial review pages are awaiting that verification and do not show one.",
             "Pages are revisited when a manufacturer updates its documentation, when a reader reports a problem, and on a rolling schedule as the library grows. Substantive changes are logged on the corrections page.",
           ],
         },

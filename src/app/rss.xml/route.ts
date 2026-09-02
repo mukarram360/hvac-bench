@@ -19,7 +19,9 @@ function escapeXml(value: string) {
  */
 export function GET() {
   const articles = [...getAllArticles()].sort((first, second) =>
-    second.lastReviewed.localeCompare(first.lastReviewed),
+    (second.lastReviewed ?? second.datePublished ?? "").localeCompare(
+      first.lastReviewed ?? first.datePublished ?? "",
+    ),
   );
 
   const items = articles
@@ -31,7 +33,7 @@ export function GET() {
       <guid isPermaLink="true">${url}</guid>
       <description>${escapeXml(article.description)}</description>
       <category>${escapeXml(article.articleType.replaceAll("-", " "))}</category>
-      <pubDate>${new Date(`${article.datePublished ?? article.lastReviewed}T00:00:00Z`).toUTCString()}</pubDate>
+      ${article.datePublished ?? article.lastReviewed ? `<pubDate>${new Date(`${article.datePublished ?? article.lastReviewed}T00:00:00Z`).toUTCString()}</pubDate>` : ""}
     </item>`;
     })
     .join("\n");

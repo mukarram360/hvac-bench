@@ -106,7 +106,7 @@ export default function FaqPage() {
         data={[
           webPageJsonLd({
             title: "HVAC questions people actually ask",
-            description: "Answers to the questions readers bring to HVAC Bench most often.",
+            description: "Answers to recurring HVAC Bench questions.",
             path: PATH,
             breadcrumbs,
           }),
@@ -118,7 +118,7 @@ export default function FaqPage() {
       <PageHead
         eyebrow="Common questions"
         title="Questions people ask"
-        description="Short answers to the questions readers bring most often. Each one links to the reference that carries the full diagnosis, because a question worth asking twice deserves a page rather than a paragraph."
+        description="Short answers to recurring reader questions. Each one links to the reference that carries the full diagnosis, because a question worth asking twice deserves a page rather than a paragraph."
         breadcrumbs={breadcrumbs}
         meta={[`${allFaqs.length} answers`, "Reviewed with the library"]}
       />

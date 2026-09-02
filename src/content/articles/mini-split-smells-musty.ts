@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * is a cleaning question, and a burning smell, which is an emergency.
  */
 export const miniSplitSmellsMusty = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split smells musty: filter care and deeper cleaning",
   slug: "mini-split-smells-musty",
   path: "/mini-split-smells-musty/",

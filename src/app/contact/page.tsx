@@ -45,7 +45,7 @@ export default function ContactPage() {
         {
           title: "Offering a technical review",
           paragraphs: [
-            "If you hold a current refrigeration or heating qualification, EPA Section 608 or NATE in the United States, F-Gas or Gas Safe registration in the United Kingdom, and you would review pages in your area of practice, we would like to hear from you.",
+            "We welcome reviewers with a current refrigeration or heating qualification in their area of practice. Relevant credentials include EPA Section 608 or NATE in the United States and F-Gas or Gas Safe registration in the United Kingdom.",
             "Reviewers are named on the pages they check, with their credentials stated, and they are free to refuse to sign off anything they disagree with.",
           ],
         },

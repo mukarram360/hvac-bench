@@ -5,9 +5,7 @@ const absolutePath = z.union([
   z.literal("/"),
   z.string().regex(/^\/[a-z0-9]+(?:[a-z0-9/-]*[a-z0-9])?\/$/),
 ]);
-const isoDate = z
-  .string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/, "dates must use YYYY-MM-DD");
+const isoDate = z.iso.date();
 
 const regionCode = z.enum(["us", "uk", "eu"]);
 
@@ -274,7 +272,7 @@ export const articleSchema = z.object({
   authorSlug: slug.default("hvac-bench-editorial"),
   reviewerSlug: slug.optional(),
   datePublished: isoDate.optional(),
-  lastReviewed: isoDate,
+  lastReviewed: isoDate.optional(),
   reviewStatus: z.enum(["source-verified", "editorial-review"]),
   relatedContent: z.array(absolutePath).max(8),
   /** Authored links to definitions used on this page. */
@@ -304,15 +302,35 @@ export const articleSchema = z.object({
     )
     .optional(),
   keywords: z.array(z.string().min(2)).max(12),
-}).refine(
-  (article) =>
-    !["error-code", "troubleshooting", "maintenance", "how-to"].includes(article.articleType) ||
-    (Boolean(article.safeChecks?.length) && Boolean(article.professionalEscalation?.length)),
-  {
-    message: "a page a reader can act on must state the owner-safe checks and the stop point",
-    path: ["safeChecks"],
-  },
-);
+})
+  .refine(
+    (article) =>
+      !["error-code", "troubleshooting", "maintenance", "how-to"].includes(
+        article.articleType,
+      ) ||
+      (Boolean(article.safeChecks?.length) && Boolean(article.professionalEscalation?.length)),
+    {
+      message: "a page a reader can act on must state the owner-safe checks and the stop point",
+      path: ["safeChecks"],
+    },
+  )
+  .superRefine((article, context) => {
+    if (article.reviewStatus === "source-verified" && !article.lastReviewed) {
+      context.addIssue({
+        code: "custom",
+        message: "lastReviewed is required when reviewStatus is source-verified",
+        path: ["lastReviewed"],
+      });
+    }
+
+    if (article.reviewStatus === "editorial-review" && article.lastReviewed) {
+      context.addIssue({
+        code: "custom",
+        message: "lastReviewed may only be set when reviewStatus is source-verified",
+        path: ["lastReviewed"],
+      });
+    }
+  });
 
 export type Author = z.infer<typeof authorSchema>;
 export type Brand = z.infer<typeof brandSchema>;

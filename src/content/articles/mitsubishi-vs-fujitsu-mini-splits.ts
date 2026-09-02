@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * about questions to ask a supplier, not about brand attributes.
  */
 export const mitsubishiVsFujitsuMiniSplits = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mitsubishi vs Fujitsu: the multi-zone questions",
   slug: "mitsubishi-vs-fujitsu-mini-splits",
   path: "/mitsubishi-vs-fujitsu-mini-splits/",
@@ -52,7 +54,7 @@ export const mitsubishiVsFujitsuMiniSplits = publish({
     {
       title: "The rooms will be used at different times",
       observation:
-        "Bedrooms run at night, a home office runs in the day, and the whole system is rarely called on at once.",
+        "Bedrooms run at night and a home office runs in the day, so the design does not assume simultaneous demand from the whole system.",
       action:
         "Ask what each system delivers when only one head is calling, and what happens when all of them are. Simultaneous and diversified demand are different operating points, and the answer comes from the engineering data.",
     },
@@ -159,7 +161,7 @@ export const mitsubishiVsFujitsuMiniSplits = publish({
     {
       question: "Why is one quotation's outdoor unit smaller?",
       answer:
-        "Multi-zone sizing often relies on diversity, meaning not every room calling at once. Ask what each system delivers per head under simultaneous demand, and compare that against the room-by-room load.",
+        "Multi-zone sizing can rely on diversity, meaning not every room calls at once. Ask what each system delivers per head under simultaneous demand, and compare that output with the room-by-room load.",
     },
   ],
   sourceIds: ["mitsubishi-m-series", "fujitsu-product-library", "ahri-directory"],

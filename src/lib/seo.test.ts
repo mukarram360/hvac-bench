@@ -104,6 +104,27 @@ describe("structured data", () => {
     expect(JSON.stringify(schema)).not.toMatch(/aggregateRating|ratingValue|reviewRating/);
   });
 
+  it("does not invent metadata or structured-data dates for an undated article", () => {
+    expect(article).toBeDefined();
+    const undated = {
+      ...article!,
+      reviewStatus: "editorial-review" as const,
+      datePublished: undefined,
+      lastReviewed: undefined,
+    };
+    const metadata = articleMetadata(undated);
+    const structuredData = articleJsonLd(undated);
+
+    expect(metadata.openGraph).toMatchObject({
+      type: "article",
+      publishedTime: undefined,
+      modifiedTime: undefined,
+    });
+    expect(structuredData.datePublished).toBeUndefined();
+    expect(structuredData.dateModified).toBeUndefined();
+    expect(JSON.stringify(structuredData)).not.toMatch(/datePublished|dateModified/);
+  });
+
   it("keeps glossary evidence attributable without publishing repository source URLs", () => {
     const term = getGlossary().find((entry) => entry.slug === "air-filter")!;
     const schema = definedTermJsonLd(term);

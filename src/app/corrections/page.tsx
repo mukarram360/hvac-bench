@@ -24,7 +24,7 @@ export default function CorrectionsPage() {
         {
           title: "What counts as a correction",
           paragraphs: [
-            "A correction is any change that alters the meaning of a page: a code definition that was wrong, a model list that included equipment the source did not cover, a safety boundary drawn in the wrong place, or a cause described with more certainty than the documentation supports.",
+            "A correction is a change that alters a page's meaning. Examples include a wrong code definition, unsupported models, an incorrect safety boundary, or a cause stated with more certainty than its documentation supports.",
             "Fixing a typo, improving a sentence, or adding a link is an update rather than a correction, and is not logged individually.",
           ],
         },

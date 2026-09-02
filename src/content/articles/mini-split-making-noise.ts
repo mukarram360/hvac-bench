@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * which sounds have a documented normal explanation.
  */
 export const miniSplitMakingNoise = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split noise: normal sounds and warning signs",
   slug: "mini-split-making-noise",
   path: "/mini-split-making-noise/",

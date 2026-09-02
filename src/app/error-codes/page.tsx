@@ -4,6 +4,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/json-ld";
 import { PageHead } from "@/components/page-head";
 import { getAllBrands, getErrorCodeArticles } from "@/lib/content";
+import { allArticlesSourceVerified } from "@/lib/provenance";
 import { breadcrumbJsonLd, collectionPageJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
 
 const PATH = "/error-codes/";
@@ -30,7 +31,7 @@ const FAQS = [
   {
     question: "Can I clear an error code by turning the power off and on?",
     answer:
-      "Cycling power clears the displayed code on many systems, but it does not address what triggered it. If the condition is still present the code returns, often within minutes. Repeatedly resetting a protection code without finding the cause allows the underlying condition to continue.",
+      "Cycling power can clear a displayed code, but it does not address the trigger. If the condition remains, the code can return after operation resumes. Repeatedly resetting a protection code without finding the cause allows the underlying condition to continue.",
   },
   {
     question: "Where do I find the model number I need to look up a code?",
@@ -79,7 +80,15 @@ export default function ErrorCodesPage() {
         title="HVAC error code index"
         description="A code is the control board reporting what it measured. This index groups published references by manufacturer, and every page states the product family the definition came from rather than treating a code as universal."
         breadcrumbs={breadcrumbs}
-        meta={[`${articles.length} code references`, `${byBrand.size} manufacturers`, "Source verified"]}
+        meta={[
+          `${articles.length} code references`,
+          `${byBrand.size} manufacturers`,
+          articles.length === 0
+            ? "Source verification pending"
+            : allArticlesSourceVerified(articles)
+              ? "Source verified"
+              : "Includes pages awaiting source verification",
+        ]}
         aside={
           <div className="plate">
             <div className="plate-head">

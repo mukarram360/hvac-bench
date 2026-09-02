@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * which is the one action a homeowner can take correctly or incorrectly.
  */
 export const senvilleEh02 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Senville EH 02 error code: zero-crossing signal fault",
   slug: "eh02-error-code",
   path: "/brands/senville/eh02-error-code/",

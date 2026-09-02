@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * this page to touch.
  */
 export const seer2Explained = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "SEER2 explained: what the number measures",
   slug: "seer2-explained",
   path: "/seer2-explained/",
@@ -53,7 +55,7 @@ export const seer2Explained = publish({
       title: "The rating belongs to a pair",
       paragraphs: [
         "A split system is certified as a combination. The certificate names an outdoor model and the indoor model or air handler tested with it, and the rating is the property of that pairing. Swap the indoor unit and the certified numbers no longer describe what is installed.",
-        "This is where quoted figures go wrong. A brochure range covers a series across capacities, and the top of that range belongs to one specific pairing, often the smallest capacity in the family. Ask for the certificate reference for the exact two model numbers on the quotation.",
+        "This is where quoted figures go wrong. A brochure range covers a series across capacities, and its highest figure belongs to one specific pairing rather than the whole family. Ask for the certificate reference for the exact two model numbers on the quotation.",
       ],
     },
     {

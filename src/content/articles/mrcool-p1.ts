@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * touching anything electrical.
  */
 export const mrcoolP1 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "MRCOOL P1 or PC-01 error code: voltage protection",
   slug: "p1-pc01-error-code",
   path: "/brands/mrcool/p1-pc01-error-code/",
@@ -51,7 +53,7 @@ export const mrcoolP1 = publish({
     {
       title: "The breaker has tripped rather than the unit reporting",
       observation:
-        "There is no display at all because the dedicated breaker is in the tripped position.",
+        "The display is blank and the dedicated breaker is in the tripped position.",
       action:
         "Reset it once. If it trips again, leave it off and arrange service. A breaker that keeps tripping is protecting the circuit from something real, and repeated resetting is genuinely dangerous.",
     },

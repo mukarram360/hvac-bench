@@ -160,7 +160,13 @@ describe("published article quality", () => {
       expect(article.sections?.length, article.path).toBeGreaterThanOrEqual(2);
       expect(article.faqs.length, article.path).toBeGreaterThanOrEqual(3);
       expect(article.keywords.length, article.path).toBeGreaterThanOrEqual(4);
-      expect(article.lastReviewed, article.path).toBe("2026-09-02");
+    }
+  });
+
+  it("keeps the current source-verified corpus explicitly dated", () => {
+    for (const article of articles) {
+      expect(article.reviewStatus, article.path).toBe("source-verified");
+      expect(article.lastReviewed, article.path).toBeTruthy();
     }
   });
 
@@ -246,6 +252,8 @@ describe("published article quality", () => {
       /\balmost always a characteristic\b/i,
       /\bguaranteed to see\b/i,
       /\banyone offering\b/i,
+      /\bin most ductless families\b/i,
+      /\bmost houses\b/i,
     ];
 
     for (const article of crossBrand) {

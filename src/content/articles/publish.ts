@@ -8,8 +8,8 @@ import { sources } from "../sources";
  * from the title and the first listed cause, which gave two dozen articles the
  * same decision table and produced FAQ questions built out of headlines. That
  * generator is gone. Everything a reader reads is written in the article's own
- * module; this helper fills in the desk, the dates, and the evidence class,
- * which are facts about publication rather than content.
+ * module; this helper fills in the desk and source class. Review provenance is
+ * supplied by each reviewed article and is never inferred from publication.
  */
 type ArticleInput = Omit<
   TechnicalArticle,
@@ -87,8 +87,7 @@ export function publish(article: ArticleInput): TechnicalArticle {
   return {
     authorSlug: "hvac-bench-editorial",
     datePublished: "2026-09-01",
-    lastReviewed: "2026-09-02",
-    reviewStatus: "source-verified",
+    reviewStatus: "editorial-review",
     sourceType: sourceTypeFor(article.sourceIds),
     glossaryTerms: article.glossaryTerms ?? TERMS_BY_PROBLEM[article.problemType] ?? [],
     ...article,

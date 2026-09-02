@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * about how to run the comparison rather than which name to pick.
  */
 export const daikinVsMitsubishiMiniSplits = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Daikin vs Mitsubishi mini-splits: how to compare",
   slug: "daikin-vs-mitsubishi-mini-splits",
   path: "/daikin-vs-mitsubishi-mini-splits/",
@@ -158,7 +160,7 @@ export const daikinVsMitsubishiMiniSplits = publish({
     {
       question: "Can I compare the highest efficiency figures?",
       answer:
-        "Only if they describe the same equipment class, capacity, and matched configuration under the same metric. Series maxima rarely do, and they often belong to the smallest capacity in the range.",
+        "Only if they describe the same equipment class, capacity, and matched configuration under the same metric. A series maximum can belong to one capacity in the range, so it does not establish a like-for-like comparison.",
     },
     {
       question: "Does the installer matter more than the brand?",

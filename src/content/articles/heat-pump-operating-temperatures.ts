@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * answering a separate question. Everything else follows from that.
  */
 export const heatPumpOperatingTemperatures = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Heat-pump operating temperature and real capacity",
   slug: "heat-pump-operating-temperatures",
   path: "/heat-pump-operating-temperatures/",
@@ -82,7 +84,7 @@ export const heatPumpOperatingTemperatures = publish({
       title: "The balance point",
       paragraphs: [
         "Plot delivered capacity against building load across a range of outdoor temperatures and the two lines cross. That crossing is the balance point: the outdoor temperature below which the heat pump alone can no longer meet the load.",
-        "A balance point is a design output, not a fault. It tells the designer where supplementary heat has to be available and how many hours a year it is likely to run. Systems designed with a balance point well below the local design temperature need backup rarely; ones designed above it need it often.",
+        "A balance point is a design output, not a fault. It tells the designer where supplementary heat has to be available and supports an estimate of annual runtime. Lowering the balance point below the local design temperature reduces backup demand; placing it above that temperature increases demand.",
       ],
     },
   ],

@@ -17,7 +17,7 @@ export default function PrivacyPage() {
     <TrustPage
       title="Privacy policy"
       eyebrow="Effective September 1, 2026"
-      intro="HVAC Bench collects as little as it can while still being able to tell which pages help people. There are no accounts, no comments, no newsletter, no shopping cart, and no advertising network on this site."
+      intro="HVAC Bench collects as little as it can while still measuring which pages help people. The site has no accounts, comments, newsletter, shopping cart, or advertising network."
       path={PATH}
       updated="September 1, 2026"
       sections={[

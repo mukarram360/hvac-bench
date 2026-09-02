@@ -5,6 +5,8 @@ import { publish } from "./publish";
  * the difference between a pause with a purpose and an absence of heat.
  */
 export const miniSplitNotHeating = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split not heating: what to check before service",
   slug: "mini-split-not-heating",
   path: "/mini-split-not-heating/",
@@ -127,7 +129,7 @@ export const miniSplitNotHeating = publish({
     "Do not remove outdoor ice with tools, boiling water, or improvised heaters.",
   ],
   serviceHandoff:
-    "Bring a log of how often heating pauses and for how long, the outdoor temperature during those pauses, whether the outdoor coil clears afterwards, how this winter compares with last, and any code shown on the indoor display.",
+    "Bring a log of each heating pause and its duration, the outdoor temperature during those pauses, whether the outdoor coil clears afterwards, how this winter compares with last, and any code shown on the indoor display.",
   faqs: [
     {
       question: "Why does my heat pump stop blowing warm air?",
@@ -137,7 +139,7 @@ export const miniSplitNotHeating = publish({
     {
       question: "How often is defrosting normal?",
       answer:
-        "There is no reliable cross-brand interval. Frequency depends on the model and outdoor conditions. Compare it with the operating manual and report cycles that do not clear frost or restore heating.",
+        "No reliable cross-brand interval applies. Cycle timing depends on the model and outdoor conditions. Compare it with the operating manual and report cycles that do not clear frost or restore heating.",
     },
     {
       question: "Is steam from the outdoor unit a problem?",

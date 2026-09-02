@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * a stored-energy warning.
  */
 export const lgCh05 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "LG CH05 error code: indoor-outdoor communication error",
   slug: "ch05-error-code",
   path: "/brands/lg/ch05-error-code/",
@@ -42,12 +44,12 @@ export const lgCh05 = publish({
       observation:
         "A power interruption, a new circuit, an inverter or solar installation, or work by an electrician preceded the first CH05.",
       action:
-        "Record what changed and when. Communication faults that follow supply work often trace back to it, and a technician who knows this starts at the supply and the terminals rather than at the boards.",
+        "Record what changed and when. When a communication fault follows supply work, that sequence directs the technician to check the supply and terminals before the boards.",
     },
     {
       title: "The indoor unit shows no sign of power at all",
       observation:
-        "There is no display, no beep, and no response from the indoor unit rather than a displayed code.",
+        "The indoor unit has no display, beep, or response instead of showing a code.",
       action:
         "This is a different problem from CH05. Check the normal breaker position once, and if the supply is present but the unit is dead, arrange diagnosis instead of working through communication checks.",
     },
@@ -98,8 +100,8 @@ export const lgCh05 = publish({
       title: "The warning in the service manual is not boilerplate",
       paragraphs: [
         "LG service procedures for these systems carry wait-time and stored-energy warnings before electrical access. That is not generic caution. Inverter equipment holds a charge after the supply is removed, and the interval specified in the manual exists because the stored energy takes time to decay to a safe level.",
-        "The practical consequence for a homeowner is simple. There is no version of the CH05 diagnostic path that is safe to attempt with the covers off, including the parts that look like nothing more than checking a screw is tight. Every check past reading the display belongs with someone who has the manual, the meter, and the training to use the isolation procedure correctly.",
-        "There is a reasonable question hiding here, which is what a homeowner is actually for in this diagnosis. The answer is evidence. You can photograph the display, note whether the outdoor unit shows any sign of life, and record what electrical work or interruption came before the code, and none of that requires opening anything.",
+        "The practical consequence for a homeowner is simple. No CH05 diagnostic step is safe to attempt with the covers off, including a check that appears to involve only tightening a screw. Every step beyond reading the display requires the manual, a meter, and training in the isolation procedure.",
+        "The homeowner's useful role in this diagnosis is gathering evidence. Photograph the display, note whether the outdoor unit shows any sign of life, and record electrical work or interruptions before the code. None of that requires opening the equipment.",
       ],
     },
   ],
@@ -112,7 +114,7 @@ export const lgCh05 = publish({
     "Wait-time and stored-energy warnings in the service literature must be followed before electrical access.",
   ],
   serviceHandoff:
-    "Send the technician a straight-on photograph of the display, the indoor and outdoor model numbers from the rating plates, the date the code first appeared, any electrical work or outage before it, and whether the outdoor unit shows any sign of operating.",
+    "Send the technician a straight-on display photograph and both model numbers from the rating plates. Include the date the code first appeared, any preceding electrical work or outage, and whether the outdoor unit shows any sign of operating.",
   resetGuidance:
     "A controlled power cycle can document recurrence; continuing CH05 should be diagnosed rather than repeatedly cleared.",
   faqs: [

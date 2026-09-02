@@ -117,9 +117,9 @@ export default function Home() {
               Then find out <em>what it means</em>.
             </h1>
             <p className="hero-lede">
-              Error codes, symptoms, and service documentation for ductless mini-splits and heat
-              pumps, checked against manufacturer literature and written with the product scope and
-              the safety limit stated on the page.
+              Source-verified references for ductless mini-split and heat-pump error codes, symptoms,
+              and service documentation are checked against manufacturer literature, with the
+              product scope and safety limit stated on the page.
             </p>
             <div className="hero-actions">
               <Link className="btn btn-primary" href="/error-codes/">

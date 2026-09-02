@@ -7,6 +7,7 @@ import type {
   Source,
   TechnicalArticle,
 } from "@/content/schema";
+import { publish } from "@/content/articles/publish";
 
 import {
   buildSearchIndex,
@@ -113,6 +114,37 @@ describe("validateContentSet", () => {
     expect(result.articles[0].path).toBe("/brands/gree/e6-error-code/");
   });
 
+  it("allows an article still in editorial review to have no review date", () => {
+    const article = {
+      ...validArticle,
+      reviewStatus: "editorial-review" as const,
+      lastReviewed: undefined,
+    };
+
+    const result = validateContentSet({ ...baseSet, articles: [article] });
+
+    expect(result.articles[0].reviewStatus).toBe("editorial-review");
+    expect(result.articles[0].lastReviewed).toBeUndefined();
+  });
+
+  it("rejects a review date on content that is still in editorial review", () => {
+    expect(() =>
+      validateContentSet({
+        ...baseSet,
+        articles: [{ ...validArticle, reviewStatus: "editorial-review" }],
+      }),
+    ).toThrow(/lastReviewed.*source-verified/i);
+  });
+
+  it("rejects source-verified content without an explicit review date", () => {
+    expect(() =>
+      validateContentSet({
+        ...baseSet,
+        articles: [{ ...validArticle, lastReviewed: undefined }],
+      }),
+    ).toThrow(/lastReviewed/i);
+  });
+
   it.each([
     ["unknown brand", { brand: "unknown" }, /unknown brand/i],
     ["missing source", { sourceIds: ["missing"] }, /unknown source/i],
@@ -122,6 +154,7 @@ describe("validateContentSet", () => {
     ["thin direct answer", { directAnswer: "E6 fault." }, /directAnswer/i],
     ["empty safe checks", { safeChecks: [] }, /safeChecks/i],
     ["invalid review date", { lastReviewed: "09-01-2026" }, /lastReviewed/i],
+    ["impossible review date", { lastReviewed: "2026-99-99" }, /lastReviewed/i],
   ])("rejects %s", (_label, patch, error) => {
     expect(() =>
       validateContentSet({ ...baseSet, articles: [{ ...validArticle, ...patch }] }),
@@ -145,6 +178,22 @@ describe("validateContentSet", () => {
         articles: [validArticle],
       }),
     ).toThrow(/unknown term/i);
+  });
+});
+
+describe("publish provenance", () => {
+  it("does not invent source verification or a review date", () => {
+    const draft: Partial<TechnicalArticle> = {
+      ...validArticle,
+      sourceIds: ["gree-multi21-service"],
+    };
+    delete draft.lastReviewed;
+    delete draft.reviewStatus;
+
+    const published = publish(draft as Parameters<typeof publish>[0]);
+
+    expect(published.reviewStatus).toBe("editorial-review");
+    expect(published.lastReviewed).toBeUndefined();
   });
 });
 

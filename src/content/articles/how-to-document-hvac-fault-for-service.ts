@@ -9,6 +9,8 @@ import { publish } from "./publish";
  * shutdown.
  */
 export const howToDocumentHvacFaultForService = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to document an HVAC fault for a technician",
   slug: "how-to-document-hvac-fault-for-service",
   path: "/how-to-document-hvac-fault-for-service/",
@@ -39,7 +41,7 @@ export const howToDocumentHvacFaultForService = publish({
     {
       title: "Something is burning, sparking, or wet",
       observation:
-        "There is smoke, a burning or electrical smell, scorching, sparking, a breaker that has tripped, or water reaching electrical parts.",
+        "Smoke, a burning or electrical smell, scorching, sparking, a tripped breaker, or water reaching electrical parts is present.",
       action:
         "Stop. Isolate the system at the breaker or isolator and call for service now. Nothing below applies, and no photograph is worth the delay.",
     },

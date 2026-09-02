@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * sequence working and the sequence failing.
  */
 export const howHeatPumpDefrostWorks = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How heat-pump defrost works, and what normal looks like",
   slug: "how-heat-pump-defrost-works",
   path: "/how-heat-pump-defrost-works/",
@@ -54,7 +56,7 @@ export const howHeatPumpDefrostWorks = publish({
       title: "What defrost costs, and why that is still the cheaper option",
       paragraphs: [
         "During a defrost the system is taking heat out of the house rather than adding it, and the compressor is running to do that. This is one reason published heating capacity falls at colder outdoor conditions: some of the operating time is spent clearing the coil rather than heating.",
-        "It is still cheaper than the alternative, which is a coil that keeps icing until it can move no heat at all. A system defrosting more often in freezing fog than on a dry cold night is responding to the moisture in the air, not failing.",
+        "It is still cheaper than the alternative, which is a coil that keeps icing until it can move no heat at all. Greater defrost demand in freezing fog than on a dry cold night reflects the moisture in the air, not a failure by itself.",
       ],
     },
   ],
@@ -121,7 +123,7 @@ export const howHeatPumpDefrostWorks = publish({
     {
       title: "It defrosts every few minutes",
       observation:
-        "The interruption returns so often that the room never recovers, and the outdoor unit spends more time in the cycle than out of it.",
+        "The interruptions prevent the room from recovering, and the outdoor unit spends more time in the cycle than out of it.",
       action:
         "Note the times of three consecutive cycles and the outdoor temperature, then arrange service. Sensor, control, airflow, and refrigerant-side problems can all shorten the interval and are not separable by watching.",
     },
@@ -142,7 +144,7 @@ export const howHeatPumpDefrostWorks = publish({
     {
       question: "How long should a defrost cycle last?",
       answer:
-        "There is no cross-brand figure, because triggers and durations are set per product family. What a reader can judge is whether heating returns on its own and whether the coil is clear afterwards. Persistent ice matters more than the stopwatch.",
+        "No cross-brand figure applies because triggers and durations are set per product family. A reader can judge whether heating returns on its own and whether the coil is clear afterwards. Persistent ice matters more than the stopwatch.",
     },
     {
       question: "Is steam from my heat pump dangerous?",

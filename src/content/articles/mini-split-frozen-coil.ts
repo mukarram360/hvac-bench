@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * ice returns, because that is the observation a technician cannot make.
  */
 export const miniSplitFrozenCoil = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split frozen coil: airflow, thawing, limits",
   slug: "mini-split-frozen-coil",
   path: "/mini-split-frozen-coil/",

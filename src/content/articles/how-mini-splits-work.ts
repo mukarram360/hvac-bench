@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * carry only as much weight as each answer needs.
  */
 export const howMiniSplitsWork = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How a mini-split works: the path heat actually takes",
   slug: "how-mini-splits-work",
   path: "/how-mini-splits-work/",
@@ -126,7 +128,7 @@ export const howMiniSplitsWork = publish({
     {
       title: "Two or more heads on one outdoor unit",
       observation:
-        "Several indoor units are piped back to one condenser, often through a branch box, and they can be operating in different rooms at once.",
+        "Several indoor units are piped back to one condenser, either directly or through a branch box, and they can operate in different rooms at once.",
       action:
         "Check the manufacturer's approved combination table. Total connected capacity, permitted head sizes, and simultaneous demand all shape what any one room receives.",
     },

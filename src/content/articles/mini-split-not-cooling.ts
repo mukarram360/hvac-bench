@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * depends on which one you have.
  */
 export const miniSplitNotCooling = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split not cooling: a safe diagnostic path",
   slug: "mini-split-not-cooling",
   path: "/mini-split-not-cooling/",
@@ -125,7 +127,7 @@ export const miniSplitNotCooling = publish({
     "Refrigerant, coil, motor, and electrical diagnosis are not homeowner procedures.",
   ],
   serviceHandoff:
-    "Tell the technician whether the supply air is cold at the outlet, how long the system runs before you give up on it, the indoor and outdoor temperatures at the time, when the filter was last cleaned, and whether performance dropped suddenly or faded over a season.",
+    "Tell the technician whether the supply air is cold and how long the system runs before you stop the test. Include indoor and outdoor temperatures, the last filter-cleaning date, and whether performance dropped suddenly or faded over a season.",
   faqs: [
     {
       question: "Why is my mini split blowing cool air but not cold?",
@@ -135,7 +137,7 @@ export const miniSplitNotCooling = publish({
     {
       question: "How long should a mini split take to cool a room?",
       answer:
-        "There is no cross-brand time because capacity, room load, starting temperature, and control logic differ. Use the operating manual's delay guidance, close exterior openings, and watch whether room temperature trends toward the setpoint.",
+        "No cross-brand time applies because capacity, room load, starting temperature, and control logic differ. Use the operating manual's delay guidance, close exterior openings, and watch whether room temperature trends toward the setpoint.",
     },
     {
       question: "Does a dirty filter really stop cooling?",

@@ -33,7 +33,7 @@ export const measurement = [
     howItWorks:
       "A BTU is a quantity of energy, so equipment is rated in BTU per hour: how much heat it can move in an hour. That distinction matters when reading a specification, because a 12,000 BTU unit is shorthand for 12,000 BTU per hour, and the same machine in a European catalogue is listed at about 3.5 kW.",
     whereYouMeetIt: [
-      "On a North American model number, where the capacity in thousands of BTU per hour is often built into the number itself.",
+      "On a North American model number, where the number itself may encode capacity in thousands of BTU per hour.",
       "On a sizing calculation, where the heat loss or heat gain of the space is expressed in the same units.",
       "In a cross-market comparison, where converting to kilowatts is the only way to compare like with like.",
     ],
@@ -117,7 +117,7 @@ export const measurement = [
       "Before mechanical refrigeration, cooling was sold as ice, so the capacity of early machines was described by how much ice they replaced. Melting one ton of ice over twenty-four hours absorbs about 288,000 BTU, which is 12,000 BTU per hour, and the unit stuck long after the ice trade ended.",
     whereYouMeetIt: [
       "In a quotation for central equipment, where systems are described as three ton or four ton rather than by BTU.",
-      "In a model number, where a two-digit code often encodes nominal tonnage in twelfths.",
+      "In a model number, where a two-digit code can encode nominal tonnage in twelfths.",
       "In a sizing conversation, where a technician will quote tonnage and a European supplier will quote kilowatts.",
     ],
     howToCheck: [
@@ -159,7 +159,7 @@ export const measurement = [
       {
         question: "Is tonnage used outside North America?",
         answer:
-          "Rarely for residential equipment. The United Kingdom and Europe quote capacity in kilowatts, so a three ton system appears as roughly 10.5 kW.",
+          "Residential equipment in the United Kingdom and Europe is quoted in kilowatts, so a three ton system appears as roughly 10.5 kW.",
       },
       {
         question: "Does more tonnage mean better cooling?",

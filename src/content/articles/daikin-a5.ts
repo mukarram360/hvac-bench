@@ -5,6 +5,8 @@ import { publish } from "./publish";
  * by the mode the system was in. That distinction is the page.
  */
 export const daikinA5 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Daikin A5 error code: freeze-up or peak-cut",
   slug: "a5-error-code",
   path: "/brands/daikin/a5-error-code/",
@@ -105,7 +107,7 @@ export const daikinA5 = publish({
     "Do not chip ice from a coil or use heat sources to force thawing.",
   ],
   serviceHandoff:
-    "Tell the technician which mode the system was in when A5 appeared, whether frost or water was visible at the indoor unit, when the filter was last cleaned, how the indoor unit is positioned relative to furniture and curtains, and whether the code returns in both modes or only one.",
+    "Tell the technician which mode was active when A5 appeared and whether frost or water was visible indoors. Add the filter-cleaning date, the unit's position relative to furniture and curtains, and whether the code returns in one or both modes.",
   resetGuidance:
     "Let visible ice thaw with the system off; if A5 returns after airflow is restored, stop cycling the unit and arrange diagnosis.",
   faqs: [

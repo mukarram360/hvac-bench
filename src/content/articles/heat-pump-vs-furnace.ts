@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * savings percentage, which is the thing every competing page does.
  */
 export const heatPumpVsFurnace = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Heat pump or furnace: it depends on your tariffs",
   slug: "heat-pump-vs-furnace",
   path: "/heat-pump-vs-furnace/",

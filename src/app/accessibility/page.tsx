@@ -17,14 +17,14 @@ export default function AccessibilityPage() {
     <TrustPage
       title="Accessibility"
       eyebrow="Commitment"
-      intro="People often read this site in poor conditions: a dim plant room, a phone held in one hand, a screen reader, or eyes tired at midnight. Accessibility is a functional requirement here rather than a compliance exercise."
+      intro="This site must work in poor conditions: a dim plant room, a phone held in one hand, a screen reader, or eyes tired at midnight. Accessibility is a functional requirement here rather than a compliance exercise."
       path={PATH}
       updated="September 1, 2026"
       sections={[
         {
           title: "The standard we work to",
           paragraphs: [
-            "HVAC Bench targets the Web Content Accessibility Guidelines version 2.2 at level AA, which is the standard referenced by the Americans with Disabilities Act guidance in the United States, the Public Sector Bodies Accessibility Regulations in the United Kingdom, and the European Accessibility Act.",
+            "HVAC Bench targets Web Content Accessibility Guidelines 2.2 at level AA. United States ADA guidance, the United Kingdom Public Sector Bodies Accessibility Regulations, and the European Accessibility Act reference this standard.",
           ],
         },
         {
@@ -49,7 +49,7 @@ export default function AccessibilityPage() {
         {
           title: "Known limitations",
           bullets: [
-            "Some manufacturer documents we link to are scanned PDFs published by third parties, and those files are frequently not accessible. We cannot fix them, so we describe their relevant content on the page rather than only linking to them.",
+            "Some linked manufacturer documents are inaccessible scanned PDFs published by third parties. We cannot repair those files, so we describe their relevant content on the page rather than only linking to them.",
             "The site currently offers a single light theme. A dark theme is planned.",
             "Wide reference tables scroll horizontally inside their own container on small screens. The container is keyboard scrollable, but a wide table remains harder to read on a phone than on a laptop.",
           ],

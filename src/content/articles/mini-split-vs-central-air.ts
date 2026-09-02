@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * each option costs you in the rooms rather than on the invoice.
  */
 export const miniSplitVsCentralAir = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split or central air: what the building decides",
   slug: "mini-split-vs-central-air",
   path: "/mini-split-vs-central-air/",
@@ -156,12 +158,12 @@ export const miniSplitVsCentralAir = publish({
     {
       question: "Can I use my existing ducts with a heat pump?",
       answer:
-        "Often, but the ducts should be assessed for sizing, sealing, and location first. A network designed around different airflow can limit what the new equipment delivers, and leakage into unconditioned space costs capacity.",
+        "They can be, but assess the ducts for sizing, sealing, and location first. A network designed around different airflow can limit what the new equipment delivers, and leakage into unconditioned space costs capacity.",
     },
     {
       question: "Can I mix the two approaches?",
       answer:
-        "Yes, and it is common. A ducted system for the main house with a ductless head for a conversion or an extension is often smaller and cheaper than resizing the central system for a load it was not designed for.",
+        "Yes. A ducted system for the main house can pair with a ductless head for a conversion or extension, avoiding a central-system resize for a load it was not designed to carry.",
     },
     {
       question: "Do mini-splits provide ventilation?",

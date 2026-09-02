@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * oversizing costs, which is the part nobody expects.
  */
 export const btuSizingExplained = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "BTU sizing explained: why floor area is the weakest input",
   slug: "btu-sizing-explained",
   path: "/btu-sizing-explained/",
@@ -38,7 +40,7 @@ export const btuSizingExplained = publish({
     {
       title: "The unit trips people first",
       paragraphs: [
-        "A BTU is a quantity of energy. A BTU per hour is a rate. Equipment is rated in the second, because what matters is whether it can move heat as fast as the building gains or loses it. A 12,000 BTU per hour unit is often called a one-ton unit, which is the same rate under an older name.",
+        "A BTU is a quantity of energy. A BTU per hour is a rate. Equipment is rated in the second, because what matters is whether it can move heat as fast as the building gains or loses it. In HVAC ratings, 12,000 BTU per hour equals one ton of capacity.",
         "The building has a rate too. Its load is how fast heat crosses the walls, windows, and roof, plus what people, appliances, sunlight, and outdoor air add. Sizing is the exercise of matching one rate to the other at the conditions that matter.",
       ],
     },
@@ -61,7 +63,7 @@ export const btuSizingExplained = publish({
     {
       title: "Heating and cooling are two answers",
       paragraphs: [
-        "Winter heat loss and summer heat gain are separate calculations, and they rarely land on the same number. The heating load is driven by the temperature difference across the building fabric; the cooling load adds solar gain, occupants, appliances, and the moisture that comes with them.",
+        "Winter heat loss and summer heat gain are separate calculations with different inputs, so their results need not match. Heating load follows the temperature difference across the building fabric; cooling load adds solar gain, occupants, appliances, and moisture.",
         "Which one governs the equipment size depends on the climate and the building. A heat pump has to be checked against both, at local design temperatures, using the extended capacity table for the model rather than its nominal rating.",
       ],
     },

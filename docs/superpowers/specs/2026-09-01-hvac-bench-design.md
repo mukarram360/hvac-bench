@@ -20,7 +20,7 @@ The URL model reserves top-level sections for `/brands/`, `/error-codes/`, `/tro
 
 Ten brand hubs are included: Gree, Daikin, Mitsubishi, Midea, MRCOOL, Fujitsu, Pioneer, Senville, LG, and Samsung. The seed content is deliberately bounded. Each technical record stores title, slug, description, brand where applicable, equipment context, model scope, code or problem type, symptoms, causes, homeowner-safe checks, professional escalation, sources, review date/status, and explicit related content.
 
-Technical pages must have at least one source, substantive answer/diagnostic sections, a review date, and a supported scope statement. Code meanings are qualified by product family because codes can differ between equipment lines. Homeowner steps never require opening electrical panels, live measurements, refrigerant handling, or safety-device bypasses. Technician-only diagnostics are summarized as escalation context, not presented as DIY procedures.
+Technical pages must have at least one source, substantive answer/diagnostic sections, and a supported scope statement. Source-verified technical pages must also have a review date; editorial-review pages omit it until source verification is complete. Code meanings are qualified by product family because codes can differ between equipment lines. Homeowner steps never require opening electrical panels, live measurements, refrigerant handling, or safety-device bypasses. Technician-only diagnostics are summarized as escalation context, not presented as DIY procedures.
 
 The initial evidence set prioritizes OEM service manuals and official support pages from Gree, Daikin, Midea, MRCOOL, Pioneer, Senville, LG, Samsung, Fujitsu General, Mitsubishi Electric, plus U.S. Department of Energy maintenance guidance for cross-brand symptoms. If a source cannot support a useful distinct page, that page is omitted rather than padded.
 
@@ -41,4 +41,3 @@ Trust pages state the actual research workflow and limitations without implying 
 The repository is linked only to Vercel project `hvac-bench` (`prj_N2KQIFEX0t6WlpRuF8c76KZYcxOV`). Production is built from `main`, deployed to Vercel, and verified at the apex domain. Vercel domain settings enforce `www.hvac-bench.com` as a permanent redirect to `https://hvac-bench.com`; Cloudflare DNS is left untouched unless Vercel proves a DNS defect.
 
 Verification covers unit tests for validation, relationships, metadata/canonicals, sitemap inclusion, and internal routes; lint; type checking; production build; link checking against generated routes; structured-data parsing; representative production HTTP checks; apex HTTPS; www redirect status/location; robots; sitemap; and 404 behavior.
-

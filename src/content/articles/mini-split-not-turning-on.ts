@@ -2,6 +2,8 @@ import { publish } from "./publish";
 
 /** Separates documented delay and control states from a persistent no-start. */
 export const miniSplitNotTurningOn = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split not turning on: power, timer, delay, or fault",
   slug: "mini-split-not-turning-on",
   path: "/mini-split-not-turning-on/",
@@ -118,7 +120,7 @@ export const miniSplitNotTurningOn = publish({
     "Persistent no-response after basic checks requires qualified electrical and control diagnosis.",
   ],
   serviceHandoff:
-    "State whether the indoor display works, whether the unit beeps when commanded, whether the dedicated breaker has tripped and how often, whether a power cut preceded the problem, and how long you waited before deciding the outdoor unit was not starting.",
+    "State whether the indoor display works, whether the unit beeps when commanded, the dates of any dedicated-breaker trips, whether a power cut preceded the problem, and how long you waited before deciding the outdoor unit was not starting.",
   faqs: [
     {
       question: "Why will my mini split not restart straight away?",

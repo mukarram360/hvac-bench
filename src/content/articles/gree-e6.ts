@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * is built around that rather than a generic escalation ladder.
  */
 export const greeE6 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Gree E6 error code: indoor-outdoor communication fault",
   slug: "e6-error-code",
   path: "/brands/gree/e6-error-code/",
@@ -99,7 +101,7 @@ export const greeE6 = publish({
       title: "What you can settle before the visit",
       paragraphs: [
         "Two things you can establish cost nothing and shorten the visit. The first is identity: photograph the rating plate on the indoor unit and the rating plate on the outdoor unit, because the diagnostic data differs between capacities and a technician who arrives with the wrong manual loses an hour.",
-        "The second is history. Write down when E6 first appeared, what happened in the days before, whether the code clears on a restart and for how long, and whether the outdoor unit runs at all while the code shows. On a fault that comes and goes, this record is often more useful than anything a meter reads on the day, because the fault may be absent while the technician is standing there.",
+        "The second is history. Write down when E6 first appeared, what happened in the days before, whether the code clears on a restart and for how long, and whether the outdoor unit runs while the code shows. For an intermittent fault, this record captures conditions that a meter cannot show when the fault is absent during the visit.",
       ],
     },
   ],
@@ -112,7 +114,7 @@ export const greeE6 = publish({
     "Do not perform the manual's powered voltage tests unless you are qualified for live electrical diagnostics.",
   ],
   serviceHandoff:
-    "Give the technician both rating plates, the date E6 first appeared, any installation or electrical work that preceded it, whether a restart clears the code and for how long, and whether the outdoor fan turns at any point while the code is displayed.",
+    "Give the technician both rating plates and the date E6 first appeared. Include any preceding installation or electrical work, how long a restart clears the code, and whether the outdoor fan turns while the code is displayed.",
   resetGuidance:
     "One power cycle may confirm whether the code was transient; repeated E6 requires diagnosis and should not be repeatedly reset.",
   faqs: [

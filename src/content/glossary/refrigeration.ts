@@ -297,7 +297,7 @@ export const refrigeration = [
     ],
     mistakes: [
       "Superheat is not a temperature. It is a difference between two temperatures, one of them derived from pressure.",
-      "There is no universal correct value. The manufacturer publishes a target for the model at stated conditions, and outdoor and indoor conditions move it.",
+      "No universal correct value applies. The manufacturer publishes a target for the model at stated conditions, and indoor and outdoor conditions move it.",
       "Superheat alone does not identify a fault. It is read alongside subcooling, because the pair separates charge from metering.",
     ],
     faqs: [
@@ -539,7 +539,7 @@ export const refrigeration = [
       { label: "Legal duty", value: "Repair and record, under F-Gas or EPA rules" },
     ],
     howItWorks:
-      "Refrigerant escapes as gas, so a leak leaves no puddle and often no visible sign. Capacity falls gradually as charge is lost, which is why the complaint arrives as a system that is not as strong as last year rather than one that stopped. Oil carried with the refrigerant sometimes stains around the leak point, which is one of the clues a technician looks for.",
+      "Refrigerant escapes as gas, so a leak leaves no puddle and may leave no visible sign. Capacity falls gradually as charge is lost, which can present as a system that is not as strong as last year rather than one that stopped. Oil carried with the refrigerant can stain around the leak point, which is one of the clues a technician looks for.",
     whereYouMeetIt: [
       "In a season-on-season capacity complaint, where the system worked last season and now falls short.",
       "In an icing complaint, because a circuit short of charge boils refrigerant at a lower temperature than it was designed to.",
@@ -573,7 +573,7 @@ export const refrigeration = [
       {
         question: "Can I smell or see a refrigerant leak?",
         answer:
-          "Rarely. Refrigerant escapes as an odourless gas. Oil staining around a joint, ice on the coil, and falling capacity are the indirect signs, and detection instruments are what confirm the point.",
+          "Not reliably. Refrigerant escapes as an odourless gas. Oil staining around a joint, ice on the coil, and falling capacity are indirect signs; detection instruments confirm the leak point.",
       },
       {
         question: "Is a small leak worth fixing?",

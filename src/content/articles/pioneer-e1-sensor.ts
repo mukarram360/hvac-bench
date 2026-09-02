@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * cheap thermometer and no risk.
  */
 export const pioneerE1Sensor = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Pioneer E1 error code: room-temperature sensor failure",
   slug: "e1-temperature-sensor-error-code",
   path: "/brands/pioneer/e1-temperature-sensor-error-code/",

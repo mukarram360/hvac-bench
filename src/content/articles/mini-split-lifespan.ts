@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * to decide whether this particular system is worth repairing again.
  */
 export const miniSplitLifespan = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split lifespan: what the evidence supports",
   slug: "mini-split-lifespan",
   path: "/mini-split-lifespan/",
@@ -51,7 +53,7 @@ export const miniSplitLifespan = publish({
     {
       title: "What a warranty is telling you",
       paragraphs: [
-        "A warranty defines which parts are covered, for how long, from what date, subject to registration, and with what excluded. Labour is often covered for a shorter period than parts, or not at all. Compressor cover is often longer than the rest.",
+        "A warranty defines which parts are covered, for how long, from what date, subject to registration, and with what excluded. Labour, parts, and compressor terms can have different durations, and labour may be excluded. Read each term separately.",
         "That is useful information about the manufacturer's commercial risk, and about what a repair will cost you in year six. It is not a statement about how long the equipment will last, and a longer term does not establish a longer life.",
       ],
     },

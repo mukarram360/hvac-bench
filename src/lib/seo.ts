@@ -573,8 +573,13 @@ const HUB_ROUTES = new Set([
 ]);
 
 export function sitemapEntries(): MetadataRoute.Sitemap {
+  const currentDate = new Date().toISOString().slice(0, 10);
+
   return getIndexableRoutes().map((path) => {
     const article = getArticleByPath(path);
+    const lastModified = article
+      ? article.lastReviewed ?? article.datePublished
+      : currentDate;
     const depth = path.split("/").filter(Boolean).length;
 
     const priority =
@@ -592,7 +597,7 @@ export function sitemapEntries(): MetadataRoute.Sitemap {
 
     return {
       url: absoluteUrl(path),
-      lastModified: article?.lastReviewed ?? new Date().toISOString().slice(0, 10),
+      ...(lastModified ? { lastModified } : {}),
       changeFrequency: path === "/" || HUB_ROUTES.has(path) ? "weekly" : "monthly",
       priority,
     };

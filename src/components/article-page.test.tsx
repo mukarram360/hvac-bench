@@ -44,6 +44,28 @@ describe("ArticlePage", () => {
     expect(screen.getByText(/remote layouts.*vary by model/i)).toBeInTheDocument();
   });
 
+  it("presents an undated editorial review without verified claims or styling", () => {
+    const verifiedArticle = getArticleByPath("/brands/gree/e6-error-code/");
+    expect(verifiedArticle).toBeDefined();
+    const article = {
+      ...verifiedArticle!,
+      reviewStatus: "editorial-review" as const,
+      lastReviewed: undefined,
+    };
+
+    render(<ArticlePage article={article} />);
+
+    const badge = screen.getByText("Editorial review", { selector: ".badge" });
+    expect(badge).not.toHaveClass("badge-verified");
+    expect(screen.getByRole("heading", { name: "Source verification pending" })).toBeInTheDocument();
+    expect(screen.getByText(/awaiting source verification/i)).toBeInTheDocument();
+    expect(screen.queryByText("Source verified")).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "How this page was checked" })).not.toBeInTheDocument();
+    expect(screen.queryByText(/Last reviewed/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(verifiedArticle!.lastReviewed!)).not.toBeInTheDocument();
+    expect(document.body).not.toHaveTextContent("Every technical claim above was written");
+  });
+
   it("uses format-aware navigation and links educational pages into the taxonomy", () => {
     const article = getArticleByPath("/how-mini-splits-work/");
     expect(article).toBeDefined();

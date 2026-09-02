@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * situation.
  */
 export const greeVsMideaMiniSplits = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Gree vs Midea: badge, builder, and support",
   slug: "gree-vs-midea-mini-splits",
   path: "/gree-vs-midea-mini-splits/",

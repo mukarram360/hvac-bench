@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * the list of things a series name does not tell you.
  */
 export const senvilleVsPioneerMiniSplits = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Senville vs Pioneer: reading the series name",
   slug: "senville-vs-pioneer-mini-splits",
   path: "/senville-vs-pioneer-mini-splits/",
@@ -82,7 +84,7 @@ export const senvilleVsPioneerMiniSplits = publish({
       [
         "Warranty registration",
         "Yours, within the stated window",
-        "Often handled, but confirm it in writing",
+        "Confirm the named installer and terms in writing",
       ],
       [
         "Who returns if it underperforms",

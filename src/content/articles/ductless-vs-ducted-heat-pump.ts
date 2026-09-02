@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * units, which the other page does not cover.
  */
 export const ductlessVsDuctedHeatPump = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Ductless or ducted: how capacity reaches the room",
   slug: "ductless-vs-ducted-heat-pump",
   path: "/ductless-vs-ducted-heat-pump/",
@@ -21,14 +23,14 @@ export const ductlessVsDuctedHeatPump = publish({
     "Ducted air handlers and concealed indoor units serving short duct runs",
   ],
   directAnswer:
-    "A heat pump can deliver its capacity through units in the room, through a whole-house duct network, or through concealed indoor units serving a few rooms each. The third arrangement is the one most comparisons leave out, and it is often the answer where appearance is the objection.",
+    "A heat pump can deliver its capacity through units in the room, through a whole-house duct network, or through concealed indoor units serving a few rooms each. The third arrangement addresses appearance concerns without requiring a whole-house duct network.",
   scopeNotice:
     "Static pressure limits, permitted duct lengths, and filter requirements are published per indoor unit and are not interchangeable. A concealed unit rated for short runs will not carry a whole-house network, and specifying it as though it will is a design error rather than a preference.",
   layout: ["comparisonTable", "figures", "sections", "branches"],
   symptoms: [
     "A heat pump has been chosen and the delivery method is still open.",
     "Wall-mounted units are unacceptable in some rooms but not others.",
-    "There is a ceiling void or a loft that could carry short duct runs.",
+    "A ceiling void or loft could carry short duct runs.",
   ],
   causes: [
     "Every metre of duct and every fitting costs static pressure the indoor fan has to overcome.",

@@ -59,6 +59,7 @@ function ListSection({
 }
 
 export function ArticlePage({ article }: { article: TechnicalArticle }) {
+  const isSourceVerified = article.reviewStatus === "source-verified";
   const brand = article.brand ? getBrandBySlug(article.brand) : undefined;
   const author = getAuthorBySlug(article.authorSlug);
   const reviewer = article.reviewerSlug ? getAuthorBySlug(article.reviewerSlug) : undefined;
@@ -127,18 +128,19 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
               <h1>{article.title}</h1>
               <p className="dek">{article.description}</p>
               <div className="review-line">
-                <span className="badge badge-verified">
-                  {article.reviewStatus === "source-verified" ? "Source verified" : "Editorial review"}
+                <span className={`badge${isSourceVerified ? " badge-verified" : ""}`}>
+                  {isSourceVerified ? "Source verified" : "Editorial review"}
                 </span>
                 <span>
                   By{" "}
                   <Link href={`/authors/${article.authorSlug}/`}>{author?.name ?? "HVAC Bench"}</Link>
                 </span>
                 {reviewer && <span>Reviewed by {reviewer.name}</span>}
-                <span>
-                  Last reviewed{" "}
-                  <time dateTime={article.lastReviewed}>{article.lastReviewed}</time>
-                </span>
+                {article.lastReviewed && (
+                  <span>
+                    Last reviewed <time dateTime={article.lastReviewed}>{article.lastReviewed}</time>
+                  </span>
+                )}
               </div>
             </header>
 
@@ -217,26 +219,35 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
             {/*
               The evidence record stays on the page in full, but a reader who
               has finished the diagnosis should not have to scroll past it. The
-              closed state keeps the two facts that carry the signal, the
-              documentation class and the review date, and the rest opens.
+              closed state keeps the documentation class and review status.
+              Source-verified pages also keep the review date there.
             */}
             <details className="sources evidence-record">
               <summary>
                 <span>
                   <span className="eyebrow">Evidence record</span>
-                  <h2>How this page was checked</h2>
+                  <h2>{isSourceVerified ? "How this page was checked" : "Source verification pending"}</h2>
                 </span>
                 <small>
-                  {documentClasses.join(", ")} · checked {article.lastReviewed}
+                  {documentClasses.join(", ")}
+                  {article.lastReviewed ? ` · checked ${article.lastReviewed}` : " · editorial review"}
                 </small>
               </summary>
               <div className="evidence-record-body">
-                <p>
-                  Every technical claim above was written from primary documentation held in the
-                  HVAC Bench evidence record: {documentationSummary}. Where a source limits a
-                  definition to certain models, test conditions, or product classes, that limit is
-                  repeated here rather than generalised.
-                </p>
+                {isSourceVerified ? (
+                  <p>
+                    Every technical claim above was written from primary documentation held in the
+                    HVAC Bench evidence record: {documentationSummary}. Where a source limits a
+                    definition to certain models, test conditions, or product classes, that limit is
+                    repeated here rather than generalised.
+                  </p>
+                ) : (
+                  <p>
+                    This page is awaiting source verification against the documentation in its
+                    evidence record: {documentationSummary}. Its documentation class and intended
+                    scope are shown here while that check is pending.
+                  </p>
+                )}
                 <dl className="verification-plate">
                   <div>
                     <dt>Documentation class</dt>
@@ -246,10 +257,12 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
                     <dt>Scope of the definition</dt>
                     <dd>{article.productFamily ?? "Confirm against the exact model manual"}</dd>
                   </div>
-                  <div>
-                    <dt>Last checked</dt>
-                    <dd>{article.lastReviewed}</dd>
-                  </div>
+                  {article.lastReviewed && (
+                    <div>
+                      <dt>Last checked</dt>
+                      <dd>{article.lastReviewed}</dd>
+                    </div>
+                  )}
                 </dl>
               </div>
             </details>
@@ -281,10 +294,12 @@ export function ArticlePage({ article }: { article: TechnicalArticle }) {
                   <dt>Evidence</dt>
                   <dd>{article.sourceType.replaceAll("-", " ")}</dd>
                 </div>
-                <div>
-                  <dt>Reviewed</dt>
-                  <dd>{article.lastReviewed}</dd>
-                </div>
+                {article.lastReviewed && (
+                  <div>
+                    <dt>Reviewed</dt>
+                    <dd>{article.lastReviewed}</dd>
+                  </div>
+                )}
               </dl>
               <div className="rail-links">
                 {brand && <Link href={`/brands/${brand.slug}/`}>All {brand.name} references</Link>}

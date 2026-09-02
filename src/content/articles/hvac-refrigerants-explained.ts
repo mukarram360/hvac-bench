@@ -9,6 +9,8 @@ import { publish } from "./publish";
  * covers.
  */
 export const hvacRefrigerantsExplained = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "HVAC refrigerants: what you have and who may touch it",
   slug: "hvac-refrigerants-explained",
   path: "/hvac-refrigerants-explained/",

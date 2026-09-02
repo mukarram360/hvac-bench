@@ -5,6 +5,8 @@ import { publish } from "./publish";
  * shape of this page is a model gate first and a definition second.
  */
 export const mideaE1 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Midea E1 error code: Aurora Xtreme communication fault",
   slug: "e1-error-code",
   path: "/brands/midea/e1-error-code/",
@@ -125,7 +127,7 @@ export const mideaE1 = publish({
     {
       question: "The restart worked. Is the fault gone?",
       answer:
-        "It means the condition was transient on that occasion. Keep a note of the date. If E1 comes back, the pattern of how often it returns is useful evidence, and the fault should be diagnosed rather than managed with restarts.",
+        "It means the condition was transient on that occasion. Keep a note of the date. If E1 returns, the dates and operating conditions form useful evidence, and the fault should be diagnosed rather than managed with restarts.",
     },
   ],
   sourceIds: ["midea-aurora-service"],

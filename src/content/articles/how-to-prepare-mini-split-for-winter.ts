@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * it, and the checklist is split by whether the system heats at all.
  */
 export const howToPrepareMiniSplitForWinter = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to prepare a mini-split for winter",
   slug: "how-to-prepare-mini-split-for-winter",
   path: "/how-to-prepare-mini-split-for-winter/",

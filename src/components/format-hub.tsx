@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import type { TechnicalArticle } from "@/content/schema";
+import { allArticlesSourceVerified } from "@/lib/provenance";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo";
 import { ArticleCard } from "./article-card";
 import { JsonLd } from "./json-ld";
@@ -56,7 +57,11 @@ export function FormatHub({
         breadcrumbs={breadcrumbs}
         meta={[
           articles.length > 0 ? `${articles.length} published` : "First pages in preparation",
-          "Checked against manufacturer documentation",
+          articles.length === 0
+            ? "Source verification pending"
+            : allArticlesSourceVerified(articles)
+              ? "Checked against manufacturer documentation"
+              : "Includes pages awaiting source verification",
         ]}
       />
 

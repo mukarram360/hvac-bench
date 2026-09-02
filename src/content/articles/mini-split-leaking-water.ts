@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * appearing rather than around a list of parts.
  */
 export const miniSplitLeakingWater = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Mini-split leaking water: shut down and inspect",
   slug: "mini-split-leaking-water",
   path: "/mini-split-leaking-water/",
@@ -51,7 +53,7 @@ export const miniSplitLeakingWater = publish({
     {
       title: "The unit is served by a condensate pump",
       observation:
-        "There is a small pump near the indoor unit, or a thin flexible tube running upwards rather than a pipe falling away, and you may hear the pump running or clicking.",
+        "A small pump sits near the indoor unit, or a thin flexible tube runs upward instead of falling away. You may hear the pump running or clicking.",
       action:
         "Tell the technician about the pump. Pumps have their own failure modes and their own safety switch behaviour, and an installation that lifts condensate cannot be diagnosed as though gravity were doing the work.",
     },
@@ -60,7 +62,7 @@ export const miniSplitLeakingWater = publish({
     {
       title: "Where the water is supposed to go",
       description:
-        "In cooling, moisture can condense on the indoor coil and drain through a pan and line. Water from the indoor cabinet often indicates that this documented condensate path, airflow, mounting, or a related component needs attention.",
+        "In cooling, moisture can condense on the indoor coil and drain through a pan and line. Water from the indoor cabinet points to the condensate path, airflow, mounting, or a related component for inspection.",
       nodes: [
         { label: "Indoor coil", detail: "Where moisture condenses out of room air" },
         { label: "Drain pan", detail: "Collects condensate under the coil" },

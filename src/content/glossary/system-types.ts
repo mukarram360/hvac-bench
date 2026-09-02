@@ -185,7 +185,7 @@ export const systemTypes = [
     whereYouMeetIt: [
       "On a grant or incentive application, where the rated efficiency and the heating capacity at a stated outdoor temperature decide eligibility.",
       "In a complaint about weak heating during a cold snap, where reduced output can be correct operation rather than a fault.",
-      "In a code definition, because a heating fault and a cooling fault often share hardware and therefore share codes.",
+      "In a code definition, because a heating fault and a cooling fault can involve the same hardware and therefore share codes.",
     ],
     howToCheck: [
       {
@@ -227,7 +227,7 @@ export const systemTypes = [
       {
         question: "Does a heat pump work below freezing?",
         answer:
-          "Yes. There is heat in air well below freezing, and modern units are rated to extract it. What changes is the amount delivered and the electricity used to deliver it, which is why the balance point matters.",
+          "Yes. Air below freezing still contains heat, and modern units are rated to extract it. The amount delivered and the electricity required change with temperature, which is why the balance point matters.",
       },
       {
         question: "Why does my heat pump blow cool air sometimes in heating?",
@@ -319,7 +319,7 @@ export const systemTypes = [
       },
     ],
     mistakes: [
-      "It is not a like-for-like boiler swap. Emitters sized for boiler temperatures often need enlarging before the system can run at its efficient flow temperature.",
+      "It is not a like-for-like boiler swap. Emitters sized for boiler temperatures may need enlarging before the system can run at its efficient flow temperature.",
       "Monobloc and split are not the same. A monobloc holds the refrigerant circuit outdoors and carries water indoors, which changes both the freeze protection and the certification a service visit needs.",
     ],
     faqs: [
@@ -374,7 +374,7 @@ export const systemTypes = [
       { label: "Efficiency depends on", value: "Return water temperature, for condensing models" },
     ],
     howItWorks:
-      "A burner heats a heat exchanger and a pump circulates water through it to the emitters. A condensing boiler adds a second heat exchanger that recovers heat from the flue gases, but it only condenses when return water is cool enough, which is why a system run at high temperatures gives up part of the efficiency it was sold on.",
+      "A burner heats a heat exchanger, and a pump circulates water through it to the emitters. A condensing boiler adds a second exchanger to recover heat from flue gases. Condensation requires cool return water, so high-temperature operation gives up part of the available efficiency.",
     whereYouMeetIt: [
       "In a heat pump quotation, where the existing boiler flow temperature explains why radiators need resizing.",
       "In a hybrid system, where a boiler and a heat pump share the same emitters and a control decides which runs.",
@@ -403,7 +403,7 @@ export const systemTypes = [
       {
         context: "Common factory flow setting",
         value: "70 to 80 C",
-        note: "Often higher than the building needs, and adjustable at the boiler",
+        note: "An adjustable boiler setting that may exceed the building requirement",
       },
     ],
     mistakes: [

@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * people actually ask while standing in front of an open unit.
  */
 export const miniSplitFilterCleaning = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to clean a mini-split filter without damaging it",
   slug: "mini-split-filter-cleaning",
   path: "/mini-split-filter-cleaning/",
@@ -106,7 +108,7 @@ export const miniSplitFilterCleaning = publish({
       title: "Why this is the one job worth doing yourself",
       paragraphs: [
         "Manufacturer troubleshooting guidance identifies clogged filters as one cause of reduced airflow, poor heating or cooling, water leakage, odor, and coil icing. The filter is also a component many operating manuals explicitly identify for owner maintenance.",
-        "Use the inspection and cleaning interval in the exact operating manual. Some documented units call for checks as often as every two weeks during heavy use, while other filters and room conditions require a different schedule. Dust, pets, and long run hours load a filter faster than light seasonal use, so treat the published interval as a starting point and look at the filter rather than assume it is still clean.",
+        "Use the inspection and cleaning interval in the exact operating manual. Some documented units call for two-week checks during heavy use, while other filters and room conditions require a different schedule. Dust, pets, and long run hours load a filter faster than light seasonal use, so treat the published interval as a starting point and inspect the filter rather than assume it is clean.",
       ],
     },
     {
@@ -134,12 +136,12 @@ export const miniSplitFilterCleaning = publish({
     "A dirty blower wheel, coil, drain pan, or damaged filter needs model-appropriate parts or professional cleaning.",
   ],
   serviceHandoff:
-    "If cleaning has not restored performance, tell the technician how often you clean the filters, how loaded they were, whether any additional elements are fitted and when they were last replaced, and whether the coil behind the filter looks dirty.",
+    "If cleaning has not restored performance, tell the technician your filter-cleaning interval, how loaded the filters were, whether any additional elements are fitted and when they were last replaced, and whether the coil behind the filter looks dirty.",
   faqs: [
     {
       question: "How often should I clean a mini split filter?",
       answer:
-        "Use the interval in the exact operating manual and inspect more often when the room is dusty or the system runs heavily. Manufacturer examples range from roughly two-week checks in peak use to monthly cleaning in lighter use.",
+        "Use the interval in the exact operating manual and shorten it when inspection shows faster loading from dust or heavy runtime. Manufacturer examples range from roughly two-week checks in peak use to monthly cleaning in lighter use.",
     },
     {
       question: "Can I wash the filter in hot water?",

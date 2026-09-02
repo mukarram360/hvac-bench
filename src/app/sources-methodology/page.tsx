@@ -29,7 +29,7 @@ export default function SourcesMethodologyPage() {
           bullets: [
             "Manufacturer service manuals. The most specific documentation available: code tables, wiring diagrams, pressure data, and diagnostic sequences written for technicians.",
             "Manufacturer installation and operation manuals. Authoritative for normal behaviour, maintenance intervals, and owner-facing indicators.",
-            "Official manufacturer support articles and knowledge bases. Useful and current, but often written for a broader product range than a service manual.",
+            "Official manufacturer support articles and knowledge bases. These can cover a broader product range than a service manual, so the stated scope still needs checking.",
             "Government and standards-body guidance. Used for cross-brand principles such as heat-pump behaviour, airflow, efficiency measurement, and refrigerant regulation.",
           ],
         },
@@ -75,7 +75,8 @@ export default function SourcesMethodologyPage() {
         {
           title: "Review and re-verification",
           paragraphs: [
-            "Each page records the date its sources were last checked. Pages are re-verified when manufacturer documentation changes, when a reader reports a discrepancy, and on a rolling schedule.",
+            "Source verified pages record the date their sources were last checked. Editorial review pages are awaiting that verification and do not show a source-check date.",
+            "Pages are re-verified when manufacturer documentation changes, when a reader reports a discrepancy, and on a rolling schedule.",
             "Corrections that change the meaning of a page are logged publicly, with what changed and why.",
           ],
         },

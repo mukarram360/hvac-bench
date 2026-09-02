@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * everywhere else, and it covers both the US and UK positions.
  */
 export const mrcoolVsPioneerMiniSplits = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "MRCOOL vs Pioneer: the installation route decides",
   slug: "mrcool-vs-pioneer-mini-splits",
   path: "/mrcool-vs-pioneer-mini-splits/",

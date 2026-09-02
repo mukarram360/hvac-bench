@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * in the run cycle the protection trips.
  */
 export const greeH5 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Gree H5 error code: intelligent power module protection",
   slug: "h5-error-code",
   path: "/brands/gree/h5-error-code/",
@@ -40,7 +42,7 @@ export const greeH5 = publish({
     {
       title: "H5 appears only after the system has been running a while",
       observation:
-        "Cooling or heating is delivered normally for some minutes, then the compressor stops and the protection is reported, often on the hottest or coldest part of the day.",
+        "Cooling or heating is delivered normally for some minutes, then the compressor stops and the protection is reported. Record whether the event coincides with the hottest or coldest part of the day.",
       action:
         "Note the outdoor conditions and the run time before the trip, then check for the airflow restrictions listed below. A drive that trips under sustained load is worth checking on the load side before any part is condemned.",
     },
@@ -92,7 +94,7 @@ export const greeH5 = publish({
       paragraphs: [
         "The temptation with a protection code is to clear it and see. It is worth understanding what that does. Each restart puts the same start current through the same module under the same conditions, and if the underlying condition is electrical, every attempt is another stress cycle on the part you are hoping is healthy.",
         "One restart is diagnostic: it tells you whether the protection is immediate or delayed, and that single observation is the most useful thing you can hand a technician. Beyond that, restarts stop producing information and start producing wear.",
-        "There is a second cost that is easy to miss. Inverter systems record what they see, and a fault that has been cleared repeatedly leaves a muddier picture than one that was left alone after it appeared. Switching the system off and calling gives a technician a system in the state that produced the code, which is worth more than a system that has been persuaded to run one more time.",
+        "A second cost is easy to miss. Inverter systems record what they see, and repeated clearing leaves a muddier record than leaving the fault alone. Switching the system off preserves the state that produced the code for the technician.",
       ],
     },
   ],
@@ -105,7 +107,7 @@ export const greeH5 = publish({
     "Do not replace a board or compressor until the root operating condition is confirmed.",
   ],
   serviceHandoff:
-    "Tell the technician how long the system runs before H5 appears, what the outdoor temperature was, whether the outdoor fan was turning at the moment it stopped, when the filter and outdoor coil were last cleaned, and whether the code has ever cleared on its own.",
+    "Tell the technician how long the system runs before H5 appears and what the outdoor temperature was. Add whether the outdoor fan was turning, when the filter and coil were last cleaned, and whether the code cleared on its own.",
   resetGuidance:
     "A single restart can document recurrence, but repeated clearing does not correct an overcurrent or inverter protection condition.",
   faqs: [

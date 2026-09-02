@@ -7,6 +7,8 @@ import { publish } from "./publish";
  * a coil that has been washed the wrong way through.
  */
 export const howToCleanAroundOutdoorUnit = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to clean around an outdoor unit without damaging it",
   slug: "how-to-clean-around-outdoor-unit",
   path: "/how-to-clean-around-outdoor-unit/",

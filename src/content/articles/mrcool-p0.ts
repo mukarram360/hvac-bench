@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * protection explanation.
  */
 export const mrcoolP0 = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "MRCOOL P0 or PC00 error code: inverter module protection",
   slug: "p0-pc00-error-code",
   path: "/brands/mrcool/p0-pc00-error-code/",
@@ -79,7 +81,7 @@ export const mrcoolP0 = publish({
     {
       title: "The observations that are worth making",
       paragraphs: [
-        "Almost everything in the P0 diagnostic path involves the outdoor electrical compartment, where capacitors and DC bus components hold energy after the supply is removed. There is no useful homeowner version of those checks, and improvising one is how people get hurt.",
+        "Almost everything in the P0 diagnostic path involves the outdoor electrical compartment, where capacitors and DC bus components hold energy after isolation. Those checks have no safe homeowner version; improvising one risks serious injury.",
         "What you can do is watch and record. Does the compressor start at all, or is the protection immediate? Does the outdoor fan turn? How long does operation last before the code appears? Did this begin after a storm? Those answers cost nothing, cannot hurt anyone, and materially shorten a diagnosis that would otherwise start from zero.",
         "One more thing is worth writing down: whether anything changed in the property before it started. New circuits, a car charger, solar, a generator, or work by an electrician are all relevant to a protection that responds to electrical conditions, and they are exactly the details people forget to mention because they seem unrelated to the air conditioning.",
       ],

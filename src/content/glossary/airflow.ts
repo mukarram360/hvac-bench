@@ -230,7 +230,7 @@ export const airflow = [
       {
         question: "Can I add a return?",
         answer:
-          "Yes, and it is often the fix for a system that is short of return path. Sizing it means calculating the free area needed for the airflow, which is why it is designed rather than guessed.",
+          "Yes. Adding one can correct a system that is short of return path. Sizing it means calculating the free area needed for the airflow, which is why it is designed rather than guessed.",
       },
     ],
     sourceIds: ["ashrae-terminology"],
@@ -248,7 +248,7 @@ export const airflow = [
       "An air filter protects the coil and blower from dust. Ductless units use a washable mesh screen behind the front panel; ducted systems use a replaceable panel filter in the return path.",
     metaTitle: "Air filter: the one owner check",
     metaDescription:
-      "What an HVAC air filter does, how ductless mesh screens differ from ducted panel filters, why a loaded filter reduces capacity, and how often to check it.",
+      "What an HVAC air filter does, how ductless mesh screens differ from panel filters, why loading reduces capacity, and how to set an inspection interval.",
     keywords: ["hvac air filter", "mini split filter", "dirty filter symptoms", "how often to change filter"],
     facts: [
       { label: "Protects", value: "The coil and the blower, before the air" },
@@ -429,7 +429,7 @@ export const airflow = [
       {
         title: "Put a towel down before it melts",
         detail:
-          "Ice thaws faster than the drain can carry it away, so water often escapes the pan during recovery.",
+          "If ice thaws faster than the drain can carry it away, water escapes the pan during recovery.",
         performedBy: "owner",
       },
       {

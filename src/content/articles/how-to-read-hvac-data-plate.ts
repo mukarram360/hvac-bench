@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * answer, gets its own section.
  */
 export const howToReadHvacDataPlate = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "How to read an HVAC data plate, field by field",
   slug: "how-to-read-hvac-data-plate",
   path: "/how-to-read-hvac-data-plate/",
@@ -88,7 +90,7 @@ export const howToReadHvacDataPlate = publish({
   steps: [
     {
       name: "Find the exposed plate",
-      text: "On an outdoor unit the plate is on an outer face of the cabinet, often near the pipe connections. On an indoor unit it is behind the hinged panel you already open for filters. Neither needs a tool.",
+      text: "On an outdoor unit, inspect the outer faces of the cabinet and the area near the pipe connections. On an indoor unit, look behind the hinged panel opened for filter access. Neither location needs a tool.",
     },
     {
       name: "Photograph it whole",
@@ -116,7 +118,7 @@ export const howToReadHvacDataPlate = publish({
       title: "Nameplate capacity is not a load calculation",
       paragraphs: [
         "Where a capacity appears on a plate, it is a rating at a stated test condition. It says what the equipment can move under those conditions, not what your building needs, and not what the unit will deliver on a cold January morning.",
-        "Two figures often get conflated here. Nominal capacity is a family designation, such as the 12 in a model number standing for 12,000 BTU per hour. Rated capacity is a measured figure at a stated condition. Neither is a substitute for a load calculation, and neither predicts output at your design temperature, which comes from the extended capacity table.",
+        "Nominal and rated capacity describe different things. Nominal capacity is a family designation, such as 12 in a model number for 12,000 BTU per hour. Rated capacity is measured at a stated condition. Neither replaces a load calculation or the extended-capacity output at the design temperature.",
       ],
     },
     {

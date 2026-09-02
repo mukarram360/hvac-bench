@@ -6,6 +6,8 @@ import { publish } from "./publish";
  * snapshot, and separates snow and drainage problems from coil frost.
  */
 export const heatPumpOutdoorUnitIcedOver = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Heat pump iced over: defrost or a real fault?",
   slug: "heat-pump-outdoor-unit-iced-over",
   path: "/heat-pump-outdoor-unit-iced-over/",
@@ -44,7 +46,7 @@ export const heatPumpOutdoorUnitIcedOver = publish({
     {
       title: "Ice building upwards from the base of the unit",
       observation:
-        "A mound of ice has formed underneath and is growing into the coil from below, often after a spell of cold weather with repeated melting and refreezing.",
+        "A mound of ice has formed underneath and is growing into the coil from below after repeated melting and refreezing in cold weather.",
       action:
         "This is a drainage problem rather than a coil problem. Defrost water is not getting away from the base and is freezing where it lands. Mention it specifically, because the fix involves how the unit is mounted and drained.",
     },
@@ -127,7 +129,7 @@ export const heatPumpOutdoorUnitIcedOver = publish({
     "Do not chip ice, pour boiling water, or bypass defrost controls.",
   ],
   serviceHandoff:
-    "Describe whether the ice is light frost or solid glaze, whether you have observed a complete defrost cycle and how often, whether ice is building up from the base, what the outdoor temperature has been, and whether indoor heating still recovers between cycles.",
+    "Describe whether the ice is light frost or solid glaze, the timing of each observed defrost cycle, whether ice is building up from the base, the outdoor temperature, and whether indoor heating still recovers between cycles.",
   faqs: [
     {
       question: "Should my heat pump be covered in frost in winter?",

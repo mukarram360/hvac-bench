@@ -130,7 +130,7 @@ export const service = [
       {
         title: "Record the complete string including suffixes",
         detail:
-          "Trailing letters and revision codes often distinguish product families, and dropping them can lead to the wrong code table.",
+          "Trailing letters and revision codes can distinguish product families, and dropping them can lead to the wrong code table.",
         performedBy: "owner",
       },
       {
@@ -209,7 +209,7 @@ export const service = [
       },
     ],
     mistakes: [
-      "An owner manual is not a substitute. It lists a subset of codes and rarely explains what produced them.",
+      "An owner manual is not a substitute. It lists a subset of codes without the diagnostic explanation found in service literature.",
       "A manual found by searching the brand alone may cover a different product family. The coverage list at the front is what confirms it.",
     ],
     faqs: [
@@ -258,7 +258,7 @@ export const service = [
     whereYouMeetIt: [
       "In a handover pack, alongside the manuals and the warranty registration.",
       "In a performance dispute, where the commissioning readings are what show whether anything has changed.",
-      "In a warranty claim, where evidence of correct commissioning is frequently a condition.",
+      "In a warranty claim when its terms require evidence of correct commissioning.",
     ],
     howToCheck: [
       {
@@ -326,7 +326,7 @@ export const service = [
       { label: "Phase-down", value: "Limits the quantity of high GWP refrigerant placed on the market" },
     ],
     howItWorks:
-      "The regulation treats fluorinated refrigerants as controlled substances because of their global warming potential. It restricts handling to certified people, requires leak checks at intervals set by the size of the charge, requires records of the refrigerant added and recovered, and progressively reduces the quantity of high GWP refrigerant that may be placed on the market, which is what drives equipment toward lower GWP alternatives.",
+      "The regulation treats fluorinated refrigerants as controlled substances because of their global warming potential. It restricts handling to certified people and ties leak-check intervals to charge size. Record-keeping requirements cover refrigerant added and recovered, while the phase-down limits high-GWP refrigerant placed on the market.",
     whereYouMeetIt: [
       "In any quotation for refrigerant work, where the certification of the person doing it is a legal requirement rather than a credential.",
       "In a commercial maintenance contract, where leak check intervals and records are contractual obligations.",

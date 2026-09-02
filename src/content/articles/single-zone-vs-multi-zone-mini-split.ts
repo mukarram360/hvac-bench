@@ -8,6 +8,8 @@ import { publish } from "./publish";
  * example does more work here than any amount of prose.
  */
 export const singleZoneVsMultiZoneMiniSplit = publish({
+  lastReviewed: "2026-09-02",
+  reviewStatus: "source-verified",
   title: "Single-zone or multi-zone: the real trade",
   slug: "single-zone-vs-multi-zone-mini-split",
   path: "/single-zone-vs-multi-zone-mini-split/",
@@ -53,7 +55,7 @@ export const singleZoneVsMultiZoneMiniSplit = publish({
     {
       title: "Connected capacity and diversity",
       paragraphs: [
-        "The total capacity of the heads on a multi-zone system can exceed the outdoor unit's rating. Manufacturers permit that on the assumption that not every room calls at full output at the same time, which is a reasonable assumption in a house used the way most houses are used.",
+        "The total capacity of the heads on a multi-zone system can exceed the outdoor unit's rating when the approved combination table permits it. That allowance depends on the documented diversity limits for the exact outdoor model, not an assumption about how a typical house is used.",
         "It stops being reasonable when the building's use is synchronised: an office where every room fills at nine, or a house where the whole family is home on the hottest afternoon of the year. That is the condition to ask about, because it is the one where a diversified system disappoints.",
       ],
     },
@@ -171,7 +173,7 @@ export const singleZoneVsMultiZoneMiniSplit = publish({
     {
       question: "Is multi-zone cheaper than several single-zone systems?",
       answer:
-        "Often on installed cost, because there is one outdoor unit, one supply, and fewer penetrations. Compare that against the low-load behaviour and the consequence of a single outdoor failure before treating it as settled.",
+        "It can reduce installed cost because there is one outdoor unit, one supply, and fewer penetrations. Compare that against low-load behaviour and the consequence of a single outdoor failure before deciding.",
     },
     {
       question: "Can I add a fifth head to a four-zone system?",

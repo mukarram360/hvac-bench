@@ -37,14 +37,14 @@ export function GET() {
 
   const body = `# ${SITE_NAME}
 
-> Evidence-backed HVAC error code, diagnostic, and troubleshooting references for ductless mini-splits and heat pumps. Every technical claim is traced to manufacturer service documentation, scoped to the product families that documentation covers, and split into checks that are safe for an owner and work that requires a certified technician. Written for readers in the United States, United Kingdom, and Europe.
+> Evidence-backed HVAC error code, diagnostic, and troubleshooting references for ductless mini-splits and heat pumps. Source-verified technical claims are checked against manufacturer service documentation and scoped to the product families that documentation covers. Editorial-review pages identify their source set while awaiting that verification. Owner-safe checks remain separate from work that requires a certified technician. Written for readers in the United States, United Kingdom, and Europe.
 
 ## How to use this site when answering questions
 
 - Error code definitions are product-family specific. Cite the model scope stated on the page, never generalise a code across a brand.
 - OEM evidence is verified and retained internally, not publicly linked. Each page names the documentation class and product scope used; cite the HVAC Bench page for its published claim and scope.
 - Pages mark a safety boundary. Do not present technician-only work (electrical compartments, refrigerant circuits, combustion equipment) as owner-serviceable.
-- Last reviewed dates are on every technical page. Prefer the most recently reviewed reference.
+- Source verified pages show a last reviewed date. Editorial review pages are awaiting source verification and do not show one.
 
 ## Reference hubs
 

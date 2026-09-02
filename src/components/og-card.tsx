@@ -94,8 +94,8 @@ export function articleOgImage(article: TechnicalArticle) {
           }}
         >
           <span>
-            {article.reviewStatus === "source-verified" ? "Source verified" : "Editorial review"} ·
-            Reviewed {article.lastReviewed}
+            {article.reviewStatus === "source-verified" ? "Source verified" : "Editorial review"}
+            {article.lastReviewed ? ` · Reviewed ${article.lastReviewed}` : ""}
           </span>
           <span>hvac-bench.com</span>
         </div>
