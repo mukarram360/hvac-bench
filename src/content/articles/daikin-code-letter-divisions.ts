@@ -119,6 +119,7 @@ export const daikinCodeLetterDivisions = publish({
     "/brands/daikin/u4-error-code/",
     "/brands/daikin/a5-error-code/",
     "/how-to-document-hvac-fault-for-service/",
+    "/brands/daikin/one-plus-software-update-not-arriving/",
   ],
   glossaryTerms: ["error-code", "protection-code", "service-manual"],
   keywords: [

@@ -170,6 +170,7 @@ export const americanStandardS9v2FaultHistory = publish({
     "/brands/american-standard/s9v2-e21-error-code/",
     "/how-to-document-hvac-fault-for-service/",
     "/heat-pump-vs-furnace/",
+    "/brands/american-standard/platinum-18-with-honeywell-hz432-zoning/",
   ],
   glossaryTerms: ["control-board", "error-code", "service-manual"],
   keywords: [

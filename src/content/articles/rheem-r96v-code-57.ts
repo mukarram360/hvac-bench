@@ -122,6 +122,6 @@ export const rheemR96vCode57 = publish({
   ],
   sourceIds: ["rheem-r96v-service", "rheem-heating-support"],
   glossaryTerms: ["error-code", "control-board"],
-  relatedContent: ["/brands/rheem/", "/how-to-document-hvac-fault-for-service/", "/how-to-read-hvac-data-plate/"],
+  relatedContent: ["/brands/rheem/", "/how-to-document-hvac-fault-for-service/", "/how-to-read-hvac-data-plate/", "/brands/rheem/econet-server-connection-error/"],
   keywords: ["rheem code 57", "r96v fault 57", "rheem pressure switch open", "rheem furnace error 57"],
 });

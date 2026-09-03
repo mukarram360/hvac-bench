@@ -131,6 +131,7 @@ export const mitsubishiP8 = publish({
     "/brands/mitsubishi/",
     "/how-to-find-mini-split-model-number/",
     "/how-to-document-hvac-fault-for-service/",
+    "/brands/mitsubishi/hyper-heat-defrost-interval/",
   ],
   keywords: ["mitsubishi p8 fault", "mitsubishi electric p8 error code", "mr slim p8", "mitsubishi p8 thermistor"],
 });

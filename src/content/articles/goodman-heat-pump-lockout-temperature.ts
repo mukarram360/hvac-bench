@@ -133,6 +133,7 @@ export const goodmanHeatPumpLockoutTemperature = publish({
     "/brands/goodman/gmvc-one-flash-lockout/",
     "/heat-pump-vs-furnace/",
     "/how-heat-pump-defrost-works/",
+    "/brands/goodman/comfortbridge-with-nest-or-ecobee/",
   ],
   glossaryTerms: ["balance-point", "auxiliary-heat", "defrost-cycle"],
   keywords: [

@@ -66,7 +66,7 @@ export const nestHeatPumpBalance = publish({
     { question: "What happens when Heat Pump Balance is Off?", answer: "Nest follows an auxiliary-heat lockout temperature that is set manually instead of calculating the balance automatically." },
   ],
   sourceIds: ["nest-heat-pump-balance", "nest-pro-guide"],
-  relatedContent: ["/brands/nest/", "/brands/nest/e74-no-power-rh/", "/heat-pump-vs-furnace/"],
+  relatedContent: ["/brands/nest/", "/brands/nest/e74-no-power-rh/", "/heat-pump-vs-furnace/", "/brands/lennox/icomfort-replaced-with-ecobee-or-nest/"],
   glossaryTerms: ["auxiliary-heat", "balance-point", "thermostat"],
   keywords: ["nest heat pump balance", "nest max savings aux heat", "nest dual fuel lockout", "nest heat pump balance missing"],
 });

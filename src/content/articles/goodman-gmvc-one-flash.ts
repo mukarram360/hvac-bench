@@ -124,7 +124,7 @@ export const goodmanGmvcOneFlash = publish({
   ],
   sourceIds: ["goodman-gmvc-install", "goodman-furnace-support"],
   glossaryTerms: ["error-code", "control-board"],
-  relatedContent: ["/brands/goodman/", "/how-to-document-hvac-fault-for-service/", "/how-to-read-hvac-data-plate/"],
+  relatedContent: ["/brands/goodman/", "/how-to-document-hvac-fault-for-service/", "/how-to-read-hvac-data-plate/", "/brands/goodman/comfortnet-eb0-eb1-eb3-in-cooling/"],
   keywords: [
     "goodman furnace one flash",
     "goodman gmvc ignition lockout",

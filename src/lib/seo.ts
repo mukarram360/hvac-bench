@@ -5,6 +5,7 @@ import { EQUIPMENT_TYPES } from "@/content/taxonomy";
 import {
   getArticleByPath,
   getAuthorBySlug,
+  getBrandBySlug,
   getIndexableRoutes,
   getSourceById,
 } from "./content";
@@ -120,6 +121,25 @@ export function pageMetadata({
   };
 }
 
+/**
+ * What the generated social card actually shows, written out for `og:image:alt`.
+ *
+ * The default was the page title, which is accurate but tells a screen reader
+ * nothing the heading has not already said. The card draws the manufacturer,
+ * the code when the page has one, and the descriptive half of the title, so the
+ * alt text names those three things in that order.
+ */
+function articleCardAlt(article: TechnicalArticle) {
+  const brand = article.brand ? getBrandBySlug(article.brand) : undefined;
+  const heading = article.title.includes(":")
+    ? article.title.split(":").slice(1).join(":").trim()
+    : article.title;
+  const subject = [brand?.name, article.errorCode].filter(Boolean).join(" ");
+  return subject
+    ? `${SITE_NAME} reference card for ${subject}: ${heading}`
+    : `${SITE_NAME} reference card: ${heading}`;
+}
+
 export function articleMetadata(article: TechnicalArticle): Metadata {
   const author = getAuthorBySlug(article.authorSlug);
   return pageMetadata({
@@ -132,6 +152,7 @@ export function articleMetadata(article: TechnicalArticle): Metadata {
     modifiedTime: article.lastReviewed,
     authorName: author?.name ?? SITE_NAME,
     ogImagePath: article.path,
+    ogImageAlt: articleCardAlt(article),
   });
 }
 

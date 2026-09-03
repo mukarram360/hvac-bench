@@ -117,7 +117,7 @@ export const ecobeeCalibrating = publish({
   ],
   sourceIds: ["ecobee-calibration", "ecobee-premium-manual"],
   glossaryTerms: ["thermostat", "sensor-fault"],
-  relatedContent: ["/brands/ecobee/", "/how-to-document-hvac-fault-for-service/", "/how-to-check-mini-split-remote/"],
+  relatedContent: ["/brands/ecobee/", "/how-to-document-hvac-fault-for-service/", "/how-to-check-mini-split-remote/", "/brands/lennox/icomfort-replaced-with-ecobee-or-nest/"],
   keywords: [
     "ecobee calibrating heat cool disabled",
     "ecobee calibration 20 minutes",

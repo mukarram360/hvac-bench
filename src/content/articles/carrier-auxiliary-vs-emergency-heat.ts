@@ -113,6 +113,7 @@ export const carrierAuxiliaryVsEmergencyHeat = publish({
     "/brands/carrier/ductless-maintenance-owner-vs-technician/",
     "/how-heat-pump-defrost-works/",
     "/heat-pump-vs-furnace/",
+    "/brands/carrier/infinity-code-16-with-53-55-47/",
   ],
   glossaryTerms: ["auxiliary-heat", "balance-point", "defrost-cycle"],
   keywords: [

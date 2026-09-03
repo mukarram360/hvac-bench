@@ -147,6 +147,7 @@ export const mitsubishiMszApIndicatorFlash = publish({
     "/brands/mitsubishi/p8-fault-code/",
     "/how-to-document-hvac-fault-for-service/",
     "/mini-split-not-turning-on/",
+    "/brands/mitsubishi/mxz-post-defrost-overshoot-and-short-cycling/",
   ],
   glossaryTerms: ["error-code", "thermistor", "control-board"],
   keywords: [

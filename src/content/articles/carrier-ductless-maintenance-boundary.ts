@@ -126,7 +126,7 @@ export const carrierDuctlessMaintenanceBoundary = publish({
   ],
   sourceIds: ["carrier-ductless-support", "carrier-ductless-products"],
   glossaryTerms: ["air-filter", "ductless-mini-split"],
-  relatedContent: ["/brands/carrier/", "/mini-split-filter-cleaning/", "/how-to-clean-around-outdoor-unit/"],
+  relatedContent: ["/brands/carrier/", "/mini-split-filter-cleaning/", "/how-to-clean-around-outdoor-unit/", "/brands/carrier/infinity-airflow-verification-static-pressure/"],
   keywords: [
     "carrier ductless maintenance",
     "carrier mini split maintenance",

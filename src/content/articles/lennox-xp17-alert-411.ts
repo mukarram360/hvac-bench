@@ -122,6 +122,6 @@ export const lennoxXp17Alert411 = publish({
   ],
   sourceIds: ["lennox-xp17-install", "lennox-icomfort-alerts"],
   glossaryTerms: ["protection-code", "refrigerant-charge"],
-  relatedContent: ["/brands/lennox/", "/how-to-document-hvac-fault-for-service/", "/hvac-refrigerants-explained/"],
+  relatedContent: ["/brands/lennox/", "/how-to-document-hvac-fault-for-service/", "/hvac-refrigerants-explained/", "/brands/lennox/icomfort-alerts-10-31-39/"],
   keywords: ["lennox alert 411", "xp17 critical alert 411", "icomfort code 411", "lennox low pressure lockout"],
 });

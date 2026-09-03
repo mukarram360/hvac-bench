@@ -66,7 +66,7 @@ export const rheemEconetFaultHistory = publish({
     { question: "Why photograph the component status screens too?", answer: "They preserve the control's reported compressor, fan, and temperature states at the same visit. Those states give a technician context for the fault sequence." },
   ],
   sourceIds: ["rheem-econet-user", "rheem-r96v-service"],
-  relatedContent: ["/brands/rheem/", "/brands/rheem/r96v-fault-57/", "/how-to-document-hvac-fault-for-service/"],
+  relatedContent: ["/brands/rheem/", "/brands/rheem/r96v-fault-57/", "/how-to-document-hvac-fault-for-service/", "/brands/rheem/econet-a006-c-odu-communication-failure/"],
   glossaryTerms: ["error-code", "thermostat", "control-board"],
   keywords: ["rheem econet fault history", "rheem last five faults", "econet service information", "clear rheem fault history"],
 });

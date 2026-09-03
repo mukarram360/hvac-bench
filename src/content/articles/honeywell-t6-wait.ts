@@ -122,6 +122,7 @@ export const honeywellT6Wait = publish({
     "/brands/honeywell-home/",
     "/mini-split-not-turning-on/",
     "/how-to-document-hvac-fault-for-service/",
+    "/brands/daikin/one-plus-geofencing-away-mode/",
   ],
   keywords: [
     "honeywell t6 wait",

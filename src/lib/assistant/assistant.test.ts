@@ -175,8 +175,15 @@ describe("brand and code contamination", () => {
     expect(result.answer).toMatch(/which (brand|manufacturer)|model/i);
   });
 
-  it("refuses a brand the library does not cover rather than substituting one", () => {
-    const result = ask("carrier 47 error code");
+  /*
+   * This used to ask for a Carrier code, on the basis that the library held no
+   * Carrier code pages at all. It holds them now, so the fixture moved to a
+   * code Carrier equipment does not publish. The guard is the same one: a
+   * covered manufacturer must not have a nearby code substituted for the one
+   * that was asked about.
+   */
+  it("refuses a code the library does not cover rather than substituting a nearby one", () => {
+    const result = ask("carrier 91 error code");
     expect(result.answered).toBe(false);
     expect(result.answer).toMatch(/do not have|not covered|could not find/i);
   });

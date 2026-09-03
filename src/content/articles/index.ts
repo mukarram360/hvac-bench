@@ -146,6 +146,21 @@ import { honeywellT6BalancePoint } from "./honeywell-t6-balance-point";
 import { tadoRadiatorE2E4 } from "./tado-radiator-e2-e4";
 import { hiveOfflineHeatingControl } from "./hive-offline-heating-control";
 import { draytonWiserRadiatorBoost } from "./drayton-wiser-radiator-boost";
+import { carrierInfinityCode16With535547 } from "./carrier-infinity-code-16-with-53-55-47";
+import { carrierInfinityAirflowVerificationStaticPressure } from "./carrier-infinity-airflow-verification-static-pressure";
+import { traneXv20i18407And18408 } from "./trane-xv20i-184-07-184-08";
+import { lennoxIcomfortAlerts103139 } from "./lennox-icomfort-alerts-10-31-39";
+import { lennoxIcomfortReplacedWithEcobeeOrNest } from "./lennox-icomfort-replaced-with-ecobee-or-nest";
+import { rheemEconetA006COduCommunication } from "./rheem-econet-a006-c-odu-communication";
+import { rheemEconetServerConnectionError } from "./rheem-econet-server-connection-error";
+import { goodmanComfortnetB0B1B3Cooling } from "./goodman-comfortnet-b0-b1-b3-cooling";
+import { goodmanComfortbridgeWithNestOrEcobee } from "./goodman-comfortbridge-with-nest-or-ecobee";
+import { daikinOnePlusFirmwareUpdate } from "./daikin-one-plus-firmware-update";
+import { daikinOnePlusGeofencingAwayMode } from "./daikin-one-plus-geofencing-away-mode";
+import { mitsubishiMxzPostDefrostOvershoot } from "./mitsubishi-mxz-post-defrost-overshoot";
+import { mitsubishiHyperHeatDefrostInterval } from "./mitsubishi-hyper-heat-defrost-interval";
+import { americanStandardPlatinum18Hz432Zoning } from "./american-standard-platinum-18-hz432-zoning";
+import { yorkYp9cThreeRedFlashesLowFire } from "./york-yp9c-three-red-flashes-low-fire";
 
 /**
  * One module per article, with no exceptions.
@@ -318,4 +333,19 @@ export const articles = [
   tadoRadiatorE2E4,
   hiveOfflineHeatingControl,
   draytonWiserRadiatorBoost,
+  carrierInfinityCode16With535547,
+  carrierInfinityAirflowVerificationStaticPressure,
+  traneXv20i18407And18408,
+  lennoxIcomfortAlerts103139,
+  lennoxIcomfortReplacedWithEcobeeOrNest,
+  rheemEconetA006COduCommunication,
+  rheemEconetServerConnectionError,
+  goodmanComfortnetB0B1B3Cooling,
+  goodmanComfortbridgeWithNestOrEcobee,
+  daikinOnePlusFirmwareUpdate,
+  daikinOnePlusGeofencingAwayMode,
+  mitsubishiMxzPostDefrostOvershoot,
+  mitsubishiHyperHeatDefrostInterval,
+  americanStandardPlatinum18Hz432Zoning,
+  yorkYp9cThreeRedFlashesLowFire,
 ] satisfies TechnicalArticle[];

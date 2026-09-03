@@ -140,6 +140,6 @@ export const traneXl824Reboot = publish({
   ],
   sourceIds: ["trane-xl824-reboot", "trane-xl824-support"],
   glossaryTerms: ["thermostat", "control-board"],
-  relatedContent: ["/brands/trane/", "/how-to-reset-mini-split-safely/", "/how-to-document-hvac-fault-for-service/"],
+  relatedContent: ["/brands/trane/", "/how-to-reset-mini-split-safely/", "/how-to-document-hvac-fault-for-service/", "/brands/trane/xv20i-184-07-and-184-08-cold-weather-lockout/"],
   keywords: ["reboot trane xl824", "trane xl824 restart", "xl824 reboot settings", "trane thermostat reboot"],
 });

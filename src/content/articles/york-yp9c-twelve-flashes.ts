@@ -163,6 +163,7 @@ export const yorkYp9cTwelveFlashes = publish({
     "/brands/york/yp9c-seven-red-flashes/",
     "/how-to-document-hvac-fault-for-service/",
     "/heat-pump-vs-furnace/",
+    "/brands/york/yp9c-three-red-flashes-at-low-fire/",
   ],
   glossaryTerms: ["control-board", "error-code", "service-manual"],
   keywords: [

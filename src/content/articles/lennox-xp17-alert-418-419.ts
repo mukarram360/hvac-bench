@@ -164,6 +164,7 @@ export const lennoxXp17Alert418419 = publish({
     "/brands/lennox/xp17-icomfort-alert-411/",
     "/mini-split-not-heating/",
     "/how-to-document-hvac-fault-for-service/",
+    "/brands/lennox/icomfort-replaced-with-ecobee-or-nest/",
   ],
   glossaryTerms: ["auxiliary-heat", "control-board", "error-code"],
   keywords: [

@@ -67,7 +67,7 @@ export const ecobeeCompressorOutdoorLockout = publish({
     { question: "Is the compressor minimum the same as the five-minute delay?", answer: "No. One follows outdoor temperature. The cycle-off timer follows elapsed time after the compressor stops and defaults to 300 seconds." },
   ],
   sourceIds: ["ecobee-premium-manual", "ecobee-calibration"],
-  relatedContent: ["/brands/ecobee/", "/brands/ecobee/calibrating-heat-cool-disabled/", "/heat-pump-operating-temperatures/"],
+  relatedContent: ["/brands/ecobee/", "/brands/ecobee/calibrating-heat-cool-disabled/", "/heat-pump-operating-temperatures/", "/brands/goodman/comfortbridge-with-nest-or-ecobee/"],
   glossaryTerms: ["balance-point", "auxiliary-heat", "thermostat"],
   keywords: ["ecobee compressor minimum outdoor temperature", "ecobee heat pump lockout", "ecobee compressor min outdoor disabled", "ecobee aux heat threshold"],
 });

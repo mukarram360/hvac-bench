@@ -114,7 +114,7 @@ export const yorkYp9cSevenFlashes = publish({
   ],
   sourceIds: ["york-yp9c-install", "york-affinity-furnaces"],
   glossaryTerms: ["error-code", "control-board"],
-  relatedContent: ["/brands/york/", "/how-to-document-hvac-fault-for-service/", "/how-to-read-hvac-data-plate/"],
+  relatedContent: ["/brands/york/", "/how-to-document-hvac-fault-for-service/", "/how-to-read-hvac-data-plate/", "/brands/york/yp9c-three-red-flashes-at-low-fire/"],
   keywords: [
     "york furnace seven red flashes",
     "yp9c 7 flashes",
