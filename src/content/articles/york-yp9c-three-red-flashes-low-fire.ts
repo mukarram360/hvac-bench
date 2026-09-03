@@ -21,7 +21,7 @@ export const yorkYp9cThreeRedFlashesLowFire = publish({
   problemType: "pressure-switch-open",
   symptomFamily: "no-heating",
   directAnswer:
-    "Three red flashes reports the pressure switch open with inducer pressure above the switch setpoint, meaning the switch is open when it should be closed. The reason this shows up at low fire is written into the same manual: the switch is mounted on the draft inducer and proves flow at the start of each cycle, and the manual then states that it may be open under certain conditions when the burners are lit, because the pressure sensor on the control board is the primary flow sensor. Minimum firing rate is where inducer speed and the pressure the switch sees are both lowest.",
+    "Three red flashes reports the pressure switch open with inducer pressure above the switch setpoint, meaning the switch is open when it should be closed. The reason this shows up at low fire is written into the same manual. The switch is mounted on the draft inducer and proves flow at the start of each cycle. The manual then states that it may be open under certain conditions when the burners are lit, because the pressure sensor on the control board is the primary flow sensor. Minimum firing rate is where inducer speed and the pressure the switch sees are both lowest.",
   scopeNotice:
     "This applies to the modulating YP9C family and the models sharing its installation manual, which use both a pressure switch on the inducer and a separate pressure sensor on the control board. Single and two-stage York furnaces without that pressure sensor read a pressure switch fault differently.",
   symptoms: [
@@ -87,7 +87,7 @@ export const yorkYp9cThreeRedFlashesLowFire = publish({
       paragraphs: [
         "York describes the pressure switch as mounted on the draft inducer and monitoring flow through the vent system, closing at the beginning of each cycle once adequate combustion airflow is established. Then comes the sentence that makes this fault legible: this switch may be open under certain conditions when the burners are lit, and the pressure sensor is the primary flow sensor.",
         "That is an unusual thing for a manual to say, and it changes what an open switch during a burn actually means. The switch is a start-of-cycle proof, and the board watches airflow continuously through a separate sensor in the burner compartment near the combustion blower. A switch that opens at low fire is reporting the pressure it sees at that moment, not necessarily a failure of combustion airflow.",
-        "The published ignition sequence puts a number on when that moment arrives. The inducer ramps up until airflow is proven by the pressure switch and by the pressure sensor, the ignitor heats for 17 to 20 seconds, the gas valve opens, the circulating blower starts on flame, and the furnace fires at 70 percent for 30 to 45 seconds before dropping to the minimum 35 percent rate. Low fire is where the cycle is heading, and it arrives less than a minute in.",
+        "The published ignition sequence puts a number on when that moment arrives. The inducer ramps up until airflow is proven by the pressure switch and by the pressure sensor. The ignitor heats for 17 to 20 seconds, the gas valve opens, and the circulating blower starts on flame. The furnace then fires at 70 percent for 30 to 45 seconds before dropping to the minimum 35 percent rate. Low fire is where the cycle is heading, and it arrives less than a minute in.",
       ],
     },
     {

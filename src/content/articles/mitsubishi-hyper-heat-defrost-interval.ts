@@ -60,13 +60,13 @@ export const mitsubishiHyperHeatDefrostInterval = publish({
       paragraphs: [
         "The service documentation lists a switch function for changing the defrosting control, with a normal position and a position intended for high humidity. Its stated purpose is to shorten the defrosting prohibition time in high humidity or heavy snow regions in order to reduce malfunctions caused by frost. The remark alongside it is unusually candid: heating performance is somewhat reduced, because defrosting is carried out more.",
         "That single entry answers the question the title asks. A shorter interval is a position the manufacturer offers on purpose, chosen against frost problems and paid for in heating output. A system set that way is behaving as configured, and the honest response is to check what it was set to rather than to look for a broken part.",
-        "There is also a floor on how close cycles can be. The manual defrost function is described as effective only at startup or ten minutes after the last defrosting operation, which tells you the control enforces a minimum spacing rather than defrosting on demand.",
+        "A floor also applies to how close cycles can be. The manual defrost function is described as effective only at startup or ten minutes after the last defrosting operation, which tells you the control enforces a minimum spacing rather than defrosting on demand.",
       ],
     },
     {
       title: "Lost capacity during frosting is published, not hidden",
       paragraphs: [
-        "The same documentation carries a correction of heating capacity for frost and defrosting, instructing the reader that if heating capacity has been reduced due to frost formation or defrosting, the capacity should be multiplied by the appropriate correction factor from the table to obtain the actual heating capacity.",
+        "The same documentation carries a correction of heating capacity for frost and defrosting. It instructs the reader that if heating capacity has been reduced by frost formation or defrosting, the capacity should be multiplied by the appropriate correction factor from the table to obtain the actual heating capacity.",
         "Two things follow from that. Rated heating capacity is a laboratory figure that the manufacturer itself corrects downward for frosting conditions, so comparing a cold damp evening against a nameplate number compares two different measurements. And the correction is a function of outdoor conditions, so the same equipment gives different answers on different nights without anything changing.",
         "This is where a household complaint about falling behind should be measured rather than argued. An indoor temperature trend across several hours, alongside the outdoor temperature, describes the balance between load and delivered capacity. A single defrost cycle describes nothing.",
       ],

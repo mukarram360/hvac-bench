@@ -22,7 +22,7 @@ export const goodmanComfortnetB0B1B3Cooling = publish({
   problemType: "blower-limiting-condition",
   symptomFamily: "no-cooling",
   directAnswer:
-    "Read them apart. The b3 entry is the only airflow condition of the three: Goodman describes it as the circulator blower motor operating in a power, temperature or speed limiting condition, and lists blocked filters, restrictive ductwork, undersized ductwork and high ambient temperature as the causes. The b0 entry says the motor is not running when it should be, and b1 says the control module has lost communication with the motor. Neither of those is a duct problem, and grouping all three sends the diagnosis to the wrong place.",
+    "Read them apart. The b3 entry is the only airflow condition of the three. Goodman describes it as the circulator blower motor operating in a power, temperature or speed limiting condition, and lists blocked filters, restrictive ductwork, undersized ductwork and high ambient temperature as the causes. The b0 entry says the motor is not running when it should be, and b1 says the control module has lost communication with the motor. Neither of those is a duct problem, and grouping all three sends the diagnosis to the wrong place.",
   scopeNotice:
     "These codes belong to the air handler integrated control module, and the seven-segment display alternates characters, which is why written transcriptions vary between readers. Furnace and outdoor unit codes on the same ComfortNet system come from separate tables.",
   symptoms: [
@@ -47,7 +47,7 @@ export const goodmanComfortnetB0B1B3Cooling = publish({
     {
       title: "The blower does not run at all on a cooling call",
       observation:
-        "There is a demand at the thermostat, the outdoor unit may start, and no air moves indoors.",
+        "A demand stands at the thermostat, the outdoor unit may start, and no air moves indoors.",
       action:
         "That matches the motor not running entry rather than an airflow restriction. Goodman lists loose or disconnected motor power leads and a failed motor as the causes, and both are inside the cabinet, so stop here and call for service.",
     },
@@ -98,7 +98,7 @@ export const goodmanComfortnetB0B1B3Cooling = publish({
       title: "What an owner can settle before the visit",
       paragraphs: [
         "The two owner-reachable causes on Goodman's list are the filter and the openness of the duct system. Checking the filter and confirming that registers are fully open costs nothing and removes the two explanations that need no tools.",
-        "Beyond that, record rather than experiment. Note whether the code appears in cooling only, in heating only, or in both. Note whether the blower ran at all. Note the indoor temperature and how hot the space around the air handler is, because high ambient temperature is on the published cause list for the limiting condition and an air handler in a hot attic is a different case from one in a conditioned closet.",
+        "Beyond that, record rather than experiment. Note whether the code appears in cooling only, in heating only, or in both. Note whether the blower ran at all. Note the indoor temperature and how hot the space around the air handler is. High ambient temperature is on the published cause list for the limiting condition, and an air handler in a hot attic is a different case from one in a conditioned closet.",
         "Those three observations decide whether the visit begins at a duct measurement or at the motor connections, and they cannot be reconstructed once the code has been cleared.",
       ],
     },

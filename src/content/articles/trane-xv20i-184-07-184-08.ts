@@ -21,7 +21,7 @@ export const traneXv20i18407And18408 = publish({
   problemType: "protection-lockout",
   symptomFamily: "protection-shutdown",
   directAnswer:
-    "Both entries describe the state the outdoor control has entered, not a component it has condemned. Trane publishes its variable-speed alerts as a base code with a sub alarm, and the two lockout entries in that family behave differently from every protection alert underneath them: a protection alert shuts the compressor down for a cutout period and then releases itself, while a lockout entry stops the system until power is cycled or the alerts are reset. In cold weather the alerts that accumulate underneath include one for which Trane names low outdoor ambient temperature, below a figure printed in its table, as a possible cause.",
+    "Both entries describe the state the outdoor control has entered, not a component it has condemned. Trane publishes its variable-speed alerts as a base code with a sub alarm, and the two lockout entries in that family behave differently from every protection alert underneath them. A protection alert shuts the compressor down for a cutout period and then releases itself. A lockout entry stops the system until power is cycled or the alerts are reset. In cold weather the alerts that accumulate underneath include one for which Trane names low outdoor ambient temperature, below a figure printed in its table, as a possible cause.",
   scopeNotice:
     "The alert architecture and the two lockout behaviours described here are read from Trane variable-speed outdoor unit Service Facts. Pressure thresholds, cutout times and the shutdown count that triggers the lockout are model specific and are printed in the Service Facts for the exact outdoor model, so treat those figures as something to look up rather than to carry across.",
   symptoms: [
@@ -91,7 +91,7 @@ export const traneXv20i18407And18408 = publish({
     {
       title: "Why cold weather is where the count fills up",
       paragraphs: [
-        "The protection alerts underneath the lockout describe operating limits. Trane lists low suction pressure protection in heating mode as an alert that shuts the compressor down when suction pressure falls below a published threshold, and names outdoor ambient temperature below a stated figure as one of the possible causes, alongside low charge, refrigerant pump down at the expansion valve, a restriction, and pressure transducer calibration.",
+        "The protection alerts underneath the lockout describe operating limits. Trane lists low suction pressure protection in heating mode as an alert that shuts the compressor down when suction pressure falls below a published threshold. Among its possible causes it names outdoor ambient temperature below a stated figure, low charge, refrigerant pump down at the expansion valve, a restriction, and pressure transducer calibration.",
         "That list is the useful part. A heat pump can meet a documented protection limit on a cold night while every component is intact, and it can meet the same limit because the charge is low. The alert cannot separate those two on its own, which is exactly why the manual asks the technician to read what came before.",
         "The lockout is a counter, so it says nothing about which of those causes applied. It says the control reached its allowance. A system that restarts and runs after a power cycle has not been repaired, and Trane says so directly by noting that the compressor resumes normal operation after the cycle.",
       ],

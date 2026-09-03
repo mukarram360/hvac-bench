@@ -60,21 +60,21 @@ export const americanStandardPlatinum18Hz432Zoning = publish({
       paragraphs: [
         "In a communicating installation the wall control does not simply ask for cooling. Trane and American Standard variable-speed literature describes a load value and a stage demand travelling over the data line, with the outdoor drive calculating the compressor and outdoor fan speeds from them. Load values under one hundred generate a first stage demand and the drive produces the minimum compressor speed, and as the load value falls the control returns the system to first stage demand and lets it duty cycle.",
         "Airflow is part of the same conversation. The literature describes an airflow demand message sent from the outdoor drive to the indoor unit so the blower runs at a matching modulating speed. The indoor blower speed is therefore an output of the outdoor unit's own calculation rather than a separate setting.",
-        "There is even a diagnostic that depends on the data line existing. The communication indicator flashes a device count, which is used to verify how many communicating devices are connected, and a communicating display assembly on the equipment is used to monitor, configure and test the system.",
+        "One diagnostic depends on the data line existing at all. The communication indicator flashes a device count, which is used to verify how many communicating devices are connected, and a communicating display assembly on the equipment is used to monitor, configure and test the system.",
       ],
     },
     {
       title: "What the zone panel is built to send",
       paragraphs: [
         "The HZ432 installation guide describes a conventional 24 volt panel. Its recommended thermostat table is organised by system class, listing single-stage, multi-stage and heat pump models, all of them conventional controls rather than communicating ones.",
-        "For airflow it offers one lever. The guide describes connecting the equipment terminal for blower speed reduction to the panel, and states that when one zone is calling, or 25 percent of zones on systems with more than four, that terminal is de-energized of 24 volts, which reduces blower speed on most variable speed blowers. That is a single binary instruction covering the entire range between a small zone and the whole house.",
+        "For airflow it offers one lever. The guide describes connecting the equipment terminal for blower speed reduction to the panel. It states that when one zone is calling, or 25 percent of zones on systems with more than four, that terminal is de-energized of 24 volts, which reduces blower speed on most variable speed blowers. That is a single binary instruction covering the entire range between a small zone and the whole house.",
         "The rest of the airflow management is mechanical. The accessory list includes a bypass static pressure regulating damper and a discharge air temperature sensor, which are the traditional ways a conventional zoned system keeps pressure and supply temperature inside sensible limits when most of the ducts are closed.",
       ],
     },
     {
       title: "What follows from putting the two together",
       paragraphs: [
-        "Nothing here says the equipment will not run. It says the equipment will run from the information it is given. Capacity that would have been chosen from a continuously varying load value is instead chosen from whatever the discrete inputs express, and airflow that would have been matched by the drive is instead set by a zone panel with one reduction contact and a mechanical bypass.",
+        "Nothing here says the equipment will not run. It says the equipment will run from the information it is given. Capacity that would have been chosen from a continuously varying load value is instead chosen from whatever the discrete inputs express. Airflow that would have been matched by the drive is instead set by a zone panel with one reduction contact and a mechanical bypass.",
         "The practical consequence is that the smoothness the system was bought for depends on how well the zoning arrangement approximates the demand signal, and that approximation is coarse by design. It also changes where diagnostic information lives, because the communicating display and the device count belong to the data line rather than to the zone thermostats.",
         "This is the reason equipment manufacturers publish their own zoning accessories for communicating systems. Comparing a manufacturer zoning option against a conventional panel is a comparison of how much of the demand signal survives, and that is the question worth asking a contractor before the ducts are cut.",
       ],

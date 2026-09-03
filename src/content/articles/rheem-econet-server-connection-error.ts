@@ -91,7 +91,7 @@ export const rheemEconetServerConnectionError = publish({
     {
       title: "The published radio specification settles most of these cases",
       paragraphs: [
-        "Rheem lists the thermostat radio as 802.11 b/g/n at 2.4 GHz. That single line explains a large share of connections that look wrong. A router advertising one network name across both bands can hand a 2.4 GHz-only client an association that works at setup and behaves poorly later, and a household that moved to a 5 GHz-only name leaves the thermostat with nothing to join at all.",
+        "Rheem lists the thermostat radio as 802.11 b/g/n at 2.4 GHz. That single line explains a large share of connections that look wrong. A router advertising one network name across both bands can hand a 2.4 GHz-only client an association that works at setup and behaves poorly later. A household that moved to a 5 GHz-only name leaves the thermostat with nothing to join at all.",
         "The app side has its own stated requirement: a broadband internet connection is needed, and receipt of notifications depends on how the home network is set up. Those two sentences together define the boundary of what the thermostat is responsible for. It joins a 2.4 GHz network and it talks to a service. Everything between those two points belongs to the house.",
         "The setup order is worth repeating for the same reason. The equipment is installed, the app is downloaded and an account created, the wireless icon on the thermostat is touched, and the remaining steps are followed on both the thermostat and the app. A step completed on only one of the two leaves an account and a device that have not been introduced.",
       ],

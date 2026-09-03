@@ -21,7 +21,7 @@ export const mitsubishiMxzPostDefrostOvershoot = publish({
   problemType: "post-defrost-overshoot",
   symptomFamily: "no-heating",
   directAnswer:
-    "Heat arriving in a room whose head is switched off is documented behaviour on this platform, not a fault. Mitsubishi publishes service switch functions whose stated purpose is to reduce the room temperature increase by lowering the valve opening on indoor units that are in fan, cooling, stop or thermo-off state, and another whose purpose is to raise that opening so refrigerant does not accumulate in those same idle heads. Both settings exist because refrigerant reaches every connected head while the outdoor unit is heating one of them.",
+    "Heat arriving in a room whose head is switched off is documented behaviour on this platform, not a fault. Mitsubishi publishes service switch functions whose stated purpose is to reduce the room temperature increase by lowering the valve opening on indoor units in fan, cooling, stop or thermo-off state. Another raises that opening so refrigerant does not accumulate in those same idle heads. Both settings exist because refrigerant reaches every connected head while the outdoor unit is heating one of them.",
   scopeNotice:
     "This describes multi-zone MXZ outdoor units, where one compressor serves several indoor heads through separate expansion valves. A single-zone system has none of the interactions on this page, and the switch functions named here are outdoor-unit service settings rather than anything reachable from a remote controller.",
   symptoms: [
@@ -85,7 +85,7 @@ export const mitsubishiMxzPostDefrostOvershoot = publish({
     {
       title: "The idle heads are part of the system, not spectators",
       paragraphs: [
-        "Mitsubishi sets out the problem and its two opposite solutions in the same service table. One switch function fully closes the expansion valve on an indoor unit that is in fan, cooling, stop or thermo-off state while the outdoor unit runs, and its stated purpose is to reduce the room temperature increase by setting that opening lower. The additional information attached to it says the other half out loud: refrigerant is more likely to collect in units in thermo-off operation, causing a refrigerant shortage in those units, with less capacity and an increase in discharge temperature.",
+        "Mitsubishi sets out the problem and its two opposite solutions in the same service table. One switch function fully closes the expansion valve on an indoor unit that is in fan, cooling, stop or thermo-off state while the outdoor unit runs. Its stated purpose is to reduce the room temperature increase by setting that opening lower. The additional information attached to it says the other half out loud: refrigerant is more likely to collect in units in thermo-off operation, causing a refrigerant shortage in those units, with less capacity and an increase in discharge temperature.",
         "The opposing function raises the opening on those same idle heads by roughly 50 to 70 pulses during heating, to avoid a refrigerant shortage caused by liquid accumulating where nothing is running. Its remark notes that refrigerant flow noise might be generated in units other than the one in operation.",
         "Read together, those two entries describe a genuine engineering trade rather than a defect. Closing the valves keeps unwanted heat out of rooms nobody is heating and risks stranding refrigerant. Opening them protects capacity and puts warmth and noise into rooms that did not ask for either.",
       ],
@@ -95,7 +95,7 @@ export const mitsubishiMxzPostDefrostOvershoot = publish({
       paragraphs: [
         "Defrost stops heating while the outdoor coil is cleared, so the calling room loses ground and then has to be recovered. The system returning to heating with a temperature deficit is the point at which output is highest and the interactions above are most visible.",
         "Mitsubishi also documents a switch that raises the indoor valve opening during defrost, described as avoiding a discharge temperature increase and providing efficient defrosting, with louder refrigerant flow noise as the stated consequence. That setting exists because what happens at the indoor heads during defrost is a design variable, which is a useful thing to know before assuming the noise or the warmth is a malfunction.",
-        "The short cycling that follows is the arithmetic of a small zone. A room that has been overshot is satisfied for longer than usual, and a room being fed by two paths at once, its own head and the residual heat from the recovery, reaches setpoint sooner than the outdoor unit can settle to a matching output.",
+        "The short cycling that follows is the arithmetic of a small zone. A room that has been overshot is satisfied for longer than usual. A room fed by two paths at once, its own head and the residual heat from the recovery, reaches setpoint sooner than the outdoor unit can settle to a matching output.",
       ],
     },
     {

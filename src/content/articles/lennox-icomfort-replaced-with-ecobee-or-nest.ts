@@ -21,7 +21,7 @@ export const lennoxIcomfortReplacedWithEcobeeOrNest = publish({
   problemType: "control-compatibility",
   symptomFamily: "remote-and-controls",
   directAnswer:
-    "The swap is supported and the loss is specific rather than general. Lennox publishes a separate list of available heat modes for each class of thermostat, and the communicating list is the longest one. A modulating SLP98 running on an iComfort Touch control has a four-step firing profile available to it; on a two-stage 24 volt thermostat that becomes a variable rate capacity mode or a plain low and high call, and on a single-stage thermostat it becomes three steps on timers. A two-stage SL280 loses far less, because its control can stage itself.",
+    "The swap is supported and the loss is specific rather than general. Lennox publishes a separate list of available heat modes for each class of thermostat, and the communicating list is the longest one. A modulating SLP98 running on an iComfort Touch control has a four-step firing profile available to it. On a two-stage 24 volt thermostat that becomes a variable rate capacity mode or a plain low and high call, and on a single-stage thermostat it becomes three steps on timers. A two-stage SL280 loses far less, because its control can stage itself.",
   scopeNotice:
     "Figures here are read from Lennox service literature for the SLP98UHV and SL280UHNV series. Other Lennox furnaces publish their own control configuration lists, and a heat pump or air conditioner on the same bus has its own separate consequences that this page does not cover.",
   symptoms: [
@@ -57,7 +57,7 @@ export const lennoxIcomfortReplacedWithEcobeeOrNest = publish({
     {
       title: "The furnace was never taking orders from jumpers, and now it is",
       paragraphs: [
-        "Lennox states the rule directly in its communicating systems service manual: while communicating controls are operating in a communication system, all jumper and link settings on the controls are ignored, treated as defaults, and become active only if the system is converted to a non-communicating one. Converting is exactly what fitting an ecobee or a Nest does.",
+        "Lennox states the rule directly in its communicating systems service manual. While communicating controls are operating in a communication system, all jumper and link settings on the controls are ignored, treated as defaults, and become active only if the system is converted to a non-communicating one. Converting is exactly what fitting an ecobee or a Nest does.",
         "So the switch positions on the furnace board have been dormant, possibly since installation, and they now govern behaviour. On the SL280UHNV the first switch is labelled for thermostat heat stage selection and ships in the position for a two-stage thermostat, which means a single-stage replacement thermostat requires that switch to be moved. Blower-off delay sits on two more switches with published options of 60, 90, 120 and 180 seconds, and cooling blower speed sits on two others.",
         "None of that is difficult work for the installer, and all of it is invisible from the thermostat. A system that heats but feels different after a swap is worth checking against the switch tables in the furnace literature before anything else is suspected.",
       ],
@@ -65,8 +65,8 @@ export const lennoxIcomfortReplacedWithEcobeeOrNest = publish({
     {
       title: "A two-stage furnace can still stage itself, so the loss is smaller",
       paragraphs: [
-        "The SL280UHNV control is described as communicating-enabled and as able to operate with a non-communicating conventional single or two-stage thermostat. In two-stage thermostat mode the burners start on first stage and move to second stage when the thermostat calls for it, and Lennox adds that a simultaneous call for both stages fires first stage and switches to second after 30 seconds.",
-        "In single-stage mode the furnace supplies the second stage on its own clock. The burners always fire on first-stage heat with the inducer on low and the blower on low heat speed, and the control moves to second-stage heat after a recognition period that a second switch sets to either 7 or 12 minutes.",
+        "The SL280UHNV control is described as communicating-enabled and as able to operate with a non-communicating conventional single or two-stage thermostat. In two-stage thermostat mode the burners start on first stage and move to second stage when the thermostat calls for it. Lennox adds that a simultaneous call for both stages fires first stage and switches to second after 30 seconds.",
+        "In single-stage mode the furnace supplies the second stage on its own clock. The burners always fire on first-stage heat with the inducer on low and the blower on low heat speed. The control then moves to second-stage heat after a recognition period that a second switch sets to either 7 or 12 minutes.",
         "That is why the answer differs by appliance rather than by brand. Both heat stages remain reachable on this furnace under either thermostat class. What changes is who decides when the second stage arrives, and a fixed 7-minute recognition period behaves differently on a mild day than a thermostat that never asks for the second stage at all.",
       ],
     },

@@ -20,7 +20,7 @@ export const daikinOnePlusFirmwareUpdate = publish({
   problemType: "software-update",
   symptomFamily: "remote-and-controls",
   directAnswer:
-    "There is no update button to press, and that is the point. Daikin describes the arrangement plainly: with Wi-Fi configured, the system can check the software version and update software to the latest version automatically. The thermostat is therefore either eligible and waiting, or it is not eligible because one of the network conditions Daikin publishes is not met. The version shown on the learn more screen is the only local evidence of which case you are in.",
+    "No update button exists to press, and that is the point. Daikin describes the arrangement plainly: with Wi-Fi configured, the system can check the software version and update software to the latest version automatically. The thermostat is therefore either eligible and waiting, or it is not eligible because one of the network conditions Daikin publishes is not met. The version shown on the learn more screen is the only local evidence of which case you are in.",
   scopeNotice:
     "This covers the Daikin One+ thermostat itself, commissioned for unitary equipment. Software updates for connected HVAC equipment, and for Daikin controls sold under other names, follow their own paths and are not described here.",
   symptoms: [

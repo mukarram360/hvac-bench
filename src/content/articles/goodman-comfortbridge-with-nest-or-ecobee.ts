@@ -72,7 +72,7 @@ export const goodmanComfortbridgeWithNestOrEcobee = publish({
       paragraphs: [
         "A conventional thermostat with one heating and one cooling terminal looks like a single-stage control, and on conventional equipment it would be. On this system the staging decision has been moved rather than removed. The thermostat says a demand exists; the control decides what to run to satisfy it, including which backup heat kit stages to bring in.",
         "Goodman describes the same principle for electric heat sizing, noting that two-stage electric heat kit control needs only a single W input because the internal algorithms handle staging from it. The number of terminals in use stops being a measure of how many stages the system has.",
-        "There is a practical consequence for anyone reading thermostat runtime data. A thermostat that believes it is running a single-stage system reports a single-stage picture, so the runtime graphs will not show the staging the equipment actually performed.",
+        "One practical consequence lands on anyone reading thermostat runtime data. A thermostat that believes it is running a single-stage system reports a single-stage picture, so the runtime graphs will not show the staging the equipment actually performed.",
       ],
     },
     {
