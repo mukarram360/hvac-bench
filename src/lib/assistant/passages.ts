@@ -9,9 +9,17 @@ import { getAllArticles, getAllBrands, getGlossary, glossaryPath } from "@/lib/c
  * their article's identity with them, which is what lets retrieval refuse to
  * answer a Gree question with a Daikin page.
  *
- * The index is built once per process. It is small enough that scoring every
- * passage on every request is faster than maintaining an inverted index, and
- * far easier to reason about.
+ * The index is built once per process. It used to score every passage on every
+ * request, which was defensible while the library was small: the scan cost
+ * grew with the library, and so did the per-passage work, because each scored
+ * passage rebuilt a token set and re-tokenised its own question. At three
+ * times the original page count that arrangement stopped being cheap.
+ *
+ * So the index now carries postings: token to passage, and the same for the
+ * three non-lexical signals that can pull a passage into a result on their own
+ * (an exact code, the named brand, a recognised symptom). Retrieval visits the
+ * passages that can score and nothing else, and the ranking it produces is
+ * unchanged.
  */
 
 export type PassageKind =
@@ -38,13 +46,29 @@ export type Passage = {
   /** Question text where the passage is a FAQ, used for question matching. */
   question?: string;
   articlePath: string;
-  articleTitle: string;
+  /**
+   * Carried only by the glossary and brand passages, which have no article
+   * record behind them. For an article passage the title lives once on the
+   * article rather than once per passage, which is where it was costing the
+   * index a hundred kilobytes to say the same thing forty times.
+   */
+  articleTitle?: string;
   brand?: string;
   /** Normalised code variants this passage's article covers. */
   codes: string[];
   problemType?: string;
   tokens: string[];
+  /**
+   * The question split the way the question bonus compares it: lower case,
+   * every run of non-alphanumerics treated as a break, and no stop-word
+   * filtering, because "what" and "how" are part of how a question reads.
+   * Computed here so it is not recomputed for every query.
+   */
+  questionTokens?: string[];
 };
+
+/** Token or key to the positions in `passages` that carry it. */
+export type Postings = Record<string, number[]>;
 
 export type PassageIndex = {
   passages: Passage[];
@@ -52,7 +76,17 @@ export type PassageIndex = {
   /** Document frequency per token, for inverse document frequency weighting. */
   documentFrequency: Record<string, number>;
   codeOwners: Record<string, string[]>;
+  /** Token to passage positions. Document frequency is the posting length. */
+  postings: Postings;
+  /** The three signals that can score a passage without any token matching. */
+  codePostings: Postings;
+  brandPostings: Postings;
+  problemPostings: Postings;
 };
+
+function questionTokensOf(question: string) {
+  return question.toLowerCase().replace(/[^a-z0-9]+/g, " ").split(" ");
+}
 
 const STOP_WORDS = new Set([
   "the", "a", "an", "is", "it", "of", "to", "in", "on", "my", "i", "and", "or",
@@ -103,13 +137,13 @@ export function buildPassageIndex(): PassageIndex {
       text,
       question,
       articlePath: article.path,
-      articleTitle: article.title,
       brand: article.brand,
       codes: codeVariants(article),
       problemType: article.problemType,
       // Retrieval only tests token presence, so retaining repeats wastes memory
       // without changing relevance scoring.
       tokens: [...new Set(tokenize(`${question ?? ""} ${text}`))],
+      questionTokens: question ? questionTokensOf(question) : undefined,
     });
   };
 
@@ -163,6 +197,7 @@ export function buildPassageIndex(): PassageIndex {
       articlePath: glossaryPath(term.slug),
       articleTitle: `${term.term} in the HVAC glossary`,
       codes: [],
+      questionTokens: questionTokensOf(`What is ${term.term}?`),
       tokens: [...new Set(tokenize(
         `${term.term} ${term.aliases.join(" ")} ${term.definition} ${term.shortAnswer ?? ""}`,
       ))],
@@ -179,17 +214,35 @@ export function buildPassageIndex(): PassageIndex {
       articleTitle: `${brand.name} error codes and troubleshooting`,
       brand: brand.slug,
       codes: [],
+      questionTokens: questionTokensOf(`${brand.name} systems`),
       tokens: [...new Set(tokenize(
         `${brand.name} ${brand.aliases.join(" ")} ${brand.series.join(" ")}`,
       ))],
     });
   }
 
+  const postings: Postings = {};
+  const codePostings: Postings = {};
+  const brandPostings: Postings = {};
+  const problemPostings: Postings = {};
+  const add = (map: Postings, key: string, position: number) => {
+    const list = map[key];
+    if (list) list.push(position);
+    else map[key] = [position];
+  };
+
+  passages.forEach((passage, position) => {
+    for (const token of passage.tokens) add(postings, token, position);
+    for (const code of passage.codes) add(codePostings, code, position);
+    if (passage.brand) add(brandPostings, passage.brand, position);
+    if (passage.problemType) add(problemPostings, passage.problemType, position);
+  });
+
+  // Tokens are deduplicated on the passage, so a posting list has one entry
+  // per passage and its length is the document frequency.
   const documentFrequency: Record<string, number> = {};
-  for (const passage of passages) {
-    for (const token of new Set(passage.tokens)) {
-      documentFrequency[token] = (documentFrequency[token] ?? 0) + 1;
-    }
+  for (const [token, positions] of Object.entries(postings)) {
+    documentFrequency[token] = positions.length;
   }
 
   // Which brands document a given code, so a bare code can ask for a brand
@@ -203,5 +256,14 @@ export function buildPassageIndex(): PassageIndex {
     }
   }
 
-  return { passages, articles, documentFrequency, codeOwners };
+  return {
+    passages,
+    articles,
+    documentFrequency,
+    codeOwners,
+    postings,
+    codePostings,
+    brandPostings,
+    problemPostings,
+  };
 }

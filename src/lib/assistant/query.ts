@@ -229,18 +229,15 @@ function detectBrand(normalised: string, tokens: string[]): string | undefined {
   const collapsed = normalised.replace(/[^a-z0-9]/g, "");
   const vocabulary = getBrandVocabulary();
 
-  // Exact words first, which is how a brand is usually written.
-  for (const token of tokens) {
-    for (const brand of vocabulary) {
-      if (brand.forms.includes(token)) return brand.slug;
-    }
-  }
-
-  // Then joined spellings, so "mr cool" reaches "mrcool". Restricted to names
-  // long enough that an accidental substring is implausible.
-  for (const brand of vocabulary) {
-    for (const form of brand.forms) {
-      if (form.length >= 6 && collapsed.includes(form)) return brand.slug;
+  // Check every exact form from longest to shortest. That makes a specific
+  // family such as Daikin Altherma win over its parent manufacturer, while
+  // still letting a joined spelling such as "mr cool" reach "mrcool".
+  const exactForms = vocabulary
+    .flatMap((brand) => brand.forms.map((form) => ({ slug: brand.slug, form })))
+    .sort((a, b) => b.form.length - a.form.length);
+  for (const { slug, form } of exactForms) {
+    if (tokens.includes(form) || (form.length >= 6 && collapsed.includes(form))) {
+      return slug;
     }
   }
 
@@ -261,12 +258,13 @@ function detectBrand(normalised: string, tokens: string[]): string | undefined {
  * prefixes HVAC manufacturers actually use, so ordinary words are not read as
  * codes.
  */
-const CODE_PATTERN = /\b(ch|el|pc|eh|e|p|h|u|a|f|c|d|j|l)\s?-?\s?(\d{1,3}[a-z]?)\b/gi;
+const CODE_PATTERN =
+  /\b(?:(ch|el|pc|eh|e|p|h|u|a|f|c|d|j|l)\s?[-.]?\s?(\d{1,3}(?:\.\d+)?[a-z]?)|(\d{1,3}[a-z]))\b/gi;
 
 function detectCodes(raw: string): string[] {
   const found = new Set<string>();
   for (const match of raw.matchAll(CODE_PATTERN)) {
-    const code = normaliseCode(`${match[1]}${match[2]}`);
+    const code = normaliseCode(match[3] ?? `${match[1]}${match[2]}`);
     // A bare single letter and digit like "a 5" is only a code when the letter
     // is not a word on its own in that position, which the prefix list and the
     // digit requirement already mostly settle.

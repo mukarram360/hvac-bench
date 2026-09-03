@@ -1,5 +1,5 @@
 import type { TechnicalArticle } from "@/content/schema";
-import type { Passage, PassageIndex } from "./passages";
+import { tokenize, type Passage, type PassageIndex } from "./passages";
 import type { ParsedQuery } from "./query";
 
 /**
@@ -53,31 +53,28 @@ const KIND_PRIOR: Record<string, number> = {
   brand: 0.9,
 };
 
+/**
+ * Lexical weight for one passage, given the query terms already known to
+ * appear in it. Term weights come from the posting lists, so nothing is
+ * recomputed per passage, and the question bonus reads the tokens the index
+ * stored rather than splitting the question again on every request.
+ */
 function lexicalScore(
-  query: ParsedQuery,
+  queryTokens: string[],
+  matchedHere: Set<string>,
+  weightOf: (token: string) => number,
   passage: Passage,
-  index: PassageIndex,
-  matched: Set<string>,
 ): number {
-  if (query.tokens.length === 0) return 0;
-  const passageTokens = new Set(passage.tokens);
-  const total = index.passages.length;
   let score = 0;
-
-  for (const token of new Set(query.tokens)) {
-    if (!passageTokens.has(token)) continue;
-    matched.add(token);
-    const df = index.documentFrequency[token] ?? 1;
-    // Inverse document frequency: a token in every passage says nothing.
-    score += Math.log(total / df);
-  }
+  for (const token of matchedHere) score += weightOf(token);
 
   // A FAQ whose question overlaps the query is a strong signal.
-  if (passage.question) {
-    const questionTokens = new Set(
-      passage.question.toLowerCase().replace(/[^a-z0-9]+/g, " ").split(" "),
-    );
-    const overlap = query.tokens.filter((token) => questionTokens.has(token)).length;
+  if (passage.questionTokens) {
+    const questionTokens = passage.questionTokens;
+    let overlap = 0;
+    for (const token of queryTokens) {
+      if (questionTokens.includes(token)) overlap += 1;
+    }
     score += overlap * 0.8;
   }
 
@@ -86,8 +83,44 @@ function lexicalScore(
 
 export function retrieve(query: ParsedQuery, index: PassageIndex): RankedArticle[] {
   const byArticle = new Map<string, RankedArticle>();
+  const articleByPath = new Map(index.articles.map((entry) => [entry.path, entry]));
+  const queryTokens = [...new Set(query.tokens)];
+  const passageCount = index.passages.length;
+  const weightOf = (token: string) =>
+    Math.log(passageCount / (index.documentFrequency[token] ?? 1));
 
-  for (const passage of index.passages) {
+  /**
+   * Candidate gathering. A passage can score for four reasons, and three of
+   * them do not need a word in common with the question: the article documents
+   * the code that was asked about, it belongs to the named brand, or its
+   * problem type is the symptom that was recognised. Each has its own posting
+   * list, so a passage that could score is visited and one that could not is
+   * never touched.
+   */
+  const matchedTokensByPassage = new Map<number, Set<string>>();
+  const candidates = new Set<number>();
+
+  for (const token of queryTokens) {
+    for (const position of index.postings[token] ?? []) {
+      candidates.add(position);
+      const existing = matchedTokensByPassage.get(position);
+      if (existing) existing.add(token);
+      else matchedTokensByPassage.set(position, new Set([token]));
+    }
+  }
+  for (const code of query.errorCodes) {
+    for (const position of index.codePostings[code] ?? []) candidates.add(position);
+  }
+  if (query.brand) {
+    for (const position of index.brandPostings[query.brand] ?? []) candidates.add(position);
+  }
+  for (const problemType of query.problemTypes) {
+    for (const position of index.problemPostings[problemType] ?? []) candidates.add(position);
+  }
+
+  for (const position of candidates) {
+    const passage = index.passages[position];
+
     // Brand filter. A named brand excludes every other brand's material, and
     // cross-brand pages stay eligible because they are written to apply.
     if (query.brand && passage.brand && passage.brand !== query.brand) continue;
@@ -101,8 +134,10 @@ export function retrieve(query: ParsedQuery, index: PassageIndex): RankedArticle
     // and could be relevant as symptom guidance.
     if (query.errorCodes.length > 0 && passage.codes.length > 0 && !matchedCode) continue;
 
-    const matchedHere = new Set<string>();
-    let score = lexicalScore(query, passage, index, matchedHere) * (KIND_PRIOR[passage.kind] ?? 1);
+    const matchedHere = matchedTokensByPassage.get(position) ?? new Set<string>();
+    let score =
+      lexicalScore(queryTokens, matchedHere, weightOf, passage) *
+      (KIND_PRIOR[passage.kind] ?? 1);
 
     if (matchedCode) score += 40;
     if (query.brand && passage.brand === query.brand) score += 12;
@@ -112,7 +147,7 @@ export function retrieve(query: ParsedQuery, index: PassageIndex): RankedArticle
 
     if (score <= 0) continue;
 
-    const article = index.articles.find((entry) => entry.path === passage.articlePath);
+    const article = articleByPath.get(passage.articlePath);
     const key = passage.articlePath;
     const existing = byArticle.get(key);
 
@@ -130,23 +165,35 @@ export function retrieve(query: ParsedQuery, index: PassageIndex): RankedArticle
         passages: [{ passage, score }],
         matchedCode,
         matchedBrand: Boolean(query.brand) && passage.brand === query.brand,
-        matchedTokens: matchedHere,
+        matchedTokens: new Set(matchedHere),
       });
     } else {
       // Glossary and brand passages have no article record. They are carried as
       // suggestions rather than as answers, handled by the answer layer.
       byArticle.set(key, {
         article: {
-          title: passage.articleTitle,
+          title: passage.articleTitle ?? passage.articlePath,
           path: passage.articlePath,
         } as TechnicalArticle,
         score,
         passages: [{ passage, score }],
         matchedCode: false,
         matchedBrand: false,
-        matchedTokens: matchedHere,
+        matchedTokens: new Set(matchedHere),
       });
     }
+  }
+
+  // A page title is the editor's clearest statement of its intent. Apply the
+  // match once per article (rather than once per passage) so a focused new
+  // page can beat a longer sibling that happens to repeat the same vocabulary.
+  for (const entry of byArticle.values()) {
+    const titleTokens = new Set(tokenize(entry.article.title));
+    const titleMatch = queryTokens.reduce(
+      (score, token) => score + (titleTokens.has(token) ? weightOf(token) : 0),
+      0,
+    );
+    entry.score += titleMatch * 2;
   }
 
   // Coverage gate. A code match or a recognised symptom is evidence in its own

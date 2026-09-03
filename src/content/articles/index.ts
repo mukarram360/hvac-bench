@@ -95,6 +95,58 @@ import { seer2Explained } from "./seer2-explained";
 import { senvilleVsPioneerMiniSplits } from "./senville-vs-pioneer-mini-splits";
 import { singleZoneVsMultiZoneMiniSplit } from "./single-zone-vs-multi-zone-mini-split";
 
+/* ------------------------------------------------ second-layer articles -- */
+import { greeE7 } from "./gree-e7";
+import { daikinCodeLetterDivisions } from "./daikin-code-letter-divisions";
+import { mitsubishiMszApIndicatorFlash } from "./mitsubishi-msz-ap-indicator-flash";
+import { mideaInformationQuery } from "./midea-information-query";
+import { mrcoolIdentifyDiyGeneration } from "./mrcool-identify-diy-generation";
+import { lennoxXp17Alert418419 } from "./lennox-xp17-alert-418-419";
+import { yorkYp9cTwelveFlashes } from "./york-yp9c-twelve-flashes";
+import { boschClimate5000Pc30Pc31 } from "./bosch-climate5000-pc30-pc31";
+import { geZonelineVentilationControl } from "./ge-zoneline-ventilation-control";
+import { goodmanHeatPumpLockoutTemperature } from "./goodman-heat-pump-lockout-temperature";
+import { blueridgeBmkhE1 } from "./blueridge-bmkh-e1";
+import { friedrichWifi77Display } from "./friedrich-wifi-77-display";
+import { carrierAuxiliaryVsEmergencyHeat } from "./carrier-auxiliary-vs-emergency-heat";
+import { traneXl824AccessRestrictions } from "./trane-xl824-access-restrictions";
+import { americanStandardS9v2FaultHistory } from "./american-standard-s9v2-fault-history";
+import { hisenseHiUltraOutdoorHeaters } from "./hisense-hi-ultra-outdoor-heaters";
+import { tclFilterIndicatorReset } from "./tcl-filter-indicator-reset";
+import { cooperHunterCassetteFilterBoundary } from "./cooper-hunter-cassette-filter-boundary";
+import { dellaOutdoorSensorCodes } from "./della-outdoor-sensor-codes";
+import { klimaireP4LedPatterns } from "./klimaire-p4-led-patterns";
+import { panasonicAquareaQuickMenu } from "./panasonic-aquarea-quick-menu";
+import { toshibaSeiyaMatchedPairs } from "./toshiba-seiya-matched-pairs";
+import { hitachiYutakiAlarm7778 } from "./hitachi-yutaki-alarm-77-78";
+import { mhiOperatingRange } from "./mhi-operating-range";
+import { haierForwardF11F28 } from "./haier-forward-f11-f28";
+import { fujitsuMinHeatOperation } from "./fujitsu-min-heat-operation";
+import { pioneerRefrigerantDetectorCodes } from "./pioneer-refrigerant-detector-codes";
+import { senvilleEc51 } from "./senville-ec51";
+import { lgCh04 } from "./lg-ch04";
+import { samsungWindfreeCleaningIntervals } from "./samsung-windfree-cleaning-intervals";
+import { rheemEconetFaultHistory } from "./rheem-econet-fault-history";
+import { ruudR96tTwoStageHeating } from "./ruud-r96t-two-stage-heating";
+import { amanaPtacControlPaths } from "./amana-ptac-control-paths";
+import { bryantEvolutionHeatSourceLockouts } from "./bryant-evolution-heat-source-lockouts";
+import { vaillantEcotecComfortMode } from "./vaillant-ecotec-comfort-mode";
+import { viessmannVitodensFaultHistory } from "./viessmann-vitodens-fault-history";
+import { worcesterGreenstarSiSystemPressure } from "./worcester-greenstar-si-system-pressure";
+import { baxiBoilerPressureRange } from "./baxi-boiler-pressure-range";
+import { idealLogicMaxPreheat } from "./ideal-logic-max-preheat";
+import { grantAeronaControllerData } from "./grant-aerona-controller-data";
+import { nibeF2120SilentMode } from "./nibe-f2120-silent-mode";
+import { stiebelWplSilentPrograms } from "./stiebel-wpl-silent-programs";
+import { aristonClasAutoVsComfort } from "./ariston-clas-auto-vs-comfort";
+import { daikinAlthermaLeavingWaterControl } from "./daikin-altherma-leaving-water-control";
+import { nestHeatPumpBalance } from "./nest-heat-pump-balance";
+import { ecobeeCompressorOutdoorLockout } from "./ecobee-compressor-outdoor-lockout";
+import { honeywellT6BalancePoint } from "./honeywell-t6-balance-point";
+import { tadoRadiatorE2E4 } from "./tado-radiator-e2-e4";
+import { hiveOfflineHeatingControl } from "./hive-offline-heating-control";
+import { draytonWiserRadiatorBoost } from "./drayton-wiser-radiator-boost";
+
 /**
  * One module per article, with no exceptions.
  *
@@ -214,4 +266,56 @@ export const articles = [
   singleZoneVsMultiZoneMiniSplit,
   heatPumpVsFurnace,
   ductlessVsDuctedHeatPump,
+
+  /* ------------------------------------- second layer: one per brand hub -- */
+  greeE7,
+  daikinCodeLetterDivisions,
+  mitsubishiMszApIndicatorFlash,
+  mideaInformationQuery,
+  mrcoolIdentifyDiyGeneration,
+  fujitsuMinHeatOperation,
+  pioneerRefrigerantDetectorCodes,
+  senvilleEc51,
+  lgCh04,
+  samsungWindfreeCleaningIntervals,
+  panasonicAquareaQuickMenu,
+  toshibaSeiyaMatchedPairs,
+  hitachiYutakiAlarm7778,
+  mhiOperatingRange,
+  haierForwardF11F28,
+  hisenseHiUltraOutdoorHeaters,
+  tclFilterIndicatorReset,
+  cooperHunterCassetteFilterBoundary,
+  dellaOutdoorSensorCodes,
+  klimaireP4LedPatterns,
+  blueridgeBmkhE1,
+  friedrichWifi77Display,
+  carrierAuxiliaryVsEmergencyHeat,
+  traneXl824AccessRestrictions,
+  americanStandardS9v2FaultHistory,
+  lennoxXp17Alert418419,
+  yorkYp9cTwelveFlashes,
+  boschClimate5000Pc30Pc31,
+  geZonelineVentilationControl,
+  goodmanHeatPumpLockoutTemperature,
+  rheemEconetFaultHistory,
+  ruudR96tTwoStageHeating,
+  amanaPtacControlPaths,
+  bryantEvolutionHeatSourceLockouts,
+  vaillantEcotecComfortMode,
+  viessmannVitodensFaultHistory,
+  worcesterGreenstarSiSystemPressure,
+  baxiBoilerPressureRange,
+  idealLogicMaxPreheat,
+  grantAeronaControllerData,
+  nibeF2120SilentMode,
+  stiebelWplSilentPrograms,
+  aristonClasAutoVsComfort,
+  daikinAlthermaLeavingWaterControl,
+  nestHeatPumpBalance,
+  ecobeeCompressorOutdoorLockout,
+  honeywellT6BalancePoint,
+  tadoRadiatorE2E4,
+  hiveOfflineHeatingControl,
+  draytonWiserRadiatorBoost,
 ] satisfies TechnicalArticle[];

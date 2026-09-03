@@ -33,13 +33,14 @@ const foundingPaths = [
 ] as const;
 
 describe("published article quality", () => {
-  it("publishes at least one supporting article for every registered brand", () => {
-    const coveredBrands = new Set(
-      articles.flatMap((article) => (article.brand ? [article.brand] : [])),
-    );
-
+  it("publishes two distinct supporting intents for every registered brand", () => {
     for (const brand of brands) {
-      expect(coveredBrands, `${brand.name} has no supporting article`).toContain(brand.slug);
+      const supporting = articles.filter((article) => article.brand === brand.slug);
+      expect(supporting.length, `${brand.name} has fewer than two articles`).toBeGreaterThanOrEqual(2);
+      expect(
+        new Set(supporting.map((article) => article.problemType)).size,
+        `${brand.name} repeats the same supporting intent`,
+      ).toBeGreaterThanOrEqual(2);
     }
   });
 

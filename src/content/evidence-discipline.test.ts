@@ -41,6 +41,8 @@ const PREVALENCE_CLAIMS = [
   /\balmost always\b/i,
   /\bnine times out of ten\b/i,
   /\bmore often than not\b/i,
+  /\bmost (?:setups|comfort complaints|owners|fault codes)\b/i,
+  /\bmost likely to be misdiagnosed\b/i,
   /\blargest effect\b/i,
   /\bbiggest cause\b/i,
   /\bmain culprit\b/i,

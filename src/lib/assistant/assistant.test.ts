@@ -41,6 +41,20 @@ describe("query understanding", () => {
     expect(parseQuery("senvile eh02").brand).toBe("senville");
   });
 
+  it("prefers a specific compound brand over its parent manufacturer", () => {
+    expect(parseQuery("daikin altherma leaving water temperature").brand).toBe(
+      "daikin-altherma",
+    );
+    expect(parseQuery("mitsubishi heavy industries operating range").brand).toBe(
+      "mitsubishi-heavy-industries",
+    );
+  });
+
+  it("normalises digit-first and dotted manufacturer codes", () => {
+    expect(parseQuery("daikin altherma 7h").errorCodes).toContain("7H");
+    expect(parseQuery("american standard s9v2 e2.1").errorCodes).toContain("E21");
+  });
+
   it("maps everyday wording onto the symptom it describes", () => {
     expect(parseQuery("my mini split is blowing warm air").problemTypes).toContain("not-cooling");
     expect(parseQuery("aircon wont turn on").problemTypes).toContain("not-turning-on");
@@ -83,6 +97,26 @@ describe("retrieval accuracy", () => {
     { question: "ac smells musty", expected: "/mini-split-smells-musty/" },
     { question: "short cycling every few minutes", expected: "/mini-split-short-cycling/" },
     { question: "how do i clean the filter", expected: "/mini-split-filter-cleaning/" },
+    {
+      question: "daikin altherma leaving water temperature",
+      expected: "/brands/daikin-altherma/leaving-water-control/",
+    },
+    {
+      question: "daikin altherma 7h",
+      expected: "/brands/daikin-altherma/7h-water-flow-subcodes/",
+    },
+    {
+      question: "mitsubishi heavy industries operating temperature range",
+      expected: "/brands/mitsubishi-heavy-industries/operating-temperature-range/",
+    },
+    {
+      question: "american standard s9v2 e2.1",
+      expected: "/brands/american-standard/s9v2-e21-error-code/",
+    },
+    {
+      question: "hive heating offline",
+      expected: "/brands/hive/heating-control-when-offline/",
+    },
   ];
 
   for (const { question, expected } of cases) {
@@ -262,14 +296,34 @@ describe("performance", () => {
 
   /**
    * The index lives in module scope on the server and is never sent to a
-   * browser, so the ceiling is a memory bound rather than a payload one. It
-   * moved from 1.5 MB when twenty-six generated pages were replaced by written
-   * ones, which carry more text per page; the passage count is the floor that
-   * catches an index that has silently stopped covering the library.
+   * browser, so the ceiling is a memory bound rather than a payload one.
+   *
+   * It is measured over what the index owns. `index.articles` is the published
+   * library held by reference, the same objects every page renders from, so
+   * counting it here charged the retrieval layer for memory that exists with
+   * or without it and made the number grow with the content rather than with
+   * the index. The passages and the posting lists are the part that would
+   * quietly bloat, and the per-passage figure is what keeps the ceiling
+   * meaningful as the library grows.
    */
   it("keeps the retrieval index within its memory budget", () => {
     expect(index.passages.length).toBeGreaterThan(200);
-    expect(JSON.stringify(index).length).toBeLessThan(2_500_000);
+
+    const owned = JSON.stringify({
+      passages: index.passages,
+      documentFrequency: index.documentFrequency,
+      codeOwners: index.codeOwners,
+      postings: index.postings,
+      codePostings: index.codePostings,
+      brandPostings: index.brandPostings,
+      problemPostings: index.problemPostings,
+    }).length;
+
+    expect(owned, `${owned} bytes of index`).toBeLessThan(3_500_000);
+    expect(
+      owned / index.passages.length,
+      `${Math.round(owned / index.passages.length)} bytes per passage`,
+    ).toBeLessThan(1_100);
   });
 });
 
