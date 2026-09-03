@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 
+import { getAllBrands } from "@/lib/content";
 import { answerQuestion } from "./answer";
 import { buildPassageIndex } from "./passages";
-import { parseQuery } from "./query";
+import { parseQuery, UNCOVERED_MANUFACTURERS } from "./query";
 import { retrieve } from "./retrieve";
 
 /**
@@ -176,16 +177,110 @@ describe("brand and code contamination", () => {
   });
 
   /*
-   * This used to ask for a Carrier code, on the basis that the library held no
-   * Carrier code pages at all. It holds them now, so the fixture moved to a
-   * code Carrier equipment does not publish. The guard is the same one: a
-   * covered manufacturer must not have a nearby code substituted for the one
-   * that was asked about.
+   * The regression suite for entity substitution.
+   *
+   * This started as a single question about a Carrier code, which passed only
+   * because the library happened to hold no Carrier pages. Once Carrier was
+   * covered the question stopped testing anything, and the guard behind it had
+   * quietly decayed for the same reason: it skipped any manufacturer that had
+   * since been published, so twenty-two of its twenty-seven entries were
+   * no-ops. These cases test the behaviour rather than a gap in coverage, and
+   * they are written so that publishing more brands cannot silently disarm
+   * them.
    */
-  it("refuses a code the library does not cover rather than substituting a nearby one", () => {
-    const result = ask("carrier 91 error code");
-    expect(result.answered).toBe(false);
-    expect(result.answer).toMatch(/do not have|not covered|could not find/i);
+  it("refuses a manufacturer the library does not publish, whatever code is attached", () => {
+    const cases = [
+      "coleman e6 error code",
+      "kenmore p8 error code",
+      "luxaire u4 error code",
+      "westinghouse ch05 error code",
+      "arcoaire e1 error code",
+      "payne 21 error code",
+    ];
+
+    for (const question of cases) {
+      const result = ask(question);
+      expect(result.answered, question).toBe(false);
+      expect(result.answer, question).toMatch(/do not have|not covered|could not find/i);
+      expect(result.links, question).toHaveLength(0);
+    }
+  });
+
+  it("keeps the uncovered manufacturer list disjoint from the brand registry", () => {
+    // The old guard skipped covered names at runtime, which is how it decayed
+    // into a no-op. Nothing is skipped now, so a name that becomes covered has
+    // to be removed from the list, and this is what says so.
+    const covered = new Set(
+      getAllBrands().flatMap((brand) => [
+        brand.slug,
+        brand.name.toLowerCase(),
+        ...brand.aliases.map((alias) => alias.toLowerCase()),
+      ]),
+    );
+    const overlap = UNCOVERED_MANUFACTURERS.filter((name) => covered.has(name));
+    expect(overlap, "these manufacturers are published and must leave the list").toEqual([]);
+  });
+
+  it("refuses a code the library has never published rather than answering a nearby one", () => {
+    const cases = [
+      ["gree z99 error code", "/brands/gree/"],
+      ["daikin q7 error code", "/brands/daikin/"],
+      ["mrcool x42 error code", "/brands/mrcool/"],
+    ] as const;
+
+    for (const [question, brandPath] of cases) {
+      const result = ask(question);
+      expect(result.answered, question).toBe(false);
+      expect(result.answer, question).toMatch(/have not published that code|could not find/i);
+      // The brand hub is a fair suggestion; a different code page is not.
+      const answeredWithAnotherCode = result.links.some((link) =>
+        link.path.startsWith(brandPath) && link.path !== brandPath,
+      );
+      expect(answeredWithAnotherCode, question).toBe(false);
+    }
+  });
+
+  it("refuses when the only matches are the wording of the question", () => {
+    // "21", "error" and "code" are the shape of a fault question and identify
+    // no equipment. An answer may not rest on them alone.
+    for (const question of ["55 error code", "fault code 12 showing"]) {
+      const result = ask(question);
+      expect(result.answered, question).toBe(false);
+    }
+  });
+
+  it("still answers grounded questions across spelling and casing variants", () => {
+    const cases = [
+      ["gree e6 error code", "/brands/gree/e6-error-code/"],
+      ["DAIKIN U4 Error Code", "/brands/daikin/u4-error-code/"],
+      ["diakin u4", "/brands/daikin/u4-error-code/"],
+      ["mitsubishi p8", "/brands/mitsubishi/p8-fault-code/"],
+      ["senville aura eh02", "/brands/senville/eh02-error-code/"],
+      ["mrcool diy 4th gen p1", "/brands/mrcool/p1-pc01-error-code/"],
+    ] as const;
+
+    for (const [question, expectedPath] of cases) {
+      const result = ask(question);
+      expect(result.answered, question).toBe(true);
+      expect(result.links.map((link) => link.path), question).toContain(expectedPath);
+    }
+  });
+
+  it("keeps answering symptom questions that name no manufacturer or code", () => {
+    for (const question of ["mini split not cooling", "heat pump iced over"]) {
+      const result = ask(question);
+      expect(result.answered, question).toBe(true);
+    }
+  });
+
+  it("reads a model designation the library publishes as a search term, not an unknown code", () => {
+    // `yp9c` is code-shaped. The unpublished-code guard must not fire on a
+    // model the site actually writes about.
+    const result = ask("york yp9c three red flashes");
+    expect(result.answered).toBe(true);
+    expect(result.links.map((link) => link.path)).toContain(
+      "/brands/york/yp9c-three-red-flashes-at-low-fire/",
+    );
   });
 });
 

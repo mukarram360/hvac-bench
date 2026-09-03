@@ -1,5 +1,5 @@
 import { getAllBrands, getArticlesByBrand, getBrandBySlug } from "@/lib/content";
-import type { PassageIndex } from "./passages";
+import { normaliseCode, type PassageIndex } from "./passages";
 import { parseQuery, type ParsedQuery } from "./query";
 import { retrieve, type RankedArticle } from "./retrieve";
 
@@ -49,6 +49,8 @@ const FRAMING = {
     "HVAC Bench does not cover pricing, quotes, installer recommendations, or buying advice, so I do not have an answer for that. What this site does is explain what a fault means and what is safe to check.",
   needsBrand:
     "That code is used by more than one manufacturer with different meanings. Which brand is it, and what is the model number on the indoor unit?",
+  unknownCode:
+    "We have not published that code, and answering with a different one would be worse than answering nothing. Check the characters against the display and the model number on the rating plate, then try the error code index.",
   safety:
     "That is not a homeowner procedure and HVAC Bench does not publish steps for it. Refrigerant handling, live electrical testing, and anything behind an electrical cover belong with a qualified technician.",
   urgent:
@@ -207,8 +209,7 @@ export function answerQuestion(question: string, index: PassageIndex): Assistant
   }
 
   // 4. A manufacturer that is not in the registry at all.
-  const namedUnknownBrand = detectUncoveredBrand(query);
-  if (namedUnknownBrand) {
+  if (query.uncoveredBrand) {
     return finish({
       answered: false,
       safetyBlocked: false,
@@ -223,7 +224,28 @@ export function answerQuestion(question: string, index: PassageIndex): Assistant
     });
   }
 
-  // 5. A bare code shared by several manufacturers is a question we cannot
+  // 5. A code or model the reader named that we have never published. Without
+  //    this the code is dropped and the question degrades to whatever else is
+  //    in it, which answered "gree z99" with the Gree E7 page.
+  const unpublishedCode = unpublishedCodeToken(query, index);
+  if (unpublishedCode) {
+    const brand = query.brand ? getBrandBySlug(query.brand) : undefined;
+    return finish({
+      answered: false,
+      safetyBlocked: false,
+      needsModel: true,
+      answer: FRAMING.unknownCode,
+      links: [],
+      suggestions: [
+        ...(brand ? [{ title: `${brand.name} coverage`, path: `/brands/${brand.slug}/` }] : []),
+        { title: "Error code index", path: "/error-codes/" },
+        { title: "Search the library", path: "/search/" },
+      ],
+      citations: [],
+    });
+  }
+
+  // 6. A bare code shared by several manufacturers is a question we cannot
   //    answer without knowing whose equipment it is.
   if (!query.brand && query.errorCodes.length > 0) {
     const owners = new Set<string>();
@@ -252,8 +274,10 @@ export function answerQuestion(question: string, index: PassageIndex): Assistant
   const ranked = retrieve(query, index);
   const best = ranked[0];
 
-  // 6. Nothing worth calling an answer.
-  if (!best || best.score < ANSWER_FLOOR) {
+  // 7. Nothing worth calling an answer, either because retrieval scored too
+  //    low or because what it did match was the wording of the question rather
+  //    than its subject.
+  if (!best || best.score < ANSWER_FLOOR || !isGrounded(query, best)) {
     return finish({
       answered: false,
       safetyBlocked: false,
@@ -290,26 +314,51 @@ export function answerQuestion(question: string, index: PassageIndex): Assistant
 }
 
 /**
- * A brand name we recognise as a manufacturer but do not publish references
- * for. Answering these from a covered brand's documentation would be the
- * single most damaging thing this assistant could do.
+ * Terms that appear in almost every fault question and identify nothing on
+ * their own. An answer resting only on these has matched the shape of the
+ * question rather than its subject.
  */
-const UNCOVERED_BRANDS = [
-  "carrier", "trane", "rheem", "goodman", "lennox", "york", "bryant", "amana",
-  "bosch", "vaillant", "worcester", "ideal", "baxi", "viessmann", "nibe",
-  "panasonic", "toshiba", "hitachi", "sharp", "haier", "hisense", "tcl",
-  "friedrich", "cooper hunter", "klimaire", "della", "perfect aire",
-];
+const GENERIC_TERMS = new Set([
+  "error", "errors", "code", "codes", "fault", "faults", "alarm", "alarms",
+  "alert", "alerts", "mean", "means", "meaning", "hvac", "unit", "units",
+  "system", "systems", "ac", "air", "heat", "heating", "cooling", "furnace",
+  "thermostat", "display", "screen", "showing", "shows", "reading", "reads",
+  "getting", "help", "problem", "issue", "wrong", "model",
+]);
 
-function detectUncoveredBrand(query: ParsedQuery): string | undefined {
-  if (query.brand) return undefined;
-  const covered = new Set(getAllBrands().flatMap((brand) => [
-    brand.slug,
-    brand.name.toLowerCase(),
-  ]));
-  for (const candidate of UNCOVERED_BRANDS) {
-    if (covered.has(candidate)) continue;
-    if (query.normalised.includes(candidate)) return candidate;
+/**
+ * Whether the retrieved article is anchored to something the reader actually
+ * named. A resolved code, the named manufacturer, or a recognised symptom all
+ * count, as does any distinctive word from the question. A bare number does
+ * not: "payne 21 error code" matched an unrelated page on the strength of
+ * "21", "error" and "code", which is the shape of the question and none of its
+ * subject.
+ */
+function isGrounded(query: ParsedQuery, best: RankedArticle): boolean {
+  if (best.matchedCode || best.matchedBrand) return true;
+  if (query.problemTypes.length > 0) return true;
+  for (const token of best.matchedTokens) {
+    if (!GENERIC_TERMS.has(token) && !/^\d+$/.test(token)) return true;
+  }
+  return false;
+}
+
+/**
+ * A code or model designation the reader typed that this library has never
+ * published anywhere. Checked against the index vocabulary rather than a
+ * pattern list, so a model the site does write about, such as `yp9c`, stays a
+ * perfectly good search term while `z99` does not.
+ */
+function unpublishedCodeToken(
+  query: ParsedQuery,
+  index: PassageIndex,
+): string | undefined {
+  const resolved = new Set(query.errorCodes);
+  for (const token of query.codeShapedTokens) {
+    if (resolved.has(normaliseCode(token))) continue;
+    if (index.postings[token]?.length) continue;
+    if (index.codeOwners[normaliseCode(token)]?.length) continue;
+    return token;
   }
   return undefined;
 }

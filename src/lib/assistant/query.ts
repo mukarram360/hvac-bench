@@ -23,6 +23,20 @@ export type ParsedQuery = {
   urgent: boolean;
   /** True when the subject is one the site deliberately does not publish. */
   outOfScope: boolean;
+  /**
+   * A manufacturer the reader named that this library does not publish. Held
+   * separately from `brand` because the difference between "no manufacturer was
+   * given" and "a manufacturer we cannot answer for was given" decides whether
+   * an answer is allowed at all.
+   */
+  uncoveredBrand?: string;
+  /**
+   * Tokens shaped like a fault code or a model designation, whether or not
+   * `errorCodes` could resolve them. A reader who types a code the library has
+   * never published has named an entity, and the answer layer needs to see that
+   * rather than silently dropping it and answering about a different code.
+   */
+  codeShapedTokens: string[];
 };
 
 /**
@@ -254,6 +268,64 @@ function detectBrand(normalised: string, tokens: string[]): string | undefined {
 }
 
 /**
+ * Manufacturer names this library does not publish references for.
+ *
+ * Answering one of these from a covered brand's documentation is the single
+ * most damaging thing the assistant can do, because a code means different
+ * things on different equipment. The list therefore exists to force a refusal,
+ * not to enrich retrieval.
+ *
+ * An earlier version of this vocabulary lived beside the answer composer and
+ * skipped any entry that had since become a covered brand. That made it decay
+ * silently: as the library grew, twenty-two of its twenty-seven entries turned
+ * into no-ops and the guard stopped protecting anything. Nothing is skipped at
+ * runtime now. `assistant.test.ts` asserts the list stays disjoint from the
+ * brand registry, so covering a manufacturer is a change that fails loudly here
+ * until the name is removed from this list.
+ */
+export const UNCOVERED_MANUFACTURERS = [
+  "coleman", "kenmore", "luxaire", "payne", "heil", "tempstar", "arcoaire",
+  "comfortmaker", "ducane", "armstrong air", "concord", "westinghouse",
+  "nordyne", "frigidaire", "gibson", "maytag", "keeprite", "napoleon",
+  "continental", "airtemp", "aire flo", "allied air", "broan", "nutone",
+  "weatherking", "sharp", "perfect aire", "soleus", "airwell", "chigo",
+  "olimpia splendid", "sinclair", "electrolux", "kelvinator", "westpoint",
+  "carrier midea", "trane mitsubishi",
+] as const;
+
+/**
+ * Matched on token and phrase boundaries rather than as a raw substring. A
+ * substring test made "ideal" fire on "ideally" and "sharp" on "sharper",
+ * which turned a safety guard into a source of wrong refusals.
+ */
+function detectUncoveredManufacturer(
+  normalised: string,
+  tokens: string[],
+): string | undefined {
+  const padded = ` ${normalised.replace(/[^a-z0-9]+/g, " ").trim()} `;
+  for (const name of UNCOVERED_MANUFACTURERS) {
+    if (name.includes(" ")) {
+      if (padded.includes(` ${name} `)) return name;
+    } else if (tokens.includes(name)) {
+      return name;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Tokens shaped like a code or a model designation: one or two letters
+ * followed by digits, optionally with a trailing letter. Pure numbers are
+ * excluded because a bare number carries no entity of its own, and a leading
+ * digit is excluded so ordinals such as "4th" are not mistaken for a code.
+ */
+const CODE_SHAPED = /^[a-z]{1,2}\d{1,3}[a-z]?$/;
+
+function detectCodeShapedTokens(tokens: string[]): string[] {
+  return [...new Set(tokens.filter((token) => CODE_SHAPED.test(token)))];
+}
+
+/**
  * Error codes as they appear in the wild. The letters are constrained to the
  * prefixes HVAC manufacturers actually use, so ordinary words are not read as
  * codes.
@@ -289,15 +361,21 @@ export function parseQuery(raw: string): ParsedQuery {
     .trim();
   const tokens = tokenize(normalised);
 
+  const brand = detectBrand(normalised, tokens);
+
   return {
     raw,
     normalised,
     tokens,
-    brand: detectBrand(normalised, tokens),
+    brand,
     errorCodes: detectCodes(normalised),
     problemTypes: detectProblemTypes(normalised),
     hazardous: HAZARD_PATTERNS.some((pattern) => pattern.test(normalised)),
     urgent: URGENT_PATTERNS.some((pattern) => pattern.test(normalised)),
     outOfScope: OUT_OF_SCOPE_PATTERNS.some((pattern) => pattern.test(normalised)),
+    // A covered brand in the same question wins: "trane mitsubishi ductless" is
+    // a line HVAC Bench publishes, not an unknown manufacturer.
+    uncoveredBrand: brand ? undefined : detectUncoveredManufacturer(normalised, tokens),
+    codeShapedTokens: detectCodeShapedTokens(tokens),
   };
 }
