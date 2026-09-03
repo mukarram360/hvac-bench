@@ -243,15 +243,14 @@ describe("published content", () => {
 });
 
 describe("indexing rules", () => {
-  it("keeps brand hubs without published references out of the sitemap", () => {
+  it("includes every supported brand hub once it has a published reference", () => {
     const routes = getIndexableRoutes();
-    const empty = getAllBrands().filter((brand) => !isBrandIndexable(brand.slug));
+    const covered = getAllBrands().filter((brand) => isBrandIndexable(brand.slug));
 
-    expect(empty.length).toBeGreaterThan(0);
-    for (const brand of empty) {
-      expect(routes).not.toContain(`/brands/${brand.slug}/`);
+    expect(covered).toHaveLength(getAllBrands().length);
+    for (const brand of covered) {
+      expect(routes).toContain(`/brands/${brand.slug}/`);
     }
-    expect(routes).toContain("/brands/gree/");
   });
 
   it("never lists the client-side search utility", () => {

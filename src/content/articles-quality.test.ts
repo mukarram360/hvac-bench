@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { articles } from "./articles";
+import { brands } from "./brands";
 import { articleSchema } from "./schema";
 
 const foundingPaths = [
@@ -32,6 +33,16 @@ const foundingPaths = [
 ] as const;
 
 describe("published article quality", () => {
+  it("publishes at least one supporting article for every registered brand", () => {
+    const coveredBrands = new Set(
+      articles.flatMap((article) => (article.brand ? [article.brand] : [])),
+    );
+
+    for (const brand of brands) {
+      expect(coveredBrands, `${brand.name} has no supporting article`).toContain(brand.slug);
+    }
+  });
+
   it("keeps the complete founding route inventory in scope", () => {
     const published = new Set(articles.map((article) => article.path));
     for (const path of foundingPaths) expect(published, path).toContain(path);

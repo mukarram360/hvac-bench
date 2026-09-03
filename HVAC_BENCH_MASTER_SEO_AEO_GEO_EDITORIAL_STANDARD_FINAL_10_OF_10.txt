@@ -1,0 +1,792 @@
+HVAC BENCH MASTER SEO, AEO, GEO & EDITORIAL STANDARD
+
+Version: 2026-09-02 FINAL Status: Mandatory for every AI agent that
+researches, writes, edits, reviews, or publishes HVAC Bench editorial
+content.
+
+1. Authority
+
+Read this file before creating or materially editing any article, guide,
+comparison, glossary entry, error-code page, troubleshooting page,
+how-to, brand page, equipment page, FAQ, title, metadata, structured
+data, image brief, or internal link.
+
+Priority when rules conflict: 1. Factual accuracy, safety, and evidence.
+2. Search-engine policies and truthful provenance. 3. User intent and
+task completion. 4. HVAC Bench editorial/evidence rules. 5. Natural
+human readability. 6. SEO/AEO/GEO optimization. 7. Word count, keyword
+coverage, or stylistic preferences.
+
+Never sacrifice 1–5 for 6.
+
+Interpretation rule: distinguish external search-engine requirements
+from HVAC Bench house standards. A rule labeled HOUSE REQUIREMENT,
+EDITORIAL REQUIREMENT, target, preference, or publication gate is an
+internal quality standard unless the file explicitly attributes it to a
+search-engine policy or documented eligibility requirement.
+
+There is NO authoritative public list of “Google’s 200 ranking factors.”
+Google historically referred to 200+ signals, but current documentation
+describes ranking systems and signals without publishing a complete
+checklist. Never invent a secret factor list. Follow documented systems,
+policies, technical eligibility, usefulness, originality, evidence,
+links, page experience, and intent.
+
+Google does not ban AI assistance. The risk is low-value, unoriginal,
+scaled content created primarily to manipulate rankings. HVAC Bench must
+never become a scaled-content site.
+
+2. Editorial identity
+
+HVAC Bench is an evidence-led technical HVAC reference, not a generic
+affiliate blog or AI content farm.
+
+Audience: - Homeowners needing a safe, accurate first answer. -
+Technicians/advanced readers needing scope and evidence context. - US
+readers when a query is US-specific. - UK/EU distinctions when
+terminology, units, standards, equipment, or practice differ.
+
+Voice: - Technical but readable. - Calm and precise. - Direct, not
+promotional. - Specific, not encyclopedic. - Honest about uncertainty. -
+Useful before exhaustive. - Written as if a competent technical editor
+investigated this exact question.
+
+Never invent first-hand testing, ownership, field experience, technician
+quotes, customer stories, manufacturer statements, review dates,
+reviewers, measurements, prevalence, failure rates, reliability scores,
+prices, warranties, compatibility, code meanings, or any unsupported
+fact.
+
+3. People-first test
+
+Write the best page for the person who searched the query.
+
+Before publication ask: - Does it add original information, analysis,
+synthesis, or decision value? - Does it substantially satisfy the
+task? - Does it go beyond paraphrasing sources? - Is the title
+descriptive rather than sensational? - Is it carefully produced? - Will
+the reader leave able to act or understand? - Does it fit HVAC Bench’s
+focused purpose? - Would this page deserve to exist if Google sent it
+zero traffic?
+
+If the last answer is no, do not publish.
+
+Google has no preferred word count. Never pad.
+
+4. Intent before keywords
+
+Assign one primary intent: - Exact fault code/indicator -> Error Codes -
+Symptom/problem -> Troubleshooting - “How do I…” -> How-to - “What is…”
+/ “How does…” -> Guide - X vs Y -> Compare - Manufacturer browsing ->
+Brands - System type -> Equipment - Definition -> Glossary - Direct
+question -> Ask - Verification process -> Methodology
+
+Before drafting define: PRIMARY QUERY PRIMARY USER TASK USER STATE
+EQUIPMENT/MODEL SCOPE REGION ANSWER REQUIRED ABOVE THE FOLD WHAT WOULD
+FORCE THE USER TO SEARCH AGAIN
+
+Solve the primary task before adjacent questions.
+
+Do not create separate URLs for trivial keyword variations. One strong
+page should absorb variants when the intent and answer are materially
+the same.
+
+5. Keywords and topical language
+
+Keywords are vocabulary, not quotas.
+
+Use the primary phrase naturally in the title/H1, opening answer, useful
+headings, body, metadata, relevant internal anchors, and image metadata
+only where it improves clarity.
+
+Never: - Target keyword density. - Repeat exact phrases unnaturally. -
+Force every synonym. - Build awkward long-tail headings. - Hide
+keywords. - Add SEO filler paragraphs. - Stuff model/brand names. -
+Treat “LSI keywords” as an SEO technique.
+
+Semantic coverage comes from correctly explaining the topic and its real
+entities.
+
+6. Opening: answer first
+
+The first screen must earn the next scroll.
+
+For questions, troubleshooting, codes, and definitions: 1. Give the
+direct answer. 2. Qualify scope immediately if model/family/region
+changes correctness. 3. State an important safety boundary early when
+relevant. 4. Explain what to check or understand next.
+
+Do not open with generic scene-setting such as: “In today’s fast-paced
+world…” “When it comes to…” “Whether you’re a homeowner or
+professional…” “HVAC systems play a crucial role…” “If you’ve ever
+wondered…” “Understanding X is essential…” “X can be frustrating…” “This
+article will explore…”
+
+Do not open with history when the user asked for a fix. Do not use fake
+anecdotes or empty rhetorical hooks.
+
+7. Human writing standard
+
+Human writing is not fake mistakes, slang, random opinions, or invented
+experience. It is judgment, specificity, rhythm, selective detail, and
+non-formulaic reasoning.
+
+Rules: - Prefer one main idea per paragraph. - Put distinguishing
+information early. - Prefer active voice when it clarifies
+responsibility. - Passive voice is acceptable when actor is unknown,
+irrelevant, or the action/object deserves emphasis. - Use concrete nouns
+and verbs. - Use correct HVAC terms and explain unfamiliar ones. - Vary
+sentence length naturally. - Mix short decisive sentences with longer
+explanatory ones. - Vary paragraph length according to the idea. - Use
+transitions only when the relationship needs one. - End a section when
+its job is done. - Address the reader as “you” for direct instructions
+when natural. - Put conditions before instructions when that prevents
+ambiguity.
+
+HOUSE RULE: No em dashes in editorial body copy. No double hyphens as
+substitutes. Use commas, parentheses, colons, semicolons, or separate
+sentences.
+
+Avoid colon-heavy AI rhythm and semicolon chains.
+
+Sentence openings must follow logic, not a variation algorithm.
+Conditions, contrasts, consequences, subjects, and direct instructions
+are all natural when appropriate.
+
+Avoid empty sentence tails: “for optimal performance” “for your HVAC
+needs” “to ensure maximum efficiency” “for years to come” “making it an
+important consideration” unless the phrase adds specific meaning.
+
+8. AI fingerprints to remove
+
+Warning terms/patterns: moreover; furthermore; “additionally” in every
+section; in conclusion; it’s important to note; it’s worth noting;
+crucial to understand; delve; navigate the complexities; landscape;
+realm; robust; seamless; leverage when “use” works; comprehensive when
+vague; tailored solutions; game changer; unlock; ever-evolving;
+cutting-edge; revolutionize; elevate; pivotal; multifaceted; myriad;
+plethora; testament; underscore; foster.
+
+Do not mechanically ban a normal word when it is the clearest word.
+Remove the AI-like thought pattern.
+
+Avoid fake balance: “While X offers many benefits, it is important to
+consider…” State the actual tradeoff.
+
+Avoid empty authority: “Experts agree…” “Studies show…” “Research
+suggests…” Name/cite the evidence or remove it.
+
+Avoid unsupported prevalence: often, usually, commonly, typically, most,
+many, frequently, rarely, leading cause, main culprit, classic symptom.
+Use these only when evidence supports frequency in the exact scope.
+
+Mechanism does not prove prevalence.
+
+Avoid fake certainty: always, definitely, guarantees, will. Use scoped
+language when evidence supports only can/may/is consistent with.
+
+Avoid repetitive AI structures: - Same H2 count across pages. - Same
+paragraph count per section. - Universal
+Causes/Fixes/Prevention/Call-a-Pro prose. - Same FAQ ending. - Same
+comparison criteria regardless of products. - Every section starts with
+a definition. - Every paragraph ends with a summary. - Repeated “This
+means / This matters / In other words.” - Title-variable templates.
+
+Permanent test: Could this paragraph fit another HVAC article after
+changing one noun/model/code/brand? If yes, rewrite it around
+information unique to this page.
+
+9. Structure follows the question
+
+There is no universal article outline.
+
+Error code pages may need: direct meaning, exact family scope, what the
+control detected, what the code does NOT prove, owner-safe checks,
+OEM-supported reset guidance, technician direction, stop condition,
+evidence, real FAQs.
+
+Troubleshooting may need: direct diagnostic orientation, normal vs
+abnormal behavior, symptom branches, safe checks in diagnostic order,
+evidence-based causes without fake frequency ranking, stop point,
+information to collect for service.
+
+How-to may need: outcome, preconditions, genuine tools, ordered steps,
+checkpoints, stop conditions, result interpretation. Never invent a
+duration.
+
+Guides may need: direct definition, mechanism, importance, measurements,
+worked example, regional distinction, misconceptions, related decision.
+
+Comparisons may need: decision answer, who each fits, meaningful
+criteria, evidence limitations, matched-system/model distinctions, and
+cases where neither is categorically better. Never declare a brand
+winner without defensible evidence.
+
+10. Evidence hierarchy
+
+For model/product technical claims prefer: 1. Exact OEM
+service/engineering manual. 2. OEM installation/operation manual. 3. OEM
+technical bulletin/support documentation. 4. OEM specification/product
+page. 5. Government/standards authority for cross-brand rules, metrics,
+regulation, safety, or definitions. 6. High-quality independent
+technical evidence only when primary evidence cannot answer the point.
+
+Do not use search snippets, AI summaries, SEO blogs, forums, Reddit, or
+retailers as proof of manufacturer behavior when primary evidence
+exists.
+
+Never treat a neighboring model’s manual as proof for the target model.
+
+Source relevance must be checked, not inferred from the brand name.
+
+11. Claim control
+
+Classify important claims: A. Direct source fact: source states it. B.
+Calculation/derivation: follows from sourced values; show enough logic.
+C. Technical inference: cautiously label inference. D. Editorial
+decision: state criteria. E. Unsupported: remove or research.
+
+Never transform “X can cause Y” into “X usually causes Y.” Never
+transform “manual tells a technician to test X” into “X is likely
+faulty.” An error code often reports what a control detected, not the
+failed component. Preserve that distinction without inventing
+prevalence.
+
+12. Safety
+
+Owner-safe content can include settings, displays, codes, remote
+batteries, accessible filters per OEM instructions, visible
+obstruction/ice/water, data-plate photos, and documented user-level
+resets when safe.
+
+Do not instruct unqualified readers to open energized panels, probe live
+voltage, bypass safety devices, handle/add refrigerant, pressure test,
+alter factory wiring, defeat lockouts, perform combustion/gas work, or
+guess component replacement from symptoms.
+
+Technician procedures may be summarized as context, but homeowner
+instructions stop before hazardous work.
+
+13. E-E-A-T and trust
+
+E-E-A-T is not one Google ranking factor. Google says systems use many
+signals that can align with experience, expertise, authoritativeness,
+and trust, with trust especially important.
+
+Demonstrate trust through accurate scope, primary sources, evidence
+records, truthful authorship/review status/dates, corrections,
+methodology, evidence-vs-inference distinctions, safe advice, and useful
+limitations.
+
+Never manufacture credentials, reviewers, testing, or “human written”
+metadata.
+
+14. Titles and H1
+
+HVAC BENCH HOUSE REQUIREMENT: Each indexable page gets one clear primary H1. This is an editorial and accessibility/clarity standard, not a claim that Google penalizes every page with multiple H1 elements.
+
+Titles: - Accurate. - Useful differentiator early. - Exact
+model/code/entity when it defines intent. - No clickbait. - No
+exaggerated adjectives. - No keyword stuffing. - No repeated site
+boilerplate. - Sentence case by default.
+
+H1 and HTML title may differ slightly for SERP clarity but must describe
+the same page.
+
+There is no magic title character count ranking rule. Be concise without
+mutilating meaning.
+
+15. Meta descriptions
+
+Meta descriptions are snippet candidates, not magic ranking levers.
+
+Make each unique, accurate, concrete, and useful. Include the core
+entity naturally. Never promise absent content or repeat the title
+verbatim.
+
+Google may choose page text instead, so strong extractable body answers
+matter more than meta copy.
+
+16. Headings and scannability
+
+Use logical H1 > H2 > H3 hierarchy.
+
+Headings must tell scanning readers what a section answers. Use sentence
+case and real sub-intents.
+
+Avoid “Introduction,” vague “Overview,” clever-but-unclear headings,
+keyword-stuffed H2s, and identical heading templates.
+
+QA trick: read only the title, headings, and first sentence of each
+paragraph. They should form a coherent version of the answer.
+
+Paragraphs should be compact and idea-led. Use numbered lists for
+sequences and bullets for non-sequential items. Use tables only when
+rows/columns genuinely make comparison/reference faster.
+
+17. Internal links
+
+Important pages need crawlable HTML links.
+
+Use descriptive anchors. Link upward to hubs, downward to specific
+diagnostics/how-tos, sideways to genuinely adjacent concepts, and to
+glossary definitions when terms block understanding.
+
+Never hit an arbitrary link count. Do not link every keyword occurrence.
+Avoid orphan pages and JavaScript-only navigation where normal links
+belong.
+
+18. AEO: answer engine optimization
+
+AEO means making correct answers easy to identify, extract, verify, and
+contextualize. It does not mean robotic 40-word answers.
+
+-   State answers explicitly.
+-   Put necessary scope in the same passage.
+-   Name entities fully on first use.
+-   Keep pronouns unambiguous.
+-   Define technical terms.
+-   Use meaningful headings.
+-   Keep important facts in text, not only images.
+-   Use lists/tables only when structurally appropriate.
+-   Answer genuine follow-ups.
+-   Make units explicit.
+-   State model/region distinctions.
+-   Separate symptom from diagnosis.
+-   Preserve evidence.
+
+A strong extractable passage remains correct when quoted with its
+heading.
+
+Do not create repetitive Q&A blocks solely for answer engines.
+
+19. GEO: generative engine optimization
+
+Google says AI Overviews/AI Mode require no special technical
+optimization beyond normal Search eligibility and SEO fundamentals.
+There is no special Google AI schema requirement.
+
+For Google AI features: - Page must be indexable and snippet-eligible. -
+Googlebot must access it. - Important content should be textual. -
+Internal links should expose it. - Structured data must match visible
+content. - Page experience matters. - Unique, non-commodity content
+matters. - Query fan-out means precise subtopic coverage can create
+discovery opportunities.
+
+For Bing/Copilot: - Maintain crawlability/index accuracy. - Canonicals
+and sitemaps must be correct. - Use crawlable links. - Make facts
+independently verifiable. - Define entities consistently. - Keep each
+URL focused. - Keep structured data truthful. - Never add prompt
+injection or text intended to manipulate an AI model.
+
+Write passages worth citing: precise, useful, differentiated,
+defensible.
+
+High-value HVAC examples: - Model-specific code interpretation with
+scope. - Documented operating-limit table. - Worked BTU/SEER2
+interpretation. - Normal-defrost vs abnormal-icing decision path. -
+“What this code proves / does not prove.” - Region-specific
+terminology/standards distinction. - Source-backed compatibility
+boundary. - Safe diagnostic sequence.
+
+Do not claim llms.txt, “GEO keywords,” or special AI markup is required
+by Google.
+
+20. Original value and information gain
+
+HVAC BENCH EDITORIAL REQUIREMENT: Every substantial article needs at least one genuine value layer. This is our quality gate, not a claim that Google requires a specific named value layer: -
+Decision table. - Model/family scope map. - Normal vs abnormal
+behavior. - Owner-safe vs technician-only boundary. - US vs UK/EU
+distinction. - Matched-system distinction. - Measurement
+interpretation. - Diagnostic sequence. - Evidence limitation. - “What
+this code does not prove.” - Compatibility distinction. - Stop
+condition. - Worked example. - Primary-source synthesis. - Transparent
+decision rule.
+
+Before publishing ask: What does this teach that a generic HVAC page
+does not? What ambiguity does it resolve? What decision becomes easier?
+What misleading simplification does it correct? Which paragraph could
+only belong on THIS page?
+
+If the only novelty is wording, do not publish.
+
+21. Brand/model discipline
+
+Never generalize one model to a whole manufacturer.
+
+Distinguish brand vs model family, single-zone vs multi-zone, ductless
+vs ducted, US vs UK/EU lines, and exact system matching.
+
+Do not manufacture reliability rankings from anecdotes.
+
+For codes, exact code + exact family beats brand-wide certainty. If
+meanings differ by family, state that prominently. Never merge
+incompatible code tables.
+
+22. FAQ policy
+
+FAQ sections exist for readers, not schema bait.
+
+Only include questions that naturally follow the task, resolve
+ambiguity, add information, and can be answered accurately.
+
+Do not rephrase the H1 repeatedly, stuff keywords, repeat body copy, or
+assume FAQ rich results.
+
+Do not add FAQ schema automatically without checking current Google
+policy/eligibility.
+
+23. Structured data
+
+Structured data must truthfully describe visible content.
+
+-   Prefer JSON-LD where architecture supports it.
+-   Use the appropriate type.
+-   Match visible authorship, dates, headline, image, and claims.
+-   Never invent ratings/reviews/dateModified.
+-   Never mark up hidden or irrelevant content.
+-   Validate.
+-   Keep canonical/schema URLs consistent.
+-   Valid schema does not guarantee rich results.
+
+24. Technical SEO gate
+
+For an indexable editorial page verify: - HTTP success. - Not blocked by
+robots. - No unintended noindex. - Correct canonical. - Intended
+canonical URL in sitemap when policy requires it. - Crawlable internal
+link. - Unique useful title. - One clear H1. - Appropriate meta
+description. - Main content indexable in text. - Structured data matches
+visible content. - Useful image alt text. - No broken links. - No
+accidental duplicate route. - Correct redirects. - Mobile rendering. -
+HTTPS. - No intrusive overlays. - Good page experience.
+
+Core Web Vitals targets: LCP <= 2.5s INP < 200ms CLS < 0.1
+
+These are HVAC Bench performance targets and useful UX benchmarks, not ranking guarantees. Do not treat Core Web Vitals or any individual page-experience signal as a standalone ranking checklist; excellent scores do not guarantee high rankings, and relevance/usefulness remain primary.
+
+25. Canonicals, duplicates, freshness
+
+One substantive answer normally gets one canonical URL.
+
+Consolidate duplicates. Permanently moved URLs use proper redirects.
+Keep only intended canonicals in sitemaps.
+
+Update pages when evidence, standards, product lines, compatibility,
+technical facts, or meaningful intent changes.
+
+Never change dates merely to appear fresh. Never bulk-refresh review
+dates. Review status/date must be earned by actual review.
+
+26. Images
+
+Use visuals when they improve identification, diagnosis, understanding,
+or decisions.
+
+Prefer useful original diagrams, owned/authorized technical images, and
+relevant illustrations. Never fabricate photographic proof of testing.
+
+Place images near relevant text. Use descriptive filenames and accurate
+alt text. Do not keyword-stuff alt text. Decorative images need
+appropriate empty alt treatment. Avoid generic logos as representative
+article imagery when a useful image exists.
+
+27. Links and off-page SEO
+
+Google’s documented ranking systems still include link
+analysis/PageRank.
+
+Never manufacture backlinks, PBNs, automated guest-post spam, scaled
+link exchanges, hidden links, expired-domain abuse, site-reputation
+abuse, parasite SEO, or fake PR.
+
+Third-party “Domain Authority” scores are not Google ranking signals.
+
+Earn citations through original, precise, verifiable, reference-worthy
+work.
+
+28. Human editing pass
+
+PASS A, FACTS: Verify every model, code, specification, number,
+standard, safety claim.
+
+PASS B, SCOPE: Could the reader wrongly apply it to another model,
+region, refrigerant, system type, or voltage?
+
+PASS C, ORIGINALITY: Does any paragraph sound like generic HVAC copy or
+another HVAC Bench page?
+
+PASS D, RHYTHM: Read aloud. Remove repetitive openings, uniform sentence
+lengths, excessive transitions, repeated conclusions, awkward keywords,
+AI/corporate vocabulary, and unnecessary qualifiers. Do not manufacture
+randomness.
+
+PASS E, SCANNING: Read H1, headings, and first sentence of every
+paragraph. The argument should still work.
+
+PASS F, COMPRESSION: Delete sentences whose removal loses no useful
+meaning. Keep necessary nuance.
+
+PASS G, SEARCH: Check intent, title, opening answer, internal links,
+metadata, entities, extractable passages, schema, images.
+
+PASS H, SAFETY: Owner instructions stop before hazardous work.
+
+29. Ending rule
+
+Do not automatically add a conclusion.
+
+End with the final diagnostic decision, stop condition, decision rule,
+service handoff information, evidence limitation, useful next page, or a
+short recap only when complexity requires it.
+
+Avoid: “In conclusion…” “Ultimately…” “By following these tips…” “With
+the right knowledge…” “Regular maintenance is key…” “Consult a qualified
+professional for all your HVAC needs.”
+
+If service is necessary, state why and exactly where owner-safe work
+ends.
+
+30. House mechanics
+
+-   American English by default unless UK/EU-specific.
+-   Sentence-case headings.
+-   Serial comma.
+-   No em dash.
+-   No double-hyphen dash.
+-   Contractions allowed when natural.
+-   Exact model/code capitalization.
+-   Define unfamiliar acronyms on first use.
+-   Avoid exclamation marks.
+-   Avoid ALL CAPS except official labels/codes/acronyms.
+-   Avoid excessive parentheses.
+-   Do not bold keywords for SEO.
+-   Do not bold entire paragraphs.
+
+31. Responsible automation and scaled-content control
+
+Automation and AI assistance are tools, not publication permission.
+Google does not prohibit automation merely because it is automated.
+The hard failure is producing many low-value, unoriginal, misleading,
+thin, or substantially similar pages primarily to manipulate search
+rankings.
+
+HVAC Bench may use automation to assist research organization, routing,
+metadata validation, taxonomy, structured fields, internal-link maps,
+schema generation from truthful data, sitemaps, linting, similarity
+tests, publication gates, and drafting support.
+
+Substantive pages may only scale when EACH page independently passes the
+same standards as a manually produced page: correct intent, exact scope,
+appropriate primary evidence, factual verification, useful
+differentiation, original synthesis or decision value, safety review,
+human/editorial QA where required, and duplicate/similarity checks.
+
+Never create model pages, error-code pages, location pages, brands,
+comparisons, glossary definitions, troubleshooting pages, FAQs, or
+other search-targeted pages by merely swapping variables into shared
+prose.
+
+Automation may assemble layout and assist drafting. It must not be used
+to disguise template duplication or manufacture information gain.
+
+32. Anti-cannibalization
+
+Before creating a URL: 1. Search the repository for the query/entity. 2.
+Check whether an existing page already satisfies intent. 3. Improve it
+if yes. 4. Create a new URL only for materially distinct intent. 5.
+Define the distinction. 6. Add useful reciprocal/hub links.
+
+Do not split one strong answer into weak keyword pages.
+
+33. Topical authority
+
+Build coherent coverage, not raw URL count.
+
+Preferred growth: Hub -> foundational guide -> specific
+diagnostic/how-to/comparison -> supporting glossary -> evidence-based
+internal links.
+
+Publish only as fast as primary research, independent writing, editorial
+QA, technical QA, and performance review allow.
+
+34. Search performance feedback
+
+Use Search Console diagnostically: - Queries/intent. - Impressions. -
+CTR in context of position/query/SERP. - Indexing. - Canonical
+selection. - Crawl issues. - Structured-data issues. - Internal-link
+opportunities. - Queries needing better answers.
+
+Do not rewrite strong pages weekly due to normal ranking fluctuation. Do
+not chase every query with exact-match copy. Do not delete useful
+content solely for having no traffic yet.
+
+35. Entity clarity for AEO/GEO
+
+Explicitly identify manufacturer, product family, model, equipment type,
+code, component, refrigerant, measurement, region, and standard when
+relevant.
+
+Avoid ambiguous “it,” “this unit,” or “the system” when several entities
+are in one passage.
+
+Standalone correctness is more important than pronoun variety.
+
+36. Who, How, and Why transparency
+
+For substantial editorial content, explicitly evaluate:
+
+WHO: Make authorship and review responsibility clear where readers would
+reasonably expect it. Use only real names, roles, credentials, and
+review status. Never invent an author, technician, engineer, reviewer,
+expert, or credential.
+
+HOW: When the creation process materially helps a reader assess trust,
+describe the relevant research, calculation, testing, review, sourcing,
+or automation method truthfully. AI assistance does not create
+first-hand experience. Never imply physical testing, field inspection,
+ownership, measurement, or hands-on use unless it actually occurred.
+
+WHY: The primary purpose of every page must be to help the intended HVAC
+Bench reader complete a task, understand a technical issue, make a
+better decision, or safely determine the next step. Search visibility
+is a distribution objective, not the reason the page deserves to exist.
+
+Disclosure is contextual, not performative. Do not add repetitive AI
+disclaimers merely for SEO. Add process/provenance information when it
+meaningfully improves trust, especially for technical claims,
+calculations, comparisons, testing, reviews, or consequential advice.
+
+37. Hard fail conditions
+
+DO NOT PUBLISH if: - Technical claims lack appropriate evidence. -
+Source scope does not match model/family. - Code meaning is
+overgeneralized. - Unsupported prevalence remains. - Hazardous DIY
+remains. - Fake provenance/experience exists. - Article substantially
+duplicates another. - Prose is variable-swapped/template generated. -
+Opening does not answer intent. - Page adds no value beyond
+paraphrase. - Title promises absent content. - Structured data conflicts
+with visible content. - Canonical/indexing is wrong. - Broken internal
+links remain. - Prose/similarity/test/build gates fail. - Agent cannot
+explain why this URL deserves to exist.
+
+38. Mandatory AI-agent workflow
+
+1.  Inspect repository, this file, schema, editorial policy, relevant
+    hub, related articles, source registry, lint/similarity/test rules.
+2.  Define query, task, page type, scope, region, safety boundary,
+    competing internal URL, and Who/How/Why provenance requirements.
+3.  Research primary sources and verify relevance.
+4.  Build an evidence-backed outline unique to the problem.
+5.  Draft independently. Do not copy competitors or imitate one specific
+    living writer.
+6.  Add at least one real value layer.
+7.  Run SEO/AEO/GEO pass without degrading prose.
+8.  Run human editing pass.
+9.  Run evidence/safety/prevalence audit.
+10. Run all repository prose, similarity, link, test, typecheck, build,
+    and verification gates.
+11. If deployment is authorized, verify the canonical live site.
+
+Before saying DONE report: Primary intent Page type Evidence Scope
+Region Original value Safety boundary Unsupported prevalence: PASS/FAIL
+Duplicate/template: PASS/FAIL Internal links: PASS/FAIL Metadata/schema:
+PASS/FAIL Who/How/Why: PASS/FAIL Prose gate: PASS/FAIL Similarity gate: PASS/FAIL Tests/build:
+PASS/FAIL Live verification if deployed: PASS/FAIL
+
+39. Do not optimize for myths
+
+Do not optimize for: - A mythical public 200-factor checklist. - Keyword
+density. - Fixed word count. - SEO-plugin green scores. - AI detector
+scores. - “Humanizer” scores. - Hidden AI keywords. - Special Google AI
+schema. - Mandatory FAQ count. - Mandatory H2 count. - Mandatory
+internal-link count. - Mandatory publishing frequency. - Domain
+Authority as a Google metric. - Fake freshness. - Featured-snippet word
+counts. - Exact-match domains. - Search traffic at the expense of user
+value.
+
+40. Research basis, checked 2026-09-02
+
+Primary search guidance: Google Search Essentials
+https://developers.google.com/search/docs/essentials
+
+Google people-first content
+https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+
+Google ranking systems
+https://developers.google.com/search/docs/appearance/ranking-systems-guide
+
+Google generative AI content guidance
+https://developers.google.com/search/docs/fundamentals/using-gen-ai-content
+
+Google AI features and websites
+https://developers.google.com/search/docs/appearance/ai-features
+
+Google spam policies
+https://developers.google.com/search/docs/essentials/spam-policies
+
+Google SEO Starter Guide
+https://developers.google.com/search/docs/fundamentals/seo-starter-guide
+
+Google Core Web Vitals
+https://developers.google.com/search/docs/appearance/core-web-vitals
+
+Google structured data guidelines
+https://developers.google.com/search/docs/appearance/structured-data/sd-policies
+
+Google Article structured data
+https://developers.google.com/search/docs/appearance/structured-data/article
+
+Google title links
+https://developers.google.com/search/docs/appearance/title-link
+
+Google snippets
+https://developers.google.com/search/docs/appearance/snippet
+
+Google Image SEO
+https://developers.google.com/search/docs/appearance/google-images
+
+Google canonicalization
+https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls
+
+Google JavaScript SEO
+https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
+
+Google 2026 generative-AI optimization resource
+https://developers.google.com/search/blog/2026/05/a-new-resource-for-optimizing
+
+Bing Webmaster Guidelines
+https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a
+
+Writing/editing guidance: Google Developer Documentation Style Guide
+https://developers.google.com/style
+
+Microsoft Writing Style Guide
+https://learn.microsoft.com/en-us/style-guide/
+
+Mailchimp Content Style Guide https://styleguide.mailchimp.com/
+
+Nielsen Norman Group, Concise, Scannable, and Objective
+https://www.nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web/
+
+Nielsen Norman Group, How Users Read on the Web
+https://www.nngroup.com/articles/how-users-read-on-the-web/
+
+These writing sources provide general principles only. Do not copy or
+imitate a specific writer’s distinctive style.
+
+41. Final mandate
+
+HVAC Bench wins by being more useful, specific, verifiable, and
+disciplined than commodity HVAC content.
+
+The agent’s job is not to make a page LOOK optimized. The job is to
+produce the most defensible and useful answer HVAC Bench can publish for
+that exact query, then make it technically easy for search engines and
+generative systems to discover, understand, and cite.
+
+When SEO conflicts with truth, choose truth. When length conflicts with
+usefulness, choose usefulness. When a template conflicts with the
+question, abandon the template. When a keyword conflicts with natural
+language, use natural language. When evidence is incomplete, preserve
+uncertainty. When owner-safe work ends, stop. When there is no original
+value, do not publish.

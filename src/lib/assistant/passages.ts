@@ -42,9 +42,7 @@ export type Passage = {
   brand?: string;
   /** Normalised code variants this passage's article covers. */
   codes: string[];
-  equipmentType?: string;
   problemType?: string;
-  productFamily?: string;
   tokens: string[];
 };
 
@@ -108,9 +106,7 @@ export function buildPassageIndex(): PassageIndex {
       articleTitle: article.title,
       brand: article.brand,
       codes: codeVariants(article),
-      equipmentType: article.equipmentType,
       problemType: article.problemType,
-      productFamily: article.productFamily,
       // Retrieval only tests token presence, so retaining repeats wastes memory
       // without changing relevance scoring.
       tokens: [...new Set(tokenize(`${question ?? ""} ${text}`))],

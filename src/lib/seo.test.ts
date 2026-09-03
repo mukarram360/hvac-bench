@@ -265,9 +265,9 @@ describe("sitemap", () => {
     expect(legal?.priority).toBeLessThan(0.9);
   });
 
-  it("excludes the search utility and empty brand hubs", () => {
+  it("excludes the search utility and includes newly supported brand hubs", () => {
     const urls = sitemapEntries().map((entry) => entry.url);
     expect(urls).not.toContain("https://hvac-bench.com/search/");
-    expect(urls).not.toContain("https://hvac-bench.com/brands/vaillant/");
+    expect(urls).toContain("https://hvac-bench.com/brands/vaillant/");
   });
 });
